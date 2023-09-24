@@ -3,7 +3,9 @@
  * 
  * @version 1.0
  * @author omer-munam
+ * @author shezin-saleem
  */
+
 public class Orders {
 
     private int d_numOfArmies;
@@ -36,10 +38,11 @@ public class Orders {
         this.d_numOfArmies = numOfArmies;
     }
 
-    /**
-     * Definition of the logic of deploying the armies to the specified Country.
+    /** 
+     * Execution of the logic of deploying the armies to the specified Country.
      */
-    public void execute(){
+    public void execute(WarMap p_warMap){
+        
 
     }
 }
