@@ -27,8 +27,8 @@ public class Player {
     /**
      * List of player's orders for execution.
      */
-    List<Orders> playerOrders;
-
+    List<Orders> playerOrders; //private List<String> playerOrders; //playerOrders should have (SourceCountry, DestinationCountry, NoOfArmies)
+                               //Change <Orders> ---> <String>
     /**
      * This is the constructor method of the Player class
      *
