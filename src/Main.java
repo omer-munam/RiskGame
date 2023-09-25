@@ -1,13 +1,10 @@
-import Models.Continent;
-import Models.Country;
-import Models.WarMap;
+import View.GameEngine;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
+        GameEngine new_game = new GameEngine();
+        new_game.start_game();
     }
 }
