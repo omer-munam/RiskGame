@@ -1,3 +1,5 @@
+package Models;
+
 import java.util.ArrayList;
 
 public class Country {
@@ -46,7 +48,7 @@ public class Country {
     ArrayList<Country> d_neighbouringCountries;
     int d_continentID;
 
-    void addNeighbouringCountry(Country p_country) {
+    public void addNeighbouringCountry(Country p_country) {
         d_neighbouringCountries.add(p_country);
     }
 
@@ -56,7 +58,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" +
+        return "Models.Country{" +
                 "countryID=" + d_countryID +
                 ", countryName='" + d_countryName + '\'' +
                 '}';
