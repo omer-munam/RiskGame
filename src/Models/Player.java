@@ -1,3 +1,5 @@
+package Models;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +27,9 @@ public class Player {
      * List of player's orders for execution.
      */
     List<Orders> playerOrders; //private List<String> playerOrders; //playerOrders should have (SourceCountry, DestinationCountry, NoOfArmies)
-                               //Change <Orders> ---> <String>
+                               //Change <Models.Orders> ---> <String>
     /**
-     * This is the constructor method of the Player class
+     * This is the constructor method of the Models.Player class
      *
      * @param v_playerName is player's name.
      */

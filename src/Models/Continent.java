@@ -1,7 +1,9 @@
+package Models;
+
 public class Continent {
     @Override
     public String toString() {
-        return "Continent{" +
+        return "Models.Continent{" +
                 "continentID=" + d_continentID +
                 ", continentName='" + d_continentName + '\'' +
                 '}';

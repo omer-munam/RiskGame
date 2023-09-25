@@ -1,3 +1,5 @@
+package View;
+
 import java.util.Scanner;
 
 public class GameMenu {
@@ -36,7 +38,7 @@ public class GameMenu {
         System.out.println("===== Game Menu =====");
         System.out.println("1. Start Game"); // 1.Start game, 2.Edit map, 3. View Map, 4.Exit
         System.out.println("2. Choose Map"); // Start Game - Choose map, add player, orders
-        System.out.println("3. Add Player");
+        System.out.println("3. Add Models.Player");
         System.out.println("4. Exit");
         System.out.print("Select an option: ");
     }

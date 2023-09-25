@@ -1,7 +1,7 @@
+package Models;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 
 public class WarMap {
     String d_mapName;

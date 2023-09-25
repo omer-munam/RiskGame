@@ -1,3 +1,5 @@
+package Models;
+
 import java.util.List;
 
 /**
@@ -30,7 +32,7 @@ public class Orders {
         this.d_countryID = newCountry;
     }
     /**
-     * This is a fully parametrized constructor for the Orders class.
+     * This is a fully parametrized constructor for the Models.Orders class.
      * 
      * @param numOfArmies Number of Armies to deploy in this order.
      * @param countryID ID of the country on which to deploy the specified number of armies.
@@ -41,7 +43,7 @@ public class Orders {
     }
 
     /** 
-     * Execution of the logic of deploying the armies to the specified Country.
+     * Execution of the logic of deploying the armies to the specified Models.Country.
      */
     public void execute(Player p_player, WarMap p_WarMap){
         // Assigning dummy values for testing the login
