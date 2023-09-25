@@ -10,7 +10,7 @@ public class GameMenu {
         boolean running = true;
         while (running) {
             displayMenu();
-            int choice = getUserChoice(scanner);
+            int choice = getUserChoice(SCANNER);
 
             switch (choice) {
                 case 1:
@@ -31,7 +31,7 @@ public class GameMenu {
             }
         }
 
-        scanner.close();
+        SCANNER.close();
     }
 
     public static void displayMenu() {
