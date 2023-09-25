@@ -25,8 +25,7 @@ public class Player {
     /**
      * List of player's orders for execution.
      */
-    List<Orders> d_playerOrders; //private List<String> playerOrders; //playerOrders should have (SourceCountry, DestinationCountry, NoOfArmies)
-                               //Change <Models.Orders> ---> <String>
+    List<Orders> d_playerOrders;
     /**
      * This is the constructor method of the Models.Player class
      *
