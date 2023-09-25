@@ -118,6 +118,7 @@ public class Player {
             Orders order = new Orders(numOfArmies, countryID);
             d_playerOrders.add(order);
             d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
+            System.out.println("Order Issued Successfully.");
         }
     }
 
