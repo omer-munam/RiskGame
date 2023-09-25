@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +9,10 @@ public class Player {
 
     private String playerName;
 
-    /**
-     * color of territories owned by the player
-     */
-    private String playerColor;
+//    /**
+//     * color of territories owned by the player
+//     */
+//    private String playerColor;
     List<Country> playerCountries;
     List<Continent> playerContinents;
 
@@ -48,16 +45,16 @@ public class Player {
         this.playerName = p_name;
     }
 
-    public String get_playerColor() {
-        return playerColor;
-    }
-
-    /**
-     * @param p_color is ANSI color code.
-     */
-    public void set_playerColor(String p_color) {
-        playerColor = p_color;
-    }
+//    public String get_playerColor() {
+//        return playerColor;
+//    }
+//
+//    /**
+//     * @param p_color is ANSI color code.
+//     */
+//    public void set_playerColor(String p_color) {
+//        playerColor = p_color;
+//    }
 
     public List<Country> get_playerCountries() {
         return playerCountries;
