@@ -3,9 +3,9 @@ package View;
 import java.util.Scanner;
 
 public class GameMenu {
-
+    public static Scanner SCANNER;
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        SCANNER = new Scanner(System.in);
 
         boolean running = true;
         while (running) {
