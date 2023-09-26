@@ -18,8 +18,8 @@ public class Orders {
         return d_numOfArmies;
     }
 
-    public void setNumOfArmies(int newNum) {
-        this.d_numOfArmies = newNum;
+    public void setNumOfArmies(int p_newNum) {
+        this.d_numOfArmies = p_newNum;
     }
 
     private int d_countryID;
@@ -28,31 +28,32 @@ public class Orders {
         return d_numOfArmies;
     }
 
-    public void setCountryID(int newCountry) {
-        this.d_countryID = newCountry;
+    public void setCountryID(int p_newCountry) {
+        this.d_countryID = p_newCountry;
     }
     /**
      * This is a fully parametrized constructor for the Models.Orders class.
      * 
-     * @param numOfArmies Number of Armies to deploy in this order.
-     * @param countryID ID of the country on which to deploy the specified number of armies.
+     * @param p_numOfArmies Number of Armies to deploy in this order.
+     * @param p_countryID ID of the country on which to deploy the specified number of armies.
      */
-    public Orders(int numOfArmies, int countryID){
-        this.d_countryID = countryID;
-        this.d_numOfArmies = numOfArmies;
+    public Orders(int p_numOfArmies, int p_countryID){
+        this.d_countryID = p_countryID;
+        this.d_numOfArmies = p_numOfArmies;
     }
 
     /** 
      * Execution of the logic of deploying the armies to the specified Models.Country.
+     * 
+     * @param l_countryInfo Details of values inside List Country
      */
-    public void execute(Player p_player, WarMap p_WarMap){
-        // Assigning dummy values for testing the login
-        p_player.set_playerName("Shezin");
-        p_player.set_playerCountries("India", "Iran", "China");
-        p_player.set_armiesNumber(4,7,3);
-
-        //playerOrder is a list with (SourceCountry, DestinationCountry, NoOfArmies)
-        List<String> Player_playerOrder = p_player.set_playerOrder();
-
+    public void execute(WarMap p_warmap){
+        List<Country> l_countryInfo = (List<Country>) p_warmap.get_countries().values();
+        for (Country country : l_countryInfo) {
+            if (country.d_countryID == d_countryID){
+                country.d_numOfArmies += d_numOfArmies;
+            }
+        }
+        System.out.println("Execution Done Successfully");
     }
 }
