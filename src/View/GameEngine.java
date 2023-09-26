@@ -1,6 +1,26 @@
 package View;
 import java.util.Scanner;
 import Resources.Commands;
+
+
+/**
+ * The GameEngine class represents the startup phase of the game. It serves as the central
+ * component responsible for redirecting user requests to relevant functionality of the game.
+ * This class acts as the core of the game's execution and coordinates the various components
+ * to provide an interactive gaming experience.
+ *
+ * <p>
+ * The GameEngine class encapsulates the game's main loop and input handling. It initializes and manages the game's state,
+ * updates the game logic, and handles user input events.
+ *
+ * <p>
+ * Developers can extend this class to customize and add game-specific functionality. By
+ * overriding the appropriate methods, you can integrate your game logic seamlessly.
+ *
+ * @author Adeel Saleem
+ * @version 1.0
+ * @since 2023-09-26
+ */
 public class GameEngine {
     public void start_game()
     {
