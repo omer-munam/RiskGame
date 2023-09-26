@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Country {
     int d_countryID;
-
+    int d_numOfArmies;
+    
     public Country() {
         this(0, "Default Name", 0, new ArrayList<Country>());
     }
@@ -14,10 +15,15 @@ public class Country {
     }
 
     public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Country> p_neighbouringCountries) {
+        this(p_countryID, p_countryName, p_continentID, p_neighbouringCountries, 0);
+    }
+
+    public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Country> p_neighbouringCountries, int p_numOfArmies) {
         d_countryID = p_countryID;
         d_countryName = p_countryName;
         d_continentID = p_continentID;
         d_neighbouringCountries = p_neighbouringCountries;
+        d_numOfArmies = p_numOfArmies;
     }
 
     public int get_countryID() {
@@ -26,6 +32,14 @@ public class Country {
 
     public void set_countryID(int p_countryID) {
         d_countryID = p_countryID;
+    }
+
+    public int get_numOfArmies() {
+        return d_numOfArmies;
+    }
+
+    public void set_numOfArmies(int p_numOfArmies) {
+        d_numOfArmies = p_numOfArmies;
     }
 
     public String get_countryName() {

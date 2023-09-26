@@ -12,4 +12,5 @@ public class Commands {
     public static final String EDIT_COUNTRY_COMMAND = "editcountry";
     public static final String EDIT_NEIGHBOR_COMMAND = "editneighbor";
     public static final String DEPLOY_COMMAND = "deploy";
+    public static final String DEPLOY_COMMAND_SYNTAX = "deploy <countryID> <num>";
 }
