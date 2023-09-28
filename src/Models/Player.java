@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
+
 /**
  * This class describes information about each player.
  */
@@ -85,7 +86,7 @@ public class Player {
      */
     public void issue_order(){
         Scanner scanner = new Scanner(System.in);
-        while (d_numOfReinforcements != 0){
+        while (d_numOfReinforcements.intValue() != 0){
             int countryID;
             int numOfArmies;
             System.out.println("Please issue deploy order command for Player " + d_playerName);
@@ -103,7 +104,7 @@ public class Player {
                 System.out.println("Invalid CountryID or Number of Reinforcements");
                 continue;
             }
-            if (numOfArmies > d_numOfReinforcements){
+            if (numOfArmies > d_numOfReinforcements.intValue()){
                 System.out.println("Specified number of reinforcements exceed the available.");
                 continue;
             }
@@ -117,7 +118,7 @@ public class Player {
             }
             Orders order = new Orders(numOfArmies, countryID);
             d_playerOrders.add(order);
-            d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
+            d_numOfReinforcements = d_numOfReinforcements.intValue() - numOfArmies;
             System.out.println("Order Issued Successfully.");
         }
     }
