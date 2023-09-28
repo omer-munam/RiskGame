@@ -4,6 +4,7 @@ import Resources.Commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static View.GameMenu.SCANNER;
 
@@ -86,38 +87,38 @@ public class Player {
      */
     public void issue_order(){
         while (d_numOfReinforcements != 0){
-            int l_countryID;
-            int l_numOfArmies;
+            int countryID;
+            int numOfArmies;
             System.out.println("Please issue deploy order command for Player " + d_playerName);
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
-            String l_command = SCANNER.nextLine();
-            String[] l_commandTokens = l_command.split(" ");
-            if (l_commandTokens.length != 3 || !l_commandTokens[0].equals(Commands.DEPLOY_COMMAND)){
+            String command = SCANNER.nextLine();
+            String[] commandTokens = command.split(" ");
+            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)){
                 System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
                 continue;
             }
             try {
-                l_countryID = Integer.parseInt(l_commandTokens[1]);
-                l_numOfArmies = Integer.parseInt(l_commandTokens[2]);
+                countryID = Integer.parseInt(commandTokens[1]);
+                numOfArmies = Integer.parseInt(commandTokens[2]);
             }catch (NumberFormatException e){
                 System.out.println("Invalid CountryID or Number of Reinforcements");
                 continue;
             }
-            if (l_numOfArmies > d_numOfReinforcements){
+            if (numOfArmies > d_numOfReinforcements){
                 System.out.println("Specified number of reinforcements exceed the available.");
                 continue;
             }
-            boolean l_countryExists = false;
+            boolean countryExists = false;
             for (Country country : d_playerCountries)
-                if (country.d_countryID == l_countryID)
-                    l_countryExists = true;
-            if (!l_countryExists){
+                if (country.d_countryID == countryID)
+                    countryExists = true;
+            if (!countryExists){
                 System.out.println("The given CountryID is not under your control.");
                 continue;
             }
-            Orders order = new Orders(l_numOfArmies, l_countryID);
+            Orders order = new Orders(numOfArmies, countryID);
             d_playerOrders.add(order);
-            d_numOfReinforcements = d_numOfReinforcements - l_numOfArmies;
+            d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
             System.out.println("Order Issued Successfully.");
         }
     }
@@ -132,9 +133,10 @@ public class Player {
         if (d_playerOrders.isEmpty()) {
             return null; // or throw an exception if desired
         }
-        Orders l_firstOrder = d_playerOrders.get(0);
+
+        Orders firstOrder = d_playerOrders.get(0);
         d_playerOrders.remove(0);
-        return l_firstOrder;
+        return firstOrder;
     }
 }
 
