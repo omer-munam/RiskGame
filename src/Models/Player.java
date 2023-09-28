@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static View.GameMenu.SCANNER;
-
-
 /**
  * This class describes information about each player.
  */
@@ -86,12 +83,13 @@ public class Player {
      *player when the game engine calls it during the issue orders phase.
      */
     public void issue_order(){
+        Scanner scan = new Scanner(System.in);
         while (d_numOfReinforcements != 0){
             int countryID;
             int numOfArmies;
             System.out.println("Please issue deploy order command for Player " + d_playerName);
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
-            String command = SCANNER.nextLine();
+            String command = scan.nextLine();
             String[] commandTokens = command.split(" ");
             if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)){
                 System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
