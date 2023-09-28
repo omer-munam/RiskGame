@@ -77,4 +77,8 @@ public class Country {
                 ", countryName='" + d_countryName + '\'' +
                 '}';
     }
+
+    public int getContinentID() {
+        return d_continentID;
+    }
 }
