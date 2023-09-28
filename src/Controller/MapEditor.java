@@ -1,3 +1,5 @@
+package Controller;
+
 import Models.Continent;
 import Models.Country;
 import Models.WarMap;
@@ -11,6 +13,9 @@ import java.util.List;
 
 public class MapEditor {
 
+    public void editMapEntry(){
+
+    }
     boolean readmap(String p_filename, WarMap p_map) throws IOException {
         BufferedReader l_bufferReader = new BufferedReader(new FileReader(p_filename));
         String l_line = l_bufferReader.readLine();

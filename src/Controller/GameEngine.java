@@ -1,4 +1,4 @@
-package View;
+package Controller;
 import java.util.Scanner;
 import Resources.Commands;
 
@@ -22,15 +22,16 @@ import Resources.Commands;
  * @since 2023-09-26
  */
 public class GameEngine {
+    public static Scanner SCANNER;
     public void start_game()
     {
+        SCANNER = new Scanner(System.in);
         try {
             System.out.print("Welcome to the WarZone Game!\n");
-            Scanner scanner = new Scanner(System.in);
             while (true)
             {
                 System.out.print("Enter a Command to proceed: ");
-                String userInput = scanner.nextLine();
+                String userInput = SCANNER.nextLine();
 
                 if (userInput.toLowerCase().startsWith(Commands.LOAD_MAP_COMMAND))
                 {
@@ -41,7 +42,7 @@ public class GameEngine {
                     System.out.print("Write command to add/remove players: ");
                     while (true)
                     {
-                        userInput = scanner.nextLine();
+                        userInput = SCANNER.nextLine();
                         if (userInput.toLowerCase().startsWith(Commands.PLAYER_ADD_REMOVE_COMMAND)) {
                         System.out.print("You're in: PLAYER_ADD_REMOVE_COMMAND");
 
@@ -54,7 +55,7 @@ public class GameEngine {
                     System.out.print("Write command to assign countries to each player: ");
                     while (true)
                     {
-                        userInput = scanner.nextLine();
+                        userInput = SCANNER.nextLine();
                         if (userInput.toLowerCase().startsWith(Commands.ASSIGN_COUNTRIES_COMMAND)) {
                             System.out.print("You're in: ASSIGN_COUNTRIES_COMMAND");
 
@@ -75,6 +76,8 @@ public class GameEngine {
 
                 } else if (userInput.toLowerCase().startsWith(Commands.EDIT_MAP_COMMAND)) {
                     System.out.print("You're in: EDIT_MAP_COMMAND");
+                    MapEditor editor = new MapEditor();
+                    editor.editMapEntry();
                     break;
 
                 } else  {
