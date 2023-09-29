@@ -37,10 +37,9 @@ public class GameEngine {
             System.out.print("- editmap [filename]\n");
             System.out.print("- loadmap [filename]\n");
             System.out.print("- showmap all\n");
-            Scanner scanner = new Scanner(System.in);
             while (true)
             {
-                String userInput = scanner.nextLine();
+                String userInput = SCANNER.nextLine();
                 String[] words = userInput.split("\\s+");
 
                 if (userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND))
@@ -55,7 +54,7 @@ public class GameEngine {
 
                         while (true)
                         {
-                            userInput = scanner.nextLine();
+                            userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
                             if (userInput.toLowerCase().contains("gameplayer"))
