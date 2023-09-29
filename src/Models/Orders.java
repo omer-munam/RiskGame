@@ -12,7 +12,14 @@ import java.util.List;
 
 public class Orders {
 
+    /**
+     * The Number of Armies that this order has to apply.
+     */
     private int d_numOfArmies;
+    /**
+     * The destination countryID for this instance of order.
+     */
+    private int d_destCountryID;
 
     public int getNumOfArmies() {
         return d_numOfArmies;
@@ -22,14 +29,12 @@ public class Orders {
         this.d_numOfArmies = p_newNum;
     }
 
-    private int d_countryID;
-
     public int getCountryID() {
         return d_numOfArmies;
     }
 
     public void setCountryID(int p_newCountry) {
-        this.d_countryID = p_newCountry;
+        this.d_destCountryID = p_newCountry;
     }
     /**
      * This is a fully parametrized constructor for the Models.Orders class.
@@ -38,7 +43,7 @@ public class Orders {
      * @param p_countryID ID of the country on which to deploy the specified number of armies.
      */
     public Orders(int p_numOfArmies, int p_countryID){
-        this.d_countryID = p_countryID;
+        this.d_destCountryID = p_countryID;
         this.d_numOfArmies = p_numOfArmies;
     }
 
@@ -50,7 +55,7 @@ public class Orders {
     public void execute(WarMap p_warmap){
         List<Country> l_countryInfo = (List<Country>) p_warmap.get_countries().values();
         for (Country country : l_countryInfo) {
-            if (country.d_countryID == d_countryID){
+            if (country.d_countryID == d_destCountryID){
                 country.d_numOfArmies += d_numOfArmies;
             }
         }
