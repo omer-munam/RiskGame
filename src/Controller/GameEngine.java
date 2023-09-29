@@ -1,5 +1,9 @@
 package Controller;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import Models.Player;
 import Resources.Commands;
 import java.util.regex.*;
 
@@ -22,7 +26,14 @@ import java.util.regex.*;
  * @since 2023-09-26
  */
 public class GameEngine {
+    /**
+     * Static scanner instance to be used all over the project.
+     */
     public static Scanner SCANNER;
+    /**
+     * The list of players populated by the user.
+     */
+    private final List<Player> d_playersList = new ArrayList<>();
     public void start_game()
     {
         SCANNER = new Scanner(System.in);
@@ -80,10 +91,7 @@ public class GameEngine {
                             }
                             else if (userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
-                                System.out.print("You're in: ASSIGN_COUNTRIES_COMMAND");
-
-                                // Write code here
-
+                                assignCountries();
                                 break;
                             }
                             else if (userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
@@ -129,5 +137,9 @@ public class GameEngine {
         } catch (Exception e) {
             System.out.println("Something went wrong!\n");
         }
+    }
+
+    private void assignCountries() {
+        System.out.println("AssignCountries");
     }
 }
