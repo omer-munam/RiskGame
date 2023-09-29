@@ -35,4 +35,7 @@ public class Continent {
     }
 
 
+    public int get_armyBonus() {
+        return d_armyBonus;
+    }
 }

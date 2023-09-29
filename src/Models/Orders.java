@@ -45,7 +45,7 @@ public class Orders {
     /** 
      * Execution of the logic of deploying the armies to the specified Models.Country.
      * 
-     * @param l_countryInfo Details of values inside List Country
+     * @param p_warmap Details of values inside List Country
      */
     public void execute(WarMap p_warmap){
         List<Country> l_countryInfo = (List<Country>) p_warmap.get_countries().values();
