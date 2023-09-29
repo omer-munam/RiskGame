@@ -1,4 +1,4 @@
-package View;
+package Controller;
 import java.util.Scanner;
 import Resources.Commands;
 import java.util.regex.*;
@@ -22,8 +22,10 @@ import java.util.regex.*;
  * @since 2023-09-26
  */
 public class GameEngine {
+    public static Scanner SCANNER;
     public void start_game()
     {
+        SCANNER = new Scanner(System.in);
         try {
 
             System.out.println("╔════════════════════════════════════════╗");
@@ -115,6 +117,8 @@ public class GameEngine {
 
                     // Write code here
 
+                    MapEditor editor = new MapEditor();
+                    editor.editMapEntry();
                     break;
 
                 } else
