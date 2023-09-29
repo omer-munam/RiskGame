@@ -3,6 +3,7 @@ package Resources;
 public class Commands {
     public static final String LOAD_MAP_COMMAND = "loadmap";
     public static final String SHOW_MAP_COMMAND = "showmap";
+    public static final String SHOW_ALL_MAPS_COMMAND = "showmap all";
     public static final String SAVE_MAP_COMMAND = "savemap";
     public static final String EDIT_MAP_COMMAND = "editmap";
     public static final String VALIDATE_MAP_COMMAND = "validatemap";
