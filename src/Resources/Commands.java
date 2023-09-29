@@ -7,7 +7,8 @@ public class Commands {
     public static final String EDIT_MAP_COMMAND = "editmap";
     public static final String VALIDATE_MAP_COMMAND = "validatemap";
     public static final String ASSIGN_COUNTRIES_COMMAND = "assigncountries";
-    public static final String PLAYER_ADD_REMOVE_COMMAND = "gameplayer";
+    public static final String PLAYER_ADD_COMMAND = "gameplayer -add";
+    public static final String PLAYER_REMOVE_COMMAND = "gameplayer -remove";
     public static final String EDIT_CONTINENT_COMMAND = "editcontinent";
     public static final String EDIT_COUNTRY_COMMAND = "editcountry";
     public static final String EDIT_NEIGHBOR_COMMAND = "editneighbor";
