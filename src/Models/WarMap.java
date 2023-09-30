@@ -79,6 +79,7 @@ public class WarMap {
         d_adjencyList.putIfAbsent(p_countryID, new ArrayList<Integer>());
         if (!d_adjencyList.get(p_countryID).contains(p_neighbourID)) {
             d_adjencyList.get(p_countryID).add(p_neighbourID);
+            d_countries.get(p_countryID).addNeighbouringCountry(d_countries.get(p_neighbourID));
         }
     }
 
@@ -150,7 +151,7 @@ public class WarMap {
                 	l_adjencylistcontinent.put(l_countryid, new ArrayList<Integer>());
 
                     for (Country l_neighborcountry : l_countryset.getValue().getneighbouringCountries()) {
-                        if (l_neighborcountry.getContinentID() == l_continent_Id)
+                        if (l_neighborcountry != null && l_neighborcountry.getContinentID() == l_continent_Id)
                         	l_adjencylistcontinent.get(l_countryid).add(l_neighborcountry.get_countryID());
                     }
                 }
