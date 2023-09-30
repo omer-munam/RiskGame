@@ -230,7 +230,6 @@ public class MapEditor {
             if (l_readState.equals("borders") && l_line.length() > 0) {
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
                 for (int l_i = 1; l_i < l_splitLine.size(); l_i++) {
-                    p_map.get_countries().get(Integer.parseInt(l_splitLine.get(0))).addNeighbouringCountry(p_map.get_countries().get(l_splitLine.get(l_i)));
                     p_map.addNeighbour(Integer.parseInt(l_splitLine.get(0)), Integer.parseInt(l_splitLine.get(l_i)));
                 }
             }

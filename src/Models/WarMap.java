@@ -234,6 +234,15 @@ public class WarMap {
     public void showMap() { //Show map for only map (no player ownership or army count. - need to make seperate one that incorporates that for gamestate)
         for (Map.Entry<Integer, Country> entry : d_countries.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
+            System.out.println("The neighboring countries are:");
+            for (Country c : entry.getValue().getneighbouringCountries()) {
+                if (c != null) {
+                    System.out.println(c.get_countryName());
+                }
+                if (c == null) {
+                    System.out.println("A null country was found");
+                }
+            }
         }
         for (Map.Entry<Integer, Continent> entry : d_continents.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
