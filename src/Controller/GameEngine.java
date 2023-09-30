@@ -7,9 +7,6 @@ import Models.Country;
 import Models.Player;
 import Models.WarMap;
 import Resources.Commands;
-import com.sun.tools.javac.Main;
-
-import java.util.regex.*;
 
 /**
  * The GameEngine class represents the startup phase of the game. It serves as the central
@@ -165,6 +162,6 @@ public class GameEngine {
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
         MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
-        l_gameLoop.begin_game();
+        l_gameLoop.run_game_loop();
     }
 }
