@@ -186,7 +186,8 @@ public class MapEditor {
                 l_current_map.showMap();
             }
             if (l_input_string_array[0].equals("validatemap")) {
-                l_current_map.validateMap();
+                if(l_current_map.validateMap()==true) System.out.println("Valid Map");
+                else System.out.println("Invalid Map");
             }
 
 

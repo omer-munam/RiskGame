@@ -103,7 +103,7 @@ public class WarMap {
     	p_isvisited.put(p_country, true);
         for (int l_neighbour : p_adjencylistcontinent.get(p_country))
             if (!p_isvisited.get(l_neighbour))
-                dfsHelper(l_neighbour, p_isvisited);
+            	dfsHelperContinents(l_neighbour, p_isvisited, p_adjencylistcontinent);
     }
 
 	// Function to validate a map
