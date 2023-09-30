@@ -1,5 +1,11 @@
 package Resources;
 
+/**
+ * This class is used to store all the possible commands and some syntax.
+ *
+ * @author Omer Munam
+ * @author Adeel Saleem
+ */
 public class Commands {
     public static final String LOAD_MAP_COMMAND = "loadmap";
     public static final String SHOW_MAP_COMMAND = "showmap";

@@ -8,16 +8,29 @@ import java.util.List;
 import static Controller.GameEngine.SCANNER;
 
 /**
- * This class describes information about each player.
+ * This class describes information about each player and the order that were issued using the logic
+ * present in the same class.
+ *
+ * @author Omer Munam
+ * @author Leila
  */
 public class Player {
 
+    /**
+     * The name of the player taken by the user.
+     */
     private String d_playerName;
+    /**
+     * List of Countries that the player controls.
+     */
     List<Country> d_playerCountries;
+    /**
+     * List of Continents that the player controls.
+     */
     List<Continent> d_playerContinents;
 
     /**
-     * number of player's armies
+     * number of reinforcements given to the player at the start of every round.
      */
     Integer d_numOfReinforcements;
 
@@ -122,9 +135,8 @@ public class Player {
     }
 
 
-    /** * The player class must also have a
-     * “next_order()” (no parameters) method that is called by the GameEngine
-     * during executing order phase and
+    /**
+     * This method is called by the GameEngine during executing order phase and
      * returns the first order in the player’s list of orders, then removes it from the list.
      */
     public Orders next_order() {
