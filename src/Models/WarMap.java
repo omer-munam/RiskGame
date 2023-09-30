@@ -83,6 +83,13 @@ public class WarMap {
         }
     }
 
+    public void removeNeighbour(int p_countryID, int p_neighbourID) {
+        if (d_adjencyList.get(p_countryID).contains(p_neighbourID)) {
+            d_adjencyList.get(p_countryID).remove(p_neighbourID);
+            d_countries.get(p_countryID).removeNeighbouringCountry(d_countries.get(p_neighbourID));
+        }
+    }
+
     // DFS recursive function for map
     void dfsHelper(Integer p_country, HashMap<Integer, Boolean> p_isvisited) {
     	p_isvisited.put(p_country, true);

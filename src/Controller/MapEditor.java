@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class MapEditor {
     String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
@@ -46,7 +47,134 @@ public class MapEditor {
             if (l_input_string_array[0].equals("exit")) {
                 return;
             }
+            if (l_input_string_array[0].equals("editcontinent")) {
+                for (int i = 1; i < l_input_string_array.length; i++) {
+                    if (l_input_string_array[i].equals("-add")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            int l_input_continent_ID = Integer.parseInt(l_input_string_array[i]);
+                            i++;
+                            if (i < l_input_string_array.length) {
+                                int l_continent_army_bonus = Integer.parseInt(l_input_string_array[i]);
+                                System.out.println("Please enter a continent name for continent with ID " + l_input_continent_ID);
+                                String l_continent_name = GameEngine.SCANNER.nextLine();
+                                Continent l_newcontinent = new Continent(l_input_continent_ID, l_continent_name, l_continent_army_bonus);
+                                l_current_map.addContinent(l_newcontinent);
+                                continue;
+                            } else {
+                                System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                                continue;
+                            }
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                            continue;
+                        }
+                    }
+                    if (l_input_string_array[i].equals("-remove")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            if (l_current_map.get_continents().containsKey(Integer.parseInt(l_input_string_array[i]))) {
+                                System.out.println("Removing Continent: " + l_current_map.get_continents().get(Integer.parseInt(l_input_string_array[i])));
+                                l_current_map.get_continents().remove(Integer.parseInt(l_input_string_array[i]));
+                            } else {
+                                System.out.println("Could not remove continent " + l_input_string_array[i] + " as it is not a valid continentID");
+                            }
 
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                        }
+
+                    }
+                }
+            }
+            if (l_input_string_array[0].equals("editcountry")) {
+                for (int i = 1; i < l_input_string_array.length; i++) {
+                    if (l_input_string_array[i].equals("-add")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
+                            i++;
+                            if (i < l_input_string_array.length) {
+                                int l_input_country_continent_ID = Integer.parseInt(l_input_string_array[i]);
+                                System.out.println("Please enter a country name for country with ID " + l_input_country_ID);
+                                String l_country_name = GameEngine.SCANNER.nextLine();
+                                Country l_new_country = new Country(l_input_country_ID, l_country_name, l_input_country_continent_ID);
+                                l_current_map.addCountry(l_new_country);
+                                continue;
+                            } else {
+                                System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                                continue;
+                            }
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                            continue;
+                        }
+                    }
+                    if (l_input_string_array[i].equals("-remove")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            if (l_current_map.get_countries().containsKey(Integer.parseInt(l_input_string_array[i]))) {
+                                System.out.println("Removing country with ID: " + l_current_map.get_countries().get(Integer.parseInt(l_input_string_array[i])));
+                                l_current_map.get_countries().remove(Integer.parseInt(l_input_string_array[i]));
+                            } else {
+                                System.out.println("Could not remove country with ID: " + l_input_string_array[i] + " as it is not a valid countryID");
+                            }
+
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                        }
+
+                    }
+                }
+            }
+            if (l_input_string_array[0].equals("editneighbor")) {
+                for (int i = 1; i < l_input_string_array.length; i++) {
+                    if (l_input_string_array[i].equals("-add")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
+                            i++;
+                            if (i < l_input_string_array.length) {
+                                int l_input_country_neighbor_ID = Integer.parseInt(l_input_string_array[i]);
+                                if (l_current_map.get_countries().containsKey(l_input_country_ID) && l_current_map.get_countries().containsKey(l_input_country_neighbor_ID)) {
+                                    l_current_map.addNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
+                                    l_current_map.addNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
+                                } else {
+                                    System.out.println("Unable to add neighbors for countryIDs: " + l_input_country_ID + " and " + l_input_country_neighbor_ID + " as at least one of these country IDs do not exist");
+                                }
+
+
+                                continue;
+                            } else {
+                                System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                                continue;
+                            }
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                            continue;
+                        }
+                    }
+                    if (l_input_string_array[i].equals("-remove")) {
+                        i++;
+                        if (i < l_input_string_array.length) {
+                            int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
+                            i++;
+                            if (i < l_input_string_array.length) {
+                                int l_input_country_neighborID = Integer.parseInt(l_input_string_array[i]);
+                                l_current_map.removeNeighbour(l_input_country_ID, l_input_country_neighborID);
+                                l_current_map.removeNeighbour(l_input_country_neighborID, l_input_country_ID);
+                                continue;
+                            } else {
+                                System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                                continue;
+                            }
+                        } else {
+                            System.out.println("Reached end of command while parsing please ensure correct command is used.");
+                            continue;
+                        }
+                    }
+                }
+            }
             if (l_current_map.get_mapName().equals("Default Name")) {
                 System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
                 continue;
