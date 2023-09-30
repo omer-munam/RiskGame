@@ -1,27 +1,23 @@
 package Models;
 
-import Models.Continent;
-import Models.Country;
-import Models.Player;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
-
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayerTest {
 
     private Player player;
     private List<Country> countries;
     private List<Continent> continents;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         player = new Player("John Doe");
         countries = new ArrayList<>();
