@@ -11,7 +11,15 @@ import java.util.Set;
 
 public class WarMap {
     String d_mapName;
-    String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\maps";
+    String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
+
+    public String get_mapName() {
+        return d_mapName;
+    }
+
+    public void set_mapName(String p_mapName) {
+        d_mapName = p_mapName;
+    }
 
     public HashMap<Integer, Country> get_countries() {
         return d_countries;

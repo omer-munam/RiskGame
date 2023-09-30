@@ -50,7 +50,7 @@ public class GameEngine {
 
             System.out.print("Enter a command to proceed: \n");
             System.out.print("Possible commands are: \n");
-            System.out.print("- editmap [filename]\n");
+            System.out.print("- editmap\n");
             System.out.print("- loadmap [filename]\n");
             System.out.print("- showmap all\n");
             while (true)
@@ -123,11 +123,15 @@ public class GameEngine {
 
                     break;
 
-                } else if (words.length == 2 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND) && words[1].matches("(?i).+\\.map"))
+                } else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
-                    break;
+                    System.out.print("Enter a command to proceed: \n");
+                    System.out.print("Possible commands are: \n");
+                    System.out.print("- editmap \n");
+                    System.out.print("- loadmap [filename]\n");
+                    System.out.print("- showmap all\n");
                 } else
                 {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
