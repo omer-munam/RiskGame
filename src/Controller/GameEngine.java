@@ -48,13 +48,16 @@ public class GameEngine {
             System.out.println("║      Welcome to the WarZone Game!      ║");
             System.out.println("╚════════════════════════════════════════╝");
 
-            System.out.print("Enter a command to proceed: \n");
-            System.out.print("Possible commands are: \n");
-            System.out.print("- editmap\n");
-            System.out.print("- loadmap [filename]\n");
-            System.out.print("- showmap all\n");
+
             while (true)
             {
+                System.out.print("Enter a command to proceed: \n");
+                System.out.print("Possible commands are: \n");
+                System.out.print("- editmap\n");
+                System.out.print("- loadmap [filename]\n");
+                System.out.print("- showmap all\n");
+                System.out.print("- quit\n");
+
                 String userInput = SCANNER.nextLine();
                 String[] words = userInput.split("\\s+");
 
@@ -75,6 +78,7 @@ public class GameEngine {
                             System.out.print("- gameplayer -remove [playername]\n");
                             System.out.print("- assigncountries\n");
                             System.out.print("- showmap\n");
+                            System.out.print("- go back\n");
                             userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
@@ -101,8 +105,12 @@ public class GameEngine {
 
                                 // Write code here
                             }
+                            else if (userInput.equalsIgnoreCase("go back"))
+                            {
+                                break;
+                            }
                             else
-                                System.out.print("Invalid Command. Try again with the correct syntax!\n");
+                                System.out.print("Invalid Command. Try again with the correct command syntax!\n");
                         }
                     }
                     else
@@ -114,11 +122,17 @@ public class GameEngine {
 
                     // Write code here
 
-                } else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
+                }
+                else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
-                } else
+                }
+                else if (userInput.equalsIgnoreCase("quit"))
+                {
+                    break;
+                }
+                else
                 {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
