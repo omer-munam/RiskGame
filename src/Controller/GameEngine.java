@@ -44,17 +44,23 @@ public class GameEngine {
         SCANNER = new Scanner(System.in);
         try {
 
-            System.out.println("╔════════════════════════════════════════╗");
-            System.out.println("║      Welcome to the WarZone Game!      ║");
-            System.out.println("╚════════════════════════════════════════╝");
 
-            System.out.print("Enter a command to proceed: \n");
-            System.out.print("Possible commands are: \n");
-            System.out.print("- editmap\n");
-            System.out.print("- loadmap [filename]\n");
-            System.out.print("- showmap all\n");
+
+
             while (true)
             {
+                System.out.println("\n╔════════════════════════════════════════╗");
+                System.out.println("║      Welcome to the WarZone Game!      ║");
+                System.out.println("╚════════════════════════════════════════╝");
+                System.out.print("Enter a command to proceed: \n");
+                System.out.print("Possible commands are: \n");
+                System.out.print("- editmap\n");
+                System.out.print("- loadmap [filename]\n");
+                System.out.print("- showmap all\n");
+                System.out.print("- quit\n");
+
+                d_playersList.clear();
+
                 String userInput = SCANNER.nextLine();
                 String[] words = userInput.split("\\s+");
 
@@ -66,14 +72,16 @@ public class GameEngine {
                         MapEditor.readmap(words[1], d_currentMap);
                         d_currentMap.validateMap();
                         //TODO: print an error if validate map or readmap returns false
-                        System.out.print( words[1] + " loaded successfully!\n\nEnter a command to proceed:\nPossible commands are:\n");
-                        System.out.print("- gameplayer -add [playername]\n");
-                        System.out.print("- gameplayer -remove [playername]\n");
-                        System.out.print("- assigncountries\n");
-                        System.out.print("- showmap\n");
+                        System.out.print( words[1] + " loaded successfully!\n");
 
                         while (true)
                         {
+                            System.out.print("\nEnter a command to proceed:\nPossible commands are:\n");
+                            System.out.print("- gameplayer -add [playername]\n");
+                            System.out.print("- gameplayer -remove [playername]\n");
+                            System.out.print("- assigncountries\n");
+                            System.out.print("- showmap\n");
+                            System.out.print("- go back\n");
                             userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
@@ -99,13 +107,14 @@ public class GameEngine {
                                 System.out.print("You're in: SHOW_MAP_COMMAND");
 
                                 // Write code here
-
+                            }
+                            else if (userInput.equalsIgnoreCase("go back"))
+                            {
                                 break;
                             }
                             else
-                                System.out.print("Invalid Command. Try again with the correct syntax!\n");
+                                System.out.print("Invalid Command. Try again with the correct command syntax!\n");
                         }
-                        break;
                     }
                     else
                         System.out.print("Invalid Command! Correct syntax: loadmap [filename]\n");
@@ -116,14 +125,17 @@ public class GameEngine {
 
                     // Write code here
 
-                    break;
-
-                } else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
+                }
+                else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
+                }
+                else if (userInput.equalsIgnoreCase("quit"))
+                {
                     break;
-                } else
+                }
+                else
                 {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
