@@ -38,7 +38,7 @@ public class GameEngine {
     /**
      * Current map that is loaded after the loadmap command.
      */
-    private WarMap d_currentMap;
+    private WarMap d_currentMap = new WarMap();
     public void start_game()
     {
         SCANNER = new Scanner(System.in);
@@ -50,7 +50,7 @@ public class GameEngine {
 
             System.out.print("Enter a command to proceed: \n");
             System.out.print("Possible commands are: \n");
-            System.out.print("- editmap [filename]\n");
+            System.out.print("- editmap\n");
             System.out.print("- loadmap [filename]\n");
             System.out.print("- showmap all\n");
             while (true)
@@ -62,6 +62,10 @@ public class GameEngine {
                 {
                     if (words.length == 2 && words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && words[1].matches("(?i).+\\.map"))
                     {
+                        //TODO: check if the given file exists
+                        MapEditor.readmap(words[1], d_currentMap);
+                        d_currentMap.validateMap();
+                        //TODO: print an error if validate map or readmap returns false
                         System.out.print( words[1] + " loaded successfully!\n\nEnter a command to proceed:\nPossible commands are:\n");
                         System.out.print("- gameplayer -add [playername]\n");
                         System.out.print("- gameplayer -remove [playername]\n");
@@ -77,17 +81,11 @@ public class GameEngine {
                             {
                                 if (userInput.toLowerCase().startsWith(Commands.PLAYER_ADD_COMMAND) && words.length == 3)
                                 {
-                                    System.out.print("You're in: PLAYER_ADD_COMMAND \n");
-                                    
                                     addPlayer(words[2]);
-                                    break;
                                 }
                                 else if (userInput.toLowerCase().startsWith(Commands.PLAYER_REMOVE_COMMAND) && words.length == 3)
                                 {
-                                    System.out.print("You're in: PLAYER_REMOVE_COMMAND \n");
-
                                     removePlayer(words[2]);
-                                    break;
                                 }
                                 else
                                     System.out.print("Invalid Command! Correct syntax: gameplayer -add [playername] -remove [playername]\n");
@@ -95,7 +93,6 @@ public class GameEngine {
                             else if (userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
                                 assignCountries();
-                                break;
                             }
                             else if (userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
                             {
@@ -121,7 +118,7 @@ public class GameEngine {
 
                     break;
 
-                } else if (words.length == 2 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND) && words[1].matches("(?i).+\\.map"))
+                } else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
@@ -142,6 +139,7 @@ public class GameEngine {
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      */
     private void assignCountries() {
+        //TODO: Check if there are at least 2 players, and less than the total number of countries
         System.out.println("Assigning Countries To Players.");
         int l_NumOfCountries = d_currentMap.get_countries().size();
         int l_NumOfCountriesToAssign = l_NumOfCountries / d_playersList.size();

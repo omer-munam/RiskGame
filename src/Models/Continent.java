@@ -29,9 +29,10 @@ public class Continent {
         d_continentID = p_continentID;
     }
 
-    public Continent(int p_continentID, String p_continentName, int d_armyBonus) {
+    public Continent(int p_continentID, String p_continentName, int p_armyBonus) {
         d_continentID = p_continentID;
         d_continentName = p_continentName;
+        d_armyBonus = p_armyBonus;
     }
 
 

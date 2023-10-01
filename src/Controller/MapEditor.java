@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MapEditor {
-    String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
+    static String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
 
     public void editMapEntry() throws IOException {
         WarMap l_current_map = new WarMap();
@@ -195,7 +195,7 @@ public class MapEditor {
         }
     }
 
-    boolean readmap(String p_filename, WarMap p_map) throws IOException {
+    public static boolean readmap(String p_filename, WarMap p_map) throws IOException {
         BufferedReader l_bufferReader = new BufferedReader(new FileReader(d_base_path + "\\" + p_filename));
         String l_line = l_bufferReader.readLine();
         String l_readState = "";
