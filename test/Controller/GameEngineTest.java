@@ -1,4 +1,4 @@
-package Models;
+package Controller;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OrdersTest {
+class GameEngineTest {
 
     @BeforeEach
     void setUp() {
@@ -17,6 +17,14 @@ class OrdersTest {
     }
 
     @Test
-    void execute() {
+    void assignCountries() {
+    }
+
+    @Test
+    void addPlayer() {
+    }
+
+    @Test
+    void removePlayer() {
     }
 }
