@@ -30,7 +30,7 @@ public class Orders {
     }
 
     public int getCountryID() {
-        return d_numOfArmies;
+        return d_destCountryID;
     }
 
     public void setCountryID(int p_newCountry) {
