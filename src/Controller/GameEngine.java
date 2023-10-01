@@ -44,13 +44,14 @@ public class GameEngine {
         SCANNER = new Scanner(System.in);
         try {
 
-            System.out.println("╔════════════════════════════════════════╗");
-            System.out.println("║      Welcome to the WarZone Game!      ║");
-            System.out.println("╚════════════════════════════════════════╝");
+
 
 
             while (true)
             {
+                System.out.println("\n╔════════════════════════════════════════╗");
+                System.out.println("║      Welcome to the WarZone Game!      ║");
+                System.out.println("╚════════════════════════════════════════╝");
                 System.out.print("Enter a command to proceed: \n");
                 System.out.print("Possible commands are: \n");
                 System.out.print("- editmap\n");
@@ -78,7 +79,7 @@ public class GameEngine {
                             System.out.print("- gameplayer -remove [playername]\n");
                             System.out.print("- assigncountries\n");
                             System.out.print("- showmap\n");
-                            System.out.print("- go back\n");
+                            System.out.print("- quit\n");
                             userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
@@ -105,7 +106,7 @@ public class GameEngine {
 
                                 // Write code here
                             }
-                            else if (userInput.equalsIgnoreCase("go back"))
+                            else if (userInput.equalsIgnoreCase("quit"))
                             {
                                 break;
                             }
