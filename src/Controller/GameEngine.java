@@ -164,39 +164,43 @@ public class GameEngine {
     /**
      * This function is called after the command 'addPlayer' is given. If a player already exist it displays 'Player Already Exist',
      * otherwise it adds the new player to the d_playersList and updates the d_playersList
+     *
+     * @param p_InputPlayerName
      */
-    private void addPlayer(String l_InputPlayerName){
+    private void addPlayer(String p_InputPlayerName){
         for(int i=0; i < d_playersList.size(); i++){
             String l_ExistingPlayerName = d_playersList.get(i).get_playerName();
 
-            if(l_ExistingPlayerName.equals((l_InputPlayerName))){
-                System.out.println("Player " + l_InputPlayerName + " already exists.");
+            if(l_ExistingPlayerName.equals((p_InputPlayerName))){
+                System.out.println("Player " + p_InputPlayerName + " already exists.");
                 return;
             }   
         }
 
-        Player l_newPlayer = new Player(l_InputPlayerName);
-        l_newPlayer.set_playerName(l_InputPlayerName);
+        Player l_newPlayer = new Player(p_InputPlayerName);
+        l_newPlayer.set_playerName(p_InputPlayerName);
         d_playersList.add(l_newPlayer);
-        System.out.println("Player " + l_InputPlayerName + " added successfully.");
+        System.out.println("Player " + p_InputPlayerName + " added successfully.");
     }
 
 
     /**
      * This function is called after the command 'reomvePlayer' is given. If a player already exist it removes the player from list and 
      * displays 'Player Removed Successfully', otherwise displays 'Player doesn't exist'.
+     *
+     * @param p_InputPlayerName
      */
 
-    private void removePlayer(String l_InputPlayerName){
+    private void removePlayer(String p_InputPlayerName){
         for(int i=0; i < d_playersList.size(); i++){
             Player l_player = d_playersList.get(i);
 
-            if(l_player.get_playerName().equals(l_InputPlayerName)){
+            if(l_player.get_playerName().equals(p_InputPlayerName)){
                 l_player.set_playerName(null);
-                System.out.println("Player " + l_InputPlayerName + " removed succesfully");
+                System.out.println("Player " + p_InputPlayerName + " removed succesfully");
                 return;
             }
         }
-        System.out.println("Player " + l_InputPlayerName + " not found");
+        System.out.println("Player " + p_InputPlayerName + " not found");
     }
 }
