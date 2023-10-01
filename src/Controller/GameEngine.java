@@ -66,14 +66,15 @@ public class GameEngine {
                         MapEditor.readmap(words[1], d_currentMap);
                         d_currentMap.validateMap();
                         //TODO: print an error if validate map or readmap returns false
-                        System.out.print( words[1] + " loaded successfully!\n\nEnter a command to proceed:\nPossible commands are:\n");
-                        System.out.print("- gameplayer -add [playername]\n");
-                        System.out.print("- gameplayer -remove [playername]\n");
-                        System.out.print("- assigncountries\n");
-                        System.out.print("- showmap\n");
+                        System.out.print( words[1] + " loaded successfully!\n");
 
                         while (true)
                         {
+                            System.out.print("\nEnter a command to proceed:\nPossible commands are:\n");
+                            System.out.print("- gameplayer -add [playername]\n");
+                            System.out.print("- gameplayer -remove [playername]\n");
+                            System.out.print("- assigncountries\n");
+                            System.out.print("- showmap\n");
                             userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
@@ -99,13 +100,10 @@ public class GameEngine {
                                 System.out.print("You're in: SHOW_MAP_COMMAND");
 
                                 // Write code here
-
-                                break;
                             }
                             else
                                 System.out.print("Invalid Command. Try again with the correct syntax!\n");
                         }
-                        break;
                     }
                     else
                         System.out.print("Invalid Command! Correct syntax: loadmap [filename]\n");
@@ -116,13 +114,10 @@ public class GameEngine {
 
                     // Write code here
 
-                    break;
-
                 } else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
-                    break;
                 } else
                 {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
