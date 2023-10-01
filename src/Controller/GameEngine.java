@@ -59,6 +59,8 @@ public class GameEngine {
                 System.out.print("- showmap all\n");
                 System.out.print("- quit\n");
 
+                d_playersList.clear();
+
                 String userInput = SCANNER.nextLine();
                 String[] words = userInput.split("\\s+");
 
@@ -79,7 +81,7 @@ public class GameEngine {
                             System.out.print("- gameplayer -remove [playername]\n");
                             System.out.print("- assigncountries\n");
                             System.out.print("- showmap\n");
-                            System.out.print("- quit\n");
+                            System.out.print("- go back\n");
                             userInput = SCANNER.nextLine();
                             words = userInput.split("\\s+");
 
@@ -106,7 +108,7 @@ public class GameEngine {
 
                                 // Write code here
                             }
-                            else if (userInput.equalsIgnoreCase("quit"))
+                            else if (userInput.equalsIgnoreCase("go back"))
                             {
                                 break;
                             }
