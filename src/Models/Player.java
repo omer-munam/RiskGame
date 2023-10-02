@@ -95,6 +95,8 @@ public class Player {
      *“issue_order()” (no parameters, no return value) whose function is
      *to add an order to the list of orders held by the
      *player when the game engine calls it during the issue orders phase.
+     *
+     * @param commands The following param is for the testing class only. Set to null under normal conditions.
      */
     public void issue_order(String[] commands){
         int iterations = 0;

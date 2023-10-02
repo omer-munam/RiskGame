@@ -54,12 +54,15 @@ public class Orders {
      * @param p_warmap Details of values inside List Country
      */
     public void execute(WarMap p_warmap){
+        System.out.println("\n_________________________________________");
         Collection<Country> l_countryInfo = p_warmap.get_countries().values();
         for (Country country : l_countryInfo) {
             if (country.d_countryID == d_destCountryID){
                 country.d_numOfArmies += d_numOfArmies;
+                System.out.println(d_numOfArmies + " armies are deployed to country " + country.get_countryName());
             }
         }
+        System.out.println("\n_________________________________________");
         System.out.println("Execution Done Successfully");
     }
 }

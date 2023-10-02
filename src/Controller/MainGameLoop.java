@@ -1,6 +1,7 @@
 package Controller;
 
 import Models.Country;
+import Models.Orders;
 import Models.Player;
 import Models.WarMap;
 
@@ -8,6 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
+import static Controller.GameEngine.SCANNER;
+import static Resources.Commands.SHOW_MAP_COMMAND;
 
 /**
  * This class is the MainGameLoop class. Once the game is set up with the map and all the users, the control is handed over to this class for actual gameplay.
@@ -28,25 +32,86 @@ public class MainGameLoop {
     /**
      * A fully parametrized constructor built to initialize the class with all the essential values.
      *
-     * @param l_map
-     * @param l_playerList
+     * @param p_map
+     * @param p_playerList
      */
-    public MainGameLoop(WarMap l_map, List<Player> l_playerList){
-        this.d_map = l_map;
-        this.d_playerList = l_playerList;
+    public MainGameLoop(WarMap p_map, List<Player> p_playerList){
+        this.d_map = p_map;
+        this.d_playerList = p_playerList;
     }
 
     /**
      * The method which receives the control over from the GameEngine class and is responsible to handle the whole gameplay.
      */
     public void run_game_loop(){
-        System.out.println("Begin Main Game Loop...");
+        System.out.println("Game Begins... Get Ready");
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║      Game Starts... Get Ready...       ║");
+        System.out.println("╚════════════════════════════════════════╝");
+
+        while (true) {
+            System.out.println("Please enter desired command (Applicable commands: `showmap`, `play` & `exit`):");
+            String input = SCANNER.nextLine();
+            if (input.equalsIgnoreCase(SHOW_MAP_COMMAND)) {
+                //TODO: SHOW MAP
+            } else if (input.equalsIgnoreCase("play")){
+                play();
+            }
+            else if (input.equalsIgnoreCase("exit")){
+                System.out.println("Exiting Game.....");
+                System.exit(0);
+            }
+            else {
+                System.out.println("Incorrect command....");
+            }
+        }
     }
 
+    void play(){
+        System.out.println("Assigning Reinforcements....");
+        System.out.println("_________________________________________");
+        assign_reinforcements();
+
+        System.out.println("\n_________________________________________");
+        System.out.println("Taking orders from each player....");
+        System.out.println("_________________________________________");
+        for (Player player : d_playerList) {
+            player.issue_order(null);
+            System.out.println("_________________________________________");
+        }
+
+        System.out.println("\nStarting the execution of the issued Commands.... ");
+        System.out.println("_________________________________________");
+
+        for (Player player : d_playerList) {
+            while (true) {
+                Orders order = player.next_order();
+                if (order == null)
+                    break;
+                order.execute(d_map);
+            }
+        }
+        System.out.println("\n_________________________________________");
+        System.out.println("All commands executed successfully..... ");
+        System.out.println("_________________________________________");
+    }
+
+    /**
+     * The method which will be called when we need to assign reinforcements to players, so that they can issue orders.
+     */
     void assign_reinforcements() {
-
+        for (Player player : d_playerList){
+            player.set_numOfReinforcements(getNumOfReinforcements(player));
+            System.out.println("Assigned `" + player.get_numOfReinforcements() + "` reinforcements to player: " + player.get_playerName());
+        }
     }
 
+    /**
+     * This method is used to calculate how many reinforcements are to be assigned to the given player based on the continents they hold.
+     *
+     * @param p_player The player for which we need to get number of reinforcements.
+     * @return NumberOfReinforcements
+     */
     int getNumOfReinforcements(Player p_player) {
         int l_baseReinforcements = 5;
         d_map.get_countries();
