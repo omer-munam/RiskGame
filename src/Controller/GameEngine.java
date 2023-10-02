@@ -24,6 +24,7 @@ import Resources.Commands;
  *
  * @author Adeel Saleem
  * @author Shezin Saleem
+ * @author Omer Munam
  * @version 1.0
  * @since 2023-09-26
  */
@@ -149,7 +150,15 @@ public class GameEngine {
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      */
     private void assignCountries() {
-        //TODO: Check if there are at least 2 players, and less than the total number of countries
+        if (d_playersList.size() < 2){
+            System.out.println("Please add at least 2 players using the 'gameplayer -add' command.");
+            return;
+        }
+        else if (d_currentMap.get_countries().size() < d_playersList.size()){
+            System.out.println("The players added exceed the number of countries in the map. Number of countries: " + d_currentMap.get_countries().size());
+            System.out.println("Please remove extra players using the 'gameplayer -remove' command.");
+            return;
+        }
         System.out.println("Assigning Countries To Players.");
         int l_NumOfCountries = d_currentMap.get_countries().size();
         int l_NumOfCountriesToAssign = l_NumOfCountries / d_playersList.size();
@@ -174,15 +183,17 @@ public class GameEngine {
     /**
      * This function is called after the command 'addPlayer' is given. If a player already exist it displays 'Player Already Exist',
      * otherwise it adds the new player to the d_playersList and updates the d_playersList
+     *
+     * @param l_InputPlayerName The name of the player to add
      */
     public void addPlayer(String l_InputPlayerName){
-        for(int i=0; i < d_playersList.size(); i++){
-            String l_ExistingPlayerName = d_playersList.get(i).get_playerName();
+        for (Player player : d_playersList) {
+            String l_ExistingPlayerName = player.get_playerName();
 
-            if(l_ExistingPlayerName.equals((l_InputPlayerName))){
+            if (l_ExistingPlayerName.equals((l_InputPlayerName))) {
                 System.out.println("Player " + l_InputPlayerName + " already exists.");
                 return;
-            }   
+            }
         }
 
         Player l_newPlayer = new Player(l_InputPlayerName);
@@ -193,17 +204,17 @@ public class GameEngine {
 
 
     /**
-     * This function is called after the command 'reomvePlayer' is given. If a player already exist it removes the player from list and 
+     * This function is called after the command 'removePlayer' is given. If a player already exist it removes the player from list and
      * displays 'Player Removed Successfully', otherwise displays 'Player doesn't exist'.
+     *
+     * @param l_InputPlayerName The name of the player to remove
      */
 
     private void removePlayer(String l_InputPlayerName){
-        for(int i=0; i < d_playersList.size(); i++){
-            Player l_player = d_playersList.get(i);
-
-            if(l_player.get_playerName().equals(l_InputPlayerName)){
+        for (Player l_player : d_playersList) {
+            if (l_player.get_playerName().equals(l_InputPlayerName)) {
                 l_player.set_playerName(null);
-                System.out.println("Player " + l_InputPlayerName + " removed succesfully");
+                System.out.println("Player " + l_InputPlayerName + " removed successfully");
                 return;
             }
         }
