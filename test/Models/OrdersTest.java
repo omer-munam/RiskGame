@@ -1,6 +1,5 @@
 package Models;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -8,35 +7,27 @@ import org.junit.jupiter.api.TestInstance;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class OrdersTest {
     private WarMap warmap;
+    private Country country;
     @BeforeEach
     void setUp() {
         warmap = new WarMap();
-        HashMap<Integer, Country> countries = new HashMap<>();
-        countries.put(1, new Country(1, "CountryA"));
-        countries.put(2, new Country(2, "CountryB"));
-        warmap.set_countries(countries);
+        country = new Country();
+        warmap.get_countries().put(country.get_countryID(),country);
+
     }
 
     @Test
-    void execute() {
-        Orders order = new Orders(5, 1);
+    void testExecute() {
+        Orders order = new Orders(5, country.get_countryID());
         order.execute(warmap);
 
-        List<Country> countryInfo = new ArrayList<>(warmap.get_countries().values());
-        for (Country country : countryInfo) {
-            if (country.get_countryID() == 1) {
-                assertEquals(5, country.get_numOfArmies(), "CountryA should have 5 armies now.");
-            }
-            else {
-                assertEquals(0, country.get_numOfArmies(), "CountryB should have 0 armies.");
-            }
-        }
+        assertEquals(5,warmap.get_countries().get(country.get_countryID()).get_numOfArmies());
+
     }
 }

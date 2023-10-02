@@ -178,7 +178,7 @@ public class GameEngine {
      * This function is called after the command 'addPlayer' is given. If a player already exist it displays 'Player Already Exist',
      * otherwise it adds the new player to the d_playersList and updates the d_playersList
      */
-    private void addPlayer(String l_InputPlayerName){
+    public void addPlayer(String l_InputPlayerName){
         for(int i=0; i < d_playersList.size(); i++){
             String l_ExistingPlayerName = d_playersList.get(i).get_playerName();
 

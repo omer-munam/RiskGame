@@ -1,10 +1,11 @@
 package Models;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
  * This class is used to implement the data and logic of how to execute orders given by a player.
- * 
+ *
  * @version 1.0
  * @author omer-munam
  * @author shezin-saleem
@@ -53,7 +54,7 @@ public class Orders {
      * @param p_warmap Details of values inside List Country
      */
     public void execute(WarMap p_warmap){
-        List<Country> l_countryInfo = (List<Country>) p_warmap.get_countries().values();
+        Collection<Country> l_countryInfo = p_warmap.get_countries().values();
         for (Country country : l_countryInfo) {
             if (country.d_countryID == d_destCountryID){
                 country.d_numOfArmies += d_numOfArmies;
