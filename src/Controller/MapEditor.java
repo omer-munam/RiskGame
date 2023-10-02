@@ -114,6 +114,10 @@ public class MapEditor {
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_countries().containsKey(Integer.parseInt(l_input_string_array[i]))) {
+                                for (Integer l_i : l_current_map.get_adjencyList().get(Integer.parseInt(l_input_string_array[i]))) {
+                                    l_current_map.removeNeighbour(l_i, Integer.parseInt(l_input_string_array[i]));
+                                }
+                                l_current_map.get_adjencyList().remove(l_input_string_array[i]);
                                 System.out.println("Removing country with ID: " + l_current_map.get_countries().get(Integer.parseInt(l_input_string_array[i])));
                                 l_current_map.get_countries().remove(Integer.parseInt(l_input_string_array[i]));
                             } else {
