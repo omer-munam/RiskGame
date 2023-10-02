@@ -255,4 +255,17 @@ public class MapEditor {
         }
         return false;
     }
+
+	public static void showAllMaps() {
+		File l_maps_directory = new File(d_base_path);
+		String[] l_filenameslist = l_maps_directory.list();
+		boolean l_anymapfile=false;
+		for (String l_filename : l_filenameslist) {
+			if(l_filename.contains(".map")) {
+				System.out.println(l_filename);
+				l_anymapfile=true;
+			}
+		}
+		if(!l_anymapfile) System.out.println("there are no maps files in \\Maps folder");
+	}
 }
