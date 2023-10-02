@@ -23,6 +23,7 @@ import Resources.Commands;
  * overriding the appropriate methods, you can integrate your game logic seamlessly.
  *
  * @author Adeel Saleem
+ * @author Shezin Saleem
  * @version 1.0
  * @since 2023-09-26
  */

@@ -26,6 +26,9 @@ public class Country {
         d_numOfArmies = p_numOfArmies;
     }
 
+    public Country(int i, String countryA) {
+    }
+
     public int get_countryID() {
         return d_countryID;
     }
