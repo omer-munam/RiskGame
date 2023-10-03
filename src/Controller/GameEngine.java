@@ -42,6 +42,12 @@ public class GameEngine {
      */
     private WarMap d_currentMap = new WarMap();
 
+    public WarMap get_currentMap() { return d_currentMap; }
+
+    public void set_currentMap(WarMap p_map){
+        d_currentMap = p_map;
+    }
+
     public List<Player> get_PlayersList() {
         return d_playersList;
     }
@@ -129,7 +135,7 @@ public class GameEngine {
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
-                                assignCountries();
+                                assignCountries(false);
                                 break;
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
@@ -177,7 +183,7 @@ public class GameEngine {
      * This function is called after the command 'assigncountries' is given. It uses the players list and the countries present in the Map class
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      */
-    public void assignCountries() {
+    public void assignCountries(boolean p_test) {
         if (d_playersList.size() < 2){
             System.out.println("Please add at least 2 players using the 'gameplayer -add' command.");
             return;
@@ -204,6 +210,8 @@ public class GameEngine {
             }
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
+        if (p_test)
+            return;
         MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
         l_gameLoop.run_game_loop();
     }
