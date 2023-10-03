@@ -44,24 +44,42 @@ public class GameEngine {
      */
     private WarMap d_currentMap = new WarMap();
 
+    /**
+     *
+     * @return the current loaded map
+     */
     public WarMap get_currentMap() { return d_currentMap; }
 
+    /**
+     *
+     * @param p_map the map you wish to load
+     */
     public void set_currentMap(WarMap p_map){
         d_currentMap = p_map;
     }
 
+    /**
+     *
+     * @return the list of players
+     */
     public List<Player> get_PlayersList() {
         return d_playersList;
     }
 
-    public void set_PlayersList(List<Player> playersList) {
+    /**
+     *
+     * @param p_playersList the list of players
+     */
+    public void set_PlayersList(List<Player> p_playersList) {
         d_playersList.clear();
-        if (playersList != null) {
-            d_playersList.addAll(playersList);
+        if (p_playersList != null) {
+            d_playersList.addAll(p_playersList);
         }
     }
 
-
+    /**
+     * Contains the main logic for the WarZone game and passes control to other aspects of the program when certain commands are entered.
+     */
     public void start_game()
     {
         SCANNER = new Scanner(System.in);
@@ -91,7 +109,7 @@ public class GameEngine {
                         ArrayList<String> l_listOfMaps = getAllMapsList();
                         if (l_listOfMaps.contains(l_words[1]))
                         {
-                        	boolean l_isAbleToReadMap = MapEditor.readmap(l_words[1], d_currentMap);
+                        	boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_currentMap);
                         	if (!l_isAbleToReadMap)
                         	{
                         		System.out.print("\n Unable to read " + l_words[1] + "!\n");

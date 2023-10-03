@@ -11,10 +11,24 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * This class contains utility functions for creating and editing maps to be used in the game. It is also the entry point to be used from main to access the map editor.
+ *
+ * @author Ryan Feher
+ * @author Mohammad Uvas
+ */
 public class MapEditor {
+    /**
+     * Stores the location of saved maps in the file directory.
+     */
     static String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
 
+    /**
+     * This function contains the console commands and feedback loop for the Map Editor, it allows loading of maps, editing of maps, showing the map, validating maps, and saving maps.
+     * You are able to construct a map from an empty map by editing a filename which is not a current WarMap, you can then save this WarMap if you create a valid map by adding countrys, continents and neighbours.
+     *
+     * @throws IOException
+     */
     public void editMapEntry() throws IOException {
         WarMap l_current_map = new WarMap();
         String l_input_string;
@@ -199,7 +213,14 @@ public class MapEditor {
         }
     }
 
-    public static boolean readmap(String p_filename, WarMap p_map) throws IOException {
+    /**
+     * A function used for reading a WarMap from a file into a WarMap object.
+     *
+     * @param p_filename The file name of the map
+     * @param p_map The map class in which you wish to store the map.
+     * @throws IOException
+     */
+    public static boolean readMap(String p_filename, WarMap p_map) throws IOException {
         BufferedReader l_bufferReader = new BufferedReader(new FileReader(d_base_path + "\\" + p_filename));
         String l_line = l_bufferReader.readLine();
         String l_readState = "";
@@ -244,10 +265,18 @@ public class MapEditor {
         return true;
     }
 
+    /**
+     * A function used for either reading a WarMap from a file, or creating a new WarMap if the file does not exist.
+     *
+     * @param p_filename The filename of the WarMap
+     * @param p_map The WarMap object that is to be edited.
+     * @return Returns true if the WarMap file already exists, and false if it is a new WarMap
+     * @throws IOException
+     */
     boolean editMap(String p_filename, WarMap p_map) throws IOException {
         File l_f = new File(d_base_path, p_filename);
         if (l_f.exists()) {
-            readmap(p_filename, p_map);
+            readMap(p_filename, p_map);
             return true;
         } else {
             l_f.createNewFile(); //fix this to to match where savemap links
@@ -256,6 +285,9 @@ public class MapEditor {
         return false;
     }
 
+    /**
+     * A function that print's the list of available maps to the console.
+     */
 	public static void showAllMaps() {
 		File l_maps_directory = new File(d_base_path);
 		String[] l_filenameslist = l_maps_directory.list();
