@@ -83,19 +83,19 @@ public class GameEngine {
                         ArrayList<String> l_listOfMaps = getAllMapsList();
                         if (l_listOfMaps.contains(l_words[1]))
                         {
-                        	boolean l_isAbleToReadMap = MapEditor.readmap(words[1], d_currentMap);
+                        	boolean l_isAbleToReadMap = MapEditor.readmap(l_words[1], d_currentMap);
                         	if (!l_isAbleToReadMap)
                         	{
-                        		System.out.print("\n Unable to read " + words[1] + "!\n");
+                        		System.out.print("\n Unable to read " + l_words[1] + "!\n");
                         		continue;
                         	}
-                        	System.out.print( words[1] + " loaded successfully!\n");
                             boolean l_isValidMap = d_currentMap.validateMap();
                             if (!l_isValidMap)
                             {
                                 System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
                                 continue;
                             }
+                            System.out.print( l_words[1] + " loaded successfully!\n");
                         }
                         else
                         {
