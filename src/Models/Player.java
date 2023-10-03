@@ -51,42 +51,82 @@ public class Player {
         this.d_playerContinents = new ArrayList<Continent>();
     }
 
+    /**
+     *
+     * @return the player name
+     */
     public String get_playerName() {
         return d_playerName;
     }
 
+    /**
+     *
+     * @param p_name the player name
+     */
     public void set_playerName(String p_name) {
         this.d_playerName = p_name;
     }
 
+    /**
+     *
+     * @return a list of the player's countries
+     */
     public List<Country> get_playerCountries() {
         return d_playerCountries;
     }
 
+    /**
+     *
+     * @param p_playerCountries a list of the player's countries
+     */
     public void set_playerCountries(List<Country> p_playerCountries) {
         this.d_playerCountries = p_playerCountries;
     }
 
+    /**
+     *
+     * @return a list of the player's continents
+     */
     public List<Continent> get_playerContinents() {
         return d_playerContinents;
     }
 
+    /**
+     *
+     * @param p_playerContinents a list of the player's continents
+     */
     public void set_playerContinents(List<Continent> p_playerContinents) {
         this.d_playerContinents = p_playerContinents;
     }
 
+    /**
+     *
+     * @return a list of the player's orders
+     */
     public List<Orders> get_playerOrder() {
         return d_playerOrders;
     }
 
+    /**
+     *
+     * @param p_playerOrder a list of the player's orders
+     */
     public void set_playerOrder(List<Orders> p_playerOrder) {
         this.d_playerOrders = p_playerOrder;
     }
 
+    /**
+     *
+     * @return the number of reinforcements the player should get
+     */
     public Integer get_numOfReinforcements() {
         return d_numOfReinforcements;
     }
 
+    /**
+     *
+     * @param p_armiesNumber the number of reinforcements the player should get
+     */
     public void set_numOfReinforcements(Integer p_armiesNumber) {
         this.d_numOfReinforcements = p_armiesNumber;
     }

@@ -22,18 +22,34 @@ public class Orders {
      */
     private int d_destCountryID;
 
+    /**
+     *
+     * @return the number of armies to be used in the order
+     */
     public int getNumOfArmies() {
         return d_numOfArmies;
     }
 
+    /**
+     *
+     * @param p_newNum the number of armies to be used in the order.
+     */
     public void setNumOfArmies(int p_newNum) {
         this.d_numOfArmies = p_newNum;
     }
 
+    /**
+     *
+     * @return the country ID to be used in the order
+     */
     public int getCountryID() {
         return d_destCountryID;
     }
 
+    /**
+     *
+     * @param p_newCountry the country ID to be used in the order.
+     */
     public void setCountryID(int p_newCountry) {
         this.d_destCountryID = p_newCountry;
     }

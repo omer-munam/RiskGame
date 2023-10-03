@@ -73,47 +73,90 @@ public class Country {
         d_numOfArmies = p_numOfArmies;
     }
 
-    public Country(int i, String countryA) {
-    }
-
+    /**
+     *
+     * @return The country's ID
+     */
     public int get_countryID() {
         return d_countryID;
     }
 
+    /**
+     *
+     * @param p_countryID The country's ID
+     */
     public void set_countryID(int p_countryID) {
         d_countryID = p_countryID;
     }
 
+    /**
+     *
+     * @return the number of armies placed on the country
+     */
     public int get_numOfArmies() {
         return d_numOfArmies;
     }
 
+    /**
+     *
+     * @param p_numOfArmies the number of armies placed on the country
+     */
     public void set_numOfArmies(int p_numOfArmies) {
         d_numOfArmies = p_numOfArmies;
     }
 
+    /**
+     *
+     * @return the country's name
+     */
     public String get_countryName() {
         return d_countryName;
     }
 
+    /**
+     *
+     * @param p_countryName the country's name
+     */
     public void set_countryName(String p_countryName) {
         d_countryName = p_countryName;
     }
 
-    public ArrayList<Country> getneighbouringCountries() {
+    /**
+     *
+     * @return A list of the neighbouring countries.
+     */
+    public ArrayList<Country> getNeighbouringCountries() {
         return d_neighbouringCountries;
     }
 
-    public void addneighbouringCountries(Country p_neighbouringCountry) {
-        d_neighbouringCountries.add(p_neighbouringCountry);
+    /**
+     *
+     * @return the continent ID of the country
+     */
+    public int getContinentID() {
+        return d_continentID;
     }
 
+    /**
+     *
+     * @param p_continentID the continent ID of the country
+     */
+    public void setContinentID(int p_continentID){
+        d_continentID = p_continentID;
+    }
 
-
+    /**
+     *
+     * @param p_country the neighbouring country to be added.
+     */
     public void addNeighbouringCountry(Country p_country) {
         d_neighbouringCountries.add(p_country);
     }
 
+    /**
+     *
+     * @param p_country the neighbouring country to be removed.
+     */
     void removeNeighbouringCountry(Country p_country) {
         d_neighbouringCountries.remove(p_country);
     }
@@ -126,7 +169,5 @@ public class Country {
                 '}';
     }
 
-    public int getContinentID() {
-        return d_continentID;
-    }
+
 }
