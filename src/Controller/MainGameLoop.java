@@ -32,8 +32,8 @@ public class MainGameLoop {
     /**
      * A fully parametrized constructor built to initialize the class with all the essential values.
      *
-     * @param p_map
-     * @param p_playerList
+     * @param p_map The current game map of play
+     * @param p_playerList The list of players
      */
     public MainGameLoop(WarMap p_map, List<Player> p_playerList){
         this.d_map = p_map;
@@ -44,7 +44,6 @@ public class MainGameLoop {
      * The method which receives the control over from the GameEngine class and is responsible to handle the whole gameplay.
      */
     public void run_game_loop(){
-        System.out.println("Game Begins... Get Ready");
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║      Game Starts... Get Ready...       ║");
         System.out.println("╚════════════════════════════════════════╝");
@@ -53,13 +52,13 @@ public class MainGameLoop {
             System.out.println("Please enter desired command (Applicable commands: `showmap`, `play` & `exit`):");
             String input = SCANNER.nextLine();
             if (input.equalsIgnoreCase(SHOW_MAP_COMMAND)) {
-                //TODO: SHOW MAP
+                d_map.showMap(d_playerList);
             } else if (input.equalsIgnoreCase("play")){
                 play();
             }
             else if (input.equalsIgnoreCase("exit")){
-                System.out.println("Exiting Game.....");
-                System.exit(0);
+                System.out.println("Exiting to Main Menu.....");
+                break;
             }
             else {
                 System.out.println("Incorrect command....");

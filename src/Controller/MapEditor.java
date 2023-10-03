@@ -241,7 +241,7 @@ public class MapEditor {
 
             l_line = l_bufferReader.readLine();
         }
-        return false;
+        return true;
     }
 
     boolean editMap(String p_filename, WarMap p_map) throws IOException {
@@ -266,6 +266,6 @@ public class MapEditor {
 				l_anymapfile=true;
 			}
 		}
-		if(!l_anymapfile) System.out.println("there are no maps files in \\Maps folder");
+		if(!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
 	}
 }

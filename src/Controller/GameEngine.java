@@ -41,6 +41,25 @@ public class GameEngine {
      * Current map that is loaded after the loadmap command.
      */
     private WarMap d_currentMap = new WarMap();
+
+    public WarMap get_currentMap() { return d_currentMap; }
+
+    public void set_currentMap(WarMap p_map){
+        d_currentMap = p_map;
+    }
+
+    public List<Player> get_PlayersList() {
+        return d_playersList;
+    }
+
+    public void set_PlayersList(List<Player> playersList) {
+        d_playersList.clear();
+        if (playersList != null) {
+            d_playersList.addAll(playersList);
+        }
+    }
+
+
     public void start_game()
     {
         SCANNER = new Scanner(System.in);
@@ -60,34 +79,35 @@ public class GameEngine {
 
                 d_playersList.clear();
 
-                String userInput = SCANNER.nextLine();
-                String[] words = userInput.split("\\s+");
+                String l_userInput = SCANNER.nextLine();
+                String[] l_words = l_userInput.split("\\s+");
 
-                if (userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND))
+                if (l_userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND))
                 {
-                    if (words.length == 2 && words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && words[1].matches("(?i).+\\.map"))
+                    if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map"))
                     {
                         ArrayList<String> l_listOfMaps = getAllMapsList();
-                        if (l_listOfMaps.contains(words[1]))
+                        if (l_listOfMaps.contains(l_words[1]))
                         {
-                            Boolean l_isAbleToReadMap = MapEditor.readmap(words[1], d_currentMap);
-                            Boolean l_isValidMap = d_currentMap.validateMap();
-                            if (l_isAbleToReadMap && l_isValidMap)
+                        	boolean l_isAbleToReadMap = MapEditor.readmap(l_words[1], d_currentMap);
+                        	if (!l_isAbleToReadMap)
+                        	{
+                        		System.out.print("\n Unable to read " + l_words[1] + "!\n");
+                        		continue;
+                        	}
+                            boolean l_isValidMap = d_currentMap.validateMap();
+                            if (!l_isValidMap)
                             {
-
+                                System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
+                                continue;
                             }
-                            else
-                            {
-
-                            }
+                            System.out.print( l_words[1] + " loaded successfully!\n");
                         }
                         else
                         {
-
+                            System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
+                            continue;
                         }
-
-                        //TODO: print an error if validate map or readmap returns false
-                        System.out.print( words[1] + " loaded successfully!\n");
 
                         while (true)
                         {
@@ -97,33 +117,32 @@ public class GameEngine {
                             System.out.print("- assigncountries\n");
                             System.out.print("- showmap\n");
                             System.out.print("- go back\n");
-                            userInput = SCANNER.nextLine();
-                            words = userInput.split("\\s+");
+                            l_userInput = SCANNER.nextLine();
+                            l_words = l_userInput.split("\\s+");
 
-                            if (userInput.toLowerCase().contains("gameplayer"))
+                            if (l_userInput.toLowerCase().contains("gameplayer"))
                             {
-                                if (userInput.toLowerCase().startsWith(Commands.PLAYER_ADD_COMMAND) && words.length == 3)
+                                if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_ADD_COMMAND) && l_words.length == 3)
                                 {
-                                    addPlayer(words[2]);
+                                    addPlayer(l_words[2]);
                                 }
-                                else if (userInput.toLowerCase().startsWith(Commands.PLAYER_REMOVE_COMMAND) && words.length == 3)
+                                else if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_REMOVE_COMMAND) && l_words.length == 3)
                                 {
-                                    removePlayer(words[2]);
+                                    removePlayer(l_words[2]);
                                 }
                                 else
                                     System.out.print("Invalid Command! Correct syntax: gameplayer -add [playername] -remove [playername]\n");
                             }
-                            else if (userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
+                            else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
-                                assignCountries();
+                                assignCountries(false);
+                                break;
                             }
-                            else if (userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
+                            else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
                             {
-                                System.out.print("You're in: SHOW_MAP_COMMAND");
-
-                                // Write code here
+                                d_currentMap.showMap();
                             }
-                            else if (userInput.equalsIgnoreCase("go back"))
+                            else if (l_userInput.equalsIgnoreCase("go back"))
                             {
                                 break;
                             }
@@ -134,16 +153,18 @@ public class GameEngine {
                     else
                         System.out.print("Invalid Command! Correct syntax: loadmap [filename]\n");
                 }
-                else if (userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND))
+                else if (l_userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND))
                 {
+                    System.out.println("\nHere is the list of all the available maps:");
+
                     MapEditor.showAllMaps();
                 }
-                else if (words.length == 1 && words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
+                else if (l_words.length == 1 && l_words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
                 {
                     MapEditor editor = new MapEditor();
                     editor.editMapEntry();
                 }
-                else if (userInput.equalsIgnoreCase("quit"))
+                else if (l_userInput.equalsIgnoreCase("quit"))
                 {
                     break;
                 }
@@ -162,7 +183,7 @@ public class GameEngine {
      * This function is called after the command 'assigncountries' is given. It uses the players list and the countries present in the Map class
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      */
-    private void assignCountries() {
+    public void assignCountries(boolean p_test) {
         if (d_playersList.size() < 2){
             System.out.println("Please add at least 2 players using the 'gameplayer -add' command.");
             return;
@@ -189,6 +210,8 @@ public class GameEngine {
             }
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
+        if (p_test)
+            return;
         MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
         l_gameLoop.run_game_loop();
     }
@@ -234,7 +257,14 @@ public class GameEngine {
         System.out.println("Player " + p_InputPlayerName + " not found");
     }
 
-
+    /**
+     * Retrieves a list of filenames from the specified directory containing maps.
+     *
+     * This method scans a directory for map files and returns a list of their filenames.
+     *
+     * @return An ArrayList containing the names of map files in the directory.
+     * @see Commands#MAPS_DIRECTORY_PATH
+     */
     private ArrayList<String> getAllMapsList()
     {
         // Create a File object for the directory
