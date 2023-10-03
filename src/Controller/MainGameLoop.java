@@ -32,8 +32,8 @@ public class MainGameLoop {
     /**
      * A fully parametrized constructor built to initialize the class with all the essential values.
      *
-     * @param p_map
-     * @param p_playerList
+     * @param p_map The current game map of play
+     * @param p_playerList The list of players
      */
     public MainGameLoop(WarMap p_map, List<Player> p_playerList){
         this.d_map = p_map;
