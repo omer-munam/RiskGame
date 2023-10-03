@@ -41,10 +41,10 @@ public class Player {
     /**
      * This is the constructor method of the Models.Player class
      *
-     * @param v_playerName is player's name.
+     * @param p_playerName is player's name.
      */
-    public Player(String v_playerName) {
-        this.d_playerName = v_playerName;
+    public Player(String p_playerName) {
+        this.d_playerName = p_playerName;
         this.d_numOfReinforcements = Integer.valueOf(0);
         this.d_playerOrders = new ArrayList<Orders>();
         this.d_playerCountries = new ArrayList<Country>();
@@ -124,7 +124,7 @@ public class Player {
             }
             boolean countryExists = false;
             for (Country country : d_playerCountries)
-                if (country.d_countryID == countryID)
+                if (country.get_countryID() == countryID)
                     countryExists = true;
             if (!countryExists){
                 System.out.println("The given CountryID is not under your control.");

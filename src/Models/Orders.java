@@ -57,8 +57,8 @@ public class Orders {
         System.out.println("\n_________________________________________");
         Collection<Country> l_countryInfo = p_warmap.get_countries().values();
         for (Country country : l_countryInfo) {
-            if (country.d_countryID == d_destCountryID){
-                country.d_numOfArmies += d_numOfArmies;
+            if (country.get_countryID() == d_destCountryID){
+                country.set_numOfArmies(country.get_numOfArmies()+d_numOfArmies); ;
                 System.out.println(d_numOfArmies + " armies are deployed to country " + country.get_countryName());
             }
         }

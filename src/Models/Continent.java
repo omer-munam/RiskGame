@@ -1,24 +1,56 @@
 package Models;
-
+/**
+ * This is the continent class, it contains the structure of a Continent to be used in the WarMap, it also contains the army bonus to be used during the game.
+ *
+ * @author Ryan Feher
+ * @author Mohammad Uvas
+ */
 public class Continent {
-    @Override
-    public String toString() {
-        return "Models.Continent{" +
-                "continentID=" + d_continentID +
-                ", continentName='" + d_continentName + '\'' +
-                '}';
+
+    /**
+     * The continent ID of the continent.
+     */
+    private int d_continentID;
+    /**
+     * The name of the continent.
+     */
+    private String d_continentName;
+    /**
+     * The army bonus obtained from owning the entirety of the continent.
+     */
+    private int d_armyBonus;
+
+    /**
+     * This is a default constructor method of the Models.Continent class
+     */
+    public Continent(){
+        d_continentID = 0;
+        d_continentName = "Default name";
+        d_armyBonus = 0;
     }
 
-    int d_continentID;
-    String d_continentName;
-    int d_armyBonus;
-
+    /**
+     * This is a parameterized constructor method of the Models.Continent class
+     *
+     * @param p_continentID is the continent's ID.
+     * @param p_continentName is the continent's name.
+     * @param p_armyBonus is the army bonus of obtaining the entire continent.
+     */
+    public Continent(int p_continentID, String p_continentName, int p_armyBonus) {
+        d_continentID = p_continentID;
+        d_continentName = p_continentName;
+        d_armyBonus = p_armyBonus;
+    }
     public int get_continentID() {
         return d_continentID;
     }
 
     public String get_continentName() {
         return d_continentName;
+    }
+
+    public int get_armyBonus() {
+        return d_armyBonus;
     }
 
     public void set_continentName(String p_continentName) {
@@ -29,14 +61,15 @@ public class Continent {
         d_continentID = p_continentID;
     }
 
-    public Continent(int p_continentID, String p_continentName, int p_armyBonus) {
-        d_continentID = p_continentID;
-        d_continentName = p_continentName;
+    public void set_armyBonus(int p_armyBonus){
         d_armyBonus = p_armyBonus;
     }
 
-
-    public int get_armyBonus() {
-        return d_armyBonus;
+    @Override
+    public String toString() {
+        return "Models.Continent{" +
+                "continentID=" + d_continentID +
+                ", continentName='" + d_continentName + '\'' +
+                '}';
     }
 }

@@ -11,8 +11,16 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * This class contains utility functions for creating and editing maps to be used in the game. It is also the entry point to be used from main to access the map editor.
+ *
+ * @author Ryan Feher
+ * @author Mohammad Uvas
+ */
 public class MapEditor {
+    /**
+     * Stores the location of saved maps in the file directory.
+     */
     static String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
 
     public void editMapEntry() throws IOException {

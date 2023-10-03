@@ -9,10 +9,65 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
+/**
+ *This class describes information stores a WarMap to be used in the game, it's main use is to store the countries, continents and adjency list of neighbouring countries
+ *It also contains the functions for validating, saving and showing the game map.
+ *
+ * @author Ryan Feher
+ * @author Mohammad Uvas
+ */
 public class WarMap {
-    String d_mapName;
-    String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
+    /**
+     * The name of the WarMap, in general this is the same as the filename.
+     */
+    private String d_mapName;
+    /**
+     * A hashmap of the countries in the map, this will take the form of HashMap(CountryID, Country)
+     */
+    private HashMap<Integer, Country> d_countries;
+    /**
+     * A hashmap of the continents in the map, this will take the form of HashMap(ContinentID, Continent)
+     */
+    private HashMap<Integer, Continent> d_continents;
+    /**
+     * A hashmap of the adjency list of the map, this will take the form of HashMap(CountryID, List of Neighboring Country IDs)
+     */
+    private HashMap<Integer, ArrayList<Integer>> d_adjencyList;
+    /**
+     * Stores the location of saved maps in the file directory.
+     */
+    private String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
+    /**
+     * This is a default constructor method of the Models.WarMap class
+     */
+    public WarMap() {
+        this("Default Name", new HashMap<Integer, Country>(), new HashMap<Integer, Continent>(), new HashMap<Integer, ArrayList<Integer>>());
+
+    }
+    /**
+     * This is a parameterized constructor method of the Models.WarMap class
+     *
+     * @param p_mapName is the map's name (generally the file name).
+     */
+    public WarMap(String p_mapName) {
+        this(p_mapName, new HashMap<Integer, Country>(), new HashMap<Integer, Continent>(), new HashMap<Integer, ArrayList<Integer>>());
+
+    }
+    /**
+     * This is a parameterized constructor method of the Models.WarMap class
+     *
+     * @param p_mapName is the map's name (generally the file name).
+     * @param p_countries is a hashmap of the countries in the map where the hashmap contains keys with the countries ID and the values are the corresponding countries.
+     * @param p_continents is a hashmap of the continents in the map where the hashmap contains keys with the continent Id's and the values are the corresponding continents.
+     * @param p_adjencyList is a hashmap of the neighbouring countries in the map where the hashmap contains keys with the country IDs and the values are a list of the country Id's of neighbouring countries.
+     */
+    public WarMap(String p_mapName, HashMap<Integer, Country> p_countries, HashMap<Integer, Continent> p_continents, HashMap<Integer, ArrayList<Integer>> p_adjencyList) {
+        d_mapName = p_mapName;
+        d_countries = p_countries;
+        d_continents = p_continents;
+        d_adjencyList = p_adjencyList;
+
+    }
 
     public String get_mapName() {
         return d_mapName;
@@ -46,27 +101,9 @@ public class WarMap {
         d_adjencyList = p_adjencyList;
     }
 
-    HashMap<Integer, Country> d_countries;
-    HashMap<Integer, Continent> d_continents;
-    HashMap<Integer, ArrayList<Integer>> d_adjencyList;
 
-    public WarMap() {
-        this("Default Name", new HashMap<Integer, Country>(), new HashMap<Integer, Continent>(), new HashMap<Integer, ArrayList<Integer>>());
 
-    }
 
-    public WarMap(String p_mapName) {
-        this(p_mapName, new HashMap<Integer, Country>(), new HashMap<Integer, Continent>(), new HashMap<Integer, ArrayList<Integer>>());
-
-    }
-
-    public WarMap(String p_mapName, HashMap<Integer, Country> p_countries, HashMap<Integer, Continent> p_continents, HashMap<Integer, ArrayList<Integer>> p_adjencyList) {
-        d_mapName = p_mapName;
-        d_countries = p_countries;
-        d_continents = p_continents;
-        d_adjencyList = p_adjencyList;
-
-    }
 
     public void addContinent(Continent p_continent) {
         d_continents.put(p_continent.get_continentID(), p_continent);
@@ -92,7 +129,7 @@ public class WarMap {
     }
 
     // DFS recursive function for map
-    void dfsHelper(Integer p_country, HashMap<Integer, Boolean> p_isvisited) {
+    private void dfsHelper(Integer p_country, HashMap<Integer, Boolean> p_isvisited) {
     	p_isvisited.put(p_country, true);
         for (int l_neighbour : d_adjencyList.get(p_country))
             if (!p_isvisited.get(l_neighbour))
@@ -100,7 +137,7 @@ public class WarMap {
     }
 
     // DFS recursive function for Continents
-    void dfsHelperContinents(Integer p_country, HashMap<Integer, Boolean> p_isvisited, HashMap<Integer, ArrayList<Integer>> p_adjencylistcontinent) {
+    private void dfsHelperContinents(Integer p_country, HashMap<Integer, Boolean> p_isvisited, HashMap<Integer, ArrayList<Integer>> p_adjencylistcontinent) {
     	p_isvisited.put(p_country, true);
         for (int l_neighbour : p_adjencylistcontinent.get(p_country))
             if (!p_isvisited.get(l_neighbour))
