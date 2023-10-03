@@ -235,7 +235,14 @@ public class GameEngine {
         System.out.println("Player " + p_InputPlayerName + " not found");
     }
 
-
+    /**
+     * Retrieves a list of filenames from the specified directory containing maps.
+     *
+     * This method scans a directory for map files and returns a list of their filenames.
+     *
+     * @return An ArrayList containing the names of map files in the directory.
+     * @see Commands#MAPS_DIRECTORY_PATH
+     */
     private ArrayList<String> getAllMapsList()
     {
         // Create a File object for the directory
