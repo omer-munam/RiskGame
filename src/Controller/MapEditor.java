@@ -266,6 +266,6 @@ public class MapEditor {
 				l_anymapfile=true;
 			}
 		}
-		if(!l_anymapfile) System.out.println("there are no maps files in \\Maps folder");
+		if(!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
 	}
 }

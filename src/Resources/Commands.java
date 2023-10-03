@@ -21,5 +21,5 @@ public class Commands {
     public static final String EDIT_NEIGHBOR_COMMAND = "editneighbor";
     public static final String DEPLOY_COMMAND = "deploy";
     public static final String DEPLOY_COMMAND_SYNTAX = "deploy <countryID> <num>";
-    public static final String MAPS_DIRECTORY_PATH = "deploy <countryID> <num>";
+    public static final String MAPS_DIRECTORY_PATH = "src/Resources/Maps";
 }
