@@ -130,6 +130,7 @@ public class GameEngine {
                             else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
                                 assignCountries();
+                                break;
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
                             {
