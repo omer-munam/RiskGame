@@ -44,7 +44,6 @@ public class MainGameLoop {
      * The method which receives the control over from the GameEngine class and is responsible to handle the whole gameplay.
      */
     public void run_game_loop(){
-        System.out.println("Game Begins... Get Ready");
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║      Game Starts... Get Ready...       ║");
         System.out.println("╚════════════════════════════════════════╝");
