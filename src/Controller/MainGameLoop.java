@@ -53,13 +53,13 @@ public class MainGameLoop {
             System.out.println("Please enter desired command (Applicable commands: `showmap`, `play` & `exit`):");
             String input = SCANNER.nextLine();
             if (input.equalsIgnoreCase(SHOW_MAP_COMMAND)) {
-                //TODO: SHOW MAP
+                d_map.showMap(d_playerList);
             } else if (input.equalsIgnoreCase("play")){
                 play();
             }
             else if (input.equalsIgnoreCase("exit")){
-                System.out.println("Exiting Game.....");
-                System.exit(0);
+                System.out.println("Exiting to Main Menu.....");
+                break;
             }
             else {
                 System.out.println("Incorrect command....");
