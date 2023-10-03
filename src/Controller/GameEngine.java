@@ -120,9 +120,8 @@ public class GameEngine {
                             }
                             else if (userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
                             {
-                                System.out.print("You're in: SHOW_MAP_COMMAND");
-
-                                // Write code here
+                                if(d_playersList!=null) d_currentMap.showMap(d_playersList);
+                                else d_currentMap.showMap();
                             }
                             else if (userInput.equalsIgnoreCase("go back"))
                             {
