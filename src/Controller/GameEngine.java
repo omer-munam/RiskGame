@@ -135,7 +135,7 @@ public class GameEngine {
                 }
                 else if (l_userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND))
                 {
-                    System.out.print("\nHere is the list of all the available maps:");
+                    System.out.println("\nHere is the list of all the available maps:");
 
                     MapEditor.showAllMaps();
                 }
