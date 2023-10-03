@@ -241,7 +241,7 @@ public class MapEditor {
 
             l_line = l_bufferReader.readLine();
         }
-        return false;
+        return true;
     }
 
     boolean editMap(String p_filename, WarMap p_map) throws IOException {
