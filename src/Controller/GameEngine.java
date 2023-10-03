@@ -1,6 +1,8 @@
 package Controller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.io.File;
 import Models.Country;
@@ -41,6 +43,12 @@ public class GameEngine {
      * Current map that is loaded after the loadmap command.
      */
     private WarMap d_currentMap = new WarMap();
+
+    public WarMap get_currentMap() { return d_currentMap; }
+
+    public void set_currentMap(WarMap p_map){
+        d_currentMap = p_map;
+    }
 
     public List<Player> get_PlayersList() {
         return d_playersList;
@@ -129,7 +137,7 @@ public class GameEngine {
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
-                                assignCountries();
+                                assignCountries(false);
                                 break;
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
@@ -177,7 +185,7 @@ public class GameEngine {
      * This function is called after the command 'assigncountries' is given. It uses the players list and the countries present in the Map class
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      */
-    public void assignCountries() {
+    public void assignCountries(boolean p_test) {
         if (d_playersList.size() < 2){
             System.out.println("Please add at least 2 players using the 'gameplayer -add' command.");
             return;
@@ -189,21 +197,27 @@ public class GameEngine {
         }
         System.out.println("Assigning Countries To Players.");
         int l_NumOfCountries = d_currentMap.get_countries().size();
-        int l_NumOfCountriesToAssign = l_NumOfCountries / d_playersList.size();
-        int j = 0;
-        for (int k = 0; k < d_playersList.size(); k++) {
-            for (int i = 0; i < l_NumOfCountriesToAssign; i++){
-                d_playersList.get(k).get_playerCountries().add((Country) d_currentMap.get_countries().values().toArray()[j]);
-                j++;
-            }
-            if (k + 1 == d_playersList.size() && j - 1 != l_NumOfCountries){
-                while (j < l_NumOfCountries){
-                    d_playersList.get(k).get_playerCountries().add((Country) d_currentMap.get_countries().values().toArray()[j]);
-                    j++;
-                }
-            }
+        HashMap<Integer, Boolean> l_CountryAssigned = new HashMap<Integer, Boolean>();
+        for (Integer l_countryId : d_currentMap.get_countries().keySet()) l_CountryAssigned.put(l_countryId, false);
+        
+        Random l_RandomIndexCountry = new Random();
+        int l_CountryIndex;
+        for(int i=0;i<l_NumOfCountries;) {
+        	for (int j=0; j<d_playersList.size() && i<l_NumOfCountries ; j++,i++) {
+        		Player player = d_playersList.get(j);
+        		while(true) {
+					l_CountryIndex = l_RandomIndexCountry.nextInt(l_NumOfCountries)+1;
+					if(l_CountryAssigned.get(l_CountryIndex)==false) {
+						player.get_playerCountries().add(d_currentMap.get_countries().get(l_CountryIndex));
+						l_CountryAssigned.put(l_CountryIndex, true);
+						break;
+					}
+				}
+			}
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
+        if (p_test)
+            return;
         MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
         l_gameLoop.run_game_loop();
     }

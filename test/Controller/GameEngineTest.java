@@ -31,15 +31,16 @@ class GameEngineTest {
         warMap.get_countries().put(1, country1);
         warMap.get_countries().put(2, country2);
         warMap.get_countries().put(3, country3);
+        gameEngine.set_currentMap(warMap);
         gameEngine.set_PlayersList(List.of(new Player("Player1"), new Player("Player2")));
-        gameEngine.assignCountries();
+        gameEngine.assignCountries(true);
 
         List<Player> playersList = gameEngine.get_PlayersList();
         assertEquals(2, playersList.size());
-        assertEquals(2, playersList.get(0).get_playerCountries().size());
-        assertEquals(1, playersList.get(1).get_playerCountries().size());
+        assertEquals(1, playersList.get(0).get_playerCountries().size());
+        assertEquals(2, playersList.get(1).get_playerCountries().size());
         assertTrue(playersList.get(0).get_playerCountries().contains(country1));
-        assertTrue(playersList.get(0).get_playerCountries().contains(country2));
+        assertTrue(playersList.get(1).get_playerCountries().contains(country2));
         assertTrue(playersList.get(1).get_playerCountries().contains(country3));
     }
 
