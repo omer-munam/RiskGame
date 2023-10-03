@@ -114,6 +114,10 @@ public class MapEditor {
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_countries().containsKey(Integer.parseInt(l_input_string_array[i]))) {
+                                for (Integer l_i : l_current_map.get_adjencyList().get(Integer.parseInt(l_input_string_array[i]))) {
+                                    l_current_map.removeNeighbour(l_i, Integer.parseInt(l_input_string_array[i]));
+                                }
+                                l_current_map.get_adjencyList().remove(l_input_string_array[i]);
                                 System.out.println("Removing country with ID: " + l_current_map.get_countries().get(Integer.parseInt(l_input_string_array[i])));
                                 l_current_map.get_countries().remove(Integer.parseInt(l_input_string_array[i]));
                             } else {
@@ -237,7 +241,7 @@ public class MapEditor {
 
             l_line = l_bufferReader.readLine();
         }
-        return false;
+        return true;
     }
 
     boolean editMap(String p_filename, WarMap p_map) throws IOException {
@@ -251,4 +255,17 @@ public class MapEditor {
         }
         return false;
     }
+
+	public static void showAllMaps() {
+		File l_maps_directory = new File(d_base_path);
+		String[] l_filenameslist = l_maps_directory.list();
+		boolean l_anymapfile=false;
+		for (String l_filename : l_filenameslist) {
+			if(l_filename.contains(".map")) {
+				System.out.println(l_filename);
+				l_anymapfile=true;
+			}
+		}
+		if(!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
+	}
 }
