@@ -245,8 +245,15 @@ public class WarMap {
                 }
             }
         }
-        for (Map.Entry<Integer, Continent> entry : d_continents.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        for (Map.Entry<Integer, Continent> l_entry : d_continents.entrySet()) {
+            System.out.println(l_entry.getKey() + ": " + l_entry.getValue());
+            System.out.println("This continent is made up of the following Country IDs:");
+            for (Country l_c : this.get_countries().values()) {
+                if (l_c.getContinentID() == l_entry.getKey()) {
+                    System.out.print(l_c.get_countryID() + " ");
+                }
+            }
+            System.out.println();
         }
         for (Map.Entry<Integer, ArrayList<Integer>> entry : d_adjencyList.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
