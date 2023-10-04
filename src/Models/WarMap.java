@@ -158,9 +158,10 @@ public class WarMap {
     public void removeNeighbour(int p_countryID, int p_neighbourID) {
         if (d_adjencyList.get(p_countryID).contains(p_neighbourID)) {
             d_adjencyList.get(p_countryID).remove(p_neighbourID);
+        }
             d_countries.get(p_countryID).removeNeighbouringCountry(d_countries.get(p_neighbourID));
         }
-    }
+
     /**
      * DFS recursive function for WarMap
      *
@@ -243,7 +244,7 @@ public class WarMap {
                 if (d_countries.get(l_countryid).getContinentID() == l_continent_Id) {
                 	l_adjencylistcontinent.put(l_countryid, new ArrayList<Integer>());
 
-                    for (Integer l_neighborcountryId : l_countryset.getValue().getNeighbouringCountries()) {
+                    for (Integer l_neighborcountryId : l_countryset.getValue().getNeighbouringCountries().keySet()) {
                         if (l_neighborcountryId != null && d_countries.get(l_neighborcountryId).getContinentID() == l_continent_Id)
                         	l_adjencylistcontinent.get(l_countryid).add(l_neighborcountryId);
                     }
@@ -327,11 +328,12 @@ public class WarMap {
         for (Map.Entry<Integer, Country> l_entry : d_countries.entrySet()) { //All the countries with their neighbouring countries
             System.out.println("Country with ID: " + l_entry.getValue().get_countryID() + " and name: " + l_entry.getValue().get_countryName());
             System.out.println("The neighboring countries are:");
-            for (Integer l_neighborcountryId : l_entry.getValue().getNeighbouringCountries()) {
-                if (l_neighborcountryId != null) {
+            for (Integer l_neighborcountryId : l_entry.getValue().getNeighbouringCountries().keySet()) {
+
+                if (d_countries.get(l_neighborcountryId) != null) {
                     System.out.println(d_countries.get(l_neighborcountryId).get_countryName() + " with country ID: " + d_countries.get(l_neighborcountryId).get_countryID());
                 }
-                if (l_neighborcountryId == null) {
+                if (d_countries.get(l_neighborcountryId) == null) {
                     System.out.println("A null country was found");
                 }
             }
@@ -388,7 +390,7 @@ public class WarMap {
 	}
 	
 	public void removeCountry(Integer p_countryId) {
-		for (Integer l_neighbouringcountryId : d_countries.get(p_countryId).getNeighbouringCountries()) {
+        for (Integer l_neighbouringcountryId : d_countries.get(p_countryId).getNeighbouringCountries().keySet()) {
 			removeNeighbour(l_neighbouringcountryId, p_countryId);
 		}
 		d_countries.remove(p_countryId);
