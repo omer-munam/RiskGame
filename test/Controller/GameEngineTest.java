@@ -46,9 +46,53 @@ class GameEngineTest {
 
     @Test
     void addPlayer() {
+        /** Add a player
+         *
+         */
+        gameEngine.addPlayer("Player1");
+
+        /** Retrieve the players list
+         *
+         */
+        List<Player> players = gameEngine.get_PlayersList();
+
+        /**Verify that the player was added successfully
+         *
+         */
+        assertEquals(1, players.size());
+
+        /**Verify the player's name
+         *
+         */
+        assertEquals("Player1", players.get(0).get_playerName());
     }
 
     @Test
     void removePlayer() {
+        /**Add players to the list
+         *
+         */
+        gameEngine.addPlayer("Player1");
+        gameEngine.addPlayer("Player2");
+
+        /**Remove a player
+         *
+         */
+        gameEngine.removePlayer("Player1");
+
+        /**Retrieve the players list
+         *
+         */
+        List<Player> players = gameEngine.get_PlayersList();
+
+        /** Verify that the player was removed successfully
+         *
+         */
+        assertEquals(1, players.size());
+
+        /** Verify the remaining player's name
+         *
+         */
+        assertEquals("Player2", players.get(0).get_playerName());
     }
 }
