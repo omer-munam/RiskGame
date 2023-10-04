@@ -400,6 +400,7 @@ public class WarMap {
 		}
 		d_countries.remove(p_countryId);
 		d_adjencyList.remove(p_countryId);
+        System.out.println("Removed Country with ID " + p_countryId);
 	}
 	
 	public void addNeighbourCountry(Integer l_input_country_ID, Integer l_input_country_neighbor_ID) {

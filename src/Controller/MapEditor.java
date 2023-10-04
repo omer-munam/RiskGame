@@ -54,7 +54,7 @@ public class MapEditor {
         while (true) { //Loops until user types the exit command.
             if (!l_current_map.get_mapName().equals("Default Name")) {
                 System.out.println("You are currently editing " + l_current_map.get_mapName() + " the available commands are: ");
-                System.out.println("editcontinent -add continentID continentvalue continentarmybonus -remove continentID");
+                System.out.println("editcontinent -add continentID continentName continentarmybonus -remove continentID");
                 System.out.println("editcountry -add countryID countryName continentID -remove countryID");
                 System.out.println("editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID");
                 System.out.println("savemap");
@@ -66,21 +66,45 @@ public class MapEditor {
             l_input_string = GameEngine.SCANNER.nextLine();
             l_input_string_array = l_input_string.split(" ");
 
-            switch(command_Code_Hashmap.get(l_input_string_array[0])) {
+            switch (command_Code_Hashmap.getOrDefault(l_input_string_array[0], 8)) {
 				case 0:
-                    System.out.println("DO I GET HERE?");
-                    if (l_input_string_array[1].equalsIgnoreCase("-add")) {
-
-                        l_current_map.addContinent(Integer.valueOf(l_input_string_array[2]), l_input_string_array[3], Integer.valueOf(l_input_string_array[4]));
-                    } else if (l_input_string_array[1].equalsIgnoreCase("-remove")) {
-                        System.out.println("WHAT ABOUT HERE?");
-                        l_current_map.removeContinent(Integer.valueOf(l_input_string_array[2]));
+                    for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
+                        if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
+                            if (l_i + 3 < l_input_string_array.length) {
+                                l_current_map.addContinent(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                                l_i += 3;
+                            } else {
+                                System.out.println("Reached end of file while parsing not all commands completed");
+                            }
+                        } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
+                            if (l_i + 1 < l_input_string_array.length) {
+                                l_current_map.removeContinent(Integer.valueOf(l_input_string_array[l_i + 1]));
+                                l_i++;
+                            } else {
+                                System.out.println("Reached end of file while parsing not all commands completed");
+                            }
+                        }
                     }
 					break;
 					
 				case 1:
-					if(l_input_string_array[1].equalsIgnoreCase("-add")) l_current_map.addCountry(Integer.valueOf(l_input_string_array[2]), l_input_string_array[3], Integer.valueOf(l_input_string_array[4]));
-					else if(l_input_string_array[1].equalsIgnoreCase("-remove")) l_current_map.removeCountry(Integer.valueOf(l_input_string_array[2]));
+                    for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
+                        if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
+                            if (l_i + 3 < l_input_string_array.length) {
+                                l_current_map.addCountry(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                                l_i += 3;
+                            } else {
+                                System.out.println("Reached end of file while parsing not all commands completed");
+                            }
+                        } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
+                            if (l_i + 1 < l_input_string_array.length) {
+                                l_current_map.removeCountry(Integer.valueOf(l_input_string_array[l_i + 1]));
+                                l_i++;
+                            } else {
+                                System.out.println("Reached end of file while parsing not all commands completed");
+                            }
+                        }
+                    }
 					break;
 					
 				case 2:
@@ -119,6 +143,8 @@ public class MapEditor {
 					
 				case 7:
 					return;
+                case 8:
+                    break;
             }
             
             if (l_current_map.get_mapName().equals("Default Name")) {
