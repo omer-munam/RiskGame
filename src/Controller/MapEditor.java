@@ -74,6 +74,7 @@ public class MapEditor {
                                 String l_continent_name = GameEngine.SCANNER.nextLine();
                                 Continent l_newcontinent = new Continent(l_input_continent_ID, l_continent_name, l_continent_army_bonus);
                                 l_current_map.addContinent(l_newcontinent);
+                                System.out.println("Added a continent with ID " + l_input_continent_ID);
                                 continue;
                             } else {
                                 System.out.println("Reached end of command while parsing please ensure correct command is used.");
@@ -114,6 +115,7 @@ public class MapEditor {
                                 String l_country_name = GameEngine.SCANNER.nextLine();
                                 Country l_new_country = new Country(l_input_country_ID, l_country_name, l_input_country_continent_ID);
                                 l_current_map.addCountry(l_new_country);
+                                System.out.println("Added country with ID " + l_input_country_ID);
                                 continue;
                             } else {
                                 System.out.println("Reached end of command while parsing please ensure correct command is used.");
@@ -155,6 +157,7 @@ public class MapEditor {
                             if (i < l_input_string_array.length) {
                                 int l_input_country_neighbor_ID = Integer.parseInt(l_input_string_array[i]);
                                 if (l_current_map.get_countries().containsKey(l_input_country_ID) && l_current_map.get_countries().containsKey(l_input_country_neighbor_ID)) {
+                                    System.out.println("Countries with ID " + l_input_country_ID + " and " + l_input_country_neighbor_ID + " have been made neighbors.");
                                     l_current_map.addNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
                                     l_current_map.addNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
                                 } else {
@@ -198,7 +201,12 @@ public class MapEditor {
                 continue;
             }
             if (l_input_string_array[0].equals("savemap")) {
+                if (l_current_map.validateMap()) {
                 l_current_map.saveMap(l_current_map.get_mapName());
+                    System.out.println("Map saved");
+                } else {
+                    System.out.println("Map not saved due to being invalid");
+                }
             }
             if (l_input_string_array[0].equals("showmap")) {
                 l_current_map.showMap();
