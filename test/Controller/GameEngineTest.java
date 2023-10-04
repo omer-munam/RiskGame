@@ -56,5 +56,16 @@ class GameEngineTest {
 
     @Test
     void removePlayer() {
+        gameEngine.addPlayer("Player1");
+        gameEngine.addPlayer("Player2");
+        gameEngine.addPlayer("Player3");
+
+        gameEngine.removePlayer("Player2");
+
+        List<Player> players = gameEngine.get_PlayersList();
+
+        assertEquals(2, players.size());
+        assertEquals("Player1", players.get(0).get_playerName());
+        assertEquals("Player3", players.get(1).get_playerName());
     }
 }
