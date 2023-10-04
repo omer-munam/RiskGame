@@ -243,9 +243,9 @@ public class WarMap {
                 if (d_countries.get(l_countryid).getContinentID() == l_continent_Id) {
                 	l_adjencylistcontinent.put(l_countryid, new ArrayList<Integer>());
 
-                    for (Country l_neighborcountry : l_countryset.getValue().getNeighbouringCountries()) {
-                        if (l_neighborcountry != null && l_neighborcountry.getContinentID() == l_continent_Id)
-                        	l_adjencylistcontinent.get(l_countryid).add(l_neighborcountry.get_countryID());
+                    for (Integer l_neighborcountryId : l_countryset.getValue().getNeighbouringCountries()) {
+                        if (l_neighborcountryId != null && d_countries.get(l_neighborcountryId).getContinentID() == l_continent_Id)
+                        	l_adjencylistcontinent.get(l_countryid).add(l_neighborcountryId);
                     }
                 }
             }
@@ -327,11 +327,11 @@ public class WarMap {
         for (Map.Entry<Integer, Country> l_entry : d_countries.entrySet()) { //All the countries with their neighbouring countries
             System.out.println("Country with ID: " + l_entry.getValue().get_countryID() + " and name: " + l_entry.getValue().get_countryName());
             System.out.println("The neighboring countries are:");
-            for (Country l_c : l_entry.getValue().getNeighbouringCountries()) {
-                if (l_c != null) {
-                    System.out.println(l_c.get_countryName() + " with country ID: " + l_c.get_countryID());
+            for (Integer l_neighborcountryId : l_entry.getValue().getNeighbouringCountries()) {
+                if (l_neighborcountryId != null) {
+                    System.out.println(d_countries.get(l_neighborcountryId).get_countryName() + " with country ID: " + d_countries.get(l_neighborcountryId).get_countryID());
                 }
-                if (l_c == null) {
+                if (l_neighborcountryId == null) {
                     System.out.println("A null country was found");
                 }
             }
@@ -367,6 +367,43 @@ public class WarMap {
             System.out.println("---------------------------------");
         }
     }
+    
+	public void addContinent(Integer p_continentId, String p_continentName, Integer p_armybonus) {
+        d_continents.put(p_continentId, new Continent(p_continentId, p_continentName, p_armybonus));
+        System.out.println("Added a continent with ID " + p_continentId);
+	}
+	
+	public void removeContinent(Integer p_continentId) {
+		for (Integer l_countryId : d_countries.keySet()) {
+			if(d_countries.get(l_countryId).getContinentID()==p_continentId) {
+				removeCountry(l_countryId);
+			}
+		}
+		d_continents.remove(p_continentId);
+	}
+	
+	public void addCountry(Integer p_countryId, String p_countryName, Integer p_continentId) {
+		d_countries.put(p_countryId, new Country(p_countryId, p_countryName, p_continentId));
+		System.out.println("Added country with ID " + p_countryId);
+	}
+	
+	public void removeCountry(Integer p_countryId) {
+		for (Integer l_neighbouringcountryId : d_countries.get(p_countryId).getNeighbouringCountries()) {
+			removeNeighbour(l_neighbouringcountryId, p_countryId);
+		}
+		d_countries.remove(p_countryId);
+		d_adjencyList.remove(p_countryId);
+	}
+	
+	public void addNeighbourCountry(Integer l_input_country_ID, Integer l_input_country_neighbor_ID) {
+		addNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
+        addNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
+		
+	}
+	public void removeNeighbourCountry(Integer l_input_country_ID, Integer l_input_country_neighbor_ID) {
+		removeNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
+        removeNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
+	}
 
 }
 
