@@ -37,7 +37,7 @@ class GameEngineTest {
 
         List<Player> playersList = gameEngine.get_PlayersList();
         assertEquals(2, playersList.size());
-        assertEquals(1, playersList.get(0).get_playerCountries().size());
+        assertEquals(2, playersList.get(0).get_playerCountries().size());
         assertEquals(2, playersList.get(1).get_playerCountries().size());
         assertTrue(playersList.get(0).get_playerCountries().contains(country1));
         assertTrue(playersList.get(1).get_playerCountries().contains(country2));
