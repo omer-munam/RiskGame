@@ -142,13 +142,27 @@ public class GameEngine {
 
                             if (l_userInput.toLowerCase().contains("gameplayer"))
                             {
-                                if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_ADD_COMMAND) && l_words.length == 3)
+                                if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_EDIT_COMMAND) && l_words.length >= 3)
                                 {
-                                    addPlayer(l_words[2]);
-                                }
-                                else if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_REMOVE_COMMAND) && l_words.length == 3)
-                                {
-                                    removePlayer(l_words[2]);
+                                    for (int i = 1; i < l_words.length; i++) {
+                                        if (l_words[i].equals("-add")) {
+                                            i++;
+                                            if (i < l_words.length) {
+                                                addPlayer(l_words[i]);
+                                            } else {
+                                                System.out.println("Reached end of command while parsing");
+                                            }
+                                        }
+                                        if (l_words[i].equals("-remove")) {
+                                            i++;
+                                            if (i < l_words.length) {
+                                                removePlayer(l_words[i]);
+                                            } else {
+                                                System.out.println("Reached end of command while parsing");
+
+                                            }
+                                        }
+                                    }
                                 }
                                 else
                                     System.out.print("Invalid Command! Correct syntax: gameplayer -add [playername] -remove [playername]\n");
