@@ -324,42 +324,10 @@ public class WarMap {
      * A function which prints the WarMap to the console in a readable format.
      */
     public void showMap() { //Show map for only map (no player ownership or army count. - need to make seperate one that incorporates that for gamestate)
-        for (Map.Entry<Integer, Country> entry : d_countries.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        for (Map.Entry<Integer, Country> l_entry : d_countries.entrySet()) {
+            System.out.println("Country with ID: " + l_entry.getValue().get_countryID() + " and name: " + l_entry.getValue().get_countryName());
             System.out.println("The neighboring countries are:");
-            for (Country c : entry.getValue().getNeighbouringCountries()) {
-                if (c != null) {
-                    System.out.println(c.get_countryName() + " with country ID: " + c.get_countryID());
-                }
-                if (c == null) {
-                    System.out.println("A null country was found");
-                }
-            }
-        }
-        for (Map.Entry<Integer, Continent> l_entry : d_continents.entrySet()) {
-            System.out.println(l_entry.getKey() + ": " + l_entry.getValue());
-            System.out.println("This continent is made up of the following Country IDs:");
-            for (Country l_c : this.get_countries().values()) {
-                if (l_c.getContinentID() == l_entry.getKey()) {
-                    System.out.print(l_c.get_countryID() + " ");
-                }
-            }
-            System.out.println();
-        }
-        for (Map.Entry<Integer, ArrayList<Integer>> entry : d_adjencyList.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
-    }
-    /**
-     * A function which prints the WarMap to the console in a readable format which also shows ownership of the countries based on the list of players passed.
-     *
-     * @param p_players a list of players playing on the current WarMap
-     */
-    public void showMap(List<Player> p_players) { //Show map for only map (no player ownership or army count. - need to make seperate one that incorporates that for gamestate)
-        for (Map.Entry<Integer, Country> entry : d_countries.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
-            System.out.println("The neighboring countries are:");
-            for (Country l_c : entry.getValue().getNeighbouringCountries()) {
+            for (Country l_c : l_entry.getValue().getNeighbouringCountries()) {
                 if (l_c != null) {
                     System.out.println(l_c.get_countryName() + " with country ID: " + l_c.get_countryID());
                 }
@@ -367,9 +335,10 @@ public class WarMap {
                     System.out.println("A null country was found");
                 }
             }
+            System.out.println("---------------------------------");
         }
         for (Map.Entry<Integer, Continent> l_entry : d_continents.entrySet()) {
-            System.out.println(l_entry.getKey() + ": " + l_entry.getValue());
+            System.out.println("Continent with ID: " + l_entry.getValue().get_continentID() + " and name: " + l_entry.getValue().get_continentName());
             System.out.println("This continent is made up of the following Country IDs:");
             for (Country l_c : this.get_countries().values()) {
                 if (l_c.getContinentID() == l_entry.getKey()) {
@@ -377,15 +346,25 @@ public class WarMap {
                 }
             }
             System.out.println();
+            System.out.println("---------------------------------");
+
         }
-        for (Map.Entry<Integer, ArrayList<Integer>> l_entry : d_adjencyList.entrySet()) {
-            System.out.println(l_entry.getKey() + ": " + l_entry.getValue());
-        }
+
+    }
+    /**
+     * A function which prints the WarMap to the console in a readable format which also shows ownership of the countries based on the list of players passed.
+     *
+     * @param p_players a list of players playing on the current WarMap
+     */
+    public void showMap(List<Player> p_players) { //Show map for with player ownership)
+        showMap();
         for (Player l_player : p_players) {
             System.out.println(l_player.get_playerName() + " owns the following countries:");
             for (Country l_c : l_player.get_playerCountries()) {
                 System.out.println(l_c.get_countryName() + " with countryID " + l_c.get_countryID() + " with " + l_c.get_numOfArmies() + " armies.");
+
             }
+            System.out.println("---------------------------------");
         }
     }
 
