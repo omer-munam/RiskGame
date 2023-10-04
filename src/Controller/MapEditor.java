@@ -57,7 +57,7 @@ public class MapEditor {
                 System.out.println("editcontinent -add continentID continentName continentarmybonus -remove continentID");
                 System.out.println("editcountry -add countryID countryName continentID -remove countryID");
                 System.out.println("editneighbor -add countryID neighborcountryID -remove countryID neighborcountryID");
-                System.out.println("savemap");
+                System.out.println("savemap filename");
                 System.out.println("showmap");
                 System.out.println("validatemap");
                 System.out.println("editmap filename");
@@ -117,12 +117,17 @@ public class MapEditor {
 					break;
 					
 				case 4:
+                    if (l_input_string_array.length > 1) {
 	                if (l_current_map.validateMap()) {
-	                l_current_map.saveMap(l_current_map.get_mapName());
-	                    System.out.println("Map saved");
-	                } else {
+
+                        l_current_map.saveMap(l_input_string_array[1]);
+                        System.out.println("Map saved");
+                    } else {
 	                    System.out.println("Map not saved due to being invalid");
-	                }
+                    }
+                    } else {
+                        System.out.println("Reached end of file while parsing map not saved");
+                    }
 					break;
 					
 				case 5:

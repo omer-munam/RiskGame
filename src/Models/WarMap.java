@@ -377,14 +377,18 @@ public class WarMap {
 	}
 	
 	public void removeContinent(Integer p_continentId) {
+        ArrayList<Integer> l_countries_to_remove = new ArrayList<>();
 		for (Integer l_countryId : d_countries.keySet()) {
             if (d_countries.containsKey(l_countryId)) {
                 if (d_countries.get(l_countryId).getContinentID() == p_continentId) {
 
-                    removeCountry(l_countryId);
+                    l_countries_to_remove.add(l_countryId);
 
                 }
             }
+        }
+        for (int l_i : l_countries_to_remove) {
+            removeCountry(l_i);
         }
 		d_continents.remove(p_continentId);
 	}
