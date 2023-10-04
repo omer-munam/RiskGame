@@ -1,6 +1,6 @@
 package Controller;
 
-import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -18,9 +18,7 @@ class GameEngineTest {
         gameEngine = new GameEngine();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
+
 
     @Test
     void assignCountries() {
