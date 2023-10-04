@@ -11,17 +11,31 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * This class contains utility functions for creating and editing maps to be used in the game. It is also the entry point to be used from main to access the map editor.
+ *
+ * @author Ryan Feher
+ * @author Mohammad Uvas
+ */
 public class MapEditor {
+    /**
+     * Stores the location of saved maps in the file directory.
+     */
     static String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
 
+    /**
+     * This function contains the console commands and feedback loop for the Map Editor, it allows loading of maps, editing of maps, showing the map, validating maps, and saving maps.
+     * You are able to construct a map from an empty map by editing a filename which is not a current WarMap, you can then save this WarMap if you create a valid map by adding countrys, continents and neighbours.
+     *
+     * @throws IOException
+     */
     public void editMapEntry() throws IOException {
         WarMap l_current_map = new WarMap();
         String l_input_string;
         String[] l_input_string_array;
         System.out.println("Please choose a map to edit using the command 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
 
-        while (true) {
+        while (true) { //Loops until user types the exit command.
             if (!l_current_map.get_mapName().equals("Default Name")) {
                 System.out.println("You are currently editing " + l_current_map.get_mapName() + " the available commands are: ");
                 System.out.println("editcontinent -add continentID continentvalue -remove continentID");
@@ -36,7 +50,7 @@ public class MapEditor {
             l_input_string = GameEngine.SCANNER.nextLine();
             l_input_string_array = l_input_string.split(" ");
 
-            if (l_input_string_array[0].equals("editmap") && l_input_string_array.length > 1 && l_input_string_array[1] != null) {
+            if (l_input_string_array[0].equals("editmap") && l_input_string_array.length > 1 && l_input_string_array[1] != null) { //Logic concerning editmap filename command
                 l_current_map = new WarMap();
                 this.editMap(l_input_string_array[1], l_current_map);
                 if (l_current_map.get_mapName().equals("Default Name")) {
@@ -47,9 +61,9 @@ public class MapEditor {
             if (l_input_string_array[0].equals("exit")) {
                 return;
             }
-            if (l_input_string_array[0].equals("editcontinent")) {
+            if (l_input_string_array[0].equals("editcontinent")) { //Logic concerning editcontinent command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for when a continent should be added
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_continent_ID = Integer.parseInt(l_input_string_array[i]);
@@ -60,6 +74,7 @@ public class MapEditor {
                                 String l_continent_name = GameEngine.SCANNER.nextLine();
                                 Continent l_newcontinent = new Continent(l_input_continent_ID, l_continent_name, l_continent_army_bonus);
                                 l_current_map.addContinent(l_newcontinent);
+                                System.out.println("Added a continent with ID " + l_input_continent_ID);
                                 continue;
                             } else {
                                 System.out.println("Reached end of command while parsing please ensure correct command is used.");
@@ -70,7 +85,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for if a continent should be removed
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_continents().containsKey(Integer.parseInt(l_input_string_array[i]))) {
@@ -87,9 +102,9 @@ public class MapEditor {
                     }
                 }
             }
-            if (l_input_string_array[0].equals("editcountry")) {
+            if (l_input_string_array[0].equals("editcountry")) { //Logic concerning editcountry command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for when a country should be added
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -100,6 +115,7 @@ public class MapEditor {
                                 String l_country_name = GameEngine.SCANNER.nextLine();
                                 Country l_new_country = new Country(l_input_country_ID, l_country_name, l_input_country_continent_ID);
                                 l_current_map.addCountry(l_new_country);
+                                System.out.println("Added country with ID " + l_input_country_ID);
                                 continue;
                             } else {
                                 System.out.println("Reached end of command while parsing please ensure correct command is used.");
@@ -110,7 +126,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for when a country should be removed
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_countries().containsKey(Integer.parseInt(l_input_string_array[i]))) {
@@ -131,9 +147,9 @@ public class MapEditor {
                     }
                 }
             }
-            if (l_input_string_array[0].equals("editneighbor")) {
+            if (l_input_string_array[0].equals("editneighbor")) { //Logic for editneighbor command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for adding a neighbor
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -141,6 +157,7 @@ public class MapEditor {
                             if (i < l_input_string_array.length) {
                                 int l_input_country_neighbor_ID = Integer.parseInt(l_input_string_array[i]);
                                 if (l_current_map.get_countries().containsKey(l_input_country_ID) && l_current_map.get_countries().containsKey(l_input_country_neighbor_ID)) {
+                                    System.out.println("Countries with ID " + l_input_country_ID + " and " + l_input_country_neighbor_ID + " have been made neighbors.");
                                     l_current_map.addNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
                                     l_current_map.addNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
                                 } else {
@@ -158,7 +175,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for removing a neighbour
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -184,7 +201,12 @@ public class MapEditor {
                 continue;
             }
             if (l_input_string_array[0].equals("savemap")) {
+                if (l_current_map.validateMap()) {
                 l_current_map.saveMap(l_current_map.get_mapName());
+                    System.out.println("Map saved");
+                } else {
+                    System.out.println("Map not saved due to being invalid");
+                }
             }
             if (l_input_string_array[0].equals("showmap")) {
                 l_current_map.showMap();
@@ -199,7 +221,14 @@ public class MapEditor {
         }
     }
 
-    public static boolean readmap(String p_filename, WarMap p_map) throws IOException {
+    /**
+     * A function used for reading a WarMap from a file into a WarMap object.
+     *
+     * @param p_filename The file name of the map
+     * @param p_map The map class in which you wish to store the map.
+     * @throws IOException
+     */
+    public static boolean readMap(String p_filename, WarMap p_map) throws IOException {
         BufferedReader l_bufferReader = new BufferedReader(new FileReader(d_base_path + "\\" + p_filename));
         String l_line = l_bufferReader.readLine();
         String l_readState = "";
@@ -207,19 +236,19 @@ public class MapEditor {
         p_map.set_mapName(p_filename);
         while (l_line != null) {
 
-            if (l_line.equals("[continents]")) {
+            if (l_line.equals("[continents]")) { //Sets readstate to continents
                 l_readState = "continents";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_line.equals("[countries]")) {
+            if (l_line.equals("[countries]")) { //Sets readstate to countries
                 l_readState = "countries";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_line.equals("[borders]")) {
+            if (l_line.equals("[borders]")) { //Sets readstate to borders
                 l_readState = "borders";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_readState.equals("continents") && l_line.length() > 0) {
+            if (l_readState.equals("continents") && l_line.length() > 0) { //Logic for adding a continent when readstate is continents
                 l_continentCount++;
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
 
@@ -227,12 +256,12 @@ public class MapEditor {
                 p_map.addContinent(l_continent);
             }
 
-            if (l_readState.equals("countries") && l_line.length() > 0) {
+            if (l_readState.equals("countries") && l_line.length() > 0) { //Logic for adding a country when readstate is countries
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
                 Country l_country = new Country(Integer.parseInt(l_splitLine.get(0)), l_splitLine.get(1), Integer.parseInt(l_splitLine.get(2)));
                 p_map.addCountry(l_country);
             }
-            if (l_readState.equals("borders") && l_line.length() > 0) {
+            if (l_readState.equals("borders") && l_line.length() > 0) { //Logic for adding neighbours when the readstate is borders
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
                 for (int l_i = 1; l_i < l_splitLine.size(); l_i++) {
                     p_map.addNeighbour(Integer.parseInt(l_splitLine.get(0)), Integer.parseInt(l_splitLine.get(l_i)));
@@ -244,10 +273,18 @@ public class MapEditor {
         return true;
     }
 
+    /**
+     * A function used for either reading a WarMap from a file, or creating a new WarMap if the file does not exist.
+     *
+     * @param p_filename The filename of the WarMap
+     * @param p_map The WarMap object that is to be edited.
+     * @return Returns true if the WarMap file already exists, and false if it is a new WarMap
+     * @throws IOException
+     */
     boolean editMap(String p_filename, WarMap p_map) throws IOException {
         File l_f = new File(d_base_path, p_filename);
         if (l_f.exists()) {
-            readmap(p_filename, p_map);
+            readMap(p_filename, p_map);
             return true;
         } else {
             l_f.createNewFile(); //fix this to to match where savemap links
@@ -256,6 +293,9 @@ public class MapEditor {
         return false;
     }
 
+    /**
+     * A function that print's the list of available maps to the console.
+     */
 	public static void showAllMaps() {
 		File l_maps_directory = new File(d_base_path);
 		String[] l_filenameslist = l_maps_directory.list();

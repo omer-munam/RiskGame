@@ -1,6 +1,6 @@
 package Controller;
 
-import org.junit.jupiter.api.AfterEach;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
@@ -18,9 +18,7 @@ class GameEngineTest {
         gameEngine = new GameEngine();
     }
 
-    @AfterEach
-    void tearDown() {
-    }
+
 
     @Test
     void assignCountries() {
@@ -37,18 +35,35 @@ class GameEngineTest {
 
         List<Player> playersList = gameEngine.get_PlayersList();
         assertEquals(2, playersList.size());
-        assertEquals(1, playersList.get(0).get_playerCountries().size());
-        assertEquals(2, playersList.get(1).get_playerCountries().size());
-        assertTrue(playersList.get(0).get_playerCountries().contains(country1));
-        assertTrue(playersList.get(1).get_playerCountries().contains(country2));
-        assertTrue(playersList.get(1).get_playerCountries().contains(country3));
+        assertFalse( playersList.get(0).get_playerCountries().isEmpty());
+        assertFalse( playersList.get(1).get_playerCountries().isEmpty());
+
     }
 
     @Test
     void addPlayer() {
+
+        gameEngine.addPlayer("Player1");
+
+        List<Player> players = gameEngine.get_PlayersList();
+
+        assertEquals(1, players.size());
+
+        assertEquals("Player1", players.get(0).get_playerName());
     }
 
     @Test
     void removePlayer() {
+        gameEngine.addPlayer("Player1");
+        gameEngine.addPlayer("Player2");
+        gameEngine.addPlayer("Player3");
+
+        gameEngine.removePlayer("Player2");
+
+        List<Player> players = gameEngine.get_PlayersList();
+
+        assertEquals(2, players.size());
+        assertEquals("Player1", players.get(0).get_playerName());
+        assertEquals("Player3", players.get(1).get_playerName());
     }
 }

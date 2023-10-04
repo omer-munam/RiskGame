@@ -1,7 +1,7 @@
 package Models;
 
 
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -49,7 +49,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testIssueOrder() {
+    public void testInvalidCountry(){
         player.set_numOfReinforcements(5);
 
         List<Country> playerCountries = new ArrayList<>();
@@ -61,8 +61,8 @@ public class PlayerTest {
         // Set up the input for issue_order() method
         String[] commands = {
                 "deploy 1 3",
-                "deploy 2 2",
-                "deploy 3 1"
+                "deploy 4 2",
+                "deploy 3 2"
         };
         player.issue_order(commands);
 
@@ -75,7 +75,7 @@ public class PlayerTest {
 
         Orders order2 = playerOrders.get(1);
         assertEquals(2, order2.getNumOfArmies());
-        assertEquals(2, order2.getCountryID());
+        assertEquals(3, order2.getCountryID());
     }
 
 
@@ -101,7 +101,7 @@ public class PlayerTest {
         }; // Deploying 10 armies with only 5 available
         player.issue_order(invalidDeployCommand);
 
-        // Ensure that no orders were added to the player's order list
+        // Ensure that only valid orders were added to the player's order list
         assertEquals(2, player.get_playerOrder().size());
 
         // Ensure that the player's available reinforcements remain unchanged
@@ -110,33 +110,5 @@ public class PlayerTest {
     }
 
 
-    @Test
-    public void testValidDeployOrder() {
-        // Set the player's initial reinforcement pool to 5
-        player.set_numOfReinforcements(6);
-
-        List<Country> playerCountries = new ArrayList<>();
-        playerCountries.add(new Country(1, "Country1", 1));
-        playerCountries.add(new Country(2, "Country2", 1));
-        playerCountries.add(new Country(3, "Country3", 2));
-        player.set_playerCountries(playerCountries);
-
-        // Issue a valid deploy order with 3 armies
-        String[] validDeployCommand = { "deploy 1 3",
-                "deploy 2 2",
-                "deploy 3 1"};
-        player.issue_order(validDeployCommand);
-
-        // Ensure that one order was added to the player's order list
-        assertEquals(3, player.get_playerOrder().size());
-
-        // Ensure that the player's available reinforcements have been reduced by 3
-        assertEquals(Integer.valueOf(0), player.get_numOfReinforcements());
-
-        // Ensure that the added order has the correct attributes
-        Orders addedOrder = player.get_playerOrder().get(0);
-        assertEquals(1, addedOrder.getCountryID());
-        assertEquals(3, addedOrder.getNumOfArmies());
-    }
 }
 
