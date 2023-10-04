@@ -68,8 +68,14 @@ public class MapEditor {
 
             switch(command_Code_Hashmap.get(l_input_string_array[0])) {
 				case 0:
-					if(l_input_string_array[1].equalsIgnoreCase("-add")) l_current_map.addContinent(Integer.valueOf(l_input_string_array[2]), l_input_string_array[3], Integer.valueOf(l_input_string_array[4]));
-					else if(l_input_string_array[1].equalsIgnoreCase("-remove")) l_current_map.removeContinent(Integer.valueOf(l_input_string_array[2]));
+                    System.out.println("DO I GET HERE?");
+                    if (l_input_string_array[1].equalsIgnoreCase("-add")) {
+
+                        l_current_map.addContinent(Integer.valueOf(l_input_string_array[2]), l_input_string_array[3], Integer.valueOf(l_input_string_array[4]));
+                    } else if (l_input_string_array[1].equalsIgnoreCase("-remove")) {
+                        System.out.println("WHAT ABOUT HERE?");
+                        l_current_map.removeContinent(Integer.valueOf(l_input_string_array[2]));
+                    }
 					break;
 					
 				case 1:
