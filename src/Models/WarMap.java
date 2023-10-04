@@ -323,8 +323,8 @@ public class WarMap {
     /**
      * A function which prints the WarMap to the console in a readable format.
      */
-    public void showMap() { //Show map for only map (no player ownership or army count. - need to make seperate one that incorporates that for gamestate)
-        for (Map.Entry<Integer, Country> l_entry : d_countries.entrySet()) {
+    public void showMap() { //Show map for only map
+        for (Map.Entry<Integer, Country> l_entry : d_countries.entrySet()) { //All the countries with their neighbouring countries
             System.out.println("Country with ID: " + l_entry.getValue().get_countryID() + " and name: " + l_entry.getValue().get_countryName());
             System.out.println("The neighboring countries are:");
             for (Country l_c : l_entry.getValue().getNeighbouringCountries()) {
@@ -337,8 +337,8 @@ public class WarMap {
             }
             System.out.println("---------------------------------");
         }
-        for (Map.Entry<Integer, Continent> l_entry : d_continents.entrySet()) {
-            System.out.println("Continent with ID: " + l_entry.getValue().get_continentID() + " and name: " + l_entry.getValue().get_continentName());
+        for (Map.Entry<Integer, Continent> l_entry : d_continents.entrySet()) { //All the continents with the country ids belonging to them
+            System.out.println("Continent with ID: " + l_entry.getValue().get_continentID() + " and name: " + l_entry.getValue().get_continentName() + " with army bonus: " + l_entry.getValue().get_armyBonus());
             System.out.println("This continent is made up of the following Country IDs:");
             for (Country l_c : this.get_countries().values()) {
                 if (l_c.getContinentID() == l_entry.getKey()) {
@@ -356,9 +356,9 @@ public class WarMap {
      *
      * @param p_players a list of players playing on the current WarMap
      */
-    public void showMap(List<Player> p_players) { //Show map for with player ownership)
+    public void showMap(List<Player> p_players) { //Show map for with player ownership
         showMap();
-        for (Player l_player : p_players) {
+        for (Player l_player : p_players) { //Shows what countries are owned by the players with the corresponding number of armies
             System.out.println(l_player.get_playerName() + " owns the following countries:");
             for (Country l_c : l_player.get_playerCountries()) {
                 System.out.println(l_c.get_countryName() + " with countryID " + l_c.get_countryID() + " with " + l_c.get_numOfArmies() + " armies.");

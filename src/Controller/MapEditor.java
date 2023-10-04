@@ -35,7 +35,7 @@ public class MapEditor {
         String[] l_input_string_array;
         System.out.println("Please choose a map to edit using the command 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
 
-        while (true) {
+        while (true) { //Loops until user types the exit command.
             if (!l_current_map.get_mapName().equals("Default Name")) {
                 System.out.println("You are currently editing " + l_current_map.get_mapName() + " the available commands are: ");
                 System.out.println("editcontinent -add continentID continentvalue -remove continentID");
@@ -50,7 +50,7 @@ public class MapEditor {
             l_input_string = GameEngine.SCANNER.nextLine();
             l_input_string_array = l_input_string.split(" ");
 
-            if (l_input_string_array[0].equals("editmap") && l_input_string_array.length > 1 && l_input_string_array[1] != null) {
+            if (l_input_string_array[0].equals("editmap") && l_input_string_array.length > 1 && l_input_string_array[1] != null) { //Logic concerning editmap filename command
                 l_current_map = new WarMap();
                 this.editMap(l_input_string_array[1], l_current_map);
                 if (l_current_map.get_mapName().equals("Default Name")) {
@@ -61,9 +61,9 @@ public class MapEditor {
             if (l_input_string_array[0].equals("exit")) {
                 return;
             }
-            if (l_input_string_array[0].equals("editcontinent")) {
+            if (l_input_string_array[0].equals("editcontinent")) { //Logic concerning editcontinent command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for when a continent should be added
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_continent_ID = Integer.parseInt(l_input_string_array[i]);
@@ -84,7 +84,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for if a continent should be removed
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_continents().containsKey(Integer.parseInt(l_input_string_array[i]))) {
@@ -101,9 +101,9 @@ public class MapEditor {
                     }
                 }
             }
-            if (l_input_string_array[0].equals("editcountry")) {
+            if (l_input_string_array[0].equals("editcountry")) { //Logic concerning editcountry command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for when a country should be added
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -124,7 +124,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for when a country should be removed
                         i++;
                         if (i < l_input_string_array.length) {
                             if (l_current_map.get_countries().containsKey(Integer.parseInt(l_input_string_array[i]))) {
@@ -145,9 +145,9 @@ public class MapEditor {
                     }
                 }
             }
-            if (l_input_string_array[0].equals("editneighbor")) {
+            if (l_input_string_array[0].equals("editneighbor")) { //Logic for editneighbor command
                 for (int i = 1; i < l_input_string_array.length; i++) {
-                    if (l_input_string_array[i].equals("-add")) {
+                    if (l_input_string_array[i].equals("-add")) { //Logic for adding a neighbor
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -172,7 +172,7 @@ public class MapEditor {
                             continue;
                         }
                     }
-                    if (l_input_string_array[i].equals("-remove")) {
+                    if (l_input_string_array[i].equals("-remove")) { //Logic for removing a neighbour
                         i++;
                         if (i < l_input_string_array.length) {
                             int l_input_country_ID = Integer.parseInt(l_input_string_array[i]);
@@ -228,19 +228,19 @@ public class MapEditor {
         p_map.set_mapName(p_filename);
         while (l_line != null) {
 
-            if (l_line.equals("[continents]")) {
+            if (l_line.equals("[continents]")) { //Sets readstate to continents
                 l_readState = "continents";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_line.equals("[countries]")) {
+            if (l_line.equals("[countries]")) { //Sets readstate to countries
                 l_readState = "countries";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_line.equals("[borders]")) {
+            if (l_line.equals("[borders]")) { //Sets readstate to borders
                 l_readState = "borders";
                 l_line = l_bufferReader.readLine();
             }
-            if (l_readState.equals("continents") && l_line.length() > 0) {
+            if (l_readState.equals("continents") && l_line.length() > 0) { //Logic for adding a continent when readstate is continents
                 l_continentCount++;
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
 
@@ -248,12 +248,12 @@ public class MapEditor {
                 p_map.addContinent(l_continent);
             }
 
-            if (l_readState.equals("countries") && l_line.length() > 0) {
+            if (l_readState.equals("countries") && l_line.length() > 0) { //Logic for adding a country when readstate is countries
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
                 Country l_country = new Country(Integer.parseInt(l_splitLine.get(0)), l_splitLine.get(1), Integer.parseInt(l_splitLine.get(2)));
                 p_map.addCountry(l_country);
             }
-            if (l_readState.equals("borders") && l_line.length() > 0) {
+            if (l_readState.equals("borders") && l_line.length() > 0) { //Logic for adding neighbours when the readstate is borders
                 List<String> l_splitLine = Arrays.asList(l_line.split(" "));
                 for (int l_i = 1; l_i < l_splitLine.size(); l_i++) {
                     p_map.addNeighbour(Integer.parseInt(l_splitLine.get(0)), Integer.parseInt(l_splitLine.get(l_i)));
