@@ -101,9 +101,7 @@ public class PlayerTest {
         }; // Deploying 10 armies with only 5 available
         player.issue_order(invalidDeployCommand);
 
-        System.out.println(player.get_numOfReinforcements());
-
-        // Ensure that no orders were added to the player's order list
+        // Ensure that only valid orders were added to the player's order list
         assertEquals(2, player.get_playerOrder().size());
 
         // Ensure that the player's available reinforcements remain unchanged
