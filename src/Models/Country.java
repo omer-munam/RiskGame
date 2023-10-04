@@ -23,7 +23,7 @@ public class Country {
     /**
      * Stores the neighbouring countries of a country.
      */
-    private ArrayList<Country> d_neighbouringCountries;
+    private ArrayList<Integer> d_neighbouringCountries;
     /**
      * Stores the continentID of the continent that the country belongs to.
      */
@@ -32,7 +32,7 @@ public class Country {
      * This is the default constructor method of the Models.Country class
      */
     public Country() {
-        this(0, "Default Name", 0, new ArrayList<Country>());
+        this(0, "Default Name", 0, new ArrayList<Integer>());
     }
 
     /**
@@ -43,7 +43,7 @@ public class Country {
      * @param p_continentID is the country's continent's ID.
      */
     public Country(int p_countryID, String p_countryName, int p_continentID) {
-        this(p_countryID, p_countryName, p_continentID, new ArrayList<Country>());
+        this(p_countryID, p_countryName, p_continentID, new ArrayList<Integer>());
     }
     /**
      * This is a parameterized constructor method of the Models.Country class
@@ -53,7 +53,7 @@ public class Country {
      * @param p_continentID is the country's continent's ID.
      * @param p_neighbouringCountries is the list of the country's neighbouring countries.
      */
-    public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Country> p_neighbouringCountries) {
+    public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Integer> p_neighbouringCountries) {
         this(p_countryID, p_countryName, p_continentID, p_neighbouringCountries, 0);
     }
     /**
@@ -65,7 +65,7 @@ public class Country {
      * @param p_neighbouringCountries is the list of the country's neighbouring countries.
      * @param p_numOfArmies is the number of armies placed on the country.
      */
-    public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Country> p_neighbouringCountries, int p_numOfArmies) {
+    public Country(int p_countryID, String p_countryName, int p_continentID, ArrayList<Integer> p_neighbouringCountries, int p_numOfArmies) {
         d_countryID = p_countryID;
         d_countryName = p_countryName;
         d_continentID = p_continentID;
@@ -125,7 +125,7 @@ public class Country {
      *
      * @return A list of the neighbouring countries.
      */
-    public ArrayList<Country> getNeighbouringCountries() {
+    public ArrayList<Integer> getNeighbouringCountries() {
         return d_neighbouringCountries;
     }
 
@@ -150,7 +150,7 @@ public class Country {
      * @param p_country the neighbouring country to be added.
      */
     public void addNeighbouringCountry(Country p_country) {
-        d_neighbouringCountries.add(p_country);
+        d_neighbouringCountries.add(p_country.get_countryID());
     }
 
     /**
@@ -158,7 +158,7 @@ public class Country {
      * @param p_country the neighbouring country to be removed.
      */
     void removeNeighbouringCountry(Country p_country) {
-        d_neighbouringCountries.remove(p_country);
+        d_neighbouringCountries.remove(p_country.get_countryID());
     }
 
     @Override
