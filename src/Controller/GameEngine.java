@@ -271,13 +271,11 @@ public class GameEngine {
      */
 
     public void removePlayer(String p_InputPlayerName){
-        for (Player l_player : d_playersList) {
-            if (l_player.get_playerName().equals(p_InputPlayerName)) {
-                l_player.set_playerName(null);
+            if (d_playersList.removeIf( player ->
+                player.get_playerName().equals(p_InputPlayerName))) {
                 System.out.println("Player " + p_InputPlayerName + " removed successfully");
                 return;
             }
-        }
         System.out.println("Player " + p_InputPlayerName + " not found");
     }
 
