@@ -1,7 +1,7 @@
 package Models;
 
 
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -49,7 +49,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testIssueOrder() {
+    public void testInvalidCountry(){
         player.set_numOfReinforcements(5);
 
         List<Country> playerCountries = new ArrayList<>();
@@ -61,8 +61,8 @@ public class PlayerTest {
         // Set up the input for issue_order() method
         String[] commands = {
                 "deploy 1 3",
-                "deploy 2 2",
-                "deploy 3 1"
+                "deploy 4 2",
+                "deploy 3 2"
         };
         player.issue_order(commands);
 
@@ -75,7 +75,7 @@ public class PlayerTest {
 
         Orders order2 = playerOrders.get(1);
         assertEquals(2, order2.getNumOfArmies());
-        assertEquals(2, order2.getCountryID());
+        assertEquals(3, order2.getCountryID());
     }
 
 
