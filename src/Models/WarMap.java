@@ -298,7 +298,7 @@ public class WarMap {
                 l_info.write("[countries]");
                 l_info.newLine();
                 for (Entry<Integer, Country> l_country : d_countries.entrySet()) {
-                    l_info.write(l_country.getKey() + " " + l_country.getValue().get_countryName() + " " + l_country.getValue().get_countryID());
+                    l_info.write(l_country.getKey() + " " + l_country.getValue().get_countryName() + " " + l_country.getValue().getContinentID());
                     l_info.newLine();
                 }
                 l_info.newLine();
