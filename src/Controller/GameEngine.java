@@ -270,7 +270,7 @@ public class GameEngine {
      * @param p_InputPlayerName The name of the player to remove
      */
 
-    private void removePlayer(String p_InputPlayerName){
+    public void removePlayer(String p_InputPlayerName){
         for (Player l_player : d_playersList) {
             if (l_player.get_playerName().equals(p_InputPlayerName)) {
                 l_player.set_playerName(null);
