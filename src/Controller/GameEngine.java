@@ -1,6 +1,8 @@
 package Controller;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.io.File;
 import Models.Country;
@@ -42,24 +44,42 @@ public class GameEngine {
      */
     private WarMap d_currentMap = new WarMap();
 
+    /**
+     *
+     * @return the current loaded map
+     */
     public WarMap get_currentMap() { return d_currentMap; }
 
+    /**
+     *
+     * @param p_map the map you wish to load
+     */
     public void set_currentMap(WarMap p_map){
         d_currentMap = p_map;
     }
 
+    /**
+     *
+     * @return the list of players
+     */
     public List<Player> get_PlayersList() {
         return d_playersList;
     }
 
-    public void set_PlayersList(List<Player> playersList) {
+    /**
+     *
+     * @param p_playersList the list of players
+     */
+    public void set_PlayersList(List<Player> p_playersList) {
         d_playersList.clear();
-        if (playersList != null) {
-            d_playersList.addAll(playersList);
+        if (p_playersList != null) {
+            d_playersList.addAll(p_playersList);
         }
     }
 
-
+    /**
+     * Contains the main logic for the WarZone game and passes control to other aspects of the program when certain commands are entered.
+     */
     public void start_game()
     {
         SCANNER = new Scanner(System.in);
@@ -89,7 +109,7 @@ public class GameEngine {
                         ArrayList<String> l_listOfMaps = getAllMapsList();
                         if (l_listOfMaps.contains(l_words[1]))
                         {
-                        	boolean l_isAbleToReadMap = MapEditor.readmap(l_words[1], d_currentMap);
+                        	boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_currentMap);
                         	if (!l_isAbleToReadMap)
                         	{
                         		System.out.print("\n Unable to read " + l_words[1] + "!\n");
@@ -195,19 +215,23 @@ public class GameEngine {
         }
         System.out.println("Assigning Countries To Players.");
         int l_NumOfCountries = d_currentMap.get_countries().size();
-        int l_NumOfCountriesToAssign = l_NumOfCountries / d_playersList.size();
-        int j = 0;
-        for (int k = 0; k < d_playersList.size(); k++) {
-            for (int i = 0; i < l_NumOfCountriesToAssign; i++){
-                d_playersList.get(k).get_playerCountries().add((Country) d_currentMap.get_countries().values().toArray()[j]);
-                j++;
-            }
-            if (k + 1 == d_playersList.size() && j - 1 != l_NumOfCountries){
-                while (j < l_NumOfCountries){
-                    d_playersList.get(k).get_playerCountries().add((Country) d_currentMap.get_countries().values().toArray()[j]);
-                    j++;
-                }
-            }
+        HashMap<Integer, Boolean> l_CountryAssigned = new HashMap<Integer, Boolean>();
+        for (Integer l_countryId : d_currentMap.get_countries().keySet()) l_CountryAssigned.put(l_countryId, false);
+        
+        Random l_RandomIndexCountry = new Random();
+        int l_CountryIndex;
+        for(int i=0;i<l_NumOfCountries;) {
+        	for (int j=0; j<d_playersList.size() && i<l_NumOfCountries ; j++,i++) {
+        		Player player = d_playersList.get(j);
+        		while(true) {
+					l_CountryIndex = l_RandomIndexCountry.nextInt(l_NumOfCountries)+1;
+					if(l_CountryAssigned.get(l_CountryIndex)==false) {
+						player.get_playerCountries().add(d_currentMap.get_countries().get(l_CountryIndex));
+						l_CountryAssigned.put(l_CountryIndex, true);
+						break;
+					}
+				}
+			}
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
         if (p_test)
@@ -246,7 +270,7 @@ public class GameEngine {
      * @param p_InputPlayerName The name of the player to remove
      */
 
-    private void removePlayer(String p_InputPlayerName){
+    public void removePlayer(String p_InputPlayerName){
         for (Player l_player : d_playersList) {
             if (l_player.get_playerName().equals(p_InputPlayerName)) {
                 l_player.set_playerName(null);
