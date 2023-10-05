@@ -370,12 +370,24 @@ public class WarMap {
             System.out.println("---------------------------------");
         }
     }
-    
+
+    /**
+     * A function for adding a continent to the WarMap
+     *
+     * @param p_continentId   The ID of the continent
+     * @param p_continentName The Name of the continent
+     * @param p_armybonus     The army bonus of the continent
+     */
 	public void addContinent(Integer p_continentId, String p_continentName, Integer p_armybonus) {
         d_continents.put(p_continentId, new Continent(p_continentId, p_continentName, p_armybonus));
         System.out.println("Added a continent with ID " + p_continentId);
-	}
-	
+    }
+
+    /**
+     * A function for removing a full continent including its countries from a WarMap
+     *
+     * @param p_continentId The id of the continent
+     */
 	public void removeContinent(Integer p_continentId) {
         ArrayList<Integer> l_countries_to_remove = new ArrayList<>();
 		for (Integer l_countryId : d_countries.keySet()) {
@@ -391,13 +403,25 @@ public class WarMap {
             removeCountry(l_i);
         }
 		d_continents.remove(p_continentId);
-	}
-	
+    }
+
+    /**
+     * A function for adding a country to the WarMap
+     *
+     * @param p_countryId The country's ID
+     * @param p_countryName The country's Name
+     * @param p_continentId The country's Continent's ID
+     */
 	public void addCountry(Integer p_countryId, String p_countryName, Integer p_continentId) {
 		d_countries.put(p_countryId, new Country(p_countryId, p_countryName, p_continentId));
 		System.out.println("Added country with ID " + p_countryId);
-	}
-	
+    }
+
+    /**
+     * A function for removing a country from the WarMap
+     *
+     * @param p_countryId The ID of the country
+     */
 	public void removeCountry(Integer p_countryId) {
         for (Integer l_neighbouringcountryId : d_countries.get(p_countryId).getNeighbouringCountries().keySet()) {
 			removeNeighbour(l_neighbouringcountryId, p_countryId);
@@ -405,13 +429,26 @@ public class WarMap {
 		d_countries.remove(p_countryId);
 		d_adjencyList.remove(p_countryId);
         System.out.println("Removed Country with ID " + p_countryId);
-	}
-	
+    }
+
+    /**
+     * A Function for making two countries neighbor each other in the WarMap
+     *
+     * @param l_input_country_ID The first country's ID
+     * @param l_input_country_neighbor_ID The second country's ID
+     */
 	public void addNeighbourCountry(Integer l_input_country_ID, Integer l_input_country_neighbor_ID) {
 		addNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
         addNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
-		
-	}
+
+    }
+
+    /**
+     * A function for removing the link between two countries in a WarMap
+     *
+     * @param l_input_country_ID The first country's ID
+     * @param l_input_country_neighbor_ID The second country's ID
+     */
 	public void removeNeighbourCountry(Integer l_input_country_ID, Integer l_input_country_neighbor_ID) {
 		removeNeighbour(l_input_country_ID, l_input_country_neighbor_ID);
         removeNeighbour(l_input_country_neighbor_ID, l_input_country_ID);
