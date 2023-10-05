@@ -38,6 +38,7 @@ public class Player {
      * List of player's orders for execution.
      */
     List<Orders> d_playerOrders;
+
     /**
      * This is the constructor method of the Models.Player class
      *
@@ -52,7 +53,6 @@ public class Player {
     }
 
     /**
-     *
      * @return the player name
      */
     public String get_playerName() {
@@ -60,7 +60,6 @@ public class Player {
     }
 
     /**
-     *
      * @param p_name the player name
      */
     public void set_playerName(String p_name) {
@@ -68,7 +67,6 @@ public class Player {
     }
 
     /**
-     *
      * @return a list of the player's countries
      */
     public List<Country> get_playerCountries() {
@@ -76,7 +74,6 @@ public class Player {
     }
 
     /**
-     *
      * @param p_playerCountries a list of the player's countries
      */
     public void set_playerCountries(List<Country> p_playerCountries) {
@@ -84,7 +81,6 @@ public class Player {
     }
 
     /**
-     *
      * @return a list of the player's continents
      */
     public List<Continent> get_playerContinents() {
@@ -92,7 +88,6 @@ public class Player {
     }
 
     /**
-     *
      * @param p_playerContinents a list of the player's continents
      */
     public void set_playerContinents(List<Continent> p_playerContinents) {
@@ -100,7 +95,6 @@ public class Player {
     }
 
     /**
-     *
      * @return a list of the player's orders
      */
     public List<Orders> get_playerOrder() {
@@ -108,7 +102,6 @@ public class Player {
     }
 
     /**
-     *
      * @param p_playerOrder a list of the player's orders
      */
     public void set_playerOrder(List<Orders> p_playerOrder) {
@@ -116,7 +109,6 @@ public class Player {
     }
 
     /**
-     *
      * @return the number of reinforcements the player should get
      */
     public Integer get_numOfReinforcements() {
@@ -124,7 +116,6 @@ public class Player {
     }
 
     /**
-     *
      * @param p_armiesNumber the number of reinforcements the player should get
      */
     public void set_numOfReinforcements(Integer p_armiesNumber) {
@@ -132,41 +123,43 @@ public class Player {
     }
 
     /**
-     *“issue_order()” (no parameters, no return value) whose function is
-     *to add an order to the list of orders held by the
-     *player when the game engine calls it during the issue orders phase.
+     * “issue_order()” (no parameters, no return value) whose function is
+     * to add an order to the list of orders held by the
+     * player when the game engine calls it during the issue orders phase.
      *
      * @param commands The following param is for the testing class only. Set to null under normal conditions.
      */
-    public void issue_order(String[] commands){
+    public void issue_order(String[] commands) {
         int iterations = 0;
-        while (d_numOfReinforcements != 0){
+        while (d_numOfReinforcements != 0) {
             int countryID;
             int numOfArmies;
             System.out.println("Please issue deploy order command for Player " + d_playerName + "\nSyntax: deploy <countryID> <num>");
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
             String command = SCANNER == null ? commands[iterations++] : SCANNER.nextLine();
             String[] commandTokens = command.split(" ");
-            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)){
+            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)) {
                 System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
                 continue;
             }
             try {
                 countryID = Integer.parseInt(commandTokens[1]);
                 numOfArmies = Integer.parseInt(commandTokens[2]);
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid CountryID or Number of Reinforcements");
                 continue;
             }
-            if (numOfArmies > d_numOfReinforcements){
+            if (numOfArmies > d_numOfReinforcements) {
                 System.out.println("Specified number of reinforcements exceed the available.");
                 continue;
             }
             boolean countryExists = false;
             for (Country country : d_playerCountries)
-                if (country.get_countryID() == countryID)
+                if (country.get_countryID() == countryID) {
                     countryExists = true;
-            if (!countryExists){
+                    break;
+                }
+            if (!countryExists) {
                 System.out.println("The given CountryID is not under your control.");
                 continue;
             }

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+
 /**
  * This class contains utility functions for creating and editing maps to be used in the game. It is also the entry point to be used from main to access the map editor.
  *
@@ -22,13 +22,13 @@ public class MapEditor {
     /**
      * Stores the location of saved maps in the file directory.
      */
-    static String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\Src\\Resources\\Maps";
+    static String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
 
     /**
      * Stores the command for editing maps.
      */
     static HashMap<String, Integer> command_Code_Hashmap = new HashMap<String, Integer>();
-    
+
     /**
      * This function contains the console commands and feedback loop for the Map Editor, it allows loading of maps, editing of maps, showing the map, validating maps, and saving maps.
      * You are able to construct a map from an empty map by editing a filename which is not a current WarMap, you can then save this WarMap if you create a valid map by adding countrys, continents and neighbours.
@@ -36,16 +36,16 @@ public class MapEditor {
      * @throws IOException
      */
     public void editMapEntry() throws IOException {
-    	
-    	command_Code_Hashmap.put("editcontinent",0);
-		command_Code_Hashmap.put("editcountry",1);
-		command_Code_Hashmap.put("editneighbor",2);
-		command_Code_Hashmap.put("showmap",3);
-		command_Code_Hashmap.put("savemap",4);
-		command_Code_Hashmap.put("editmap",5);
-		command_Code_Hashmap.put("validatemap",6);
-		command_Code_Hashmap.put("exit",7);
-		
+
+        command_Code_Hashmap.put("editcontinent", 0);
+        command_Code_Hashmap.put("editcountry", 1);
+        command_Code_Hashmap.put("editneighbor", 2);
+        command_Code_Hashmap.put("showmap", 3);
+        command_Code_Hashmap.put("savemap", 4);
+        command_Code_Hashmap.put("editmap", 5);
+        command_Code_Hashmap.put("validatemap", 6);
+        command_Code_Hashmap.put("exit", 7);
+
         WarMap l_current_map = new WarMap();
         String l_input_string;
         String[] l_input_string_array;
@@ -138,7 +138,7 @@ public class MapEditor {
                                 l_current_map.saveMap(l_input_string_array[1]);
                                 System.out.println("Map saved");
                                 l_current_map = new WarMap();
-                                this.editMap(l_input_string_array[1], l_current_map);
+                                editMap(l_input_string_array[1], l_current_map);
                             } else {
                                 System.out.println("Map not saved due to being invalid");
                             }
@@ -150,7 +150,7 @@ public class MapEditor {
                     case 5:
                         if (l_input_string_array.length > 1 && l_input_string_array[1] != null) {
                             l_current_map = new WarMap();
-                            this.editMap(l_input_string_array[1], l_current_map);
+                            editMap(l_input_string_array[1], l_current_map);
                             if (l_current_map.get_mapName().equals("Default Name")) {
                                 System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
                                 continue;
@@ -187,7 +187,7 @@ public class MapEditor {
      * A function used for reading a WarMap from a file into a WarMap object.
      *
      * @param p_filename The file name of the map
-     * @param p_map The map class in which you wish to store the map.
+     * @param p_map      The map class in which you wish to store the map.
      * @throws IOException
      */
     public static boolean readMap(String p_filename, WarMap p_map) throws IOException {
@@ -240,7 +240,7 @@ public class MapEditor {
      * A function used for either reading a WarMap from a file, or creating a new WarMap if the file does not exist.
      *
      * @param p_filename The filename of the WarMap
-     * @param p_map The WarMap object that is to be edited.
+     * @param p_map      The WarMap object that is to be edited.
      * @return Returns true if the WarMap file already exists, and false if it is a new WarMap
      * @throws IOException
      */
@@ -259,16 +259,16 @@ public class MapEditor {
     /**
      * A function that print's the list of available maps to the console.
      */
-	public static void showAllMaps() {
-		File l_maps_directory = new File(d_base_path);
-		String[] l_filenameslist = l_maps_directory.list();
-		boolean l_anymapfile=false;
-		for (String l_filename : l_filenameslist) {
-			if(l_filename.contains(".map")) {
-				System.out.println(l_filename);
-				l_anymapfile=true;
-			}
-		}
-		if(!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
-	}
+    public static void showAllMaps() {
+        File l_maps_directory = new File(d_base_path);
+        String[] l_filenameslist = l_maps_directory.list();
+        boolean l_anymapfile = false;
+        for (String l_filename : l_filenameslist) {
+            if (l_filename.contains(".map")) {
+                System.out.println(l_filename);
+                l_anymapfile = true;
+            }
+        }
+        if (!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
+    }
 }
