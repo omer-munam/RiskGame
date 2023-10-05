@@ -265,7 +265,7 @@ public class WarMap {
                 }
             }
             if (l_subcomponent != 1) {
-                System.out.println("Continent countries not Connected Graph");
+                System.out.println(d_continents.get(l_continent_Id).get_continentName()+" is not a Connected Component");
                 return false;
             }
         }
