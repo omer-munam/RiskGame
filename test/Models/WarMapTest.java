@@ -24,7 +24,7 @@ class WarMapTest {
 	}
 
 	@Test
-	void testIsConnectedGraph() {
+	void testIsContinentConnected() {
 		try {
 			MapEditor.readMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
@@ -38,7 +38,7 @@ class WarMapTest {
 	}
 	
 	@Test
-	void testIsContinentConnected() {
+	void testIsConnectedGraph() {
 		try {
 			MapEditor.readMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
