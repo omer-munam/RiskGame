@@ -32,7 +32,7 @@ public class MainGameLoopTest {
      * Test for getting the number of reinforcements
      */
     @org.junit.jupiter.api.Test
-    void testGetNumOfReinforcements() {
+    public void testGetNumOfReinforcements() {
         WarMap test_war_map = new WarMap();
         //CREATE THE CONTINENTS
         test_war_map.addContinent(new Continent(1, "continent 1", 1));

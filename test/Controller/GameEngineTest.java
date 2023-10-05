@@ -25,7 +25,7 @@ public class GameEngineTest {
      * Sets up a new GameEngine instance before each test.
      */
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         gameEngine = new GameEngine();
     }
 
@@ -35,7 +35,7 @@ public class GameEngineTest {
      * are correctly assigned to the players.
      */
     @Test
-    void assignCountries() {
+    public void assignCountries() {
         WarMap warMap = new WarMap();
         Country country1 = new Country(1, "Country1", 1);
         Country country2 = new Country(2, "Country2", 2);
@@ -59,7 +59,7 @@ public class GameEngineTest {
      * It checks if a player is correctly added to the player's list.
      */
     @Test
-    void addPlayer() {
+    public void addPlayer() {
 
         gameEngine.addPlayer("Player1");
 
@@ -75,7 +75,7 @@ public class GameEngineTest {
      * It checks if a player is correctly removed from the player's list.
      */
     @Test
-    void removePlayer() {
+    public void removePlayer() {
         gameEngine.addPlayer("Player1");
         gameEngine.addPlayer("Player2");
         gameEngine.addPlayer("Player3");

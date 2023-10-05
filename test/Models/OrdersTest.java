@@ -25,7 +25,7 @@ public class OrdersTest {
      * It initializes the WarMap and Country objects.
      */
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         warmap = new WarMap();
         country = new Country();
         warmap.get_countries().put(country.get_countryID(), country);
@@ -37,7 +37,7 @@ public class OrdersTest {
      * It creates an Orders object, executes it, and then asserts that the expected result is achieved
      */
     @Test
-    void testExecute() {
+    public void testExecute() {
         Orders order = new Orders(5, country.get_countryID());
         order.execute(warmap);
 

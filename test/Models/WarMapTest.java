@@ -27,7 +27,7 @@ public class WarMapTest {
      * @throws Exception
      */
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         l_warmap = new WarMap();
     }
 
@@ -35,7 +35,7 @@ public class WarMapTest {
      * Test for if the continents in the war map are connected
      */
     @Test
-    void testIsContinentConnected() {
+    public void testIsContinentConnected() {
         try {
             MapEditor.readMap("europe.map", l_warmap);
             assertTrue(l_warmap.validateMap());
@@ -52,7 +52,7 @@ public class WarMapTest {
      * Test for if the entire war map is connected
      */
     @Test
-    void testIsConnectedGraph() {
+    public void testIsConnectedGraph() {
         try {
             MapEditor.readMap("europe.map", l_warmap);
             assertTrue(l_warmap.validateMap());
@@ -69,7 +69,7 @@ public class WarMapTest {
      * Test for if there is a continent with no countries in the war map
      */
     @Test
-    void testisEmptyContinent() {
+    public void testisEmptyContinent() {
         try {
             MapEditor.readMap("europe.map", l_warmap);
             assertTrue(l_warmap.validateMap());
@@ -85,7 +85,7 @@ public class WarMapTest {
      * Checking if all countries have at least one neighbor
      */
     @Test
-    void testingisCountryNoNeighbor() {
+    public void testingisCountryNoNeighbor() {
         try {
             MapEditor.readMap("europe.map", l_warmap);
             assertTrue(l_warmap.validateMap());
