@@ -1,7 +1,6 @@
 package Models;
 
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -31,6 +30,7 @@ public class PlayerTest {
 
         assertNull(nextOrder);
     }
+
     @Test
     public void testNextOrder() {
         Orders order1 = new Orders(3, 1);
@@ -49,7 +49,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void testInvalidCountry(){
+    public void testInvalidCountry() {
         player.set_numOfReinforcements(5);
 
         List<Country> playerCountries = new ArrayList<>();
@@ -77,9 +77,6 @@ public class PlayerTest {
         assertEquals(2, order2.getNumOfArmies());
         assertEquals(3, order2.getCountryID());
     }
-
-
-
 
 
     @Test

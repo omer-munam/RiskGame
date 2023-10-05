@@ -1,13 +1,16 @@
 package Controller;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+import Models.Country;
 import Models.Player;
 import Models.WarMap;
-import Models.Country;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class GameEngineTest {
 
@@ -17,7 +20,6 @@ class GameEngineTest {
     void setUp() {
         gameEngine = new GameEngine();
     }
-
 
 
     @Test
@@ -35,8 +37,8 @@ class GameEngineTest {
 
         List<Player> playersList = gameEngine.get_PlayersList();
         assertEquals(2, playersList.size());
-        assertFalse( playersList.get(0).get_playerCountries().isEmpty());
-        assertFalse( playersList.get(1).get_playerCountries().isEmpty());
+        assertFalse(playersList.get(0).get_playerCountries().isEmpty());
+        assertFalse(playersList.get(1).get_playerCountries().isEmpty());
 
     }
 

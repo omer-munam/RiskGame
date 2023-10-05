@@ -4,13 +4,10 @@ import Models.Continent;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MainGameLoopTest {
     @org.junit.jupiter.api.Test
