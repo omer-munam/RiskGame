@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for the main game loop (currently the number of reinforcements)
+ */
 class MainGameLoopTest {
     @org.junit.jupiter.api.Test
     void testGetNumOfReinforcements() {

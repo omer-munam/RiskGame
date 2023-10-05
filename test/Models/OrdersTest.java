@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+/**
+ * Tests for executing orders
+ */
 class OrdersTest {
     private WarMap warmap;
     private Country country;

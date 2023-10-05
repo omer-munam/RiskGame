@@ -12,6 +12,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Tests for the game engine, which include assigning countries and adding/removing players.
+ */
 class GameEngineTest {
 
     private GameEngine gameEngine;
