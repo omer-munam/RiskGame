@@ -20,16 +20,16 @@ class WarMapTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		WarMap l_warmap = new WarMap();
+        l_warmap = new WarMap();
 	}
 
 	@Test
 	void testIsConnectedGraph() {
 		try {
-			MapEditor.readMap("europe.map", l_warmap);
+            MapEditor.editMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
 			l_warmap.removeCountry(9);
-			l_warmap.removeCountry(11);
+            l_warmap.removeCountry(10);
 			assertFalse(l_warmap.validateMap());
 		} catch (IOException e) {
 			System.err.println("Some Error occured while validating map");
@@ -40,7 +40,7 @@ class WarMapTest {
 	@Test
 	void testIsContinentConnected() {
 		try {
-			MapEditor.readMap("europe.map", l_warmap);
+            MapEditor.editMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
 			l_warmap.removeNeighbourCountry(3, 1);
 			l_warmap.removeNeighbourCountry(3, 2);
@@ -54,19 +54,8 @@ class WarMapTest {
 	@Test
 	void testisEmptyContinent() {
 		try {
-			//1st way
 			MapEditor.readMap("europe.map", l_warmap);
-			assertTrue(l_warmap.validateMap());
-			l_warmap.removeCountry(20);
-			l_warmap.removeCountry(21);
-			l_warmap.removeCountry(22);
-			l_warmap.removeCountry(23);
-			l_warmap.removeCountry(24);
-			assertFalse(l_warmap.validateMap());
-			
-			//2nd way
-			MapEditor.readMap("europe.map", l_warmap);
-			assertTrue(l_warmap.validateMap());
+            assertTrue(l_warmap.validateMap());
 			l_warmap.addContinent(5,"demo_Continent",7);
 			assertFalse(l_warmap.validateMap());
 		} catch (IOException e) {

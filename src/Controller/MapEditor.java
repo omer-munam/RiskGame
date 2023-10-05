@@ -225,7 +225,7 @@ public class MapEditor {
      * @return Returns true if the WarMap file already exists, and false if it is a new WarMap
      * @throws IOException
      */
-    boolean editMap(String p_filename, WarMap p_map) throws IOException {
+    public static boolean editMap(String p_filename, WarMap p_map) throws IOException {
         File l_f = new File(d_base_path, p_filename);
         if (l_f.exists()) {
             readMap(p_filename, p_map);
