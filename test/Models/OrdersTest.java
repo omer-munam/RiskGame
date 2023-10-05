@@ -11,7 +11,13 @@ import org.junit.jupiter.api.TestInstance;
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class OrdersTest {
+    /**
+     * The Instance of warmap.
+     */
     private WarMap warmap;
+    /**
+     * The Instance of Country.
+     */
     private Country country;
 
     /**
