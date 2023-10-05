@@ -169,8 +169,8 @@ public class GameEngine {
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND))
                             {
-                                assignCountries(false);
-                                break;
+                                if (assignCountries(false))
+                                    break;
                             }
                             else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND))
                             {
@@ -190,7 +190,6 @@ public class GameEngine {
                 else if (l_userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND))
                 {
                     System.out.println("\nHere is the list of all the available maps:");
-
                     MapEditor.showAllMaps();
                 }
                 else if (l_words.length == 1 && l_words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND))
@@ -216,16 +215,18 @@ public class GameEngine {
     /**
      * This function is called after the command 'assigncountries' is given. It uses the players list and the countries present in the Map class
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
+     *
+     * @param p_test This boolean is for test only. Keep false otherwise.
      */
-    public void assignCountries(boolean p_test) {
+    public boolean assignCountries(boolean p_test) {
         if (d_playersList.size() < 2){
             System.out.println("Please add at least 2 players using the 'gameplayer -add' command.");
-            return;
+            return false;
         }
         else if (d_currentMap.get_countries().size() < d_playersList.size()){
             System.out.println("The players added exceed the number of countries in the map. Number of countries: " + d_currentMap.get_countries().size());
             System.out.println("Please remove extra players using the 'gameplayer -remove' command.");
-            return;
+            return false;
         }
         System.out.println("Assigning Countries To Players.");
         int l_NumOfCountries = d_currentMap.get_countries().size();
@@ -249,9 +250,10 @@ public class GameEngine {
         }
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
         if (p_test)
-            return;
+            return false;
         MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
         l_gameLoop.run_game_loop();
+        return true;
     }
 
     /**
