@@ -12,6 +12,24 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+/**
+ * Test method to verify the calculation of reinforcements for a player in the MainGameLoop class.
+ * This test case creates a scenario where a player controls multiple countries and continents.
+ * The expected number of reinforcements is calculated and compared to the actual result.
+ *
+ * <p>Scenario:
+ * - Create a WarMap with two continents.
+ * - Create five countries and add them to the map.
+ * - Assign these countries to a player, including one country from the second continent.
+ * - Calculate the number of reinforcements for the player.
+ *
+ * <p>Expected Result:
+ * The player should receive 6 reinforcements, consisting of 5 (total owned countries) plus the army bonus of 1.
+ *
+ * @see MainGameLoop#getNumOfReinforcements(Player)
+ */
+
 class MainGameLoopTest {
     @org.junit.jupiter.api.Test
     void testGetNumOfReinforcements() {
