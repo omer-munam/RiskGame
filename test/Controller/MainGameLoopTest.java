@@ -28,6 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class MainGameLoopTest {
+    /**
+     * Test for getting the number of reinforcements
+     */
     @org.junit.jupiter.api.Test
     void testGetNumOfReinforcements() {
         WarMap test_war_map = new WarMap();
