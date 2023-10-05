@@ -17,14 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTest {
 
     private Player player;
-    private List<Country> countries;
-    private List<Continent> continents;
 
     @BeforeEach
     public void setUp() {
         player = new Player("John Doe");
-        countries = new ArrayList<>();
-        continents = new ArrayList<>();
     }
 
     @Test
