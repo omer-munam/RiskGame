@@ -51,17 +51,17 @@ public class Continent {
     }
 
     /**
+     * @param p_continentID the continent ID to give the continent.
+     */
+    public void set_continentID(int p_continentID) {
+        d_continentID = p_continentID;
+    }
+
+    /**
      * @return the name of the continent.
      */
     public String get_continentName() {
         return d_continentName;
-    }
-
-    /**
-     * @return the army bonus of the continent.
-     */
-    public int get_armyBonus() {
-        return d_armyBonus;
     }
 
     /**
@@ -72,10 +72,10 @@ public class Continent {
     }
 
     /**
-     * @param p_continentID the continent ID to give the continent.
+     * @return the army bonus of the continent.
      */
-    public void set_continentID(int p_continentID) {
-        d_continentID = p_continentID;
+    public int get_armyBonus() {
+        return d_armyBonus;
     }
 
     /**

@@ -14,6 +14,10 @@ import java.util.Map.Entry;
  */
 public class WarMap {
     /**
+     * Stores the location of saved WarMaps in the file directory.
+     */
+    private final String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
+    /**
      * The name of the WarMap, in general this is the same as the filename.
      */
     private String d_mapName;
@@ -29,10 +33,6 @@ public class WarMap {
      * A hashmap of the adjency list of the WarMap, this will take the form of HashMap(CountryID, List of Neighboring Country IDs)
      */
     private HashMap<Integer, HashMap<Integer, Integer>> d_adjencyList;
-    /**
-     * Stores the location of saved WarMaps in the file directory.
-     */
-    private final String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
 
     /**
      * This is a default constructor method of the Models.WarMap class

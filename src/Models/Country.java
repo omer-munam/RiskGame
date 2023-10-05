@@ -10,6 +10,10 @@ import java.util.HashMap;
  */
 public class Country {
     /**
+     * Stores the neighbouring countries of a country.
+     */
+    private final HashMap<Integer, Country> d_neighbouringCountries;
+    /**
      * Stores the country ID of a country.
      */
     private int d_countryID;
@@ -21,10 +25,6 @@ public class Country {
      * Stores the country name of a country.
      */
     private String d_countryName;
-    /**
-     * Stores the neighbouring countries of a country.
-     */
-    private final HashMap<Integer, Country> d_neighbouringCountries;
     /**
      * Stores the continentID of the continent that the country belongs to.
      */

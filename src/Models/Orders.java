@@ -22,6 +22,17 @@ public class Orders {
     private int d_destCountryID;
 
     /**
+     * This is a fully parametrized constructor for the Models.Orders class.
+     *
+     * @param p_numOfArmies Number of Armies to deploy in this order.
+     * @param p_countryID   ID of the country on which to deploy the specified number of armies.
+     */
+    public Orders(int p_numOfArmies, int p_countryID) {
+        this.d_destCountryID = p_countryID;
+        this.d_numOfArmies = p_numOfArmies;
+    }
+
+    /**
      * @return the number of armies to be used in the order
      */
     public int getNumOfArmies() {
@@ -47,17 +58,6 @@ public class Orders {
      */
     public void setCountryID(int p_newCountry) {
         this.d_destCountryID = p_newCountry;
-    }
-
-    /**
-     * This is a fully parametrized constructor for the Models.Orders class.
-     *
-     * @param p_numOfArmies Number of Armies to deploy in this order.
-     * @param p_countryID   ID of the country on which to deploy the specified number of armies.
-     */
-    public Orders(int p_numOfArmies, int p_countryID) {
-        this.d_destCountryID = p_countryID;
-        this.d_numOfArmies = p_numOfArmies;
     }
 
     /**
