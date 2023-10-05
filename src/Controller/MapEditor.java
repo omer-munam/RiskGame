@@ -65,102 +65,121 @@ public class MapEditor {
             }
             l_input_string = GameEngine.SCANNER.nextLine();
             l_input_string_array = l_input_string.split(" ");
+            try {
+                switch (command_Code_Hashmap.getOrDefault(l_input_string_array[0], 8)) {
 
-            switch (command_Code_Hashmap.getOrDefault(l_input_string_array[0], 8)) {
-				case 0:
-                    for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
-                        if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
-                            if (l_i + 3 < l_input_string_array.length) {
-                                l_current_map.addContinent(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
-                                l_i += 3;
-                            } else {
-                                System.out.println("Reached end of file while parsing not all commands completed");
-                            }
-                        } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
-                            if (l_i + 1 < l_input_string_array.length) {
-                                l_current_map.removeContinent(Integer.valueOf(l_input_string_array[l_i + 1]));
-                                l_i++;
-                            } else {
-                                System.out.println("Reached end of file while parsing not all commands completed");
+                    case 0:
+                        for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
+                            if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
+
+
+                                if (l_i + 3 < l_input_string_array.length) {
+                                    if (l_current_map.get_continents().containsKey(Integer.valueOf(l_input_string_array[l_i + 1]))) {
+                                        System.out.println("Cannot add duplicate continent ID of " + Integer.valueOf(l_input_string_array[l_i + 1]));
+                                        l_i += 3;
+                                    } else {
+                                        l_current_map.addContinent(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                                        l_i += 3;
+                                    }
+                                } else {
+                                    System.out.println("Reached end of file while parsing not all commands completed");
+                                }
+                            } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
+                                if (l_i + 1 < l_input_string_array.length) {
+                                    l_current_map.removeContinent(Integer.valueOf(l_input_string_array[l_i + 1]));
+                                    l_i++;
+                                } else {
+                                    System.out.println("Reached end of file while parsing not all commands completed");
+                                }
                             }
                         }
-                    }
-					break;
-					
-				case 1:
-                    for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
-                        if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
-                            if (l_i + 3 < l_input_string_array.length) {
-                                l_current_map.addCountry(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
-                                l_i += 3;
-                            } else {
-                                System.out.println("Reached end of file while parsing not all commands completed");
-                            }
-                        } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
-                            if (l_i + 1 < l_input_string_array.length) {
-                                l_current_map.removeCountry(Integer.valueOf(l_input_string_array[l_i + 1]));
-                                l_i++;
-                            } else {
-                                System.out.println("Reached end of file while parsing not all commands completed");
+                        break;
+
+                    case 1:
+                        for (int l_i = 1; l_i < l_input_string_array.length; l_i++) {
+                            if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
+                                if (l_i + 3 < l_input_string_array.length) {
+                                    if (l_current_map.get_countries().containsKey(Integer.valueOf(l_input_string_array[l_i + 1]))) {
+                                        System.out.println("Cannot add duplicate country ID of " + Integer.valueOf(l_input_string_array[l_i + 1]));
+                                        l_i += 3;
+                                    } else {
+                                        l_current_map.addCountry(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                                        l_i += 3;
+                                    }
+                                } else {
+                                    System.out.println("Reached end of file while parsing not all commands completed");
+                                }
+                            } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
+                                if (l_i + 1 < l_input_string_array.length) {
+                                    l_current_map.removeCountry(Integer.valueOf(l_input_string_array[l_i + 1]));
+                                    l_i++;
+                                } else {
+                                    System.out.println("Reached end of file while parsing not all commands completed");
+                                }
                             }
                         }
-                    }
-					break;
-					
-				case 2:
-					if(l_input_string_array[1].equalsIgnoreCase("-add")) l_current_map.addNeighbourCountry(Integer.valueOf(l_input_string_array[2]), Integer.valueOf(l_input_string_array[3]));
-					else if(l_input_string_array[1].equalsIgnoreCase("-remove")) l_current_map.removeNeighbourCountry(Integer.valueOf(l_input_string_array[2]), Integer.valueOf(l_input_string_array[3]));
-					break;
-					
-				case 3:
-					l_current_map.showMap();
-					break;
-					
-				case 4:
-                    if (l_input_string_array.length > 1) {
-	                if (l_current_map.validateMap()) {
+                        break;
 
-                        l_current_map.saveMap(l_input_string_array[1]);
-                        System.out.println("Map saved");
-                        l_current_map = new WarMap();
-                        this.editMap(l_input_string_array[1], l_current_map);
-                    } else {
-	                    System.out.println("Map not saved due to being invalid");
-                    }
-                    } else {
-                        System.out.println("Reached end of file while parsing map not saved");
-                    }
-					break;
-					
-				case 5:
-					if(l_input_string_array.length > 1 && l_input_string_array[1] != null) {
-						l_current_map = new WarMap();
-						this.editMap(l_input_string_array[1], l_current_map);
-						if (l_current_map.get_mapName().equals("Default Name")) {
-		                    System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
-		                    continue;
-		                }
-					}
-					break;
-					
-				case 6:
-					if(l_current_map.validateMap()) System.out.println("Valid Map");
-					else System.out.println("InValid Map");
-					break;
-					
-				case 7:
-					return;
-                case 8:
-                    System.out.println("You have entered an invalid command");
-                    break;
-            }
-            
-            if (l_current_map.get_mapName().equals("Default Name")) {
-                System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
-                continue;
+                    case 2:
+                        if (l_input_string_array[1].equalsIgnoreCase("-add"))
+                            l_current_map.addNeighbourCountry(Integer.valueOf(l_input_string_array[2]), Integer.valueOf(l_input_string_array[3]));
+                        else if (l_input_string_array[1].equalsIgnoreCase("-remove"))
+                            l_current_map.removeNeighbourCountry(Integer.valueOf(l_input_string_array[2]), Integer.valueOf(l_input_string_array[3]));
+                        break;
+
+                    case 3:
+                        l_current_map.showMap();
+                        break;
+
+                    case 4:
+                        if (l_input_string_array.length > 1) {
+                            if (l_current_map.validateMap()) {
+
+                                l_current_map.saveMap(l_input_string_array[1]);
+                                System.out.println("Map saved");
+                                l_current_map = new WarMap();
+                                this.editMap(l_input_string_array[1], l_current_map);
+                            } else {
+                                System.out.println("Map not saved due to being invalid");
+                            }
+                        } else {
+                            System.out.println("Reached end of file while parsing map not saved");
+                        }
+                        break;
+
+                    case 5:
+                        if (l_input_string_array.length > 1 && l_input_string_array[1] != null) {
+                            l_current_map = new WarMap();
+                            this.editMap(l_input_string_array[1], l_current_map);
+                            if (l_current_map.get_mapName().equals("Default Name")) {
+                                System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
+                                continue;
+                            }
+                        }
+                        break;
+
+                    case 6:
+                        if (l_current_map.validateMap()) System.out.println("Valid Map");
+                        else System.out.println("InValid Map");
+                        break;
+
+                    case 7:
+                        return;
+                    case 8:
+                        System.out.println("You have entered an invalid command");
+                        break;
+                }
+
+                if (l_current_map.get_mapName().equals("Default Name")) {
+                    System.out.println("You must specify a map to edit using the 'editmap filename' command. Alternatively enter the command 'exit' to return to the main menu");
+                    continue;
+                }
+
+                //NEED TO IMPLEMENT Edit Commands for user input, they are all already done in WarMap or MapEditor Classes, just parse input and call them.
+            } catch (NumberFormatException e) {
+                System.out.println("You have entered text where a number was required, please ensure you enter the commands in the correct format");
             }
 
-            //NEED TO IMPLEMENT Edit Commands for user input, they are all already done in WarMap or MapEditor Classes, just parse input and call them.
         }
     }
 
