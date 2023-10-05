@@ -26,7 +26,7 @@ class WarMapTest {
 	@Test
 	void testIsConnectedGraph() {
 		try {
-            MapEditor.editMap("europe.map", l_warmap);
+			MapEditor.readMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
 			l_warmap.removeCountry(9);
             l_warmap.removeCountry(10);
@@ -40,7 +40,7 @@ class WarMapTest {
 	@Test
 	void testIsContinentConnected() {
 		try {
-            MapEditor.editMap("europe.map", l_warmap);
+			MapEditor.readMap("europe.map", l_warmap);
 			assertTrue(l_warmap.validateMap());
 			l_warmap.removeNeighbourCountry(3, 1);
 			l_warmap.removeNeighbourCountry(3, 2);
