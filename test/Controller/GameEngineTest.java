@@ -13,18 +13,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
- * Tests for the game engine, which include assigning countries and adding/removing players.
+ * Unit tests for the GameEngine class.
+ * This class contains test methods for various functionalities of the GameEngine class,
+ * such as assigning countries to players, adding players, and removing players.
  */
 public class GameEngineTest {
 
     private GameEngine gameEngine;
 
+    /**
+     * Sets up a new GameEngine instance before each test.
+     */
     @BeforeEach
     void setUp() {
         gameEngine = new GameEngine();
     }
 
-
+    /**
+     * Test the functionality to assign countries to players.
+     * It creates a test WarMap with countries and players and checks if countries
+     * are correctly assigned to the players.
+     */
     @Test
     void assignCountries() {
         WarMap warMap = new WarMap();
@@ -45,6 +54,10 @@ public class GameEngineTest {
 
     }
 
+    /**
+     * Test the functionality to add a player to the GameEngine.
+     * It checks if a player is correctly added to the player's list.
+     */
     @Test
     void addPlayer() {
 
@@ -57,6 +70,10 @@ public class GameEngineTest {
         assertEquals("Player1", players.get(0).get_playerName());
     }
 
+    /**
+     * Test the functionality to remove a player from the GameEngine.
+     * It checks if a player is correctly removed from the player's list.
+     */
     @Test
     void removePlayer() {
         gameEngine.addPlayer("Player1");
