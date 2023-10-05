@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Tests for executing orders
  */
-class OrdersTest {
+public class OrdersTest {
     private WarMap warmap;
     private Country country;
 

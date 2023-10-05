@@ -10,11 +10,12 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 /**
  * Tests for validation of the WarMap
  */
-class WarMapTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+public class WarMapTest {
 
     WarMap l_warmap;
 

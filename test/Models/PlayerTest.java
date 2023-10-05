@@ -10,10 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 /**
  * Test for functions concerning Player orders
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayerTest {
 
     private Player player;
