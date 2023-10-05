@@ -16,14 +16,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class WarMapTest {
-
+    /**
+     * WarMap used in the test
+     */
     WarMap l_warmap;
 
+    /**
+     * Makes the WarMap object a new WarMap before every test
+     *
+     * @throws Exception
+     */
     @BeforeEach
     void setUp() throws Exception {
         l_warmap = new WarMap();
     }
 
+    /**
+     * Test for if the continents in the war map are connected
+     */
     @Test
     void testIsContinentConnected() {
         try {
@@ -38,6 +48,9 @@ public class WarMapTest {
         }
     }
 
+    /**
+     * Test for if the entire war map is connected
+     */
     @Test
     void testIsConnectedGraph() {
         try {
@@ -52,6 +65,9 @@ public class WarMapTest {
         }
     }
 
+    /**
+     * Test for if there is a continent with no countries in the war map
+     */
     @Test
     void testisEmptyContinent() {
         try {
@@ -65,6 +81,9 @@ public class WarMapTest {
         }
     }
 
+    /**
+     * Checking if all countries have at least one neighbor
+     */
     @Test
     void testingisCountryNoNeighbor() {
         try {
