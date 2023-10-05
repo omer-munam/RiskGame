@@ -151,6 +151,7 @@ public class MapEditor {
 				case 7:
 					return;
                 case 8:
+                    System.out.println("You have entered an invalid command");
                     break;
             }
             
