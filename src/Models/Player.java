@@ -147,23 +147,31 @@ public class Player {
      */
     public void issue_order(String[] commands) {
         deployOrder(commands);
-        String command = SCANNER.nextLine();
-        switch (command.split(" ")[0]){
-            case Commands.ADVANCE_ORDER:
-                //TODO: Advance order handling
-                break;
-            case Commands.BOMB_ORDER:
-                //TODO: Bomb order handling after checking if player does holds bomb card
-                break;
-            case Commands.BLOCKADE_ORDER:
-                //TODO: Blockade order handling after checking if player does holds blockade card
-                break;
-            case Commands.AIRLIFT_ORDER:
-                //TODO: Airlift order handling after checking if player does holds airlift card
-                break;
-            case Commands.DIPLOMACY_ORDER:
-                //TODO: Diplomacy order handling after checking if player does holds diplomacy card
-                break;
+        while (true){
+            System.out.println("_____________________________________________");
+            System.out.println("Please provide a command to execute or type execute to execute the given commands:");
+            String command = SCANNER.nextLine();
+            switch (command.split(" ")[0]){
+                case Commands.ADVANCE_ORDER:
+                    //TODO: Advance order handling
+                    break;
+                case Commands.BOMB_ORDER:
+                    //TODO: Bomb order handling after checking if player does holds bomb card
+                    break;
+                case Commands.BLOCKADE_ORDER:
+                    //TODO: Blockade order handling after checking if player does holds blockade card
+                    break;
+                case Commands.AIRLIFT_ORDER:
+                    //TODO: Airlift order handling after checking if player does holds airlift card
+                    break;
+                case Commands.DIPLOMACY_ORDER:
+                    //TODO: Diplomacy order handling after checking if player does holds diplomacy card
+                    break;
+                case Commands.EXECUTE:
+                    return;
+                default:
+                    System.out.println("Invalid command given... Please try again...");
+            }
         }
     }
 

@@ -28,4 +28,5 @@ public class Commands {
     public static final String BLOCKADE_ORDER = "blockade";
     public static final String AIRLIFT_ORDER = "airlift";
     public static final String DIPLOMACY_ORDER = "diplomacy";
+    public static final String EXECUTE = "execute";
 }
