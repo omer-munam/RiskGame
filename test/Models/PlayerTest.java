@@ -44,9 +44,9 @@ public class PlayerTest {
      */
     @Test
     public void testNextOrder() {
-        Orders order1 = new Orders(3, 1);
-        Orders order2 = new Orders(2, 2);
-        Orders order3 = new Orders(4, 3);
+        Orders order1 = new Orders(3, 1, -1, null);
+        Orders order2 = new Orders(2, 2, -1, null);
+        Orders order3 = new Orders(4, 3, -1, null);
 
         player.get_playerOrder().add(order1);
         player.get_playerOrder().add(order2);
@@ -85,11 +85,11 @@ public class PlayerTest {
 
         Orders order1 = playerOrders.get(0);
         assertEquals(3, order1.getNumOfArmies());
-        assertEquals(1, order1.getCountryID());
+        assertEquals(1, order1.getDestCountryID());
 
         Orders order2 = playerOrders.get(1);
         assertEquals(2, order2.getNumOfArmies());
-        assertEquals(3, order2.getCountryID());
+        assertEquals(3, order2.getDestCountryID());
     }
 
 

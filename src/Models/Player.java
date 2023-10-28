@@ -1,5 +1,6 @@
 package Models;
 
+import Resources.Cards;
 import Resources.Commands;
 
 import java.util.ArrayList;
@@ -32,6 +33,10 @@ public class Player {
      * List of player's orders for execution.
      */
     List<Orders> d_playerOrders;
+    /**
+     * List of Cards the player holds.
+     */
+    List<Cards> d_playerCards;
     /**
      * The name of the player taken by the user.
      */
@@ -84,6 +89,19 @@ public class Player {
     public List<Continent> get_playerContinents() {
         return d_playerContinents;
     }
+    /**
+     * @param p_playerCards a list of the player's countries
+     */
+    public void set_playerCards(List<Cards> p_playerCards) {
+        this.d_playerCards = p_playerCards;
+    }
+
+    /**
+     * @return a list of the player's continents
+     */
+    public List<Cards> get_playerCards() {
+        return d_playerCards;
+    }
 
     /**
      * @param p_playerContinents a list of the player's continents
@@ -128,6 +146,28 @@ public class Player {
      * @param commands The following param is for the testing class only. Set to null under normal conditions.
      */
     public void issue_order(String[] commands) {
+        deployOrder(commands);
+        String command = SCANNER.nextLine();
+        switch (command.split(" ")[0]){
+            case Commands.ADVANCE_ORDER:
+                //TODO: Advance order handling
+                break;
+            case Commands.BOMB_ORDER:
+                //TODO: Bomb order handling after checking if player does holds bomb card
+                break;
+            case Commands.BLOCKADE_ORDER:
+                //TODO: Blockade order handling after checking if player does holds blockade card
+                break;
+            case Commands.AIRLIFT_ORDER:
+                //TODO: Airlift order handling after checking if player does holds airlift card
+                break;
+            case Commands.DIPLOMACY_ORDER:
+                //TODO: Diplomacy order handling after checking if player does holds diplomacy card
+                break;
+        }
+    }
+
+    private void deployOrder(String[] commands) {
         int iterations = 0;
         while (d_numOfReinforcements != 0) {
             int countryID;
@@ -161,10 +201,10 @@ public class Player {
                 System.out.println("The given CountryID is not under your control.");
                 continue;
             }
-            Orders order = new Orders(numOfArmies, countryID);
+            Orders order = new Orders(numOfArmies, countryID, -1, null);
             d_playerOrders.add(order);
             d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
-            System.out.println("Order Issued Successfully.");
+            System.out.println("Deployed All Reinforcements Successfully.");
         }
     }
 
