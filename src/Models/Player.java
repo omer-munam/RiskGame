@@ -90,14 +90,14 @@ public class Player {
         return d_playerContinents;
     }
     /**
-     * @param p_playerCards a list of the player's countries
+     * @param p_playerCards a list of the player's cards
      */
     public void set_playerCards(List<Cards> p_playerCards) {
         this.d_playerCards = p_playerCards;
     }
 
     /**
-     * @return a list of the player's continents
+     * @return a list of the player's cards
      */
     public List<Cards> get_playerCards() {
         return d_playerCards;
@@ -151,7 +151,8 @@ public class Player {
             System.out.println("_____________________________________________");
             System.out.println("Please provide a command to execute or type execute to execute the given commands:");
             String command = SCANNER.nextLine();
-            switch (command.split(" ")[0]){
+            String[] commandTokens = command.split(" ");
+            switch (commandTokens[0]){
                 case Commands.ADVANCE_ORDER:
                     //TODO: Advance order handling
                     break;
@@ -160,7 +161,37 @@ public class Player {
                     break;
                 case Commands.BLOCKADE_ORDER:
                     //TODO: Blockade order handling after checking if player does holds blockade card
-                    break;
+                    boolean hasBlockadeCard = false;
+                    for (Cards card : d_playerCards){
+                        if (card.toString().equals("Blockade")){
+                            hasBlockadeCard = true;
+                            break;
+                        }
+                    }
+                    if (hasBlockadeCard) {
+                        int destCountryID;
+                        destCountryID = Integer.parseInt(commandTokens[1]);
+
+                        boolean destCountryIDExists = false;
+                        for (Country country : d_playerCountries)
+                            if (country.get_countryID() == destCountryID) {
+                                destCountryIDExists = true;
+                                break;
+                            }
+                        if (!destCountryIDExists) {
+                            System.out.println("The given CountryID is not under your control.");
+                            continue;
+                        }
+
+                        Orders order = new Orders(Cards.Blockade, destCountryID);
+                        d_playerOrders.add(order);
+
+                        System.out.println("Blockade order executed successfully.");
+
+                    } else {
+                        System.out.println("Player do not have Blockade card");
+                    }
+                    //break;
                 case Commands.AIRLIFT_ORDER:
                     //TODO: Airlift order handling after checking if player does holds airlift card
                     break;

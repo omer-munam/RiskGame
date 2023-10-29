@@ -46,6 +46,11 @@ public class Orders {
         this.d_orderCard = p_card;
     }
 
+    public Orders(Cards p_card, int p_destcountryID) {
+        this.d_orderCard = p_card;
+        this.d_destCountryID = p_destcountryID;
+    }
+
     /**
      * @return the card being used in this order
      */
@@ -117,7 +122,17 @@ public class Orders {
                 break;
             case Blockade:
                 //TODO:  Blockade order execution function;
-                break;
+                Collection<Country> l_countryInfo = p_warmap.get_countries().values();
+                for (Country country : l_countryInfo) {
+                    if (country.get_countryID() == d_destCountryID) {
+                        country.set_numOfArmies(country.get_numOfArmies() * 3);
+                    }
+
+                    // Now make the territory Neutral,
+                    // How long it should be neutral??
+                    // After that remove BLOCKADE card from player-card list
+                }
+                //break;
             case Diplomacy:
                 //TODO:  Diplomacy order execution function;
                 break;
