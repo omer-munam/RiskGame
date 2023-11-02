@@ -2,6 +2,8 @@ package Controller;
 
 import Models.Player;
 import Models.WarMap;
+import Phases.MainMenu;
+import Phases.Phase;
 import Resources.Commands;
 
 import java.io.File;
@@ -28,6 +30,20 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
+    public GameEngine() {
+        gamePhase = new MainMenu(this);
+    }
+
+    private Phase gamePhase;
+    private String currentInput = "";
+
+    public void setPhase(Phase p_phase) {
+        gamePhase = p_phase;
+    }
+
+    public String getCurrentInput() {
+        return currentInput;
+    }
     /**
      * Static scanner instance to be used all over the project.
      */
@@ -94,7 +110,7 @@ public class GameEngine {
 
                 String l_userInput = SCANNER.nextLine();
                 String[] l_words = l_userInput.split("\\s+");
-
+                gamePhase.loadMap();
                 if (l_userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
                     if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map")) {
                         ArrayList<String> l_listOfMaps = getAllMapsList();
