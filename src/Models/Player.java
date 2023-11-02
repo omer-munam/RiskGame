@@ -154,9 +154,29 @@ public class Player {
             String command = SCANNER.nextLine();
             String[] commandTokens = command.split(" ");
             switch (commandTokens[0]){
+                //TODO: Advance Order handling
                 case Commands.ADVANCE_ORDER:
-                    //TODO: Advance order handling
+                    if (commandTokens.length < 4) {
+                        System.out.println("Invalid ADVANCE order. Correct syntax: advance countryfrom countryto numarmies");
+                        break;
+                    }
+
+                    String countryFromName = commandTokens[1];
+                    String countryToName = commandTokens[2];
+                    int numArmiesToAdvance;
+
+                    try {
+                        numArmiesToAdvance = Integer.parseInt(commandTokens[3]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number of armies specified.");
+                        break;
+                    }
+                    // Find the source and destination countries
+                    // Check if the player owns the source country
+                    // Check if the number of armies to advance is valid
+                    // Perform the advance operation
                     break;
+
                 case Commands.BOMB_ORDER:
                     bomb_issue_order(commandTokens, d_map);
                     break;
