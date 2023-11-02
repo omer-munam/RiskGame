@@ -7,6 +7,7 @@ import Phases.Phase;
 import Resources.Commands;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -30,19 +31,19 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
-    public GameEngine() {
+    public GameEngine() throws IOException {
         gamePhase = new MainMenu(this);
     }
 
     private Phase gamePhase;
-    private String currentInput = "";
+    private String d_currentInput = "";
 
     public void setPhase(Phase p_phase) {
         gamePhase = p_phase;
     }
 
     public String getCurrentInput() {
-        return currentInput;
+        return d_currentInput;
     }
     /**
      * Static scanner instance to be used all over the project.
@@ -96,101 +97,36 @@ public class GameEngine {
         try {
 
             while (true) {
-                System.out.println("\n╔════════════════════════════════════════╗");
-                System.out.println("║      Welcome to the WarZone Game!      ║");
-                System.out.println("╚════════════════════════════════════════╝");
-                System.out.print("Enter a command to proceed: \n");
-                System.out.print("Possible commands are: \n");
-                System.out.print("- editmap\n");
-                System.out.print("- loadmap [filename]\n");
-                System.out.print("- showmap all\n");
-                System.out.print("- quit\n");
+                gamePhase.displayOptions();
 
-                d_playersList.clear();
+                d_currentInput = SCANNER.nextLine();
+                String[] l_words = d_currentInput.split("\\s+");
 
-                String l_userInput = SCANNER.nextLine();
-                String[] l_words = l_userInput.split("\\s+");
-                gamePhase.loadMap();
-                if (l_userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
-                    if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map")) {
-                        ArrayList<String> l_listOfMaps = getAllMapsList();
-                        if (l_listOfMaps.contains(l_words[1])) {
-                            boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_currentMap);
-                            if (!l_isAbleToReadMap) {
-                                System.out.print("\n Unable to read " + l_words[1] + "!\n");
-                                continue;
-                            }
-                            boolean l_isValidMap = d_currentMap.validateMap();
-                            if (!l_isValidMap) {
-                                System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
-                                continue;
-                            }
-                            System.out.print(l_words[1] + " loaded successfully!\n");
-                        } else {
-                            System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
-                            continue;
-                        }
+                if (d_currentInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
+                    gamePhase.loadMap();
+                } else if (d_currentInput.toLowerCase().contains("gameplayer")) {
+                    gamePhase.setPlayers();
+                } else if (d_currentInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND)) {
+                    gamePhase.assignCountries();
 
-                        while (true) {
-                            System.out.print("\nEnter a command to proceed:\nPossible commands are:\n");
-                            System.out.print("- gameplayer -add [playername]\n");
-                            System.out.print("- gameplayer -remove [playername]\n");
-                            System.out.print("- assigncountries\n");
-                            System.out.print("- showmap\n");
-                            System.out.print("- go back\n");
-                            l_userInput = SCANNER.nextLine();
-                            l_words = l_userInput.split("\\s+");
+                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND)) {
+                    gamePhase.showMap();
+                } else if (d_currentInput.equalsIgnoreCase("go back")) {
+                    gamePhase.next();
+                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND)) {
+                    gamePhase.showAllMaps();
 
-                            if (l_userInput.toLowerCase().contains("gameplayer")) {
-                                if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_EDIT_COMMAND) && l_words.length >= 3) {
-                                    for (int l_i = 1; l_i < l_words.length; l_i++) {
-                                        if (l_words[l_i].equals("-add")) {
-                                            l_i++;
-                                            if (l_i < l_words.length) {
-                                                addPlayer(l_words[l_i]);
-                                            } else {
-                                                System.out.println("Reached end of command while parsing");
-                                            }
-                                        }
-                                        if (l_words[l_i].equals("-remove")) {
-                                            l_i++;
-                                            if (l_i < l_words.length) {
-                                                removePlayer(l_words[l_i]);
-                                            } else {
-                                                System.out.println("Reached end of command while parsing");
-
-                                            }
-                                        }
-                                    }
-                                } else
-                                    System.out.print("Invalid Command! Correct syntax: gameplayer -add [playername] -remove [playername]\n");
-                            } else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND)) {
-                                if (assignCountries(false))
-                                    break;
-                            } else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND)) {
-                                d_currentMap.showMap();
-                            } else if (l_userInput.equalsIgnoreCase("go back")) {
-                                break;
-                            } else
-                                System.out.print("Invalid Command. Try again with the correct command syntax!\n");
-                        }
-                    } else
-                        System.out.print("Invalid Command! Correct syntax: loadmap [filename]\n");
-                } else if (l_userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND)) {
-                    System.out.println("\nHere is the list of all the available maps:");
-                    MapEditor.showAllMaps();
-                } else if (l_words.length == 1 && l_words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
-                    MapEditor editor = new MapEditor();
-                    editor.editMapEntry();
-                } else if (l_userInput.equalsIgnoreCase("quit")) {
+                } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
+                    gamePhase.next();
+                } else if (d_currentInput.equalsIgnoreCase("quit")) {
                     break;
                 } else {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
             }
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong!\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -284,7 +220,7 @@ public class GameEngine {
      * @return An ArrayList containing the names of map files in the directory.
      * @see Commands#MAPS_DIRECTORY_PATH
      */
-    private ArrayList<String> getAllMapsList() {
+    public ArrayList<String> getAllMapsList() {
         // Create a File object for the directory
         File l_directory = new File(Commands.MAPS_DIRECTORY_PATH);
 

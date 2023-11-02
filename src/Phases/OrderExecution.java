@@ -8,6 +8,11 @@ public class OrderExecution extends Play {
     }
 
     @Override
+    public void displayOptions() {
+
+    }
+
+    @Override
     public void loadMap() {
         printInvalidCommandMessage();
     }

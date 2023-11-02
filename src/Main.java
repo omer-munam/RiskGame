@@ -13,8 +13,9 @@ public class Main {
 	    	
 	        GameEngine new_game = new GameEngine();
 	        new_game.start_game();
-    	}
-    	finally {
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
     		try {
     	        LogWriter.getInstance().info.close();
     	    } catch (IOException e) {

@@ -8,6 +8,11 @@ public class Preload extends Edit {
     }
 
     @Override
+    public void displayOptions() {
+
+    }
+
+    @Override
     public void loadMap() {
 
     }

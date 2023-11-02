@@ -2,6 +2,8 @@ package Phases;
 
 import Controller.GameEngine;
 
+import java.io.IOException;
+
 public abstract class Phase {
     public Phase(GameEngine p_ge) {
         d_ge = p_ge;
@@ -9,9 +11,13 @@ public abstract class Phase {
 
     GameEngine d_ge;
 
-    abstract public void loadMap();
+    abstract public void displayOptions();
+
+    abstract public void loadMap() throws IOException;
 
     abstract public void showMap();
+
+    abstract public void showAllMaps();
 
     abstract public void editCountry();
 
@@ -33,7 +39,7 @@ public abstract class Phase {
 
     abstract public void endGame();
 
-    abstract public void next();
+    abstract public void next() throws IOException;
 
     public void printInvalidCommandMessage() {
         System.out.println("Invalid command in state " + this.getClass().getSimpleName());

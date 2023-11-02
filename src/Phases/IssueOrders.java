@@ -8,6 +8,11 @@ public class IssueOrders extends Play {
     }
 
     @Override
+    public void displayOptions() {
+
+    }
+
+    @Override
     public void loadMap() {
         printInvalidCommandMessage();
     }
