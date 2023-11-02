@@ -17,6 +17,7 @@ public abstract class Phase {
 
     abstract public void showMap();
 
+    abstract public void validateMap();
     abstract public void showAllMaps();
 
     abstract public void editCountry();
@@ -25,7 +26,7 @@ public abstract class Phase {
 
     abstract public void editNeighbours();
 
-    abstract public void saveMap();
+    abstract public void saveMap() throws IOException;
 
     abstract public void setPlayers();
 

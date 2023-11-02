@@ -7,6 +7,8 @@ import Resources.Commands;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.System.exit;
+
 public class MainMenu extends Phase {
     public MainMenu(GameEngine p_ge) {
         super(p_ge);
@@ -46,8 +48,10 @@ public class MainMenu extends Phase {
                 this.next();
             } else {
                 System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
-                return;
+
             }
+        } else {
+            this.next();
         }
     }
 
@@ -118,8 +122,15 @@ public class MainMenu extends Phase {
         }
         if (d_ge.getCurrentInput().toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
             d_ge.setPhase(new Preload(d_ge));
-            MapEditor editor = new MapEditor();
-            editor.editMapEntry();
+
         }
+        if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
+            System.out.println("Exiting program");
+            exit(0);
+        }
+    }
+
+    public void validateMap() {
+        printInvalidCommandMessage();
     }
 }

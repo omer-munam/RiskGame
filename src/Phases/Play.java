@@ -28,7 +28,11 @@ public abstract class Play extends Phase {
         printInvalidCommandMessage();
     }
 
+    public void validateMap() {
+        printInvalidCommandMessage();
+    }
     public void showMap() {
         d_ge.get_currentMap().showMap();
     }
 }
+

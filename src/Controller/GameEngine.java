@@ -118,8 +118,20 @@ public class GameEngine {
 
                 } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
                     gamePhase.next();
+                } else if (d_currentInput.toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
+                    gamePhase.loadMap();
+                } else if (d_currentInput.toLowerCase().contains("editcontinent")) {
+                    gamePhase.editContinent();
+                } else if (d_currentInput.toLowerCase().contains("editcountry")) {
+                    gamePhase.editCountry();
+                } else if (d_currentInput.toLowerCase().contains("editneighbor")) {
+                    gamePhase.editNeighbours();
+                } else if (d_currentInput.toLowerCase().contains("validatemap")) {
+                    gamePhase.validateMap();
+                } else if (d_currentInput.toLowerCase().contains("savemap")) {
+                    gamePhase.saveMap();
                 } else if (d_currentInput.equalsIgnoreCase("quit")) {
-                    break;
+                    gamePhase.next();
                 } else {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }

@@ -21,12 +21,12 @@ public class Startup extends Play {
 
     @Override
     public void loadMap() {
-
+        printInvalidCommandMessage();
     }
 
     @Override
     public void showMap() {
-
+        d_ge.get_currentMap().showMap();
     }
 
     @Override
