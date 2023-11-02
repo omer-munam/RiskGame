@@ -31,7 +31,7 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
-    public GameEngine() throws IOException {
+    public GameEngine() {
         gamePhase = new MainMenu(this);
     }
 
