@@ -181,7 +181,7 @@ public class Player {
                     d_playerOrders.add(deployOrder);
                     d_numOfReinforcements -= numOfArmies;
                     System.out.println("Deploy order issued successfully.");
-
+                    break;
                 // Add cases for other order types (e.g., advance, bomb, etc.) here.
 
                 default:
