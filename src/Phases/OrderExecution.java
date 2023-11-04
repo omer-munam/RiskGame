@@ -54,6 +54,6 @@ public class OrderExecution extends Play {
 
     @Override
     public void next() {
-        d_ge.setPhase(new IssueOrders(d_ge));
+        d_ge.setPhase(new AssignReinforcements(d_ge));
     }
 }

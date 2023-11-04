@@ -59,6 +59,10 @@ public class Startup extends Play {
     @Override
     public void assignCountries() {
         if (d_ge.assignCountries(false)) ;
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║      Game Starts... Get Ready...       ║");
+        System.out.println("╚════════════════════════════════════════╝");
+        this.next();
     }
 
     @Override
@@ -78,13 +82,16 @@ public class Startup extends Play {
 
     @Override
     public void endGame() {
-
+        printInvalidCommandMessage();
     }
 
     @Override
     public void next() {
         if (d_ge.getCurrentInput().equalsIgnoreCase("go back")) {
             d_ge.setPhase(new MainMenu(d_ge));
+        }
+        if (d_ge.getCurrentInput().equalsIgnoreCase("assigncountries")) {
+            d_ge.setPhase(new AssignReinforcements(d_ge));
         }
     }
 }

@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Country;
 import Models.Player;
 import Models.WarMap;
 import Phases.MainMenu;
@@ -180,8 +181,7 @@ public class GameEngine {
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
         if (p_test)
             return false;
-        MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
-        l_gameLoop.run_game_loop();
+
         return true;
     }
 
@@ -257,4 +257,44 @@ public class GameEngine {
 
         return l_maplist;
     }
+
+    /**
+     * This method is used to calculate how many reinforcements are to be assigned to the given player based on the continents they hold.
+     *
+     * @param p_player The player for which we need to get number of reinforcements.
+     * @return NumberOfReinforcements
+     */
+    public int getNumOfReinforcements(Player p_player) {
+        int l_baseReinforcements = 5;
+        d_currentMap.get_countries();
+        p_player.get_playerCountries();
+        HashMap<Integer, ArrayList<Integer>> l_continent_countries = new HashMap<>();
+        for (Country l_c : d_currentMap.get_countries().values()) {
+            l_continent_countries.putIfAbsent(l_c.getContinentID(), new ArrayList<Integer>());
+            l_continent_countries.get(l_c.getContinentID()).add(l_c.get_countryID());
+        }
+
+
+        HashSet<Integer> l_full_continents = new HashSet<>();
+        ArrayList<Integer> l_player_country_ids = new ArrayList<>();
+        for (Country l_country : p_player.get_playerCountries()) {
+            l_player_country_ids.add(l_country.get_countryID());
+        }
+
+        for (ArrayList<Integer> l_c : l_continent_countries.values()) {
+            for (int l_i : l_c) {
+                if (l_player_country_ids.contains(l_i)) {
+                    l_full_continents.add(d_currentMap.get_countries().get(l_i).getContinentID());
+                } else {
+                    l_full_continents.remove(d_currentMap.get_countries().get(l_i).getContinentID());
+                    break;
+                }
+            }
+        }
+        for (int l_i : l_full_continents) {
+            l_baseReinforcements += d_currentMap.get_continents().get(l_i).get_armyBonus();
+        }
+        return l_baseReinforcements;
+    }
+
 }
