@@ -31,7 +31,7 @@ public class Player {
     /**
      * List of player's orders for execution.
      */
-    List<Orders> d_playerOrders;
+    List<Order> d_playerOrders;
     /**
      * The name of the player taken by the user.
      */
@@ -45,7 +45,7 @@ public class Player {
     public Player(String p_playerName) {
         this.d_playerName = p_playerName;
         this.d_numOfReinforcements = Integer.valueOf(0);
-        this.d_playerOrders = new ArrayList<Orders>();
+        this.d_playerOrders = new ArrayList<Order>();
         this.d_playerCountries = new ArrayList<Country>();
         this.d_playerContinents = new ArrayList<Continent>();
     }
@@ -95,14 +95,14 @@ public class Player {
     /**
      * @return a list of the player's orders
      */
-    public List<Orders> get_playerOrder() {
+    public List<Order> get_playerOrder() {
         return d_playerOrders;
     }
 
     /**
      * @param p_playerOrder a list of the player's orders
      */
-    public void set_playerOrder(List<Orders> p_playerOrder) {
+    public void set_playerOrder(List<Order> p_playerOrder) {
         this.d_playerOrders = p_playerOrder;
     }
 
@@ -132,39 +132,62 @@ public class Player {
         while (d_numOfReinforcements != 0) {
             int countryID;
             int numOfArmies;
-            System.out.println("Please issue deploy order command for Player " + d_playerName + "\nSyntax: deploy <countryID> <num>");
+            System.out.println("Please issue an order for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
             String command = SCANNER == null ? commands[iterations++] : SCANNER.nextLine();
             String[] commandTokens = command.split(" ");
-            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)) {
-                System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
-                continue;
-            }
-            try {
-                countryID = Integer.parseInt(commandTokens[1]);
-                numOfArmies = Integer.parseInt(commandTokens[2]);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid CountryID or Number of Reinforcements");
-                continue;
-            }
-            if (numOfArmies > d_numOfReinforcements) {
-                System.out.println("Specified number of reinforcements exceed the available.");
-                continue;
-            }
-            boolean countryExists = false;
-            for (Country country : d_playerCountries)
-                if (country.get_countryID() == countryID) {
-                    countryExists = true;
+
+//            // Check the command type and create the relevant order
+//            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)) {
+//                System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
+//                continue;
+//            }
+
+            String commandType = commandTokens[0].toLowerCase();
+
+            switch (commandType) {
+                case "deploy":
+                    if (commandTokens.length != 3) {
+                        System.out.println("Invalid deploy order format. Syntax: deploy <countryID> <num>");
+                        continue;
+                    }
+                    try {
+                        countryID = Integer.parseInt(commandTokens[1]);
+                        numOfArmies = Integer.parseInt(commandTokens[2]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid CountryID or Number of Reinforcements");
+                        continue;
+                    }
+
+                    if (numOfArmies > d_numOfReinforcements) {
+                        System.out.println("Specified number of reinforcements exceed the available.");
+                        continue;
+                    }
+
+                    boolean countryExists = false;
+                    for (Country country : d_playerCountries) {
+                        if (country.get_countryID() == countryID) {
+                            countryExists = true;
+                            break;
+                        }
+                    }
+
+                    if (!countryExists) {
+                        System.out.println("The given CountryID is not under your control.");
+                        continue;
+                    }
+
+                    Order deployOrder = new DeployOrder(numOfArmies, countryID);
+                    d_playerOrders.add(deployOrder);
+                    d_numOfReinforcements -= numOfArmies;
+                    System.out.println("Deploy order issued successfully.");
                     break;
-                }
-            if (!countryExists) {
-                System.out.println("The given CountryID is not under your control.");
-                continue;
+                // Add cases for other order types (e.g., advance, bomb, etc.) here.
+
+                default:
+                    System.out.println("Unsupported command type: " + commandType);
+                    continue;
             }
-            Orders order = new Orders(numOfArmies, countryID);
-            d_playerOrders.add(order);
-            d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
-            System.out.println("Order Issued Successfully.");
         }
     }
 
@@ -173,12 +196,12 @@ public class Player {
      * This method is called by the GameEngine during executing order phase and
      * returns the first order in the player’s list of orders, then removes it from the list.
      */
-    public Orders next_order() {
+    public Order next_order() {
         if (d_playerOrders.isEmpty()) {
             return null; // or throw an exception if desired
         }
 
-        Orders firstOrder = d_playerOrders.get(0);
+        Order firstOrder = d_playerOrders.get(0);
         d_playerOrders.remove(0);
         return firstOrder;
     }
