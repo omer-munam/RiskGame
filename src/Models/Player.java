@@ -268,16 +268,10 @@ public class Player {
         while (d_numOfReinforcements != 0) {
             int countryID;
             int numOfArmies;
-            System.out.println("Please issue an order for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
+            System.out.println("Please issue a deploy order for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
             String command = SCANNER == null ? commands[iterations++] : SCANNER.nextLine();
             String[] commandTokens = command.split(" ");
-
-//            // Check the command type and create the relevant order
-//            if (commandTokens.length != 3 || !commandTokens[0].equals(Commands.DEPLOY_COMMAND)) {
-//                System.out.println("Please give the command in format: " + Commands.DEPLOY_COMMAND_SYNTAX);
-//                continue;
-//            }
 
             String commandType = commandTokens[0].toLowerCase();
 
@@ -318,8 +312,6 @@ public class Player {
                     d_numOfReinforcements -= numOfArmies;
                     System.out.println("Deploy order issued successfully.");
                     break;
-                // Add cases for other order types (e.g., advance, bomb, etc.) here.
-
                 default:
                     System.out.println("Unsupported command type: " + commandType);
                     continue;
@@ -327,8 +319,8 @@ public class Player {
             DeployOrder order = new DeployOrder(numOfArmies, countryID);
             d_playerOrders.add(order);
             d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
-            System.out.println("Deployed All Reinforcements Successfully.");
         }
+        System.out.println("Deployed All Reinforcements Successfully.");
     }
 
 

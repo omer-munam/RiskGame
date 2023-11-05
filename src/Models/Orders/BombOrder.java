@@ -1,9 +1,12 @@
 package Models.Orders;
 
+import Models.Country;
 import Models.WarMap;
 
+import java.util.Collection;
+
 /**
- * This class is used to implement the data and logic of how to execute orders given by a player.
+ * This class is used to implement the data and logic of how to execute bomb order given by a player.
  *
  * @author omer-munam
  * @version 1.0
@@ -35,8 +38,24 @@ public class BombOrder implements Order{
     public void setDestCountryID(int p_newCountry) {
         this.d_destCountryID = p_newCountry;
     }
+    /**
+     * Execution of the logic of bombing to the specified Models.Country.
+     *
+     * @param p_warmap Details of values inside List Country
+     */
     @Override
-    public void execute(WarMap warMap) {
-
+    public void execute(WarMap p_warmap) {
+        System.out.println("\n_________________________________________");
+        Collection<Country> l_countryInfo = p_warmap.get_countries().values();
+        for (Country country : l_countryInfo) {
+            if (country.get_countryID() == d_destCountryID) {
+                int currentNumOfArmies = country.get_numOfArmies();
+                int newNumOfArmies = currentNumOfArmies < 2 ? 0 : Math.floorDiv(currentNumOfArmies, 2);
+                country.set_numOfArmies(newNumOfArmies);
+                System.out.println(newNumOfArmies + " armies are left in country " + country.get_countryName());
+            }
+        }
+        System.out.println("\n_________________________________________");
+        System.out.println("Country Bombed Successfully");
     }
 }
