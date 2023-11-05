@@ -1,4 +1,6 @@
-package Models;
+package Models.Orders;
+
+import Models.WarMap;
 
 import java.util.Collection;
 

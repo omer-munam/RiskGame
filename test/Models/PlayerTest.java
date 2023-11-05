@@ -1,6 +1,8 @@
 package Models;
 
 
+import Models.Orders.DeployOrder;
+import Models.Orders.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -44,9 +46,9 @@ public class PlayerTest {
      */
     @Test
     public void testNextOrder() {
-        DeployOrder order1 = new DeployOrder(3, 1, -1, null);
-        DeployOrder order2 = new DeployOrder(2, 2, -1, null);
-        DeployOrder order3 = new DeployOrder(4, 3, -1, null);
+        DeployOrder order1 = new DeployOrder(3, 1);
+        DeployOrder order2 = new DeployOrder(2, 2);
+        DeployOrder order3 = new DeployOrder(4, 3);
 
         player.get_playerOrder().add(order1);
         player.get_playerOrder().add(order2);

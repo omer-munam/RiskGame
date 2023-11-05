@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Orders.DeployOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -38,7 +39,7 @@ public class OrdersTest {
      */
     @Test
     public void testExecute() {
-        Orders order = new Orders(5, country.get_countryID(), -1, null);
+        DeployOrder order = new DeployOrder(5, country.get_countryID());
         order.execute(warmap);
 
         assertEquals(5, warmap.get_countries().get(country.get_countryID()).get_numOfArmies());
