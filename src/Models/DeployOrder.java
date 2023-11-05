@@ -38,8 +38,7 @@ public class DeployOrder implements Order {
      * @param p_sourcecountryID   ID of the country on which to deploy the specified number of armies.
      * @param p_card   Card that this order will use.
      */
-    public DeployOrder(int p_numOfArmies, int p_countryID) {
-        this.d_destCountryID = p_countryID;
+    public DeployOrder(int p_numOfArmies, int p_destcountryID, int p_sourcecountryID, Cards p_card) {
         this.d_destCountryID = p_destcountryID;
         this.d_sourceCountryID = p_sourcecountryID;
         this.d_numOfArmies = p_numOfArmies;

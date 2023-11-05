@@ -1,5 +1,6 @@
 package Models;
 
+import Resources.Cards;
 import Resources.Commands;
 
 import java.util.ArrayList;
@@ -203,7 +204,7 @@ public class Player {
                             continue;
                         }
 
-                        Orders order = new Orders(Cards.Blockade, destCountryID);
+                        DeployOrder order = new DeployOrder(Cards.Blockade, destCountryID);
                         d_playerOrders.add(order);
 
                         System.out.println("Blockade order executed successfully.");
@@ -253,7 +254,7 @@ public class Player {
                 return;
             }
 
-        Orders order = new Orders(Cards.Bomb, destCountryID);
+        DeployOrder order = new DeployOrder(Cards.Bomb, destCountryID);
         d_playerOrders.add(order);
         System.out.println("Bomb order issued successfully.");
     }
@@ -308,7 +309,7 @@ public class Player {
                         continue;
                     }
 
-                    Order deployOrder = new DeployOrder(numOfArmies, countryID);
+                    Order deployOrder = new DeployOrder(numOfArmies, countryID, -1, null);
                     d_playerOrders.add(deployOrder);
                     d_numOfReinforcements -= numOfArmies;
                     System.out.println("Deploy order issued successfully.");
@@ -319,7 +320,7 @@ public class Player {
                     System.out.println("Unsupported command type: " + commandType);
                     continue;
             }
-            Orders order = new Orders(numOfArmies, countryID, -1, null);
+            DeployOrder order = new DeployOrder(numOfArmies, countryID, -1, null);
             d_playerOrders.add(order);
             d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
             System.out.println("Deployed All Reinforcements Successfully.");

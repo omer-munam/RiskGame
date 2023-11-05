@@ -34,7 +34,7 @@ public class PlayerTest {
      */
     @Test
     public void testNextOrderEmptyList() {
-        Orders nextOrder = player.next_order();
+        DeployOrder nextOrder = (DeployOrder) player.next_order();
 
         assertNull(nextOrder);
     }
@@ -44,15 +44,15 @@ public class PlayerTest {
      */
     @Test
     public void testNextOrder() {
-        Orders order1 = new Orders(3, 1, -1, null);
-        Orders order2 = new Orders(2, 2, -1, null);
-        Orders order3 = new Orders(4, 3, -1, null);
+        DeployOrder order1 = new DeployOrder(3, 1, -1, null);
+        DeployOrder order2 = new DeployOrder(2, 2, -1, null);
+        DeployOrder order3 = new DeployOrder(4, 3, -1, null);
 
         player.get_playerOrder().add(order1);
         player.get_playerOrder().add(order2);
         player.get_playerOrder().add(order3);
 
-        Orders nextOrder = player.next_order();
+        DeployOrder nextOrder = (DeployOrder) player.next_order();
 
         assertEquals(order1, nextOrder);
         assertEquals(2, player.get_playerOrder().size());
@@ -80,14 +80,14 @@ public class PlayerTest {
         };
         player.issue_order(commands, null);
 
-        List<Orders> playerOrders = player.get_playerOrder();
+        List<Order> playerOrders = player.get_playerOrder();
         assertEquals(2, playerOrders.size());
 
-        Orders order1 = playerOrders.get(0);
+        DeployOrder order1 = (DeployOrder) playerOrders.get(0);
         assertEquals(3, order1.getNumOfArmies());
         assertEquals(1, order1.getDestCountryID());
 
-        Orders order2 = playerOrders.get(1);
+        DeployOrder order2 = (DeployOrder) playerOrders.get(1);
         assertEquals(2, order2.getNumOfArmies());
         assertEquals(3, order2.getDestCountryID());
     }
