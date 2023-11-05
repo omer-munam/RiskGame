@@ -1,10 +1,14 @@
 package Controller;
 
+import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import Phases.MainMenu;
+import Phases.Phase;
 import Resources.Commands;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -28,6 +32,20 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
+    public GameEngine() {
+        gamePhase = new MainMenu(this);
+    }
+
+    private Phase gamePhase;
+    private String d_currentInput = "";
+
+    public void setPhase(Phase p_phase) {
+        gamePhase = p_phase;
+    }
+
+    public String getCurrentInput() {
+        return d_currentInput;
+    }
     /**
      * Static scanner instance to be used all over the project.
      */
@@ -80,101 +98,48 @@ public class GameEngine {
         try {
 
             while (true) {
-                System.out.println("\n╔════════════════════════════════════════╗");
-                System.out.println("║      Welcome to the WarZone Game!      ║");
-                System.out.println("╚════════════════════════════════════════╝");
-                System.out.print("Enter a command to proceed: \n");
-                System.out.print("Possible commands are: \n");
-                System.out.print("- editmap\n");
-                System.out.print("- loadmap [filename]\n");
-                System.out.print("- showmap all\n");
-                System.out.print("- quit\n");
+                gamePhase.displayOptions();
 
-                d_playersList.clear();
+                d_currentInput = SCANNER.nextLine();
+                String[] l_words = d_currentInput.split("\\s+");
 
-                String l_userInput = SCANNER.nextLine();
-                String[] l_words = l_userInput.split("\\s+");
+                if (d_currentInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
+                    gamePhase.loadMap();
+                } else if (d_currentInput.toLowerCase().contains("gameplayer")) {
+                    gamePhase.setPlayers();
+                } else if (d_currentInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND)) {
+                    gamePhase.assignCountries();
 
-                if (l_userInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
-                    if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map")) {
-                        ArrayList<String> l_listOfMaps = getAllMapsList();
-                        if (l_listOfMaps.contains(l_words[1])) {
-                            boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_currentMap);
-                            if (!l_isAbleToReadMap) {
-                                System.out.print("\n Unable to read " + l_words[1] + "!\n");
-                                continue;
-                            }
-                            boolean l_isValidMap = d_currentMap.validateMap();
-                            if (!l_isValidMap) {
-                                System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
-                                continue;
-                            }
-                            System.out.print(l_words[1] + " loaded successfully!\n");
-                        } else {
-                            System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
-                            continue;
-                        }
+                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND)) {
+                    gamePhase.showMap();
+                } else if (d_currentInput.equalsIgnoreCase("go back")) {
+                    gamePhase.next();
+                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND)) {
+                    gamePhase.showAllMaps();
 
-                        while (true) {
-                            System.out.print("\nEnter a command to proceed:\nPossible commands are:\n");
-                            System.out.print("- gameplayer -add [playername]\n");
-                            System.out.print("- gameplayer -remove [playername]\n");
-                            System.out.print("- assigncountries\n");
-                            System.out.print("- showmap\n");
-                            System.out.print("- go back\n");
-                            l_userInput = SCANNER.nextLine();
-                            l_words = l_userInput.split("\\s+");
-
-                            if (l_userInput.toLowerCase().contains("gameplayer")) {
-                                if (l_userInput.toLowerCase().startsWith(Commands.PLAYER_EDIT_COMMAND) && l_words.length >= 3) {
-                                    for (int l_i = 1; l_i < l_words.length; l_i++) {
-                                        if (l_words[l_i].equals("-add")) {
-                                            l_i++;
-                                            if (l_i < l_words.length) {
-                                                addPlayer(l_words[l_i]);
-                                            } else {
-                                                System.out.println("Reached end of command while parsing");
-                                            }
-                                        }
-                                        if (l_words[l_i].equals("-remove")) {
-                                            l_i++;
-                                            if (l_i < l_words.length) {
-                                                removePlayer(l_words[l_i]);
-                                            } else {
-                                                System.out.println("Reached end of command while parsing");
-
-                                            }
-                                        }
-                                    }
-                                } else
-                                    System.out.print("Invalid Command! Correct syntax: gameplayer -add [playername] -remove [playername]\n");
-                            } else if (l_userInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND)) {
-                                if (assignCountries(false))
-                                    break;
-                            } else if (l_userInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND)) {
-                                d_currentMap.showMap();
-                            } else if (l_userInput.equalsIgnoreCase("go back")) {
-                                break;
-                            } else
-                                System.out.print("Invalid Command. Try again with the correct command syntax!\n");
-                        }
-                    } else
-                        System.out.print("Invalid Command! Correct syntax: loadmap [filename]\n");
-                } else if (l_userInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND)) {
-                    System.out.println("\nHere is the list of all the available maps:");
-                    MapEditor.showAllMaps();
-                } else if (l_words.length == 1 && l_words[0].equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
-                    MapEditor editor = new MapEditor();
-                    editor.editMapEntry();
-                } else if (l_userInput.equalsIgnoreCase("quit")) {
-                    break;
+                } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
+                    gamePhase.next();
+                } else if (d_currentInput.toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
+                    gamePhase.loadMap();
+                } else if (d_currentInput.toLowerCase().contains("editcontinent")) {
+                    gamePhase.editContinent();
+                } else if (d_currentInput.toLowerCase().contains("editcountry")) {
+                    gamePhase.editCountry();
+                } else if (d_currentInput.toLowerCase().contains("editneighbor")) {
+                    gamePhase.editNeighbours();
+                } else if (d_currentInput.toLowerCase().contains("validatemap")) {
+                    gamePhase.validateMap();
+                } else if (d_currentInput.toLowerCase().contains("savemap")) {
+                    gamePhase.saveMap();
+                } else if (d_currentInput.equalsIgnoreCase("quit")) {
+                    gamePhase.next();
                 } else {
                     System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
             }
 
-        } catch (Exception e) {
-            System.out.println("Something went wrong!\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -216,8 +181,7 @@ public class GameEngine {
         System.out.println("Assigned " + l_NumOfCountries + " Countries to players.");
         if (p_test)
             return false;
-        MainGameLoop l_gameLoop = new MainGameLoop(d_currentMap, d_playersList);
-        l_gameLoop.run_game_loop();
+
         return true;
     }
 
@@ -268,7 +232,7 @@ public class GameEngine {
      * @return An ArrayList containing the names of map files in the directory.
      * @see Commands#MAPS_DIRECTORY_PATH
      */
-    private ArrayList<String> getAllMapsList() {
+    public ArrayList<String> getAllMapsList() {
         // Create a File object for the directory
         File l_directory = new File(Commands.MAPS_DIRECTORY_PATH);
 
@@ -293,4 +257,44 @@ public class GameEngine {
 
         return l_maplist;
     }
+
+    /**
+     * This method is used to calculate how many reinforcements are to be assigned to the given player based on the continents they hold.
+     *
+     * @param p_player The player for which we need to get number of reinforcements.
+     * @return NumberOfReinforcements
+     */
+    public int getNumOfReinforcements(Player p_player) {
+        int l_baseReinforcements = 5;
+        d_currentMap.get_countries();
+        p_player.get_playerCountries();
+        HashMap<Integer, ArrayList<Integer>> l_continent_countries = new HashMap<>();
+        for (Country l_c : d_currentMap.get_countries().values()) {
+            l_continent_countries.putIfAbsent(l_c.getContinentID(), new ArrayList<Integer>());
+            l_continent_countries.get(l_c.getContinentID()).add(l_c.get_countryID());
+        }
+
+
+        HashSet<Integer> l_full_continents = new HashSet<>();
+        ArrayList<Integer> l_player_country_ids = new ArrayList<>();
+        for (Country l_country : p_player.get_playerCountries()) {
+            l_player_country_ids.add(l_country.get_countryID());
+        }
+
+        for (ArrayList<Integer> l_c : l_continent_countries.values()) {
+            for (int l_i : l_c) {
+                if (l_player_country_ids.contains(l_i)) {
+                    l_full_continents.add(d_currentMap.get_countries().get(l_i).getContinentID());
+                } else {
+                    l_full_continents.remove(d_currentMap.get_countries().get(l_i).getContinentID());
+                    break;
+                }
+            }
+        }
+        for (int l_i : l_full_continents) {
+            l_baseReinforcements += d_currentMap.get_continents().get(l_i).get_armyBonus();
+        }
+        return l_baseReinforcements;
+    }
+
 }

@@ -11,8 +11,7 @@ import java.util.Collection;
  * @author shezin-saleem
  * @version 1.0
  */
-
-public class Orders {
+public class DeployOrder implements Order {
 
     /**
      * The card that this order uses.
@@ -39,14 +38,15 @@ public class Orders {
      * @param p_sourcecountryID   ID of the country on which to deploy the specified number of armies.
      * @param p_card   Card that this order will use.
      */
-    public Orders(int p_numOfArmies, int p_destcountryID, int p_sourcecountryID, Cards p_card) {
+    public DeployOrder(int p_numOfArmies, int p_countryID) {
+        this.d_destCountryID = p_countryID;
         this.d_destCountryID = p_destcountryID;
         this.d_sourceCountryID = p_sourcecountryID;
         this.d_numOfArmies = p_numOfArmies;
         this.d_orderCard = p_card;
     }
 
-    public Orders(Cards p_card, int p_destcountryID) {
+    public DeployOrder(Cards p_card, int p_destcountryID) {
         this.d_orderCard = p_card;
         this.d_destCountryID = p_destcountryID;
     }
@@ -111,6 +111,7 @@ public class Orders {
      *
      * @param p_warmap Details of values inside List Country
      */
+    @Override
     public void execute(WarMap p_warmap) {
         System.out.println("\n_________________________________________");
         switch (d_orderCard){
