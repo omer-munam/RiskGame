@@ -99,7 +99,7 @@ public class Startup extends Play {
                 System.out.println("╔════════════════════════════════════════╗");
                 System.out.println("║      Game Starts... Get Ready...       ║");
                 System.out.println("╚════════════════════════════════════════╝");
-                d_ge.setPhase(new AssignReinforcements(d_ge));
+                d_ge.setPhase(new IssueOrders(d_ge));
                 System.out.println("Assigning Reinforcements....");
                 System.out.println("_________________________________________");
                 for (Player player : d_ge.get_PlayersList()) {

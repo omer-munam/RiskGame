@@ -81,8 +81,10 @@ public class OrderExecution extends Play {
         System.out.println("\n_________________________________________");
         System.out.println("Taking orders from each player....");
         System.out.println("_________________________________________");
-        System.out.println("Please issue deploy orders for Player " + d_ge.getCurrentPlayer().get_playerName());
+        System.out.println("Please issue commands for Player " + d_ge.getCurrentPlayer().get_playerName());
         System.out.println("Remaining reinforcements: " + d_ge.getCurrentPlayer().get_numOfReinforcements());
-        d_ge.setPhase(new AssignReinforcements(d_ge));
+        d_ge.get_FinishedPlayers().clear();
+        d_ge.setCurrentPlayer(d_ge.get_PlayersList().get(0));
+        d_ge.setPhase(new IssueOrders(d_ge));
     }
 }
