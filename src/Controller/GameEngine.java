@@ -172,6 +172,7 @@ public class GameEngine {
                     l_CountryIndex = l_RandomIndexCountry.nextInt(l_NumOfCountries) + 1;
                     if (!l_CountryAssigned.get(l_CountryIndex)) {
                         player.get_playerCountries().add(d_currentMap.get_countries().get(l_CountryIndex));
+                        d_currentMap.get_countries().get(l_CountryIndex).setD_ownerPlayer(player);
                         l_CountryAssigned.put(l_CountryIndex, true);
                         break;
                     }
