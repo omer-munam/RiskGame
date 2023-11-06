@@ -163,6 +163,7 @@ public class Player {
      */
     public void issue_order(String[] commands, WarMap d_map, List<Player> p_list) {
         deployOrder(commands);
+        d_diplomacy_list.clear();
         while (true){
             System.out.println("_____________________________________________");
             System.out.println("Please provide a command to execute or type execute to execute the given commands:");
@@ -303,7 +304,7 @@ public class Player {
                 return;
             }
 
-        BombOrder order = new BombOrder(destCountryID);
+        BombOrder order = new BombOrder(destCountryID, this);
         d_playerOrders.add(order);
         d_playerCards.remove(Cards.Bomb);
         System.out.println("Bomb order issued successfully.");
