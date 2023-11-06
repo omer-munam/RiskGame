@@ -197,84 +197,87 @@ public class Player {
                     bomb_issue_order(commandTokens, d_map);
                     break;
                 case Commands.BLOCKADE_ORDER:
-                    //TODO: Blockade order handling after checking if player does holds blockade card
-                    boolean hasBlockadeCard = false;
-                    for (Cards card : d_playerCards){
-                        if (card.toString().equals("Blockade")){
-                            hasBlockadeCard = true;
-                            break;
-                        }
-                    }
-                    if (hasBlockadeCard) {
-                        int destCountryID;
-                        destCountryID = Integer.parseInt(commandTokens[1]);
-
-                        boolean destCountryIDExists = false;
-                        for (Country country : d_playerCountries)
-                            if (country.get_countryID() == destCountryID) {
-                                destCountryIDExists = true;
-                                break;
-                            }
-                        if (!destCountryIDExists) {
-                            System.out.println("The given CountryID is not under your control.");
-                            continue;
-                        }
-
-                        BlockadeOrder order = new BlockadeOrder(destCountryID, this);
-                        d_playerOrders.add(order);
-                        d_playerCards.remove(Cards.Blockade);
-                        System.out.println("Blockade order executed successfully.");
-
-                    } else {
-                        System.out.println("Player do not have Blockade card");
-                    }
+                    blockade_issue_order(commandTokens, d_map);
                     break;
                 case Commands.AIRLIFT_ORDER:
                     //TODO: Airlift order handling after checking if player does holds airlift card
                     break;
                 case Commands.DIPLOMACY_ORDER:
-                    //TODO: Diplomacy order handling after checking if player does holds diplomacy card
-                    boolean hasDiplomacyCard = false;
-                    for (Cards card : d_playerCards){
-                        if (card.toString().equals("Diplomacy")){
-                            hasDiplomacyCard = true;
-                            break;
-                        }
-                    }
-                    if(hasDiplomacyCard){
-                        //check if playerID exists in playerList
-                        //Do diplomacy logic
-                        String targetPlayerName;
-                        targetPlayerName = commandTokens[1];
-
-                        boolean targetPlayerNameExists = false;
-
-                        for (Player player : p_list)
-                            if (Objects.equals(player.get_playerName(), targetPlayerName)) {
-                                targetPlayerNameExists = true;
-                                break;
-                            }
-                        if (!targetPlayerNameExists) {
-                            System.out.println("The given Player name doesn't exists.");
-                            continue;
-                        }
-
-                        d_diplomacy_list.add(targetPlayerName);
-
-                        System.out.println("Diplomacy order executed successfully.");
-
-                    } else {
-                        System.out.println("Player do not have Diplomacy card");
-
-                    }
+                    diplomacy_issue_order(commandTokens, d_map, p_list);
                     break;
-
                 case Commands.EXECUTE:
                     return;
                 default:
                     System.out.println("Invalid command given... Please try again...");
             }
         }
+    }
+
+    private void diplomacy_issue_order(String[] commandTokens, WarMap d_map, List<Player> p_list){
+        boolean hasDiplomacyCard = false;
+        for (Cards card : d_playerCards){
+            if (card.toString().equals("Diplomacy")){
+                hasDiplomacyCard = true;
+                break;
+            }
+        }
+        if(hasDiplomacyCard){
+            //check if playerID exists in playerList
+            //Do diplomacy logic
+            String targetPlayerName;
+            targetPlayerName = commandTokens[1];
+
+            boolean targetPlayerNameExists = false;
+
+            for (Player player : p_list)
+                if (Objects.equals(player.get_playerName(), targetPlayerName)) {
+                    targetPlayerNameExists = true;
+                    break;
+                }
+            if (!targetPlayerNameExists) {
+                System.out.println("The given Player name doesn't exists.");
+            }
+            else {
+                d_diplomacy_list.add(targetPlayerName);
+
+                System.out.println("Diplomacy order executed successfully.");
+            }
+        } else {
+            System.out.println("Player do not have Diplomacy card");
+
+        }
+    }
+    private void blockade_issue_order(String[] commandTokens, WarMap d_map){
+        boolean hasBlockadeCard = false;
+        for (Cards card : d_playerCards){
+            if (card.toString().equals("Blockade")){
+                hasBlockadeCard = true;
+                break;
+            }
+        }
+        if (hasBlockadeCard) {
+            int destCountryID;
+            destCountryID = Integer.parseInt(commandTokens[1]);
+
+            boolean destCountryIDExists = false;
+            for (Country country : d_playerCountries)
+                if (country.get_countryID() == destCountryID) {
+                    destCountryIDExists = true;
+                    break;
+                }
+            if (!destCountryIDExists) {
+                System.out.println("The given CountryID is not under your control.");
+            }
+            else {
+                BlockadeOrder order = new BlockadeOrder(destCountryID, this);
+                d_playerOrders.add(order);
+                d_playerCards.remove(Cards.Blockade);
+                System.out.println("Blockade order executed successfully.");
+            }
+        } else {
+            System.out.println("Player do not have Blockade card");
+        }
+
     }
 
     private void bomb_issue_order(String[] commandTokens, WarMap d_map) {
