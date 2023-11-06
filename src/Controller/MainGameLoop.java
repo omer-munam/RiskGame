@@ -73,7 +73,7 @@ public class MainGameLoop {
         System.out.println("Taking orders from each player....");
         System.out.println("_________________________________________");
         for (Player player : d_playerList) {
-            player.issue_order(null, d_map);
+            player.issue_order(null, d_map, d_playerList);
             System.out.println("_________________________________________");
         }
 

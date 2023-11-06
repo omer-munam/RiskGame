@@ -13,6 +13,7 @@ public class Country {
      * Stores the neighbouring countries of a country.
      */
     private final HashMap<Integer, Country> d_neighbouringCountries;
+    private Player d_ownerPlayer;
     /**
      * Stores the country ID of a country.
      */
@@ -163,4 +164,11 @@ public class Country {
     }
 
 
+    public Player getD_ownerPlayer() {
+        return d_ownerPlayer;
+    }
+
+    public void setD_ownerPlayer(Player d_ownerPlayer) {
+        this.d_ownerPlayer = d_ownerPlayer;
+    }
 }
