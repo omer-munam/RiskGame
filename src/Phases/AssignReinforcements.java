@@ -21,7 +21,7 @@ public class AssignReinforcements extends OrderPhase {
         System.out.println("Taking orders from each player....");
         System.out.println("_________________________________________");
         for (Player player : d_ge.get_PlayersList()) {
-            player.issue_order(null, d_ge.get_currentMap());
+            player.issue_order(null, d_ge.get_currentMap(), d_ge.get_PlayersList());
             System.out.println("_________________________________________");
         }
         for (Player player : d_ge.get_PlayersList()) {
