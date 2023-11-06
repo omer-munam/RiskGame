@@ -232,7 +232,7 @@ public class Player {
     }
 
     private void bomb_issue_order(String[] commandTokens, WarMap d_map) {
-        boolean hasBombCard = d_playerCards.contains(Cards.Bomb);
+        boolean hasBombCard = d_playerCards.remove(Cards.Bomb);
         if (!hasBombCard){
             System.out.println("Player does not have Bomb card");
             return;
@@ -260,6 +260,7 @@ public class Player {
 
         BombOrder order = new BombOrder(destCountryID);
         d_playerOrders.add(order);
+        d_playerCards.remove(Cards.Bomb);
         System.out.println("Bomb order issued successfully.");
     }
 
