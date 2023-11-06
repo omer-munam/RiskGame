@@ -268,7 +268,7 @@ public class Player {
         while (d_numOfReinforcements != 0) {
             int countryID;
             int numOfArmies;
-            System.out.println("Please issue an order for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
+            System.out.println("Please assign reinforcements for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
             System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
             String command = SCANNER == null ? commands[iterations++] : SCANNER.nextLine();
             String[] commandTokens = command.split(" ");

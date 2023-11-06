@@ -94,6 +94,11 @@ public class MainMenu extends Phase {
     }
 
     @Override
+    public void deploy() {
+        printInvalidCommandMessage();
+    }
+
+    @Override
     public void attack() {
         printInvalidCommandMessage();
     }

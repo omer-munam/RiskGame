@@ -32,6 +32,7 @@ public abstract class Phase {
 
     abstract public void assignCountries();
 
+    abstract public void deploy();
     abstract public void attack();
 
     abstract public void reinforce();
