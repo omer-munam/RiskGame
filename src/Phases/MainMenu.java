@@ -2,6 +2,7 @@ package Phases;
 
 import Controller.GameEngine;
 import Controller.MapEditor;
+import Models.WarMap;
 import Resources.Commands;
 
 import java.io.IOException;
@@ -33,6 +34,8 @@ public class MainMenu extends Phase {
         String[] l_words = d_ge.getCurrentInput().split("\\s+");
         if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map")) {
             ArrayList<String> l_listOfMaps = d_ge.getAllMapsList();
+            d_ge.set_currentMap(null);
+            d_ge.set_currentMap(new WarMap());
             if (l_listOfMaps.contains(l_words[1])) {
                 boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_ge.get_currentMap());
                 if (!l_isAbleToReadMap) {
