@@ -1,7 +1,7 @@
 package Controller;
 
 import Models.Country;
-import Models.Order;
+import Models.Orders.Order;
 import Models.Player;
 import Models.WarMap;
 
@@ -73,7 +73,7 @@ public class MainGameLoop {
         System.out.println("Taking orders from each player....");
         System.out.println("_________________________________________");
         for (Player player : d_playerList) {
-            player.issue_order(null);
+            player.issue_order(null, d_map);
             System.out.println("_________________________________________");
         }
 

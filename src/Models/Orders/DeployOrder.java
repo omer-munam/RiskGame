@@ -1,7 +1,17 @@
-package Models;
+package Models.Orders;
+
+import Models.Country;
+import Models.WarMap;
 
 import java.util.Collection;
 
+/**
+ * This class is used to implement the data and logic of how to execute orders given by a player.
+ *
+ * @author omer-munam
+ * @author shezin-saleem
+ * @version 1.0
+ */
 public class DeployOrder implements Order {
     /**
      * The Number of Armies that this order has to apply.
@@ -16,13 +26,12 @@ public class DeployOrder implements Order {
      * This is a fully parametrized constructor for the Models.Orders class.
      *
      * @param p_numOfArmies Number of Armies to deploy in this order.
-     * @param p_countryID   ID of the country on which to deploy the specified number of armies.
+     * @param p_destcountryID   ID of the country on which to deploy the specified number of armies.
      */
-    public DeployOrder(int p_numOfArmies, int p_countryID) {
-        this.d_destCountryID = p_countryID;
+    public DeployOrder(int p_numOfArmies, int p_destcountryID) {
+        this.d_destCountryID = p_destcountryID;
         this.d_numOfArmies = p_numOfArmies;
     }
-
     /**
      * @return the number of armies to be used in the order
      */
@@ -40,14 +49,14 @@ public class DeployOrder implements Order {
     /**
      * @return the country ID to be used in the order
      */
-    public int getCountryID() {
+    public int getDestCountryID() {
         return d_destCountryID;
     }
 
     /**
      * @param p_newCountry the country ID to be used in the order.
      */
-    public void setCountryID(int p_newCountry) {
+    public void setDestCountryID(int p_newCountry) {
         this.d_destCountryID = p_newCountry;
     }
 

@@ -23,4 +23,10 @@ public class Commands {
     public static final String DEPLOY_COMMAND = "deploy";
     public static final String DEPLOY_COMMAND_SYNTAX = "deploy <countryID> <num>";
     public static final String MAPS_DIRECTORY_PATH = "src/Resources/Maps";
+    public static final String ADVANCE_ORDER = "advance";
+    public static final String BOMB_ORDER = "bomb";
+    public static final String BLOCKADE_ORDER = "blockade";
+    public static final String AIRLIFT_ORDER = "airlift";
+    public static final String DIPLOMACY_ORDER = "diplomacy";
+    public static final String EXECUTE = "execute";
 }

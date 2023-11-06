@@ -1,10 +1,8 @@
 package Phases;
 
 import Controller.GameEngine;
-import Models.Order;
+import Models.Orders.Order;
 import Models.Player;
-
-import java.io.IOException;
 
 public class AssignReinforcements extends OrderPhase {
     public AssignReinforcements(GameEngine p_ge) {
@@ -23,7 +21,7 @@ public class AssignReinforcements extends OrderPhase {
         System.out.println("Taking orders from each player....");
         System.out.println("_________________________________________");
         for (Player player : d_ge.get_PlayersList()) {
-            player.issue_order(null);
+            player.issue_order(null, d_ge.get_currentMap());
             System.out.println("_________________________________________");
         }
         for (Player player : d_ge.get_PlayersList()) {
