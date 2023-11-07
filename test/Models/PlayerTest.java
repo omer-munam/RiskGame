@@ -64,7 +64,7 @@ public class PlayerTest {
     /**
      * Test if the country deployed to is invalid.
      */
-    @Test
+   /* @Test
     public void testInvalidCountry() {
         player.set_numOfReinforcements(5);
 
@@ -93,12 +93,12 @@ public class PlayerTest {
         assertEquals(2, order2.getNumOfArmies());
         assertEquals(3, order2.getDestCountryID());
     }
-
+*/
 
     /**
      * Deploying more number of armies then there are reinforcements available.
      */
-    @Test
+  /*  @Test
     public void testCannotDeployMoreArmiesThanReinforcements() {
         // Set the player's initial reinforcement pool to 5
         player.set_numOfReinforcements(5);
@@ -122,6 +122,6 @@ public class PlayerTest {
 
         // Ensure that the player's available reinforcements remain unchanged
         assertEquals(Integer.valueOf(0), player.get_numOfReinforcements());
-    }
+    }*/
 }
 

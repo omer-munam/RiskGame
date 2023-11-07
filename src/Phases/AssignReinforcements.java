@@ -85,6 +85,11 @@ public class AssignReinforcements extends OrderPhase {
 
     @Override
     public void next() {
-        d_ge.setPhase(new IssueOrders(d_ge));
+        if (d_ge.getCurrentPlayer().equals(d_ge.get_PlayersList().get(d_ge.get_PlayersList().size() - 1))) {
+            d_ge.nextPlayer();
+            d_ge.setPhase(new IssueOrders(d_ge));
+        } else {
+            d_ge.nextPlayer();
+        }
     }
 }

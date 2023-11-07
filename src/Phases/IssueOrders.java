@@ -43,7 +43,7 @@ public class IssueOrders extends OrderPhase {
             } else {
                 d_ge.nextPlayer();
 
-                d_ge.setPhase(new AssignReinforcements(d_ge));
+                d_ge.setPhase(new IssueOrders(d_ge));
             }
         }
     }
