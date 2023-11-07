@@ -63,7 +63,7 @@ public class AdvanceOrder implements Order {
             }
         }
     }
-
+;
     @Override
     public String toString() {
         return "Advance order: " + d_player.get_playerName() + " is advancing " +
