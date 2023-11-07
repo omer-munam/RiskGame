@@ -1,9 +1,6 @@
 package Models;
 
-import Models.Orders.BlockadeOrder;
-import Models.Orders.BombOrder;
-import Models.Orders.DeployOrder;
-import Models.Orders.Order;
+import Models.Orders.*;
 import Resources.Cards;
 import Resources.Commands;
 
@@ -172,26 +169,55 @@ public class Player {
             switch (commandTokens[0]){
                 //TODO: Advance Order handling
                 case Commands.ADVANCE_ORDER:
-                    if (commandTokens.length < 4) {
-                        System.out.println("Invalid ADVANCE order. Correct syntax: advance countryfrom countryto numarmies");
+                    // Check if the player has the Advance card.
+                    boolean hasAdvanceCard = d_playerCards.contains(Cards.Advance);
+                    if (!hasAdvanceCard) {
+                        System.out.println("You don't have the Advance card to issue an Advance order.");
                         break;
                     }
 
-                    String countryFromName = commandTokens[1];
-                    String countryToName = commandTokens[2];
-                    int numArmiesToAdvance;
+                    // Check if the command contains the correct number of tokens.
+                    if (commandTokens.length != 5) {
+                        System.out.println("Invalid advance order format. Syntax: advance countrynamefrom countynameto numarmies");
+                        break;
+                    }
 
+                    // Parse the source country name and target country name.
+                    String sourceCountryName = commandTokens[1];
+                    String targetCountryName = commandTokens[2];
+
+                    // Parse the number of armies to advance.
+                    int numArmies;
                     try {
-                        numArmiesToAdvance = Integer.parseInt(commandTokens[3]);
+                        numArmies = Integer.parseInt(commandTokens[4]);
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid number of armies specified.");
                         break;
                     }
-                    // Find the source and destination countries
-                    // Check if the player owns the source country
-                    // Check if the number of armies to advance is valid
-                    // Perform the advance operation
+
+                    // Find the source and target countries.
+                    Country sourceCountry = null;
+                    Country targetCountry = null;
+                    for (Country country : d_playerCountries) {
+                        if (country.get_countryName().equalsIgnoreCase(sourceCountryName)) {
+                            sourceCountry = country;
+                        }
+                        if (country.get_countryName().equalsIgnoreCase(targetCountryName)) {
+                            targetCountry = country;
+                        }
+                    }
+
+                    // Check if the source and target countries are valid and under the player's control.
+                    if (sourceCountry == null || targetCountry == null) {
+                        System.out.println("Source or target country not found or not under your control.");
+                        break;
+                    }
+
+                    // Create an AdvanceOrder and add it to the player's list of orders.
+                    AdvanceOrder advanceOrder = new AdvanceOrder(this,sourceCountry, targetCountry, numArmies);
+                    d_playerOrders.add(advanceOrder);
                     break;
+
 
                 case Commands.BOMB_ORDER:
                     bomb_issue_order(commandTokens, d_map);
