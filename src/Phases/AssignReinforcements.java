@@ -90,7 +90,7 @@ public class AssignReinforcements extends OrderPhase {
             d_ge.setPhase(new IssueOrders(d_ge));
         } else {
             d_ge.nextPlayer();
-            //QUICK TEST
+
         }
     }
 }
