@@ -32,6 +32,7 @@ public class AdvanceOrder implements Order {
     /**
      * Executes the Advance Order.
      * Moves the specified number of armies from the source country to the target country.
+     * If the target territory belongs to another player, an attack happens between the two territories.
      */
     @Override
     public void execute(WarMap warMap) {
@@ -41,9 +42,25 @@ public class AdvanceOrder implements Order {
                 d_sourceCountry.get_numOfArmies() >= d_numArmies &&
                 d_sourceCountry.getNeighbouringCountries().containsKey(d_targetCountry.get_countryID())) {
 
-            // Move armies from the source country to the target country.
-            d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
-            d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
+            if (d_targetCountry.getD_ownerPlayer() == d_player) {
+                // The target territory belongs to the current player; move the armies to the target territory.
+                d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
+                d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
+            } else {
+                // The target territory belongs to another player; simulate an attack.
+                int defenderArmies = d_targetCountry.get_numOfArmies();
+                // Implement your attack logic here. You can use dice rolls, a calculation based on armies, etc.
+                // For this example, we'll assume the attacker always wins and takes over the target territory.
+                int attackerArmies = d_numArmies;
+                if (attackerArmies > defenderArmies) {
+                    d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
+                    d_targetCountry.set_numOfArmies(attackerArmies - defenderArmies);
+                    d_targetCountry.setD_ownerPlayer(d_player);
+                } else {
+                    // The attacker loses, and the target territory remains with its owner.
+                    d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
+                }
+            }
         }
     }
 
