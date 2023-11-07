@@ -85,6 +85,6 @@ public class OrderExecution extends Play {
         System.out.println("Remaining reinforcements: " + d_ge.getCurrentPlayer().get_numOfReinforcements());
         d_ge.get_FinishedPlayers().clear();
         d_ge.setCurrentPlayer(d_ge.get_PlayersList().get(0));
-        d_ge.setPhase(new IssueOrders(d_ge));
+        d_ge.setPhase(new AssignReinforcements(d_ge));
     }
 }
