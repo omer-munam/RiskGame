@@ -43,6 +43,9 @@ public class Player {
      * The name of the player taken by the user.
      */
     private String d_playerName;
+    /**
+     * List of players to be negotiated with.
+     */
     private List<String> d_diplomacy_list;
 
     /**
@@ -93,15 +96,21 @@ public class Player {
         return d_playerContinents;
     }
 
+    /**
+     * @return a list of the players to be negotiated with.
+     */
     public List<String> get_diplomacy_list() {
         return d_diplomacy_list;
     }
 
+    /**
+     * @param d_diplomacy_list a list of the players to be negotiated with.
+     */
     public void set_diplomacy_list(List<String> d_diplomacy_list) {
         this.d_diplomacy_list = d_diplomacy_list;
     }
 
-/**
+    /**
      * @param p_playerCards a list of the player's cards
      */
     public void set_playerCards(List<Cards> p_playerCards) {
@@ -294,6 +303,10 @@ public class Player {
         }
     }
 
+    /**
+     * This method is called for diplomacy orders, checks if the target player name exists.
+     * If true, add the player name to diplomacy list, which will be checked before other order execution.
+     */
     private void diplomacy_issue_order(String[] commandTokens, WarMap d_map, List<Player> p_list){
         boolean hasDiplomacyCard = false;
         for (Cards card : d_playerCards){
@@ -328,6 +341,11 @@ public class Player {
 
         }
     }
+
+    /**
+     * This method is called for blockade orders, check if the destination country exists
+     * If true create a new order and executes in blockadeOrder and finally removes the blockade card from player cards.
+     */
     private void blockade_issue_order(String[] commandTokens, WarMap d_map){
         boolean hasBlockadeCard = false;
         for (Cards card : d_playerCards){
