@@ -84,6 +84,13 @@ public class GameEngine {
         d_gamePhase = p_phase;
     }
 
+    public Phase getPhase() {
+        return d_gamePhase;
+    }
+
+    public void setCurrentInput(String p_input) {
+        d_currentInput = p_input;
+    }
     public String getCurrentInput() {
         return d_currentInput;
     }

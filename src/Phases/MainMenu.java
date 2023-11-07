@@ -54,7 +54,7 @@ public class MainMenu extends Phase {
 
             }
         } else {
-            this.next();
+            System.out.println("Loadmap using the command loadmap [mapname]");
         }
     }
 
