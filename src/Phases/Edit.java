@@ -20,6 +20,9 @@ public abstract class Edit extends Phase {
 
     }
 
+    public void deploy() {
+        printInvalidCommandMessage();
+    }
     public void showAllMaps() {
         printInvalidCommandMessage();
     }

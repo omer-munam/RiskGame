@@ -2,6 +2,7 @@ package Phases;
 
 import Controller.GameEngine;
 import Controller.MapEditor;
+import Models.Player;
 import Resources.Commands;
 
 public class Startup extends Play {
@@ -59,10 +60,13 @@ public class Startup extends Play {
     @Override
     public void assignCountries() {
         if (d_ge.assignCountries(false)) ;
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║      Game Starts... Get Ready...       ║");
-        System.out.println("╚════════════════════════════════════════╝");
+
         this.next();
+    }
+
+    @Override
+    public void deploy() {
+        printInvalidCommandMessage();
     }
 
     @Override
@@ -91,7 +95,21 @@ public class Startup extends Play {
             d_ge.setPhase(new MainMenu(d_ge));
         }
         if (d_ge.getCurrentInput().equalsIgnoreCase("assigncountries")) {
-            d_ge.setPhase(new AssignReinforcements(d_ge));
+            if (d_ge.get_PlayersList().size() >= 2) {
+                System.out.println("╔════════════════════════════════════════╗");
+                System.out.println("║      Game Starts... Get Ready...       ║");
+                System.out.println("╚════════════════════════════════════════╝");
+                d_ge.setPhase(new IssueOrders(d_ge));
+                System.out.println("Assigning Reinforcements....");
+                System.out.println("_________________________________________");
+                for (Player player : d_ge.get_PlayersList()) {
+                    player.set_numOfReinforcements(d_ge.getNumOfReinforcements(player));
+                    System.out.println("Assigned `" + player.get_numOfReinforcements() + "` reinforcements to player: " + player.get_playerName());
+                }
+                System.out.println("\n_________________________________________");
+                System.out.println("Taking orders from each player....");
+                System.out.println("_________________________________________");
+            }
         }
     }
 }
