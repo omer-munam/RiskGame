@@ -115,7 +115,7 @@ public class PlayerTest {
                 "deploy 2 3",
                 "deploy 3 2"
         }; // Deploying 10 armies with only 5 available
-        player.issue_order(invalidDeployCommand, null, null);
+        player.issue_order(invalidDeployCommand, null, null );
 
         // Ensure that only valid orders were added to the player's order list
         assertEquals(2, player.get_playerOrder().size());
