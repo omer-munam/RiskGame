@@ -178,7 +178,7 @@ public class Player {
             switch (commandTokens[0]){
                 //TODO: Advance Order handling
                 case Commands.ADVANCE_ORDER:
-                    advance_issue_order(commandTokens);
+                    advance_issue_order(commandTokens, d_map);
                     break;
 
                 case Commands.BOMB_ORDER:
@@ -371,7 +371,7 @@ public class Player {
         }
         System.out.println("Deployed All Reinforcements Successfully.");
     }
-    private void advance_issue_order(String[] commandTokens) {
+    private void advance_issue_order(String[] commandTokens, WarMap d_map) {
         // Check if the player has the Advance card.
         boolean hasAdvanceCard = d_playerCards.contains(Cards.Advance);
         if (!hasAdvanceCard) {
@@ -405,14 +405,16 @@ public class Player {
             if (country.get_countryName().equalsIgnoreCase(sourceCountryName)) {
                 sourceCountry = country;
             }
+        }
+        for (Country country : d_map.get_countries().values()) {
             if (country.get_countryName().equalsIgnoreCase(targetCountryName)) {
                 targetCountry = country;
             }
         }
 
-        // Check if the source and target countries are valid and under the player's control.
+        // Check if the source and target countries are valid.
         if (sourceCountry == null || targetCountry == null) {
-            System.out.println("Source or target country not found or not under your control.");
+            System.out.println("Source or target country not found.");
             return;
         }
 
@@ -420,6 +422,7 @@ public class Player {
         AdvanceOrder advanceOrder = new AdvanceOrder(this, sourceCountry, targetCountry, numArmies);
         d_playerOrders.add(advanceOrder);
     }
+
 
     private void airlift_issue_order(String[] commandTokens) {
         // Check if the player has the Airlift card.
