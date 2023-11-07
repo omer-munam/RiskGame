@@ -225,9 +225,64 @@ public class Player {
                 case Commands.BLOCKADE_ORDER:
                     blockade_issue_order(commandTokens, d_map);
                     break;
+                //TODO: Airlift order handling after checking if player does holds airlift card
                 case Commands.AIRLIFT_ORDER:
-                    //TODO: Airlift order handling after checking if player does holds airlift card
+                    // Check if the player has the Airlift card.
+                    boolean hasAirliftCard = d_playerCards.contains(Cards.Airlift);
+                    if (!hasAirliftCard) {
+                        System.out.println("You don't have the Airlift card to issue an Airlift order.");
+                        break;
+                    }
+
+                    // Check if the command contains the correct number of tokens.
+                    if (commandTokens.length != 4) {
+                        System.out.println("Invalid airlift order format. Syntax: airlift sourcecountryID targetcountryID numarmies");
+                        break;
+                    }
+
+                    // Parse the source country ID and target country ID.
+                    int sourceCountryID;
+                    int targetCountryID;
+                    try {
+                        sourceCountryID = Integer.parseInt(commandTokens[1]);
+                        targetCountryID = Integer.parseInt(commandTokens[2]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid source or target country IDs specified.");
+                        break;
+                    }
+
+                    // Parse the number of armies to airlift.
+                    numArmies = 0;
+                    try {
+                        numArmies = Integer.parseInt(commandTokens[3]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number of armies specified.");
+                        break;
+                    }
+
+                    // Find the source and target countries.
+                    sourceCountry = null;
+                    targetCountry = null;
+                    for (Country country : d_playerCountries) {
+                        if (country.get_countryID() == sourceCountryID) {
+                            sourceCountry = country;
+                        }
+                        if (country.get_countryID() == targetCountryID) {
+                            targetCountry = country;
+                        }
+                    }
+
+                    // Check if the source and target countries are valid and under the player's control.
+                    if (sourceCountry == null || targetCountry == null) {
+                        System.out.println("Source or target country not found or not under your control.");
+                        break;
+                    }
+
+                    // Create an AirliftOrder and add it to the player's list of orders.
+                    AirliftOrder airliftOrder = new AirliftOrder(this,sourceCountry, targetCountry, numArmies);
+                    d_playerOrders.add(airliftOrder);
                     break;
+
                 case Commands.DIPLOMACY_ORDER:
                     diplomacy_issue_order(commandTokens, d_map, p_list);
                     break;
