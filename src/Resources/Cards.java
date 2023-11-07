@@ -13,7 +13,9 @@ public enum Cards {
     Bomb,
     Blockade,
     Airlift,
+    Advance,
     Diplomacy;
+
 
     /**
      * Assign a random card to player. Call this method whenever player acquires new territory.
