@@ -22,7 +22,7 @@ public enum Cards {
      *
      * @param p_player
      */
-    public void assignRandomCardToPlayer(Player p_player) {
+    public static void assignRandomCardToPlayer(Player p_player) {
         Random random = new Random();
         p_player.get_playerCards().add(values()[random.nextInt(values().length)]);
     }

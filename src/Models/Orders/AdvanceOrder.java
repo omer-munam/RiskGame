@@ -3,6 +3,7 @@ package Models.Orders;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import Resources.Cards;
 
 /**
  * This class represents an Advance Order in the game.
@@ -47,6 +48,11 @@ public class AdvanceOrder implements Order {
                 d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
                 d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
             } else {
+                if(d_targetCountry.getD_ownerPlayer().get_diplomacy_list().contains(d_player.get_playerName())){
+                    System.out.println("\n_________________________________________");
+                    System.out.println("Can't attack, since Negotiate found");
+                    return;
+                }
                 // The target territory belongs to another player; simulate an attack.
                 int defenderArmies = d_targetCountry.get_numOfArmies();
                 // Implement your attack logic here. You can use dice rolls, a calculation based on armies, etc.
@@ -55,10 +61,13 @@ public class AdvanceOrder implements Order {
                 if (attackerArmies > defenderArmies) {
                     d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
                     d_targetCountry.set_numOfArmies(attackerArmies - defenderArmies);
+                    d_targetCountry.getD_ownerPlayer().get_playerCountries().remove(d_targetCountry);
                     d_targetCountry.setD_ownerPlayer(d_player);
+                    Cards.assignRandomCardToPlayer(d_player);
                 } else {
                     // The attacker loses, and the target territory remains with its owner.
                     d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
+                    d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() - d_numArmies);
                 }
             }
         }
