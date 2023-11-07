@@ -476,6 +476,7 @@ public class Player {
         // Create an AirliftOrder and add it to the player's list of orders.
         AirliftOrder airliftOrder = new AirliftOrder(this, sourceCountry, targetCountry, numArmies);
         d_playerOrders.add(airliftOrder);
+        d_playerCards.remove(Cards.Airlift);
     }
 
 

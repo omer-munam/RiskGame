@@ -37,12 +37,15 @@ public class AirliftOrder implements Order {
     @Override
     public void execute(WarMap warmap) {
         // Check if the player owns the source country and has the airlift card.
-        if (d_player.get_playerCountries().contains(d_sourceCountry) &&
-                d_player.get_playerCards().contains(Cards.Airlift)) {
+        if (d_sourceCountry.getD_ownerPlayer().get_playerName().equals(d_player.get_playerName()) &&
+                d_targetCountry.getD_ownerPlayer().get_playerName().equals(d_player.get_playerName())) {
 
             // Move armies from the source country to the target country.
             d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
             d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
+        }
+        else {
+            System.out.println("Execution failed as you have lost control of one of the territories..");
         }
     }
 
