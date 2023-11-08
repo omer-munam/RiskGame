@@ -308,12 +308,6 @@ public class Player {
         System.out.println("Bomb order issued successfully.");
     }
     private void advance_issue_order(String[] commandTokens, WarMap d_map) {
-        // Check if the player has the Advance card.
-        boolean hasAdvanceCard = d_playerCards.contains(Cards.Advance);
-        if (!hasAdvanceCard) {
-            System.out.println("You don't have the Advance card to issue an Advance order.");
-            return;
-        }
 
         // Check if the command contains the correct number of tokens.
         if (commandTokens.length != 5) {
