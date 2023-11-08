@@ -19,7 +19,7 @@ public abstract class Edit extends Phase {
         printInvalidCommandMessage();
 
     }
-
+    public void issueOrder() {printInvalidCommandMessage();}
     public void deploy() {
         printInvalidCommandMessage();
     }

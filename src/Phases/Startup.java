@@ -73,21 +73,6 @@ public class Startup extends Play {
     }
 
     @Override
-    public void attack() {
-        printInvalidCommandMessage();
-    }
-
-    @Override
-    public void reinforce() {
-        printInvalidCommandMessage();
-    }
-
-    @Override
-    public void fortify() {
-        printInvalidCommandMessage();
-    }
-
-    @Override
     public void endGame() {
         printInvalidCommandMessage();
     }
