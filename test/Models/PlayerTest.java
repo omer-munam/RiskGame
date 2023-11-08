@@ -322,8 +322,6 @@ public class PlayerTest {
         assertEquals(1, player.get_playerOrder().size());
     }
 
-
-
     @Test
     public void testBombCommandExecution() {
         // Create a test scenario where the player has the Bomb card, and the input is valid.
@@ -494,6 +492,27 @@ public class PlayerTest {
         // Assert that the Airlift card is removed from the player's cards.
         assertFalse(player.get_playerCards().contains(Cards.Airlift));
     }
+
+    @Test
+    public void testAirliftCommandExecutionWithInvalidSourceCountry() {
+        // Create a test scenario where the player has two countries, but the source country is invalid.
+        WarMap map = new WarMap();
+        Country sourceCountry = new Country(1, "SourceCountry", 1);
+        Country targetCountry = new Country(2, "TargetCountry", 1);
+        map.addCountry(sourceCountry);
+        map.addCountry(targetCountry);
+        player.set_playerCountries(Arrays.asList(sourceCountry, targetCountry));
+
+        // Simulate an invalid airlift command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("airlift 3 2 3");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that no AirliftOrder was created and added to the list of orders.
+        assertEquals(0, player.get_playerOrder().size());
+    }
+
 
 
 }
