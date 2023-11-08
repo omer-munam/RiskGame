@@ -1,15 +1,16 @@
 package Models;
-
-
+import java.util.Arrays;
 import Controller.GameEngine;
 import Models.Orders.DeployOrder;
 import Models.Orders.Order;
 import Phases.AssignReinforcements;
+import Resources.Cards;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -157,5 +158,55 @@ public class PlayerTest {
         // Ensure that the player's available reinforcements remain unchanged
         assertEquals(Integer.valueOf(0), player.get_numOfReinforcements());
     }
+
+    @Test
+    public void testBlockadeCommandExecution() {
+        // Create a test scenario where the player has a Blockade card and valid input.
+        player.set_playerCards(Collections.singletonList(Cards.Blockade));
+        WarMap map = new WarMap();
+        map.addCountry(new Country(1, "CountryA", 1));
+        map.addCountry(new Country(2, "CountryB", 1));
+        map.addCountry(new Country(3, "CountryC", 1));
+
+        List<Country> playerCountries = new ArrayList<>();
+        playerCountries.add(new Country(1, "CountryA", 1));
+        player.set_playerCountries(playerCountries);
+
+
+        // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("blockade 1");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert the expected outcome.
+        assertEquals(0, player.get_playerCards().size());
+        assertEquals(0, player.get_playerOrder().size()); // The order should be executed successfully.
+    }
+
+    @Test
+    public void testAdvanceCommandExecution() {
+        // Create a test scenario where the player has valid input and neighboring countries.
+        WarMap map = new WarMap();
+        Country countryA = new Country(1, "CountryA", 1);
+        Country countryB = new Country(2, "CountryB", 1);
+        map.addCountry(countryA);
+        map.addCountry(countryB);
+
+        // Make CountryA and CountryB neighbors.
+        countryA.addNeighbouringCountry(countryB);
+
+        player.set_playerCountries(Arrays.asList(countryA, countryB));
+
+        // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("advance 1 2 3");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert the expected outcome.
+        assertEquals(1, player.get_playerOrder().size());
+    }
+
 }
 
