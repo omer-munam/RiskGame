@@ -3,6 +3,7 @@ package Phases;
 import Controller.GameEngine;
 import Models.Orders.Order;
 import Models.Player;
+import Resources.Cards;
 
 public class OrderExecution extends Play {
     public OrderExecution(GameEngine p_ge) {
@@ -47,7 +48,7 @@ public class OrderExecution extends Play {
 
     @Override
     public void deploy() {
-
+        printInvalidCommandMessage();
     }
 
     @Override
@@ -57,6 +58,7 @@ public class OrderExecution extends Play {
 
     @Override
     public void next() {
+        Cards.assignRandomCardsToPlayers();
         System.out.println("Assigning Reinforcements....");
         System.out.println("_________________________________________");
         for (Player player : d_ge.get_PlayersList()) {

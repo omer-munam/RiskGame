@@ -5,6 +5,7 @@ import Controller.GameEngine;
 public class IssueOrders extends OrderPhase {
     public IssueOrders(GameEngine p_ge) {
         super(p_ge);
+        p_ge.getCurrentPlayer().get_diplomacy_list().clear();
     }
 
     @Override

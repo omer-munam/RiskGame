@@ -25,7 +25,7 @@ public enum Cards {
     /**
      * Call this method whenever player acquires new territory.
      *
-     * @param p_player
+     * @param p_player the player which acquired a territory
      */
     public static void playerAcquiredTerritory(Player p_player) {
         if (!playersAcquiringTerritories.contains(p_player))
@@ -37,8 +37,12 @@ public enum Cards {
      */
     public static void assignRandomCardsToPlayers() {
         for (Player player : playersAcquiringTerritories){
+            System.out.println("______________________________________________");
             Random random = new Random();
-            player.get_playerCards().add(values()[random.nextInt(values().length)]);
+            Cards card = values()[random.nextInt(values().length)];
+            player.get_playerCards().add(card);
+            System.out.println("Player " + player.get_playerName() + " acquired card: " + card);
+            System.out.println("______________________________________________");
         }
     }
 }

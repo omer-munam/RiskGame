@@ -214,12 +214,6 @@ public class GameEngine {
                         System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
 
-//                } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
-//                    d_gamePhase.next();
-//                } else if (d_currentInput.toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
-//                    d_gamePhase.loadMap();
-//                }
-
             }
 
         } catch (IOException e) {
