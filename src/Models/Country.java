@@ -34,7 +34,7 @@ public class Country {
     /**
      * This is the default constructor method of the Models.Country class
      */
-    public Country() {
+    public Country(int i, String destCountry) {
         this(0, "Default Name", 0, new HashMap<Integer, Country>());
     }
 

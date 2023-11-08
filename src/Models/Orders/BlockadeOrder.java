@@ -21,6 +21,14 @@ public class BlockadeOrder implements Order{
         this.d_player = p_player;
     }
     private Player d_player;
+
+    /**
+     * This method is does execution for blockade orders.
+     * Checks if the destination country ID exists, if true triple the numofArmies
+     * Set owner of that country to null
+     * Remove that country from the player owned country list.
+     * Finally, removes the blockade card from player owned card list
+     */
     @Override
     public void execute(WarMap warMap) {
         Collection<Country> l_countryInfo = warMap.get_countries().values();

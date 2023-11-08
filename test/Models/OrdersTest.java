@@ -28,7 +28,7 @@ public class OrdersTest {
     @BeforeEach
     public void setUp() {
         warmap = new WarMap();
-        country = new Country();
+        country = new Country(1, "DestCountry");
         warmap.get_countries().put(country.get_countryID(), country);
 
     }
