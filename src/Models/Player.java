@@ -311,6 +311,14 @@ public class Player {
         d_playerCards.remove(Cards.Bomb);
         System.out.println("Bomb order issued successfully.");
     }
+    /**
+     * This method is called to issue an Advance order. It checks the validity of the command format,
+     * source and target countries, and the number of armies to advance. If all conditions are met,
+     * it creates an AdvanceOrder and adds it to the player's list of orders.
+     *
+     * @param commandTokens An array of command tokens representing the Advance order.
+     *                      Syntax: advance countryIDfrom countryIDto numarmies
+     */
     private void advance_issue_order(String[] commandTokens, WarMap d_map) {
 
         // Check if the command contains the correct number of tokens.
@@ -363,7 +371,6 @@ public class Player {
         AdvanceOrder advanceOrder = new AdvanceOrder(this, sourceCountry, targetCountry, numArmies);
         d_playerOrders.add(advanceOrder);
     }
-
 
     /**
      * This method is called to issue an Airlift order. It checks if the player has the Airlift card,
