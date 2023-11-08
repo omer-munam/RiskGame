@@ -2,8 +2,8 @@ package Models.Orders;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class BlockadeOrderTest {
      * Sets up the test environment before each test case.
      * It initializes the WarMap, player with playername and hashmap of countries
      */
-    @BeforeEach
+    @Before
     public void setUp() {
         warMap = new WarMap();
         player = new Player("Player1");

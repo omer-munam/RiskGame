@@ -1,8 +1,8 @@
 package Models;
 
 import Controller.MapEditor;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class WarMapTest {
      *
      * @throws Exception
      */
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
         l_warmap = new WarMap();
     }

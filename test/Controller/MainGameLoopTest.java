@@ -5,8 +5,8 @@ import Models.Country;
 import Models.Player;
 import Models.WarMap;
 import Phases.MainMenu;
-import org.junit.jupiter.api.BeforeEach;
-
+import org.junit.Before;
+import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MainGameLoopTest {
     private GameEngine d_gameEngine;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         d_gameEngine = GameEngine.getInstance();
         d_gameEngine.setPhase(new MainMenu(d_gameEngine));
@@ -40,7 +40,7 @@ public class MainGameLoopTest {
     /**
      * Test for getting the number of reinforcements
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNumOfReinforcements() {
         WarMap test_war_map = new WarMap();
         //CREATE THE CONTINENTS

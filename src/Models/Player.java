@@ -49,7 +49,7 @@ public class Player {
      * List of players to be negotiated with.
      */
     private List<String> d_diplomacy_list;
-
+    LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
     /**
      * This is the constructor method of the Models.Player class
      *
@@ -462,7 +462,7 @@ public class Player {
         d_playerOrders.add(deployOrder);
         this.set_numOfReinforcements(GameEngine.getInstance().getCurrentPlayer().get_numOfReinforcements() - numOfArmies);
         System.out.println("Deploy order issued successfully.");
-        LogEntryBuffer.getInstance().writeLog("Deployed country with ID " + countryID + " with " + numOfArmies + " armies");
+        d_logentrybuffer.writeLog("Deployed country with ID " + countryID + " with " + numOfArmies + " armies");
     }
 
 

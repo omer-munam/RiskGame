@@ -1,8 +1,8 @@
 package Phases;
 
 import Controller.GameEngine;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ public class PlayPhaseTest {
 
     private GameEngine gameEngine;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         gameEngine.setPhase(new MainMenu(gameEngine));

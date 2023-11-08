@@ -4,8 +4,8 @@ package Controller;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class GameEngineTest {
     /**
      * Sets up a new GameEngine instance before each test.
      */
-    @BeforeEach
+    @Before
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         gameEngine.get_PlayersList().clear();

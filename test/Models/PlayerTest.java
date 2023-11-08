@@ -8,8 +8,8 @@ import Models.Orders.AirliftOrder;
 import Models.Orders.Order;
 import Phases.AssignReinforcements;
 import Resources.Cards;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class PlayerTest {
      */
     private WarMap warMap;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         player = new Player("John Doe");
