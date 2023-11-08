@@ -5,6 +5,8 @@ import Controller.MapEditor;
 import Models.Player;
 import Resources.Commands;
 
+import static java.lang.System.exit;
+
 public class Startup extends Play {
     public Startup(GameEngine p_ge) {
         super(p_ge);
@@ -81,6 +83,10 @@ public class Startup extends Play {
     public void next() {
         if (d_ge.getCurrentInput().equalsIgnoreCase("go back")) {
             d_ge.setPhase(new MainMenu(d_ge));
+        }
+        if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
+            System.out.println("Exiting program");
+            exit(0);
         }
         if (d_ge.getCurrentInput().equalsIgnoreCase("assigncountries")) {
             if (d_ge.get_PlayersList().size() >= 2) {
