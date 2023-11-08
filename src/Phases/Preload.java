@@ -9,6 +9,7 @@ import java.io.IOException;
 public class Preload extends Edit {
     public Preload(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("PRELOAD PHASE");
     }
 
     @Override
@@ -24,6 +25,7 @@ public class Preload extends Edit {
             MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
             if (!d_ge.get_currentMap().get_mapName().equals("Default Name")) {
                 next();
+                d_logentrybuffer.writeLog("editmap "+l_input_string_array[1]+" runned successfully");
             }
         }
     }

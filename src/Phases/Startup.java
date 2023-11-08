@@ -8,6 +8,7 @@ import Resources.Commands;
 public class Startup extends Play {
     public Startup(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("STARTUP PHASE");
     }
 
     @Override
@@ -39,6 +40,7 @@ public class Startup extends Play {
                     l_i++;
                     if (l_i < l_words.length) {
                         d_ge.addPlayer(l_words[l_i]);
+                        d_logentrybuffer.writeLog("gameplayer "+l_words[l_i]+" added successfully");
                     } else {
                         System.out.println("Reached end of command while parsing");
                     }
@@ -47,6 +49,7 @@ public class Startup extends Play {
                     l_i++;
                     if (l_i < l_words.length) {
                         d_ge.removePlayer(l_words[l_i]);
+                        d_logentrybuffer.writeLog("gameplayer "+l_words[l_i]+" removed successfully");
                     } else {
                         System.out.println("Reached end of command while parsing");
 

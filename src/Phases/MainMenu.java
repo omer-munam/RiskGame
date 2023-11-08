@@ -13,6 +13,7 @@ import static java.lang.System.exit;
 public class MainMenu extends Phase {
     public MainMenu(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("MAINMENU PHASE");
     }
 
     @Override
@@ -48,6 +49,7 @@ public class MainMenu extends Phase {
                     return;
                 }
                 System.out.print(l_words[1] + " loaded successfully!\n");
+                d_logentrybuffer.writeLog(l_words[1]+" loaded successfully.");
                 this.next();
             } else {
                 System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
@@ -121,6 +123,7 @@ public class MainMenu extends Phase {
     public void showAllMaps() {
         System.out.println("\nHere is the list of all the available maps:");
         MapEditor.showAllMaps();
+        d_logentrybuffer.writeLog("showmap command runned successfully");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Phases;
 
 import Controller.GameEngine;
+import logging.LogEntryBuffer;
 
 import java.io.IOException;
 
@@ -10,6 +11,7 @@ public abstract class Phase {
     }
 
     GameEngine d_ge;
+    LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
 
     abstract public void displayOptions();
 
