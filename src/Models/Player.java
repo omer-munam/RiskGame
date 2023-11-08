@@ -61,6 +61,7 @@ public class Player {
         this.d_playerCountries = new ArrayList<Country>();
         this.d_playerContinents = new ArrayList<Continent>();
         this.d_diplomacy_list = new ArrayList<>();
+        this.d_playerCards = new ArrayList<>();
     }
 
     /**
