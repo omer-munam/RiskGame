@@ -365,6 +365,14 @@ public class Player {
     }
 
 
+    /**
+     * This method is called to issue an Airlift order. It checks if the player has the Airlift card,
+     * validates the command format, source and target countries, and the number of armies to airlift.
+     * If all conditions are met, it creates an AirliftOrder and adds it to the player's list of orders.
+     *
+     * @param commandTokens An array of command tokens representing the Airlift order.
+     *                      Syntax: airlift sourcecountryID targetcountryID numarmies
+     */
     private void airlift_issue_order(String[] commandTokens) {
         // Check if the player has the Airlift card.
         boolean hasAirliftCard = d_playerCards.contains(Cards.Airlift);
