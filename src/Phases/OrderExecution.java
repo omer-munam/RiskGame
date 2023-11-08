@@ -101,6 +101,7 @@ public class OrderExecution extends Play {
             d_ge.setPhase(new MainMenu(d_ge));
             return;
         }
+        d_logentrybuffer.writeLog("All orders executed successfully");
         this.next();
     }
 
@@ -158,7 +159,7 @@ public class OrderExecution extends Play {
     @Override
     public void next() {
         Cards.assignRandomCardsToPlayers();
-        d_logentrybuffer.writeLog("Assigning reinforcements");
+        d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
         System.out.println("Assigning Reinforcements....");
         System.out.println("_________________________________________");
         for (Player player : d_ge.get_PlayersList()) {
@@ -174,6 +175,7 @@ public class OrderExecution extends Play {
         d_ge.get_FinishedPlayers().clear();
         d_ge.setCurrentPlayer(d_ge.get_PlayersList().get(0));
         d_ge.setPhase(new AssignReinforcements(d_ge));
+        d_logentrybuffer.writeLog("ISSUE ORDERS PHASE");
         Cards.clearPlayerAcquiredTerritory();
 
 
