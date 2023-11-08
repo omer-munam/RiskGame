@@ -1,6 +1,7 @@
 package Models;
 import java.util.Arrays;
 import Controller.GameEngine;
+import Models.Orders.BombOrder;
 import Models.Orders.DeployOrder;
 import Models.Orders.Order;
 import Phases.AssignReinforcements;
@@ -206,6 +207,26 @@ public class PlayerTest {
 
         // Assert the expected outcome.
         assertEquals(1, player.get_playerOrder().size());
+    }
+
+
+    @Test
+    public void testBombCommandExecutionWithoutBombCard() {
+        // Create a test scenario where the player does not have the Bomb card.
+        WarMap map = new WarMap();
+        Country countryA = new Country(1, "CountryA", 1);
+        map.addCountry(countryA);
+
+        player.set_playerCountries(List.of(countryA));
+
+        // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("bomb 1");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that no BombOrder was created and added to the list of orders.
+        assertEquals(0, player.get_playerOrder().size());
     }
 
 }
