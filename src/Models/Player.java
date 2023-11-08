@@ -314,19 +314,25 @@ public class Player {
     private void advance_issue_order(String[] commandTokens, WarMap d_map) {
 
         // Check if the command contains the correct number of tokens.
-        if (commandTokens.length != 5) {
-            System.out.println("Invalid advance order format. Syntax: advance countrynamefrom countynameto numarmies");
+        if (commandTokens.length != 4) {
+            System.out.println("Invalid advance order format. Syntax: advance countryIDfrom countyIDto numarmies");
             return;
         }
 
         // Parse the source country name and target country name.
-        String sourceCountryName = commandTokens[1];
-        String targetCountryName = commandTokens[2];
-
+        int sourceCountryID;
+        int targetCountryID;
+        try {
+            sourceCountryID = Integer.parseInt(commandTokens[1]);
+            targetCountryID = Integer.parseInt(commandTokens[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid source or target country IDs specified.");
+            return;
+        }
         // Parse the number of armies to advance.
         int numArmies;
         try {
-            numArmies = Integer.parseInt(commandTokens[4]);
+            numArmies = Integer.parseInt(commandTokens[3]);
         } catch (NumberFormatException e) {
             System.out.println("Invalid number of armies specified.");
             return;
@@ -336,16 +342,15 @@ public class Player {
         Country sourceCountry = null;
         Country targetCountry = null;
         for (Country country : d_playerCountries) {
-            if (country.get_countryName().equalsIgnoreCase(sourceCountryName)) {
+            if (country.get_countryID() == sourceCountryID) {
                 sourceCountry = country;
             }
         }
-        for (Country country : d_map.get_countries().values()) {
-            if (country.get_countryName().equalsIgnoreCase(targetCountryName)) {
+        for (Country country : sourceCountry.getNeighbouringCountries().values()) {
+            if (country.get_countryID() == targetCountryID) {
                 targetCountry = country;
             }
         }
-
         // Check if the source and target countries are valid.
         if (sourceCountry == null || targetCountry == null) {
             System.out.println("Source or target country not found.");
