@@ -4,6 +4,7 @@ import Controller.GameEngine;
 import Models.Orders.*;
 import Resources.Cards;
 import Resources.Commands;
+import logging.LogEntryBuffer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +174,9 @@ public class Player {
         String command = p_ge.getCurrentInput();
         String[] commandTokens = command.split(" ");
         switch (commandTokens[0]) {
+            case Commands.DEPLOY_COMMAND:
+                deploy_issue_order(commandTokens);
+                break;
             case Commands.ADVANCE_ORDER:
                 advance_issue_order(commandTokens, d_map);
                 break;
@@ -412,6 +416,47 @@ public class Player {
         d_playerCards.remove(Cards.Airlift);
     }
 
+    private void deploy_issue_order(String[] p_commandTokens) {
+
+        if (p_commandTokens.length != 3) {
+            System.out.println("Invalid deploy order format. Syntax: deploy <countryID> <num>");
+            return;
+        }
+        int numOfArmies;
+        int countryID;
+        try {
+            countryID = Integer.parseInt(p_commandTokens[1]);
+            numOfArmies = Integer.parseInt(p_commandTokens[2]);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid CountryID or Number of Reinforcements");
+            return;
+        }
+
+        if (numOfArmies > GameEngine.getInstance().getCurrentPlayer().get_numOfReinforcements()) {
+            System.out.println("Specified number of reinforcements exceed the available.");
+            return;
+        }
+
+        boolean countryExists = false;
+        for (Country country : GameEngine.getInstance().getCurrentPlayer().get_playerCountries()) {
+            if (country.get_countryID() == countryID) {
+                countryExists = true;
+                break;
+            }
+        }
+
+        if (!countryExists) {
+            System.out.println("The given CountryID is not under your control.");
+            return;
+        }
+
+
+        DeployOrder deployOrder = new DeployOrder(numOfArmies, countryID);
+        d_playerOrders.add(deployOrder);
+        this.set_numOfReinforcements(GameEngine.getInstance().getCurrentPlayer().get_numOfReinforcements() - numOfArmies);
+        System.out.println("Deploy order issued successfully.");
+        LogEntryBuffer.getInstance().writeLog("Deployed country with ID " + countryID + " with " + numOfArmies + " armies");
+    }
 
 
     /**

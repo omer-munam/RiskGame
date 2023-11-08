@@ -24,44 +24,8 @@ public class AssignReinforcements extends OrderPhase {
     }
 
     public void deploy() {
-        String[] l_commandTokens = d_ge.getCurrentInput().split(" ");
-        if (l_commandTokens.length != 3) {
-            System.out.println("Invalid deploy order format. Syntax: deploy <countryID> <num>");
-            return;
-        }
-        int numOfArmies;
-        int countryID;
-        try {
-            countryID = Integer.parseInt(l_commandTokens[1]);
-            numOfArmies = Integer.parseInt(l_commandTokens[2]);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid CountryID or Number of Reinforcements");
-            return;
-        }
+        d_ge.getCurrentPlayer().issue_order();
 
-        if (numOfArmies > d_ge.getCurrentPlayer().get_numOfReinforcements()) {
-            System.out.println("Specified number of reinforcements exceed the available.");
-            return;
-        }
-
-        boolean countryExists = false;
-        for (Country country : d_ge.getCurrentPlayer().get_playerCountries()) {
-            if (country.get_countryID() == countryID) {
-                countryExists = true;
-                break;
-            }
-        }
-
-        if (!countryExists) {
-            System.out.println("The given CountryID is not under your control.");
-            return;
-        }
-
-        Order deployOrder = new DeployOrder(numOfArmies, countryID);
-        d_ge.getCurrentPlayer().get_playerOrder().add(deployOrder);
-        d_ge.getCurrentPlayer().set_numOfReinforcements(d_ge.getCurrentPlayer().get_numOfReinforcements() - numOfArmies);
-        System.out.println("Deploy order issued successfully.");
-        d_logentrybuffer.writeLog("Deployed country with ID "+countryID+" with "+numOfArmies+" armies");
         if (d_ge.getCurrentPlayer().get_numOfReinforcements() == 0) {
             System.out.println("_____________________________________________");
             next();
