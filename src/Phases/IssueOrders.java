@@ -2,6 +2,8 @@ package Phases;
 
 import Controller.GameEngine;
 
+import static java.lang.System.exit;
+
 public class IssueOrders extends OrderPhase {
     public IssueOrders(GameEngine p_ge) {
         super(p_ge);
@@ -29,6 +31,10 @@ public class IssueOrders extends OrderPhase {
     }
     @Override
     public void next() {
+        if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
+            System.out.println("Exiting program");
+            exit(0);
+        }
         if (d_ge.getCurrentInput().toLowerCase().contains("execute")) {
             if (d_ge.getCurrentPlayer().equals(d_ge.get_PlayersList().get(d_ge.get_PlayersList().size() - 1))) {
                 d_ge.nextPlayer();
