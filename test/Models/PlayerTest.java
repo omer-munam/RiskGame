@@ -250,7 +250,9 @@ public class PlayerTest {
     @Test
     public void testBlockadeCommandExecution() {
         // Create a test scenario where the player has a Blockade card and valid input.
-        player.set_playerCards(Collections.singletonList(Cards.Blockade));
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Blockade);
+        player.set_playerCards(cards);
         WarMap map = new WarMap();
         map.addCountry(new Country(1, "CountryA", 1));
         map.addCountry(new Country(2, "CountryB", 1));
@@ -269,7 +271,7 @@ public class PlayerTest {
 
         // Assert the expected outcome.
         assertEquals(0, player.get_playerCards().size());
-        assertEquals(0, player.get_playerOrder().size()); // The order should be executed successfully.
+        assertEquals(1, player.get_playerOrder().size()); // The order should be issued successfully.
     }
 
     @Test
@@ -300,14 +302,16 @@ public class PlayerTest {
     @Test
     public void testBombCommandExecution() {
         // Create a test scenario where the player has the Bomb card, and the input is valid.
-        player.set_playerCards(List.of(Cards.Bomb));
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Bomb);
+        player.set_playerCards(cards);
         WarMap map = new WarMap();
         Country countryA = new Country(1, "CountryA", 1);
         Country countryB = new Country(2, "CountryB", 1);
         map.addCountry(countryA);
         map.addCountry(countryB);
 
-        player.set_playerCountries(Arrays.asList(countryA, countryB));
+        player.set_playerCountries(List.of(countryA));
 
         // Simulate a valid command by setting the current input in GameEngine.
         GameEngine.getInstance().setCurrentInput("bomb 2");
@@ -326,9 +330,11 @@ public class PlayerTest {
     @Test
     public void testBombCommandExecutionWithInvalidCountry() {
         // Create a test scenario where the player has the Bomb card, but the target country is invalid.
-        player.set_playerCards(List.of(Cards.Bomb));
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Bomb);
+        player.set_playerCards(cards);
         WarMap map = new WarMap();
-
+        GameEngine.getInstance().set_currentMap(map);
         // Simulate an invalid target country by setting the current input in GameEngine.
         GameEngine.getInstance().setCurrentInput("bomb 2");
 
@@ -437,7 +443,9 @@ public class PlayerTest {
     @Test
     public void testAirliftCommandExecution() {
         // Create a test scenario where the player has the Airlift card and valid input.
-        player.set_playerCards(List.of(Cards.Airlift));
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Airlift);
+        player.set_playerCards(cards);
         WarMap map = new WarMap();
 
         // Create source and target countries.
