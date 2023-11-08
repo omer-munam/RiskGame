@@ -24,7 +24,7 @@ public class PlayPhaseTest {
         gameEngine.setCurrentInput("loadmap europe.map");
         gameEngine.getPhase().next();
         assertEquals("Startup", gameEngine.getPhase().getClass().getSimpleName());
-        gameEngine.setCurrentInput("go back");
+        gameEngine.setCurrentInput("goback");
         gameEngine.getPhase().next();
         assertEquals("MainMenu", gameEngine.getPhase().getClass().getSimpleName());
         gameEngine.setCurrentInput("loadmap europe.map");

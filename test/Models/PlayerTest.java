@@ -319,7 +319,7 @@ public class PlayerTest {
         player.issue_order();
 
         // Assert that no AdvanceOrder was created and added to the list of orders.
-        assertEquals(1, player.get_playerOrder().size());
+        assertEquals(0, player.get_playerOrder().size());
     }
 
     @Test
