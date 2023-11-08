@@ -78,6 +78,9 @@ public class Country {
         d_numOfArmies = p_numOfArmies;
     }
 
+    public Country(int i, String india) {
+    }
+
     /**
      * @return The country's ID
      */

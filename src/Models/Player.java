@@ -61,6 +61,7 @@ public class Player {
         this.d_playerContinents = new ArrayList<Continent>();
     }
 
+
     /**
      * @return the player name
      */
