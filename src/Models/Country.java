@@ -175,6 +175,7 @@ public class Country {
 
     /**
      * Sets a player as the owner of the country
+     *
      * @param d_ownerPlayer The new owner of the country
      */
     public void setD_ownerPlayer(Player d_ownerPlayer) {

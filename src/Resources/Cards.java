@@ -20,7 +20,8 @@ public enum Cards {
     /**
      * List containing players who have acquired territories.
      */
-    private static List<Player> playersAcquiringTerritories = new ArrayList<>();
+    private static final List<Player> playersAcquiringTerritories = new ArrayList<>();
+
     /**
      * Call this method whenever player acquires new territory.
      *
@@ -37,11 +38,12 @@ public enum Cards {
     public static void clearPlayerAcquiredTerritory() {
         playersAcquiringTerritories.clear();
     }
+
     /**
      * Assign a random card to all players in list.
      */
     public static void assignRandomCardsToPlayers() {
-        for (Player player : playersAcquiringTerritories){
+        for (Player player : playersAcquiringTerritories) {
             System.out.println("______________________________________________");
             Random random = new Random();
             Cards card = values()[random.nextInt(values().length)];

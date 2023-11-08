@@ -3,7 +3,6 @@ package Models.Orders;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
-import Resources.Cards;
 import logging.LogEntryBuffer;
 
 /**
@@ -31,10 +30,10 @@ public class AirliftOrder implements Order {
     /**
      * Constructor for the AirliftOrder class.
      *
-     * @param player         The player issuing the order.
-     * @param sourceCountry  The source country from which armies will be moved.
-     * @param targetCountry  The target country to which armies will be moved.
-     * @param numArmies      The number of armies to move.
+     * @param player        The player issuing the order.
+     * @param sourceCountry The source country from which armies will be moved.
+     * @param targetCountry The target country to which armies will be moved.
+     * @param numArmies     The number of armies to move.
      */
     public AirliftOrder(Player player, Country sourceCountry, Country targetCountry, int numArmies) {
         this.d_player = player;
@@ -56,9 +55,8 @@ public class AirliftOrder implements Order {
             // Move armies from the source country to the target country.
             d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
             d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
-            LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
-        }
-        else {
+            LogEntryBuffer.getInstance().writeLog(this + " executed successfully.");
+        } else {
             System.out.println("Execution failed as you have lost control of one of the territories..");
         }
     }

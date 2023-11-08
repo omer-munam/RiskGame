@@ -27,6 +27,7 @@ public class Preload extends Edit {
 
     /**
      * The load map function of the preload phase
+     *
      * @throws IOException
      */
     @Override
@@ -96,7 +97,7 @@ public class Preload extends Edit {
      */
     @Override
     public void next() {
-        if (d_ge.getCurrentInput().toLowerCase().equals("quit")) {
+        if (d_ge.getCurrentInput().equalsIgnoreCase("quit")) {
             d_ge.setPhase(new MainMenu(d_ge));
         } else {
             d_ge.setPhase(new Postload(d_ge));

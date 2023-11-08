@@ -1,7 +1,6 @@
 package Phases;
 
 import Controller.GameEngine;
-import Controller.MapEditor;
 
 public abstract class Play extends Phase {
     /**
@@ -65,6 +64,8 @@ public abstract class Play extends Phase {
     /**
      * Prints invalid state message
      */
-    public void issueOrder() {printInvalidCommandMessage();}
+    public void issueOrder() {
+        printInvalidCommandMessage();
+    }
 }
 

@@ -5,9 +5,9 @@ import Models.Player;
 import Resources.Commands;
 import logging.LogWriter;
 
-import static java.lang.System.exit;
-
 import java.io.IOException;
+
+import static java.lang.System.exit;
 
 public class Startup extends Play {
     /**
@@ -62,7 +62,7 @@ public class Startup extends Play {
                     l_i++;
                     if (l_i < l_words.length) {
                         d_ge.addPlayer(l_words[l_i]);
-                        d_logentrybuffer.writeLog("gameplayer "+l_words[l_i]+" added successfully");
+                        d_logentrybuffer.writeLog("gameplayer " + l_words[l_i] + " added successfully");
                     } else {
                         System.out.println("Reached end of command while parsing");
                     }
@@ -71,7 +71,7 @@ public class Startup extends Play {
                     l_i++;
                     if (l_i < l_words.length) {
                         d_ge.removePlayer(l_words[l_i]);
-                        d_logentrybuffer.writeLog("gameplayer "+l_words[l_i]+" removed successfully");
+                        d_logentrybuffer.writeLog("gameplayer " + l_words[l_i] + " removed successfully");
                     } else {
                         System.out.println("Reached end of command while parsing");
 
@@ -120,10 +120,10 @@ public class Startup extends Play {
             System.out.println("Exiting program");
             try {
                 LogWriter.getInstance().d_info.close();
-    	        exit(0);
-    	    } catch (IOException e) {
-    	        System.out.println("I/O exception closing BufferedWriter");
-    	    }
+                exit(0);
+            } catch (IOException e) {
+                System.out.println("I/O exception closing BufferedWriter");
+            }
         }
         if (d_ge.getCurrentInput().equalsIgnoreCase("assigncountries")) {
             if (d_ge.get_PlayersList().size() >= 2) {
@@ -137,7 +137,7 @@ public class Startup extends Play {
                 for (Player player : d_ge.get_PlayersList()) {
                     player.set_numOfReinforcements(d_ge.getNumOfReinforcements(player));
                     System.out.println("Assigned `" + player.get_numOfReinforcements() + "` reinforcements to player: " + player.get_playerName());
-                    d_logentrybuffer.writeLog("assigned "+player.get_playerName()+" "+player.get_numOfReinforcements()+" no of reinforcement armies.");
+                    d_logentrybuffer.writeLog("assigned " + player.get_playerName() + " " + player.get_numOfReinforcements() + " no of reinforcement armies.");
                 }
                 System.out.println("\n_________________________________________");
                 System.out.println("Taking orders from each player....");

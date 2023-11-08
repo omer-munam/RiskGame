@@ -42,6 +42,7 @@ public class MainMenu extends Phase {
 
     /**
      * Load Map for the Main Menu Phase
+     *
      * @throws IOException
      */
     @Override
@@ -63,7 +64,7 @@ public class MainMenu extends Phase {
                     return;
                 }
                 System.out.print(l_words[1] + " loaded successfully!\n");
-                d_logentrybuffer.writeLog(l_words[1]+" loaded successfully.");
+                d_logentrybuffer.writeLog(l_words[1] + " loaded successfully.");
                 this.next();
             } else {
                 System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
@@ -165,6 +166,7 @@ public class MainMenu extends Phase {
 
     /**
      * The next function for the main menu phase
+     *
      * @throws IOException
      */
     @Override
@@ -181,10 +183,10 @@ public class MainMenu extends Phase {
             System.out.println("Exiting program");
             try {
                 LogWriter.getInstance().d_info.close();
-    	        exit(0);
-    	    } catch (IOException e) {
-    	        System.out.println("I/O exception closing BufferedWriter");
-    	    }
+                exit(0);
+            } catch (IOException e) {
+                System.out.println("I/O exception closing BufferedWriter");
+            }
         }
     }
 

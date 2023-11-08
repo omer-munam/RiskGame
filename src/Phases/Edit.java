@@ -37,7 +37,8 @@ public abstract class Edit extends Phase {
     /**
      * Prints invalid state message
      */
-    public void issueOrder() {printInvalidCommandMessage();
+    public void issueOrder() {
+        printInvalidCommandMessage();
     }
 
     /**

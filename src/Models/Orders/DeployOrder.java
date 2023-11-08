@@ -2,10 +2,10 @@ package Models.Orders;
 
 import Models.Country;
 import Models.WarMap;
+import logging.LogEntryBuffer;
 
 import java.util.Collection;
 
-import logging.LogEntryBuffer;
 /**
  * This class is used to implement the data and logic of how to execute orders given by a player.
  *
@@ -26,13 +26,14 @@ public class DeployOrder implements Order {
     /**
      * This is a fully parametrized constructor for the Models.Orders class.
      *
-     * @param p_numOfArmies Number of Armies to deploy in this order.
-     * @param p_destcountryID   ID of the country on which to deploy the specified number of armies.
+     * @param p_numOfArmies   Number of Armies to deploy in this order.
+     * @param p_destcountryID ID of the country on which to deploy the specified number of armies.
      */
     public DeployOrder(int p_numOfArmies, int p_destcountryID) {
         this.d_destCountryID = p_destcountryID;
         this.d_numOfArmies = p_numOfArmies;
     }
+
     /**
      * @return the number of armies to be used in the order
      */
@@ -78,11 +79,11 @@ public class DeployOrder implements Order {
         }
         System.out.println("\n_________________________________________");
         System.out.println("Execution Done Successfully");
-        LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
+        LogEntryBuffer.getInstance().writeLog(this + " executed successfully.");
     }
-    
-	@Override
-	public String toString() {
-		return "Deploy Order on CountryID "+d_destCountryID+" with "+d_numOfArmies+" numOfArmies";
-	}
+
+    @Override
+    public String toString() {
+        return "Deploy Order on CountryID " + d_destCountryID + " with " + d_numOfArmies + " numOfArmies";
+    }
 }

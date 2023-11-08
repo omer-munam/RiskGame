@@ -31,10 +31,10 @@ public class AdvanceOrder implements Order {
     /**
      * Constructor for the AdvanceOrder class.
      *
-     * @param player         The player issuing the order.
-     * @param sourceCountry  The source country from which armies will be moved.
-     * @param targetCountry  The target country to which armies will be moved.
-     * @param numArmies      The number of armies to move.
+     * @param player        The player issuing the order.
+     * @param sourceCountry The source country from which armies will be moved.
+     * @param targetCountry The target country to which armies will be moved.
+     * @param numArmies     The number of armies to move.
      */
     public AdvanceOrder(Player player, Country sourceCountry, Country targetCountry, int numArmies) {
         this.d_player = player;
@@ -61,7 +61,7 @@ public class AdvanceOrder implements Order {
                 d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
                 d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
             } else {
-                if(d_targetCountry.getD_ownerPlayer().get_diplomacy_list().contains(d_player.get_playerName())){
+                if (d_targetCountry.getD_ownerPlayer().get_diplomacy_list().contains(d_player.get_playerName())) {
                     System.out.println("\n_________________________________________");
                     System.out.println("Can't attack, since Negotiate found");
                     return;
@@ -84,7 +84,7 @@ public class AdvanceOrder implements Order {
                     d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() - d_numArmies);
                 }
             }
-            LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
+            LogEntryBuffer.getInstance().writeLog(this + " executed successfully.");
         }
     }
 

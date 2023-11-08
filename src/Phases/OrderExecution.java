@@ -4,13 +4,8 @@ import Controller.GameEngine;
 import Models.Orders.Order;
 import Models.Player;
 import Resources.Cards;
-import com.sun.tools.javac.Main;
-import logging.LogWriter;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
-import static java.lang.System.exit;
 
 public class OrderExecution extends Play {
     /**
@@ -76,7 +71,6 @@ public class OrderExecution extends Play {
                 order.execute(d_ge.get_currentMap());
             }
         }
-
 
 
         System.out.println("\n_________________________________________");

@@ -7,6 +7,14 @@ import java.io.IOException;
 
 public abstract class Phase {
     /**
+     * The Game Engine of the Phases
+     */
+    GameEngine d_ge;
+    /**
+     * The Log Entry Buffer of the Phases
+     */
+    LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
+    /**
      * The constructor of the Phase class
      *
      * @param p_ge The game engine
@@ -15,15 +23,6 @@ public abstract class Phase {
         d_ge = p_ge;
     }
 
-    /**
-     * The Game Engine of the Phases
-     */
-    GameEngine d_ge;
-    /**
-     * The Log Entry Buffer of the Phases
-     */
-    LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
-
     abstract public void displayOptions();
 
     abstract public void loadMap() throws IOException;
@@ -31,6 +30,7 @@ public abstract class Phase {
     abstract public void showMap();
 
     abstract public void validateMap();
+
     abstract public void showAllMaps();
 
     abstract public void editCountry();
@@ -44,8 +44,11 @@ public abstract class Phase {
     abstract public void setPlayers();
 
     abstract public void assignCountries();
+
     abstract public void deploy();
+
     abstract public void issueOrder();
+
     abstract public void endGame();
 
     abstract public void next() throws IOException;

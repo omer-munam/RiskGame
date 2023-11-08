@@ -3,9 +3,9 @@ package Phases;
 import Controller.GameEngine;
 import logging.LogWriter;
 
-import static java.lang.System.exit;
-
 import java.io.IOException;
+
+import static java.lang.System.exit;
 
 public class AssignReinforcements extends OrderPhase {
     /**
@@ -66,10 +66,10 @@ public class AssignReinforcements extends OrderPhase {
             System.out.println("Exiting program");
             try {
                 LogWriter.getInstance().d_info.close();
-    	        exit(0);
-    		} catch (IOException e) {
-    	        System.out.println("I/O exception closing BufferedWriter");
-    	    }
+                exit(0);
+            } catch (IOException e) {
+                System.out.println("I/O exception closing BufferedWriter");
+            }
         }
         if (d_ge.getCurrentPlayer().equals(d_ge.get_PlayersList().get(d_ge.get_PlayersList().size() - 1))) {
             d_ge.nextPlayer();

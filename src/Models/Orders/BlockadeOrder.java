@@ -1,4 +1,5 @@
 package Models.Orders;
+
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -6,11 +7,16 @@ import logging.LogEntryBuffer;
 
 import java.util.Collection;
 
-public class BlockadeOrder implements Order{
+public class BlockadeOrder implements Order {
     /**
      * The destination countryID for this instance of order.
      */
-    private int d_destCountryID;
+    private final int d_destCountryID;
+    /**
+     * The player of the order
+     */
+    private final Player d_player;
+
     /**
      * This is a fully parametrized constructor for the Models.Orders class.
      *
@@ -21,11 +27,6 @@ public class BlockadeOrder implements Order{
         this.d_destCountryID = p_destcountryID;
         this.d_player = p_player;
     }
-
-    /**
-     * The player of the order
-     */
-    private Player d_player;
 
     /**
      * This method is does execution for blockade orders.
@@ -50,11 +51,11 @@ public class BlockadeOrder implements Order{
                 break;
             }
         }
-        LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
+        LogEntryBuffer.getInstance().writeLog(this + " executed successfully.");
     }
-    
+
     @Override
-	public String toString() {
-		return "Blockade Order countryId=" + d_destCountryID;
-	}
+    public String toString() {
+        return "Blockade Order countryId=" + d_destCountryID;
+    }
 }
