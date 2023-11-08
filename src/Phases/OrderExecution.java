@@ -75,6 +75,6 @@ public class OrderExecution extends Play {
         d_ge.setPhase(new AssignReinforcements(d_ge));
         Cards.clearPlayerAcquiredTerritory();
 
-    }
+
     }
 }
