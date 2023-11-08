@@ -271,5 +271,32 @@ public class PlayerTest {
         assertEquals(0, player.get_playerOrder().size());
     }
 
+    @Test
+    public void testDiplomacyCommandExecution() {
+        // Create a test scenario where the player has the Diplomacy card, and the input is valid.
+        player.set_playerCards(List.of(Cards.Diplomacy));
+        WarMap map = new WarMap();
+        map.addCountry(new Country(1, "CountryA", 1));
+        map.addCountry(new Country(2, "CountryB", 1));
+        player.set_playerCountries(Arrays.asList(new Country(1, "CountryA", 1)
+                , new Country(2, "CountryB", 1)));
+
+        // Create another player in the game.
+        Player otherPlayer = new Player("Player2");
+
+        // Attach the players to the GameEngine.
+        GameEngine.getInstance().set_PlayersList(List.of(otherPlayer));
+
+        // Simulate a valid diplomacy command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("diplomacy Player2");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that the target player name is added to the diplomacy list.
+        assertTrue(player.get_diplomacy_list().contains("Player2"));
+
+    }
+
 }
 
