@@ -6,6 +6,8 @@ import Models.WarMap;
 
 import java.io.IOException;
 
+import static java.lang.System.exit;
+
 public class Postload extends Edit {
     public Postload(GameEngine p_ge) {
         super(p_ge);
@@ -155,6 +157,9 @@ public class Postload extends Edit {
 
     @Override
     public void next() {
+        if (d_ge.getCurrentInput().toLowerCase().equals("quit")) {
+            exit(0);
+        }
         d_ge.setPhase(new MainMenu(d_ge));
     }
 }
