@@ -9,6 +9,7 @@ import java.io.IOException;
 public class Postload extends Edit {
     public Postload(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("POSTLOAD PHASE");
     }
 
     @Override
@@ -31,6 +32,7 @@ public class Postload extends Edit {
         if (l_input_string_array.length > 1 && l_input_string_array[1] != null) {
             d_ge.set_currentMap(new WarMap());
             MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
+            d_logentrybuffer.writeLog("editmap "+l_input_string_array[1]+" runned successfully");
         } else {
             System.out.println("Could not load map");
         }
@@ -39,6 +41,7 @@ public class Postload extends Edit {
     @Override
     public void showMap() {
         d_ge.get_currentMap().showMap();
+        d_logentrybuffer.writeLog("showmap runned successfully");
     }
 
     @Override
@@ -52,6 +55,7 @@ public class Postload extends Edit {
                         l_i += 3;
                     } else {
                         d_ge.get_currentMap().addCountry(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                        d_logentrybuffer.writeLog("Country "+l_input_string_array[l_i + 2]+"with ID"+l_input_string_array[l_i + 1]+"added successfully in continentID"+ l_input_string_array[l_i + 3]);
                         l_i += 3;
                     }
                 } else {
@@ -60,6 +64,7 @@ public class Postload extends Edit {
             } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
                 if (l_i + 1 < l_input_string_array.length) {
                     d_ge.get_currentMap().removeCountry(Integer.valueOf(l_input_string_array[l_i + 1]));
+                    d_logentrybuffer.writeLog("Country with ID "+l_input_string_array[l_i + 1]+"removed successfully.");
                     l_i++;
                 } else {
                     System.out.println("Reached end of file while parsing not all commands completed");
@@ -81,6 +86,7 @@ public class Postload extends Edit {
                         l_i += 3;
                     } else {
                         d_ge.get_currentMap().addContinent(Integer.valueOf(l_input_string_array[l_i + 1]), l_input_string_array[l_i + 2], Integer.valueOf(l_input_string_array[l_i + 3]));
+                        d_logentrybuffer.writeLog("Continent "+l_input_string_array[l_i + 2]+"with ID"+l_input_string_array[l_i + 1]+"added successfully with army bonus of "+ l_input_string_array[l_i + 3]);
                         l_i += 3;
                     }
                 } else {
@@ -89,6 +95,7 @@ public class Postload extends Edit {
             } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
                 if (l_i + 1 < l_input_string_array.length) {
                     d_ge.get_currentMap().removeContinent(Integer.valueOf(l_input_string_array[l_i + 1]));
+                    d_logentrybuffer.writeLog("Continent with ID "+l_input_string_array[l_i + 1]+"removed successfully.");
                     l_i++;
                 } else {
                     System.out.println("Reached end of file while parsing not all commands completed");
@@ -104,6 +111,7 @@ public class Postload extends Edit {
             if (l_input_string_array[l_i].equalsIgnoreCase("-add")) {
                 if (l_i + 2 < l_input_string_array.length) {
                     d_ge.get_currentMap().addNeighbourCountry(Integer.valueOf(l_input_string_array[l_i + 1]), Integer.valueOf(l_input_string_array[l_i + 2]));
+                    d_logentrybuffer.writeLog("Neighbour with ID"+l_input_string_array[l_i + 2]+" added to Country with ID "+l_input_string_array[l_i + 1]);
                     l_i += 2;
                 } else {
                     System.out.println("Reached end of file while parsing not all commands completed");
@@ -111,6 +119,7 @@ public class Postload extends Edit {
             } else if (l_input_string_array[l_i].equalsIgnoreCase("-remove")) {
                 if (l_i + 2 < l_input_string_array.length) {
                     d_ge.get_currentMap().removeNeighbourCountry(Integer.valueOf(l_input_string_array[l_i + 1]), Integer.valueOf(l_input_string_array[l_i + 2]));
+                    d_logentrybuffer.writeLog("Neighbour with ID"+l_input_string_array[l_i + 2]+" removed from Country with ID "+l_input_string_array[l_i + 1]);
                     l_i += 2;
                 } else {
                     System.out.println("Reached end of file while parsing not all commands completed");
@@ -127,6 +136,7 @@ public class Postload extends Edit {
 
                 d_ge.get_currentMap().saveMap(l_input_string_array[1]);
                 System.out.println("Map saved");
+                d_logentrybuffer.writeLog(l_input_string_array[1]+" Map saved successfully.");
                 d_ge.set_currentMap(new WarMap());
                 MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
             } else {

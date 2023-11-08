@@ -9,6 +9,7 @@ import Models.Player;
 public class AssignReinforcements extends OrderPhase {
     public AssignReinforcements(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
     }
 
     @Override
@@ -58,6 +59,7 @@ public class AssignReinforcements extends OrderPhase {
         d_ge.getCurrentPlayer().get_playerOrder().add(deployOrder);
         d_ge.getCurrentPlayer().set_numOfReinforcements(d_ge.getCurrentPlayer().get_numOfReinforcements() - numOfArmies);
         System.out.println("Deploy order issued successfully.");
+        d_logentrybuffer.writeLog("Deployed country with ID "+countryID+" with "+numOfArmies+" armies");
         if (d_ge.getCurrentPlayer().get_numOfReinforcements() == 0) {
             System.out.println("_____________________________________________");
             next();
