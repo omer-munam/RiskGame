@@ -2,7 +2,6 @@ package Models.Orders;
 
 import Models.Country;
 import Models.WarMap;
-import logging.LogEntryBuffer;
 
 import java.util.Collection;
 
@@ -78,6 +77,5 @@ public class DeployOrder implements Order {
         }
         System.out.println("\n_________________________________________");
         System.out.println("Execution Done Successfully");
-        LogEntryBuffer.getInstance().writeLog(" Deploy order "+this.toString()+" executes successfully.");
     }
 }
