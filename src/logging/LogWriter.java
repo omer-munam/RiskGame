@@ -11,22 +11,33 @@ import java.io.IOException;
  * @author Mohammad Uvas
  */
 public class LogWriter implements Observer {
-
+	/**
+	 * The instance of the LogWriter
+	 */
 	private static LogWriter instance = new LogWriter();
-	private String base_path = String.valueOf(System.getProperty("user.dir"))+"\\logs";
-	public FileWriter fstream;
-	public BufferedWriter info;
+	/**
+	 * The file location of the logs
+	 */
+	private String d_base_path = String.valueOf(System.getProperty("user.dir")) + "\\logs";
+	/**
+	 * The filewriter of the LogWriter
+	 */
+	public FileWriter d_fstream;
+	/**
+	 * The buffered writer of the log writer.
+	 */
+	public BufferedWriter d_info;
 	
 	/**
 	* Make the constructor private so that this class cannot be instantiated
 	*/
-	private LogWriter(){
+	private LogWriter() {
 		try {
-			File directory = new File(base_path);
-		    if (! directory.exists()) directory.mkdir();
-		    
-			fstream = new FileWriter(base_path+"\\"+"WarZoneLog.txt");
-			info = new BufferedWriter(fstream);
+			File l_directory = new File(d_base_path);
+			if (!l_directory.exists()) l_directory.mkdir();
+
+			d_fstream = new FileWriter(d_base_path + "\\" + "WarZoneLog.txt");
+			d_info = new BufferedWriter(d_fstream);
 		}
 		catch(Exception ex) {
 			System.out.println("I/O exception in LogWriter");
@@ -51,8 +62,8 @@ public class LogWriter implements Observer {
 	 */
 	public void update(String p_logString) {
 		try {
-			info.write(p_logString);
-			info.newLine();
+			d_info.write(p_logString);
+			d_info.newLine();
 		} catch (IOException e) {
 			System.out.println("I/O Exception wile writing in log file");
 			e.printStackTrace();

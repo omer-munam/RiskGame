@@ -7,16 +7,28 @@ import Models.WarMap;
 import java.io.IOException;
 
 public class Preload extends Edit {
+    /**
+     * The Constructor of the preload phase
+     *
+     * @param p_ge The Game Engine of the phase
+     */
     public Preload(GameEngine p_ge) {
         super(p_ge);
         d_logentrybuffer.writeLog("PRELOAD PHASE");
     }
 
+    /**
+     * The display options of the preload phase
+     */
     @Override
     public void displayOptions() {
         System.out.println("Please choose a map to edit using the command 'editmap filename' command. Alternatively enter the command 'quit' to return to the main menu");
     }
 
+    /**
+     * The load map function of the preload phase
+     * @throws IOException
+     */
     @Override
     public void loadMap() throws IOException {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -30,36 +42,57 @@ public class Preload extends Edit {
         }
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void showMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void validateMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editCountry() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editContinent() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editNeighbours() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void saveMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * The next function of the preload phase
+     */
     @Override
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().equals("quit")) {

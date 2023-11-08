@@ -1,22 +1,26 @@
 package Phases;
 
 import Controller.GameEngine;
-import Models.Country;
-import Models.Orders.DeployOrder;
-import Models.Orders.Order;
 import logging.LogWriter;
-import Models.Player;
 
 import static java.lang.System.exit;
 
 import java.io.IOException;
 
 public class AssignReinforcements extends OrderPhase {
+    /**
+     * Constructor for AssignReinforcements phase
+     *
+     * @param p_ge Game Engine
+     */
     public AssignReinforcements(GameEngine p_ge) {
         super(p_ge);
         d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
     }
 
+    /**
+     * Display Options for AssignReinforcements phase.
+     */
     @Override
     public void displayOptions() {
 
@@ -26,6 +30,9 @@ public class AssignReinforcements extends OrderPhase {
 
     }
 
+    /**
+     * Deploy for AssignReinforcements phase
+     */
     public void deploy() {
         d_ge.getCurrentPlayer().issue_order();
 
@@ -35,22 +42,31 @@ public class AssignReinforcements extends OrderPhase {
         }
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void issueOrder() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void endGame() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Next function for Assign Reinforcements phase
+     */
     @Override
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
-    		try {
-    	        LogWriter.getInstance().info.close();
+            try {
+                LogWriter.getInstance().d_info.close();
     	        exit(0);
     		} catch (IOException e) {
     	        System.out.println("I/O exception closing BufferedWriter");

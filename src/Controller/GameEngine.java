@@ -32,37 +32,79 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
+    /**
+     * GameEngine Constructor
+     */
     private GameEngine() {
         d_gamePhase = new MainMenu(this);
     }
+
+    /**
+     * Instance of the GameEngine
+     */
     private static GameEngine Instance;
+
+    /**
+     * Function for accessing the GameEngine instance
+     *
+     * @return the instance of the GameEngine
+     */
     public static GameEngine getInstance() {
         if (Instance == null)
             Instance = new GameEngine();
         return Instance;
     }
+
+    /**
+     * Players who have finished their turns
+     */
     private Set<Player> d_finishedPlayers = new HashSet<>();
 
-
+    /**
+     *
+     * @return The list of players who have finished their turns
+     */
     public Set<Player> get_FinishedPlayers() {
         return d_finishedPlayers;
     }
 
-
+    /**
+     * The current phase of the GameEngine
+     */
     private Phase d_gamePhase;
+    /**
+     * The current input of the user
+     */
     private String d_currentInput = "";
+    /**
+     * The current player taking their turn
+     */
     private Player d_currentPlayer = new Player("Default");
+    /**
+     * The index of the current player in the list of players
+     */
     private int d_currentPlayerIndex = 0;
 
+    /**
+     *
+     * @return The current player
+     */
     public Player getCurrentPlayer() {
         return d_currentPlayer;
     }
 
+    /**
+     * Sets a new current player
+     * @param p_player The player to be set as the current player
+     */
     public void setCurrentPlayer(Player p_player) {
         d_currentPlayer = p_player;
         d_currentPlayerIndex = d_playersList.indexOf(p_player);
     }
 
+    /**
+     * A function to set the current player to the next player
+     */
     public void nextPlayer() {
         if (d_finishedPlayers.size() == d_playersList.size()) {
             System.out.println("Cannot go to next player as all players are finished");
@@ -85,17 +127,34 @@ public class GameEngine {
         }
     }
 
+    /**
+     *
+     * @param p_phase The phase to set the GameEngine too
+     */
     public void setPhase(Phase p_phase) {
         d_gamePhase = p_phase;
     }
 
+    /**
+     *
+     * @return The current phase of the GameEngine
+     */
     public Phase getPhase() {
         return d_gamePhase;
     }
 
+    /**
+     *
+     * @param p_input The input to set as the game engines current input
+     */
     public void setCurrentInput(String p_input) {
         d_currentInput = p_input;
     }
+
+    /**
+     *
+     * @return The current input of the GameEngine
+     */
     public String getCurrentInput() {
         return d_currentInput;
     }

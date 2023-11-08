@@ -15,7 +15,7 @@ public class Main {
 	        new_game.start_game();
 		} finally {
     		try {
-    	        LogWriter.getInstance().info.close();
+				LogWriter.getInstance().d_info.close();
     	    } catch (IOException e) {
     	        System.out.println("I/O exception closing BufferedWriter");
     	    }

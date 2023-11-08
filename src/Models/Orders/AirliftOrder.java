@@ -10,9 +10,21 @@ import Resources.Cards;
  * An Airlift Order allows a player to move armies from one country to another using the airlift card.
  */
 public class AirliftOrder implements Order {
+    /**
+     * The player of the order
+     */
     private final Player d_player;
+    /**
+     * The source country of the order
+     */
     private final Country d_sourceCountry;
+    /**
+     * The target country of the order
+     */
     private final Country d_targetCountry;
+    /**
+     * The number of armies in the order
+     */
     private final int d_numArmies;
 
     /**

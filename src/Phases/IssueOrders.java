@@ -9,11 +9,19 @@ import static java.lang.System.exit;
 import java.io.IOException;
 
 public class IssueOrders extends OrderPhase {
+    /**
+     * Constructor for the IssueOrders phase
+     *
+     * @param p_ge The GameEngine
+     */
     public IssueOrders(GameEngine p_ge) {
         super(p_ge);
         p_ge.getCurrentPlayer().get_diplomacy_list().clear();
     }
 
+    /**
+     * Display Options for the IssueOrders phase
+     */
     @Override
     public void displayOptions() {
         System.out.println("Taking commands for Player " + d_ge.getCurrentPlayer().get_playerName());
@@ -32,25 +40,34 @@ public class IssueOrders extends OrderPhase {
                 "airlift sourceID targetID armies\n");
     }
 
+    /**
+     * Prints invalid state message
+     */
     public void deploy() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Issue Order function for the IssueOrders phase
+     */
     @Override
     public void issueOrder() {
         d_ge.getCurrentPlayer().issue_order();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void endGame() {
-
+        printInvalidCommandMessage();
     }
     @Override
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
             try {
-    	        LogWriter.getInstance().info.close();
+                LogWriter.getInstance().d_info.close();
     	        exit(0);
     	    } catch (IOException e) {
     	        System.out.println("I/O exception closing BufferedWriter");

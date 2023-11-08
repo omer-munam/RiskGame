@@ -13,5 +13,10 @@ import java.util.Collection;
  */
 
 public interface Order {
+    /**
+     * The execute function which executes the orders
+     *
+     * @param warMap The warmap of the gameengine that the order takes place
+     */
     void execute(WarMap warMap);
 }

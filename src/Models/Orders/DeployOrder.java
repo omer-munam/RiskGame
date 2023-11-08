@@ -69,10 +69,10 @@ public class DeployOrder implements Order {
     public void execute(WarMap p_warmap) {
         System.out.println("\n_________________________________________");
         Collection<Country> l_countryInfo = p_warmap.get_countries().values();
-        for (Country country : l_countryInfo) {
-            if (country.get_countryID() == d_destCountryID) {
-                country.set_numOfArmies(country.get_numOfArmies() + d_numOfArmies);
-                System.out.println(d_numOfArmies + " armies are deployed to country " + country.get_countryName());
+        for (Country l_country : l_countryInfo) {
+            if (l_country.get_countryID() == d_destCountryID) {
+                l_country.set_numOfArmies(l_country.get_numOfArmies() + d_numOfArmies);
+                System.out.println(d_numOfArmies + " armies are deployed to country " + l_country.get_countryName());
             }
         }
         System.out.println("\n_________________________________________");

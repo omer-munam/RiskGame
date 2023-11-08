@@ -20,6 +20,10 @@ public class BlockadeOrder implements Order{
         this.d_destCountryID = p_destcountryID;
         this.d_player = p_player;
     }
+
+    /**
+     * The player of the order
+     */
     private Player d_player;
 
     /**
@@ -32,16 +36,16 @@ public class BlockadeOrder implements Order{
     @Override
     public void execute(WarMap warMap) {
         Collection<Country> l_countryInfo = warMap.get_countries().values();
-        for (Country country : l_countryInfo) {
-            if (country.get_countryID() == d_destCountryID) {
-                country.set_numOfArmies(country.get_numOfArmies() * 3);
-                country.setD_ownerPlayer(null);
+        for (Country l_country : l_countryInfo) {
+            if (l_country.get_countryID() == d_destCountryID) {
+                l_country.set_numOfArmies(l_country.get_numOfArmies() * 3);
+                l_country.setD_ownerPlayer(null);
                 break;
             }
         }
-        for (Country country : d_player.get_playerCountries()) {
-            if (country.get_countryID() == d_destCountryID) {
-                d_player.get_playerCountries().remove(country);
+        for (Country l_country : d_player.get_playerCountries()) {
+            if (l_country.get_countryID() == d_destCountryID) {
+                d_player.get_playerCountries().remove(l_country);
                 break;
             }
         }

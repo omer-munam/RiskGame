@@ -12,11 +12,19 @@ import java.util.ArrayList;
 import static java.lang.System.exit;
 
 public class MainMenu extends Phase {
+    /**
+     * Constructor for the MainMenu phase
+     *
+     * @param p_ge The GameEngine
+     */
     public MainMenu(GameEngine p_ge) {
         super(p_ge);
         d_logentrybuffer.writeLog("MAINMENU PHASE");
     }
 
+    /**
+     * Display Options for the MainMenu Phase
+     */
     @Override
     public void displayOptions() {
         System.out.println("\n╔════════════════════════════════════════╗");
@@ -31,6 +39,10 @@ public class MainMenu extends Phase {
         d_ge.get_PlayersList().clear();
     }
 
+    /**
+     * Load Map for the Main Menu Phase
+     * @throws IOException
+     */
     @Override
     public void loadMap() throws IOException {
         String[] l_words = d_ge.getCurrentInput().split("\\s+");
@@ -61,62 +73,99 @@ public class MainMenu extends Phase {
         }
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void showMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editCountry() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editContinent() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void editNeighbours() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void saveMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void setPlayers() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void assignCountries() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void deploy() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void issueOrder() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void endGame() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Shows all maps from the main menu
+     */
     public void showAllMaps() {
         System.out.println("\nHere is the list of all the available maps:");
         MapEditor.showAllMaps();
         d_logentrybuffer.writeLog("showmap command runned successfully");
     }
 
+    /**
+     * The next function for the main menu phase
+     * @throws IOException
+     */
     @Override
     public void next() throws IOException {
         if (d_ge.getCurrentInput().toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
@@ -129,7 +178,7 @@ public class MainMenu extends Phase {
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
             try {
-    	        LogWriter.getInstance().info.close();
+                LogWriter.getInstance().d_info.close();
     	        exit(0);
     	    } catch (IOException e) {
     	        System.out.println("I/O exception closing BufferedWriter");
@@ -137,6 +186,9 @@ public class MainMenu extends Phase {
         }
     }
 
+    /**
+     * Prints invalid state message
+     */
     public void validateMap() {
         printInvalidCommandMessage();
     }

@@ -10,11 +10,19 @@ import java.io.IOException;
 import static java.lang.System.exit;
 
 public class Postload extends Edit {
+    /**
+     * The constructor of the postload phase
+     *
+     * @param p_ge The Game Engine
+     */
     public Postload(GameEngine p_ge) {
         super(p_ge);
         d_logentrybuffer.writeLog("POSTLOAD PHASE");
     }
 
+    /**
+     * The display options function of the postload phase
+     */
     @Override
     public void displayOptions() {
         System.out.println("You are currently editing " + d_ge.get_currentMap().get_mapName() + " the available commands are: ");
@@ -28,6 +36,10 @@ public class Postload extends Edit {
         System.out.println("quit");
     }
 
+    /**
+     * The Loadmap function of the postload phase
+     * @throws IOException
+     */
     @Override
     public void loadMap() throws IOException {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -41,12 +53,18 @@ public class Postload extends Edit {
         }
     }
 
+    /**
+     * The showMap function of the postload phase
+     */
     @Override
     public void showMap() {
         d_ge.get_currentMap().showMap();
         d_logentrybuffer.writeLog("showmap runned successfully");
     }
 
+    /**
+     * The edit country function of the postload phase
+     */
     @Override
     public void editCountry() {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -76,6 +94,9 @@ public class Postload extends Edit {
         }
     }
 
+    /**
+     * The edit continent function of the postload phase
+     */
     @Override
     public void editContinent() {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -107,6 +128,9 @@ public class Postload extends Edit {
         }
     }
 
+    /**
+     * The edit neighbours function of the postload phase
+     */
     @Override
     public void editNeighbours() {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -131,6 +155,10 @@ public class Postload extends Edit {
         }
     }
 
+    /**
+     * The save map function of the postload phase
+     * @throws IOException
+     */
     @Override
     public void saveMap() throws IOException {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
@@ -150,17 +178,23 @@ public class Postload extends Edit {
         }
     }
 
+    /**
+     * The validate map function of the postload phase
+     */
     @Override
     public void validateMap() {
         if (d_ge.get_currentMap().validateMap()) System.out.println("Valid Map");
         else System.out.println("InValid Map");
     }
 
+    /**
+     * The next function of the postload phase
+     */
     @Override
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().equals("quit")) {
-        	try {
-    	        LogWriter.getInstance().info.close();
+            try {
+                LogWriter.getInstance().d_info.close();
     	        exit(0);
     	    } catch (IOException e) {
     	        System.out.println("I/O exception closing BufferedWriter");

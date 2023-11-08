@@ -6,10 +6,18 @@ import Models.Player;
 import Resources.Cards;
 
 public class OrderExecution extends Play {
+    /**
+     * The constructor for the Order Execution phase
+     *
+     * @param p_ge The Game Engine
+     */
     public OrderExecution(GameEngine p_ge) {
         super(p_ge);
     }
 
+    /**
+     * The option display for the order execution phase
+     */
     @Override
     public void displayOptions() {
         for (Player player : d_ge.get_PlayersList()) {
@@ -26,36 +34,57 @@ public class OrderExecution extends Play {
         this.next();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void loadMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void showMap() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void setPlayers() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void assignCountries() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void deploy() {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Prints invalid state message
+     */
     @Override
     public void endGame() {
-
+        printInvalidCommandMessage();
     }
 
+    /**
+     * The next function for the order execution phase
+     */
     @Override
     public void next() {
         Cards.assignRandomCardsToPlayers();

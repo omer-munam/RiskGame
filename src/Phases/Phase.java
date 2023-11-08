@@ -6,11 +6,22 @@ import logging.LogEntryBuffer;
 import java.io.IOException;
 
 public abstract class Phase {
+    /**
+     * The constructor of the Phase class
+     *
+     * @param p_ge The game engine
+     */
     public Phase(GameEngine p_ge) {
         d_ge = p_ge;
     }
 
+    /**
+     * The Game Engine of the Phases
+     */
     GameEngine d_ge;
+    /**
+     * The Log Entry Buffer of the Phases
+     */
     LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
 
     abstract public void displayOptions();
@@ -39,6 +50,9 @@ public abstract class Phase {
 
     abstract public void next() throws IOException;
 
+    /**
+     * Prints invalid state message
+     */
     public void printInvalidCommandMessage() {
         System.out.println("Invalid command in state " + this.getClass().getSimpleName());
     }
