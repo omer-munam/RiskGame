@@ -31,6 +31,9 @@ public enum Cards {
             playersAcquiringTerritories.add(p_player);
     }
 
+    public static void clearPlayerAcquiredTerritory() {
+        playersAcquiringTerritories.clear();
+    }
     /**
      * Assign a random card to all players in list.
      */

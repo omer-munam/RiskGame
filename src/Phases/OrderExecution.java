@@ -73,5 +73,8 @@ public class OrderExecution extends Play {
         d_ge.get_FinishedPlayers().clear();
         d_ge.setCurrentPlayer(d_ge.get_PlayersList().get(0));
         d_ge.setPhase(new AssignReinforcements(d_ge));
+        Cards.clearPlayerAcquiredTerritory();
+
+    }
     }
 }
