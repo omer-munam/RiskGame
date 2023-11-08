@@ -3,6 +3,7 @@ import java.util.Arrays;
 import Controller.GameEngine;
 import Models.Orders.BombOrder;
 import Models.Orders.DeployOrder;
+import Models.Orders.AirliftOrder;
 import Models.Orders.Order;
 import Phases.AssignReinforcements;
 import Resources.Cards;
@@ -345,6 +346,36 @@ public class PlayerTest {
         // Assert that the target player name is not added to the diplomacy list.
         assertFalse(player.get_diplomacy_list().contains("Player2"));
     }
+
+
+    @Test
+    public void testAirliftCommandExecution() {
+        // Create a test scenario where the player has the Airlift card and valid input.
+        player.set_playerCards(List.of(Cards.Airlift));
+        WarMap map = new WarMap();
+
+        // Create source and target countries.
+        Country sourceCountry = new Country(1, "SourceCountry", 1);
+        Country targetCountry = new Country(2, "TargetCountry", 1);
+        player.set_playerCountries(Arrays.asList(sourceCountry, targetCountry));
+
+        // Attach the players to the GameEngine.
+        GameEngine.getInstance().set_PlayersList(List.of(player));
+
+        // Simulate a valid airlift command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("airlift 1 2 3");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that an AirliftOrder was created and added to the list of orders.
+        assertEquals(1, player.get_playerOrder().size());
+        assertTrue(player.get_playerOrder().get(0) instanceof AirliftOrder);
+
+        // Assert that the Airlift card is removed from the player's cards.
+        assertFalse(player.get_playerCards().contains(Cards.Airlift));
+    }
+
 
 }
 
