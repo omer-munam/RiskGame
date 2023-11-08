@@ -27,6 +27,7 @@ public class GameEngineTest {
     @BeforeEach
     public void setUp() {
         gameEngine = GameEngine.getInstance();
+        gameEngine.get_PlayersList().clear();
     }
 
     /**

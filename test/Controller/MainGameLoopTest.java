@@ -4,6 +4,8 @@ import Models.Continent;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import Phases.MainMenu;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 
 public class MainGameLoopTest {
+    private GameEngine d_gameEngine;
+
+    @BeforeEach
+    public void setUp() {
+        d_gameEngine = GameEngine.getInstance();
+        d_gameEngine.setPhase(new MainMenu(d_gameEngine));
+
+    }
     /**
      * Test for getting the number of reinforcements
      */
@@ -64,8 +74,9 @@ public class MainGameLoopTest {
 
         ArrayList<Player> test_player_list = new ArrayList<>();
         test_player_list.add(test_player); //NEED TO PUT PLAYER IN LIST TO MAKE MainGameLoop Class
-
-        int numOfReinforcements = GameEngine.getInstance().getNumOfReinforcements(test_player);
+        d_gameEngine.set_currentMap(test_war_map);
+        d_gameEngine.set_PlayersList(test_player_list);
+        int numOfReinforcements = d_gameEngine.getNumOfReinforcements(test_player_list.get(0));
 
         // Define the expected number of reinforcements based on your test scenario
         int expectedReinforcements = 6; // Adjust this value based on your specific test case

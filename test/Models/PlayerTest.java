@@ -1,6 +1,7 @@
 package Models;
 
 
+import Controller.GameEngine;
 import Models.Orders.DeployOrder;
 import Models.Orders.Order;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,12 +23,13 @@ public class PlayerTest {
      * The player instance required to run the test case.
      */
     private Player player;
-
+    private GameEngine gameEngine;
     /**
      * Initializing the player instance before each test.
      */
     @BeforeEach
     public void setUp() {
+        gameEngine = GameEngine.getInstance();
         player = new Player("John Doe");
     }
 
@@ -64,7 +66,7 @@ public class PlayerTest {
     /**
      * Test if the country deployed to is invalid.
      */
-   /* @Test
+    @Test
     public void testInvalidCountry() {
         player.set_numOfReinforcements(5);
 
@@ -80,7 +82,7 @@ public class PlayerTest {
                 "deploy 4 2",
                 "deploy 3 2"
         };
-        player.issue_order(commands, null, null);
+        player.issue_order();
 
         List<Order> playerOrders = player.get_playerOrder();
         assertEquals(2, playerOrders.size());
@@ -93,12 +95,12 @@ public class PlayerTest {
         assertEquals(2, order2.getNumOfArmies());
         assertEquals(3, order2.getDestCountryID());
     }
-*/
+
 
     /**
      * Deploying more number of armies then there are reinforcements available.
      */
-  /*  @Test
+    @Test
     public void testCannotDeployMoreArmiesThanReinforcements() {
         // Set the player's initial reinforcement pool to 5
         player.set_numOfReinforcements(5);
@@ -110,18 +112,18 @@ public class PlayerTest {
         player.set_playerCountries(playerCountries);
 
         // Attempt to issue a deploy order with more armies than available reinforcements
-        String[] invalidDeployCommand = {
-                "deploy 1 10",
-                "deploy 2 3",
-                "deploy 3 2"
-        }; // Deploying 10 armies with only 5 available
-        player.issue_order(invalidDeployCommand, null, null );
-
+        // Deploying 10 armies with only 5 available
+        gameEngine.setCurrentInput("deploy 1 10");
+        player.issue_order();
+        gameEngine.setCurrentInput("deploy 2 3");
+        player.issue_order();
+        gameEngine.setCurrentInput("deploy 3 2");
+        player.issue_order();
         // Ensure that only valid orders were added to the player's order list
         assertEquals(2, player.get_playerOrder().size());
 
         // Ensure that the player's available reinforcements remain unchanged
         assertEquals(Integer.valueOf(0), player.get_numOfReinforcements());
-    }*/
+    }
 }
 
