@@ -4,8 +4,11 @@ import Controller.GameEngine;
 import Controller.MapEditor;
 import Models.Player;
 import Resources.Commands;
+import logging.LogWriter;
 
 import static java.lang.System.exit;
+
+import java.io.IOException;
 
 public class Startup extends Play {
     public Startup(GameEngine p_ge) {
@@ -86,7 +89,12 @@ public class Startup extends Play {
         }
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
-            exit(0);
+            try {
+    	        LogWriter.getInstance().info.close();
+    	        exit(0);
+    	    } catch (IOException e) {
+    	        System.out.println("I/O exception closing BufferedWriter");
+    	    }
         }
         if (d_ge.getCurrentInput().equalsIgnoreCase("assigncountries")) {
             if (d_ge.get_PlayersList().size() >= 2) {

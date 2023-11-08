@@ -2,8 +2,11 @@ package Phases;
 
 import Controller.GameEngine;
 import Resources.Cards;
+import logging.LogWriter;
 
 import static java.lang.System.exit;
+
+import java.io.IOException;
 
 public class IssueOrders extends OrderPhase {
     public IssueOrders(GameEngine p_ge) {
@@ -46,7 +49,12 @@ public class IssueOrders extends OrderPhase {
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
-            exit(0);
+            try {
+    	        LogWriter.getInstance().info.close();
+    	        exit(0);
+    	    } catch (IOException e) {
+    	        System.out.println("I/O exception closing BufferedWriter");
+    	    }
         }
         if (d_ge.getCurrentInput().toLowerCase().contains("execute")) {
             if (d_ge.getCurrentPlayer().equals(d_ge.get_PlayersList().get(d_ge.get_PlayersList().size() - 1))) {

@@ -4,6 +4,7 @@ import Controller.GameEngine;
 import Controller.MapEditor;
 import Models.WarMap;
 import Resources.Commands;
+import logging.LogWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -127,7 +128,12 @@ public class MainMenu extends Phase {
         }
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {
             System.out.println("Exiting program");
-            exit(0);
+            try {
+    	        LogWriter.getInstance().info.close();
+    	        exit(0);
+    	    } catch (IOException e) {
+    	        System.out.println("I/O exception closing BufferedWriter");
+    	    }
         }
     }
 
