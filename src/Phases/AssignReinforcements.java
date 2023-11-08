@@ -74,9 +74,11 @@ public class AssignReinforcements extends OrderPhase {
         if (d_ge.getCurrentPlayer().equals(d_ge.get_PlayersList().get(d_ge.get_PlayersList().size() - 1))) {
             d_ge.nextPlayer();
             d_ge.setPhase(new IssueOrders(d_ge));
-        } else {
+        } else if (!d_ge.getCurrentInput().toLowerCase().contains("execute")) {
             d_ge.nextPlayer();
 
+        } else {
+            System.out.println("You cannot finish giving deploy commands until all reinforcements are deployed");
         }
     }
 }

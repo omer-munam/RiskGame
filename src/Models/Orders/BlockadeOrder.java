@@ -41,7 +41,7 @@ public class BlockadeOrder implements Order {
         for (Country l_country : l_countryInfo) {
             if (l_country.get_countryID() == d_destCountryID) {
                 l_country.set_numOfArmies(l_country.get_numOfArmies() * 3);
-                l_country.setD_ownerPlayer(null);
+                l_country.setD_ownerPlayer(new Player("Neutral"));
                 break;
             }
         }
