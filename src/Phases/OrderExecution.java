@@ -4,6 +4,7 @@ import Controller.GameEngine;
 import Models.Orders.Order;
 import Models.Player;
 import Resources.Cards;
+import com.sun.tools.javac.Main;
 import logging.LogWriter;
 
 import java.io.IOException;
@@ -88,13 +89,8 @@ public class OrderExecution extends Play {
         }
         if (d_ge.get_PlayersList().size() == 1) {
             System.out.println(d_ge.get_PlayersList().get(0).get_playerName() + " is the only player left and has won the game.");
-            System.out.println("Exiting program");
-            try {
-                LogWriter.getInstance().d_info.close();
-                exit(0);
-            } catch (IOException e) {
-                System.out.println("I/O exception closing BufferedWriter");
-            }
+            d_ge.setPhase(new MainMenu(d_ge));
+            return;
         }
         this.next();
     }

@@ -230,7 +230,9 @@ public class GameEngine {
                     case Commands.SHOW_MAP_COMMAND:
                         d_gamePhase.showMap();
                         break;
-                    case "go back":
+                    case "goback":
+                        d_gamePhase.next();
+                        break;
                     case Commands.EXECUTE:
                     case "quit":
                         d_gamePhase.next();

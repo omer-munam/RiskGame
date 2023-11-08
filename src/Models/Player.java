@@ -361,6 +361,7 @@ public class Player {
         }
         if (l_sourceCountry == null) {
             System.out.println("Source country not found");
+            return;
         }
         for (Country country : l_sourceCountry.getNeighbouringCountries().values()) {
             if (country.get_countryID() == l_targetCountryID) {
@@ -369,6 +370,7 @@ public class Player {
         }
         if (l_targetCountry == null) {
             System.out.println("Listed target was not a neighbouring country to the source");
+            return;
         }
 
 

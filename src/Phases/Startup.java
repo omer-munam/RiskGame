@@ -30,7 +30,7 @@ public class Startup extends Play {
         System.out.print("- gameplayer -remove [playername]\n");
         System.out.print("- assigncountries\n");
         System.out.print("- showmap\n");
-        System.out.print("- go back\n");
+        System.out.print("- goback\n");
     }
 
     /**
@@ -112,7 +112,7 @@ public class Startup extends Play {
      */
     @Override
     public void next() {
-        if (d_ge.getCurrentInput().equalsIgnoreCase("go back")) {
+        if (d_ge.getCurrentInput().equalsIgnoreCase("goback")) {
             d_ge.setPhase(new MainMenu(d_ge));
         }
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {

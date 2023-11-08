@@ -37,6 +37,7 @@ public class MainMenu extends Phase {
         System.out.print("- showmap all\n");
         System.out.print("- quit\n");
         d_ge.get_PlayersList().clear();
+        d_ge.set_currentMap(new WarMap());
     }
 
     /**
