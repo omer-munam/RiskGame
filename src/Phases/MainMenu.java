@@ -19,7 +19,7 @@ public class MainMenu extends Phase {
      */
     public MainMenu(GameEngine p_ge) {
         super(p_ge);
-        d_logentrybuffer.writeLog("MAINMENU PHASE");
+        d_logentrybuffer.writeLog("Main Menu Phase");
     }
 
     /**
@@ -173,6 +173,7 @@ public class MainMenu extends Phase {
             d_ge.setPhase(new Startup(d_ge));
         }
         if (d_ge.getCurrentInput().toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
+            d_logentrybuffer.writeLog("editmap command runned successfully");
             d_ge.setPhase(new Preload(d_ge));
 
         }

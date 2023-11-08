@@ -15,7 +15,7 @@ public class AssignReinforcements extends OrderPhase {
      */
     public AssignReinforcements(GameEngine p_ge) {
         super(p_ge);
-        d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
+        d_logentrybuffer.writeLog("Assign Reinforcements Phase");
     }
 
     /**

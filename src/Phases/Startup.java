@@ -46,6 +46,7 @@ public class Startup extends Play {
      */
     @Override
     public void showMap() {
+        d_logentrybuffer.writeLog("showmap command runned successfully.");
         d_ge.get_currentMap().showMap();
     }
 
@@ -87,7 +88,7 @@ public class Startup extends Play {
     @Override
     public void assignCountries() {
         if (d_ge.assignCountries(false)) ;
-
+        d_logentrybuffer.writeLog("assigncountries command runned successfully.");
         this.next();
     }
 
@@ -130,6 +131,7 @@ public class Startup extends Play {
                 System.out.println("║      Game Starts... Get Ready...       ║");
                 System.out.println("╚════════════════════════════════════════╝");
                 d_ge.setPhase(new AssignReinforcements(d_ge));
+                d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
                 System.out.println("Assigning Reinforcements....");
                 System.out.println("_________________________________________");
                 for (Player player : d_ge.get_PlayersList()) {

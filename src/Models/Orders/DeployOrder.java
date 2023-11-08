@@ -5,6 +5,7 @@ import Models.WarMap;
 
 import java.util.Collection;
 
+import logging.LogEntryBuffer;
 /**
  * This class is used to implement the data and logic of how to execute orders given by a player.
  *
@@ -77,5 +78,6 @@ public class DeployOrder implements Order {
         }
         System.out.println("\n_________________________________________");
         System.out.println("Execution Done Successfully");
+        LogEntryBuffer.getInstance().writeLog(" Deploy order " + this.toString() + " executes successfully.");
     }
 }

@@ -3,6 +3,7 @@ package Models.Orders;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import logging.LogEntryBuffer;
 
 import java.util.Collection;
 
@@ -68,5 +69,6 @@ public class BombOrder implements Order{
         }
         System.out.println("\n_________________________________________");
         System.out.println("Country Bombed Successfully");
+        LogEntryBuffer.getInstance().writeLog(this.d_player + " Bomb order " + this.toString() + " executed successfully.");
     }
 }

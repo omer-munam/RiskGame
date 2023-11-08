@@ -16,6 +16,7 @@ public class IssueOrders extends OrderPhase {
      */
     public IssueOrders(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("Issue Orders Phase");
         p_ge.getCurrentPlayer().get_diplomacy_list().clear();
     }
 
