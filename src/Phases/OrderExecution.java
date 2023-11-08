@@ -4,8 +4,12 @@ import Controller.GameEngine;
 import Models.Orders.Order;
 import Models.Player;
 import Resources.Cards;
+import logging.LogWriter;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static java.lang.System.exit;
 
 public class OrderExecution extends Play {
     /**
@@ -72,6 +76,26 @@ public class OrderExecution extends Play {
         System.out.println("\n_________________________________________");
         System.out.println("All commands executed successfully..... ");
         System.out.println("_________________________________________");
+        ArrayList<Player> l_playersToRemove = new ArrayList<>();
+        for (Player player : d_ge.get_PlayersList()) {
+            if (player.get_playerCountries().size() == 0) {
+                l_playersToRemove.add(player);
+            }
+        }
+        for (Player player : l_playersToRemove) {
+            System.out.println(player.get_playerName() + " is out of countries and has been removed from the game");
+            d_ge.get_PlayersList().remove(player);
+        }
+        if (d_ge.get_PlayersList().size() == 1) {
+            System.out.println(d_ge.get_PlayersList().get(0).get_playerName() + " is the only player left and has won the game.");
+            System.out.println("Exiting program");
+            try {
+                LogWriter.getInstance().d_info.close();
+                exit(0);
+            } catch (IOException e) {
+                System.out.println("I/O exception closing BufferedWriter");
+            }
+        }
         this.next();
     }
 

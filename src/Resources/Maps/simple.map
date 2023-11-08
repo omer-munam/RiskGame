@@ -1,0 +1,15 @@
+[continents]
+North_Europe 2 red
+East_Europe 4 magenta
+
+[countries]
+1 England 1 164 126
+2 Scotland 1 158 44
+3 N_Ireland 2 125 70
+4 Rep_Ireland 2 106 90
+
+[borders]
+1 2 3 4
+2 1 3 4
+3 1 2 4
+4 1 2 3
