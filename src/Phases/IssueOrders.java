@@ -80,7 +80,6 @@ public class IssueOrders extends OrderPhase {
                 d_ge.setPhase(new OrderExecution(d_ge));
             } else {
                 d_ge.nextPlayer();
-                d_ge.setPhase(new IssueOrders(d_ge));
             }
         }
     }
