@@ -112,19 +112,19 @@ public class BlockadeOrderTest {
         BlockadeOrder blockadeOrder1 = new BlockadeOrder(1, player);
         blockadeOrder1.execute(warMap);
 
-        assertNull(destCountry1.getD_ownerPlayer());
+        assertTrue(destCountry1.getD_ownerPlayer().get_playerName().equals("Neutral"));
         assertEquals(2, player.get_playerCountries().size());
 
         BlockadeOrder blockadeOrder2 = new BlockadeOrder(2, player);
         blockadeOrder2.execute(warMap);
 
-        assertNull(destCountry2.getD_ownerPlayer());
+        assertTrue(destCountry2.getD_ownerPlayer().get_playerName().equals("Neutral"));
         assertEquals(1, player.get_playerCountries().size());
 
         BlockadeOrder blockadeOrder3 = new BlockadeOrder(3, player);
         blockadeOrder3.execute(warMap);
 
-        assertNull(destCountry3.getD_ownerPlayer());
+        assertTrue(destCountry3.getD_ownerPlayer().get_playerName().equals("Neutral"));
         assertEquals(0, player.get_playerCountries().size());
     }
 

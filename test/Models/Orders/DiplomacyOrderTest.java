@@ -100,7 +100,7 @@ public class DiplomacyOrderTest {
         player.set_playerCountries(List.of(new Country(1, "CountryA", 1)));
 
         // Simulate an invalid target player by setting the current input in GameEngine.
-        GameEngine.getInstance().setCurrentInput("diplomacy Player2");
+        GameEngine.getInstance().setCurrentInput("diplomacy fakePlayer");
 
         // Call the method you want to test.
         player.issue_order();
@@ -109,6 +109,6 @@ public class DiplomacyOrderTest {
         assertEquals(0, player.get_playerOrder().size());
 
         // Assert that the target player name is not added to the diplomacy list.
-        assertFalse(player.get_diplomacy_list().contains("Player2"));
+        assertFalse(player.get_diplomacy_list().contains("fakePlayer"));
     }
 }
