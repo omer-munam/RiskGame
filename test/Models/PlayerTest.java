@@ -298,6 +298,31 @@ public class PlayerTest {
         assertEquals(1, player.get_playerOrder().size());
     }
 
+    @Test
+    public void testAdvanceCommandExecutionWithInvalidSourceCountry() {
+        // Create a test scenario where the player has two countries, but the source country is invalid.
+        WarMap map = new WarMap();
+        Country sourceCountry = new Country(1, "SourceCountry", 1);
+        Country targetCountry = new Country(2, "TargetCountry", 1);
+        map.addCountry(sourceCountry);
+        map.addCountry(targetCountry);
+        player.set_playerCountries(Arrays.asList(sourceCountry, targetCountry));
+
+        // Make the source and target countries non-neighbors.
+        // In this case, the source country is not a neighbor of the target country.
+        player.set_playerCountries(Arrays.asList(sourceCountry, targetCountry));
+
+        // Simulate an invalid advance command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("advance 1 2 3");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that no AdvanceOrder was created and added to the list of orders.
+        assertEquals(1, player.get_playerOrder().size());
+    }
+
+
 
     @Test
     public void testBombCommandExecution() {
