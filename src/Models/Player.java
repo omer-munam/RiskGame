@@ -227,6 +227,7 @@ public class Player {
                 }
             if (!l_targetPlayerNameExists) {
                 System.out.println("The given Player name doesn't exists.");
+
             } else {
                 d_diplomacy_list.add(l_targetPlayerName);
 

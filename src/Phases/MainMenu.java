@@ -34,7 +34,7 @@ public class MainMenu extends Phase {
         System.out.print("Possible commands are: \n");
         System.out.print("- editmap\n");
         System.out.print("- loadmap [filename]\n");
-        System.out.print("- showmap all\n");
+        System.out.print("- showmapall\n");
         System.out.print("- quit\n");
         d_ge.get_PlayersList().clear();
         d_ge.set_currentMap(new WarMap());
