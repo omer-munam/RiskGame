@@ -131,7 +131,7 @@ public class Startup extends Play {
                 System.out.println("║      Game Starts... Get Ready...       ║");
                 System.out.println("╚════════════════════════════════════════╝");
                 d_ge.setPhase(new AssignReinforcements(d_ge));
-                d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
+                d_logentrybuffer.writeLog("Assigning reinforcements");
                 System.out.println("Assigning Reinforcements....");
                 System.out.println("_________________________________________");
                 for (Player player : d_ge.get_PlayersList()) {
