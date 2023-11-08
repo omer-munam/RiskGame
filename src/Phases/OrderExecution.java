@@ -51,21 +51,6 @@ public class OrderExecution extends Play {
     }
 
     @Override
-    public void attack() {
-
-    }
-
-    @Override
-    public void reinforce() {
-
-    }
-
-    @Override
-    public void fortify() {
-
-    }
-
-    @Override
     public void endGame() {
 
     }

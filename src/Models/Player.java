@@ -1,5 +1,6 @@
 package Models;
 
+import Controller.GameEngine;
 import Models.Orders.*;
 import Resources.Cards;
 import Resources.Commands;
@@ -163,43 +164,31 @@ public class Player {
      * “issue_order()” (no parameters, no return value) whose function is
      * to add an order to the list of orders held by the
      * player when the game engine calls it during the issue orders phase.
-     *
-     * @param commands The following param is for the testing class only. Set to null under normal conditions.
-     * @param d_map
      */
-    public void issue_order(String[] commands, WarMap d_map, List<Player> p_list) {
-        deployOrder(commands);
-        d_diplomacy_list.clear();
-        while (true){
-            System.out.println("_____________________________________________");
-            System.out.println("Please provide a command to execute or type execute to execute the given commands:");
-            String command = SCANNER.nextLine();
-            String[] commandTokens = command.split(" ");
-            switch (commandTokens[0]){
-                //TODO: Advance Order handling
-                case Commands.ADVANCE_ORDER:
-                    advance_issue_order(commandTokens, d_map);
-                    break;
-
-                case Commands.BOMB_ORDER:
-                    bomb_issue_order(commandTokens, d_map);
-                    break;
-                case Commands.BLOCKADE_ORDER:
-                    blockade_issue_order(commandTokens, d_map);
-                    break;
-                //TODO: Airlift order handling after checking if player does holds airlift card
-                case Commands.AIRLIFT_ORDER:
-                    airlift_issue_order(commandTokens);
-                    break;
-
-                case Commands.DIPLOMACY_ORDER:
-                    diplomacy_issue_order(commandTokens, d_map, p_list);
-                    break;
-                case Commands.EXECUTE:
-                    return;
-                default:
-                    System.out.println("Invalid command given... Please try again...");
-            }
+    public void issue_order() {
+//        d_diplomacy_list.clear();
+        GameEngine p_ge = GameEngine.getInstance();
+        WarMap d_map = p_ge.get_currentMap();
+        String command = p_ge.getCurrentInput();
+        String[] commandTokens = command.split(" ");
+        switch (commandTokens[0]) {
+            case Commands.ADVANCE_ORDER:
+                advance_issue_order(commandTokens, d_map);
+                break;
+            case Commands.BOMB_ORDER:
+                bomb_issue_order(commandTokens, d_map);
+                break;
+            case Commands.BLOCKADE_ORDER:
+                blockade_issue_order(commandTokens, d_map);
+                break;
+            case Commands.AIRLIFT_ORDER:
+                airlift_issue_order(commandTokens);
+                break;
+            case Commands.DIPLOMACY_ORDER:
+                diplomacy_issue_order(commandTokens, d_map, p_ge.get_PlayersList());
+                break;
+            default:
+                System.out.println("Invalid command given... Please try again...");
         }
     }
 
@@ -310,66 +299,6 @@ public class Player {
         d_playerOrders.add(order);
         d_playerCards.remove(Cards.Bomb);
         System.out.println("Bomb order issued successfully.");
-    }
-
-    private void deployOrder(String[] commands) {
-        int iterations = 0;
-        while (d_numOfReinforcements != 0) {
-            int countryID;
-            int numOfArmies;
-            System.out.println("Please issue a deploy order for Player " + d_playerName); // + "\nSyntax: deploy <countryID> <num>");
-            System.out.println("Remaining reinforcements: " + d_numOfReinforcements);
-            String command = SCANNER == null ? commands[iterations++] : SCANNER.nextLine();
-            String[] commandTokens = command.split(" ");
-
-            String commandType = commandTokens[0].toLowerCase();
-
-            switch (commandType) {
-                case "deploy":
-                    if (commandTokens.length != 3) {
-                        System.out.println("Invalid deploy order format. Syntax: deploy <countryID> <num>");
-                        continue;
-                    }
-                    try {
-                        countryID = Integer.parseInt(commandTokens[1]);
-                        numOfArmies = Integer.parseInt(commandTokens[2]);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid CountryID or Number of Reinforcements");
-                        continue;
-                    }
-
-                    if (numOfArmies > d_numOfReinforcements) {
-                        System.out.println("Specified number of reinforcements exceed the available.");
-                        continue;
-                    }
-
-                    boolean countryExists = false;
-                    for (Country country : d_playerCountries) {
-                        if (country.get_countryID() == countryID) {
-                            countryExists = true;
-                            break;
-                        }
-                    }
-
-                    if (!countryExists) {
-                        System.out.println("The given CountryID is not under your control.");
-                        continue;
-                    }
-
-                    Order deployOrder = new DeployOrder(numOfArmies, countryID);
-                    d_playerOrders.add(deployOrder);
-                    d_numOfReinforcements -= numOfArmies;
-                    System.out.println("Deploy order issued successfully.");
-                    break;
-                default:
-                    System.out.println("Unsupported command type: " + commandType);
-                    continue;
-            }
-            DeployOrder order = new DeployOrder(numOfArmies, countryID);
-            d_playerOrders.add(order);
-            d_numOfReinforcements = d_numOfReinforcements - numOfArmies;
-        }
-        System.out.println("Deployed All Reinforcements Successfully.");
     }
     private void advance_issue_order(String[] commandTokens, WarMap d_map) {
         // Check if the player has the Advance card.

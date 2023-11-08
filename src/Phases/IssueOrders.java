@@ -13,21 +13,13 @@ public class IssueOrders extends OrderPhase {
         System.out.println("Please provide a command to execute or type execute to finish giving commands");
     }
 
-    public void attack() {
-
-    }
-
     public void deploy() {
         printInvalidCommandMessage();
     }
-    @Override
-    public void reinforce() {
-
-    }
 
     @Override
-    public void fortify() {
-
+    public void issueOrder() {
+        d_ge.getCurrentPlayer().issue_order();
     }
 
     @Override
@@ -42,7 +34,6 @@ public class IssueOrders extends OrderPhase {
                 d_ge.setPhase(new OrderExecution(d_ge));
             } else {
                 d_ge.nextPlayer();
-
                 d_ge.setPhase(new IssueOrders(d_ge));
             }
         }

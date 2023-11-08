@@ -14,7 +14,7 @@ public class PlayPhaseTest {
 
     @BeforeEach
     public void setUp() {
-        gameEngine = new GameEngine();
+        gameEngine = GameEngine.getInstance();
 
 
     }

@@ -34,12 +34,7 @@ public abstract class Phase {
 
     abstract public void assignCountries();
     abstract public void deploy();
-    abstract public void attack();
-
-    abstract public void reinforce();
-
-    abstract public void fortify();
-
+    abstract public void issueOrder();
     abstract public void endGame();
 
     abstract public void next() throws IOException;

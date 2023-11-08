@@ -32,10 +32,15 @@ import java.util.*;
  * @since 2023-09-26
  */
 public class GameEngine {
-    public GameEngine() {
+    private GameEngine() {
         d_gamePhase = new MainMenu(this);
     }
-
+    private static GameEngine Instance;
+    public static GameEngine getInstance() {
+        if (Instance == null)
+            Instance = new GameEngine();
+        return Instance;
+    }
     private Set<Player> d_finishedPlayers = new HashSet<>();
 
 
@@ -150,47 +155,71 @@ public class GameEngine {
 
                 d_currentInput = SCANNER.nextLine();
                 String[] l_words = d_currentInput.split("\\s+");
-
-                if (d_currentInput.toLowerCase().contains(Commands.LOAD_MAP_COMMAND)) {
-                    d_gamePhase.loadMap();
-                } else if (d_currentInput.toLowerCase().contains("gameplayer")) {
-                    d_gamePhase.setPlayers();
-                } else if (d_currentInput.equalsIgnoreCase(Commands.ASSIGN_COUNTRIES_COMMAND)) {
-                    d_gamePhase.assignCountries();
-                    if (d_playersList.size() != 0) {
-                        d_currentPlayer = d_playersList.get(0);
-                    }
-
-                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_MAP_COMMAND)) {
-                    d_gamePhase.showMap();
-                } else if (d_currentInput.equalsIgnoreCase("go back")) {
-                    d_gamePhase.next();
-                } else if (d_currentInput.equalsIgnoreCase(Commands.SHOW_ALL_MAPS_COMMAND)) {
-                    d_gamePhase.showAllMaps();
-
-                } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
-                    d_gamePhase.next();
-                } else if (d_currentInput.toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
-                    d_gamePhase.loadMap();
-                } else if (d_currentInput.toLowerCase().contains(Commands.DEPLOY_COMMAND)) {
-                    d_gamePhase.deploy();
-                } else if (d_currentInput.toLowerCase().contains(Commands.EXECUTE)) {
-                    d_gamePhase.next();
-                } else if (d_currentInput.toLowerCase().contains("editcontinent")) {
-                    d_gamePhase.editContinent();
-                } else if (d_currentInput.toLowerCase().contains("editcountry")) {
-                    d_gamePhase.editCountry();
-                } else if (d_currentInput.toLowerCase().contains("editneighbor")) {
-                    d_gamePhase.editNeighbours();
-                } else if (d_currentInput.toLowerCase().contains("validatemap")) {
-                    d_gamePhase.validateMap();
-                } else if (d_currentInput.toLowerCase().contains("savemap")) {
-                    d_gamePhase.saveMap();
-                } else if (d_currentInput.equalsIgnoreCase("quit")) {
-                    d_gamePhase.next();
-                } else {
-                    System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
+                switch (l_words[0].toLowerCase()) {
+                    case Commands.LOAD_MAP_COMMAND:
+                        d_gamePhase.loadMap();
+                        break;
+                    case "gameplayer":
+                        d_gamePhase.setPlayers();
+                        break;
+                    case Commands.ASSIGN_COUNTRIES_COMMAND:
+                        d_gamePhase.assignCountries();
+                        if (!d_playersList.isEmpty()) {
+                            d_currentPlayer = d_playersList.get(0);
+                        }
+                        break;
+                    case Commands.SHOW_MAP_COMMAND:
+                        d_gamePhase.showMap();
+                        break;
+                    case "go back":
+                    case Commands.EXECUTE:
+                    case "quit":
+                        d_gamePhase.next();
+                        break;
+                    case Commands.EDIT_MAP_COMMAND:
+                        if (l_words.length > 1)
+                            d_gamePhase.loadMap();
+                        else
+                            d_gamePhase.next();
+                        break;
+                    case Commands.SHOW_ALL_MAPS_COMMAND:
+                        d_gamePhase.showAllMaps();
+                        break;
+                    case Commands.DEPLOY_COMMAND:
+                        d_gamePhase.deploy();
+                        break;
+                    case Commands.ADVANCE_ORDER:
+                    case Commands.BOMB_ORDER:
+                    case Commands.BLOCKADE_ORDER:
+                    case Commands.AIRLIFT_ORDER:
+                    case Commands.DIPLOMACY_ORDER:
+                        d_gamePhase.issueOrder();
+                        break;
+                    case "editcontinent":
+                        d_gamePhase.editContinent();
+                        break;
+                    case "editcountry":
+                        d_gamePhase.editCountry();
+                        break;
+                    case "editneighbor":
+                        d_gamePhase.editNeighbours();
+                        break;
+                    case "validatemap":
+                        d_gamePhase.validateMap();
+                        break;
+                    case "savemap":
+                        d_gamePhase.saveMap();
+                        break;
+                    default:
+                        System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
                 }
+
+//                } else if (d_currentInput.equalsIgnoreCase(Commands.EDIT_MAP_COMMAND)) {
+//                    d_gamePhase.next();
+//                } else if (d_currentInput.toLowerCase().contains(Commands.EDIT_MAP_COMMAND)) {
+//                    d_gamePhase.loadMap();
+//                }
+
             }
 
         } catch (IOException e) {

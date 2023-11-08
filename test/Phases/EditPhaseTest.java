@@ -14,7 +14,7 @@ public class EditPhaseTest {
 
     @BeforeEach
     public void setUp() {
-        gameEngine = new GameEngine();
+        gameEngine = GameEngine.getInstance();
 
 
     }

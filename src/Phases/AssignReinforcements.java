@@ -66,17 +66,8 @@ public class AssignReinforcements extends OrderPhase {
         }
     }
 
-    public void attack() {
-        printInvalidCommandMessage();
-    }
-
     @Override
-    public void reinforce() {
-        printInvalidCommandMessage();
-    }
-
-    @Override
-    public void fortify() {
+    public void issueOrder() {
         printInvalidCommandMessage();
     }
 

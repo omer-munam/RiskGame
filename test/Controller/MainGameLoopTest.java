@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p>Expected Result:
  * The player should receive 6 reinforcements, consisting of 5 (total owned countries) plus the army bonus of 1.
  *
- * @see MainGameLoop#getNumOfReinforcements(Player)
  */
 
 public class MainGameLoopTest {
@@ -66,9 +65,7 @@ public class MainGameLoopTest {
         ArrayList<Player> test_player_list = new ArrayList<>();
         test_player_list.add(test_player); //NEED TO PUT PLAYER IN LIST TO MAKE MainGameLoop Class
 
-        MainGameLoop test_mainGameLoop = new MainGameLoop(test_war_map, test_player_list); //CREATE MainGameLoop with the created map and player list
-
-        int numOfReinforcements = test_mainGameLoop.getNumOfReinforcements(test_player);
+        int numOfReinforcements = GameEngine.getInstance().getNumOfReinforcements(test_player);
 
         // Define the expected number of reinforcements based on your test scenario
         int expectedReinforcements = 6; // Adjust this value based on your specific test case

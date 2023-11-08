@@ -11,7 +11,7 @@ public class Main {
 	    	LogEntryBuffer l_logentryBuffer = LogEntryBuffer.getInstance();
 	    	l_logentryBuffer.attach(LogWriter.getInstance());
 	    	
-	        GameEngine new_game = new GameEngine();
+	        GameEngine new_game = GameEngine.getInstance();
 	        new_game.start_game();
 		} finally {
     		try {
