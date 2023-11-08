@@ -16,7 +16,7 @@ public class EditPhaseTest {
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         gameEngine.setPhase(new MainMenu(gameEngine));
-
+        gameEngine.get_PlayersList().clear();
 
     }
 
