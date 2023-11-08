@@ -8,11 +8,13 @@ import Resources.Cards;
 public class OrderExecution extends Play {
     public OrderExecution(GameEngine p_ge) {
         super(p_ge);
+        d_logentrybuffer.writeLog("Order Execution Phase");
     }
 
     @Override
     public void displayOptions() {
         for (Player player : d_ge.get_PlayersList()) {
+        	d_logentrybuffer.writeLog(player+" order executing");
             while (true) {
                 Order order = player.next_order();
                 if (order == null)
@@ -23,6 +25,7 @@ public class OrderExecution extends Play {
         System.out.println("\n_________________________________________");
         System.out.println("All commands executed successfully..... ");
         System.out.println("_________________________________________");
+        d_logentrybuffer.writeLog("All orders executed successfully");
         this.next();
     }
 
@@ -59,11 +62,13 @@ public class OrderExecution extends Play {
     @Override
     public void next() {
         Cards.assignRandomCardsToPlayers();
+        d_logentrybuffer.writeLog("ASSIGNREINFORCEMENTS PHASE");
         System.out.println("Assigning Reinforcements....");
         System.out.println("_________________________________________");
         for (Player player : d_ge.get_PlayersList()) {
             player.set_numOfReinforcements(d_ge.getNumOfReinforcements(player));
             System.out.println("Assigned `" + player.get_numOfReinforcements() + "` reinforcements to player: " + player.get_playerName());
+            d_logentrybuffer.writeLog("assigned "+player.get_playerName()+" "+player.get_numOfReinforcements()+" no of reinforcement armies.");
         }
         System.out.println("\n_________________________________________");
         System.out.println("Taking orders from each player....");
@@ -73,6 +78,7 @@ public class OrderExecution extends Play {
         d_ge.get_FinishedPlayers().clear();
         d_ge.setCurrentPlayer(d_ge.get_PlayersList().get(0));
         d_ge.setPhase(new AssignReinforcements(d_ge));
+        d_logentrybuffer.writeLog("ISSUE ORDERS PHASE");
         Cards.clearPlayerAcquiredTerritory();
 
 

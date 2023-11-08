@@ -154,6 +154,7 @@ public class Postload extends Edit {
     public void validateMap() {
         if (d_ge.get_currentMap().validateMap()) System.out.println("Valid Map");
         else System.out.println("InValid Map");
+        d_logentrybuffer.writeLog("Validate Command executed successfully.");
     }
 
     @Override

@@ -229,6 +229,7 @@ public class Player {
                 d_diplomacy_list.add(targetPlayerName);
 
                 System.out.println("Diplomacy order executed successfully.");
+                d_logentrybuffer.writeLog(d_playerName+" issued negotiate order on "+targetPlayerName);
             }
         } else {
             System.out.println("Player do not have Diplomacy card");
@@ -266,6 +267,7 @@ public class Player {
                 d_playerOrders.add(order);
                 d_playerCards.remove(Cards.Blockade);
                 System.out.println("Blockade order executed successfully.");
+                d_logentrybuffer.writeLog(d_playerName+" issued blockade order with countryId " + destCountryID);
             }
         } else {
             System.out.println("Player do not have Blockade card");
@@ -310,6 +312,7 @@ public class Player {
         d_playerOrders.add(order);
         d_playerCards.remove(Cards.Bomb);
         System.out.println("Bomb order issued successfully.");
+        d_logentrybuffer.writeLog(d_playerName+" issued bomb order on countryId " + destCountryID);
     }
     /**
      * This method is called to issue an Advance order. It checks the validity of the command format,
@@ -370,6 +373,8 @@ public class Player {
         // Create an AdvanceOrder and add it to the player's list of orders.
         AdvanceOrder advanceOrder = new AdvanceOrder(this, sourceCountry, targetCountry, numArmies);
         d_playerOrders.add(advanceOrder);
+        d_logentrybuffer.writeLog(d_playerName+" issued advance country order from " + sourceCountry + " to "+targetCountry
+        		+" with " + numArmies + " armies");
     }
 
     /**
@@ -436,6 +441,8 @@ public class Player {
         AirliftOrder airliftOrder = new AirliftOrder(this, sourceCountry, targetCountry, numArmies);
         d_playerOrders.add(airliftOrder);
         d_playerCards.remove(Cards.Airlift);
+        d_logentrybuffer.writeLog(d_playerName+" issued Airlift order with sourcecountryID " + sourceCountryID + ", targetcountryID, "+
+        		targetCountry+ " with " + numArmies + " armies");
     }
 
     private void deploy_issue_order(String[] p_commandTokens) {
@@ -477,7 +484,7 @@ public class Player {
         d_playerOrders.add(deployOrder);
         this.set_numOfReinforcements(GameEngine.getInstance().getCurrentPlayer().get_numOfReinforcements() - numOfArmies);
         System.out.println("Deploy order issued successfully.");
-        d_logentrybuffer.writeLog("Deployed country with ID " + countryID + " with " + numOfArmies + " armies");
+        d_logentrybuffer.writeLog(d_playerName+" issued Deploy order country with ID " + countryID + " with " + numOfArmies + " armies");
     }
 
 
