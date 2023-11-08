@@ -5,6 +5,8 @@ import Models.Orders.Order;
 import Models.Player;
 import Resources.Cards;
 
+import java.util.ArrayList;
+
 public class OrderExecution extends Play {
     /**
      * The constructor for the Order Execution phase
@@ -20,7 +22,43 @@ public class OrderExecution extends Play {
      */
     @Override
     public void displayOptions() {
+        //Deploy Orders
         for (Player player : d_ge.get_PlayersList()) {
+            ArrayList<Order> l_ordersToReadd = new ArrayList<>();
+            while (true) {
+                Order order = player.next_order();
+                if (order == null)
+                    break;
+                if (order.getClass().getSimpleName().equals("DeployOrder")) {
+                    order.execute(d_ge.get_currentMap());
+                } else {
+                    l_ordersToReadd.add(order);
+                }
+            }
+            for (Order l_o : l_ordersToReadd) {
+                player.get_playerOrder().add(l_o);
+            }
+        }
+        //Advance orders
+        for (Player player : d_ge.get_PlayersList()) {
+            ArrayList<Order> l_ordersToReadd = new ArrayList<>();
+            while (true) {
+                Order order = player.next_order();
+                if (order == null)
+                    break;
+                if (order.getClass().getSimpleName().equals("AdvanceOrder")) {
+                    order.execute(d_ge.get_currentMap());
+                } else {
+                    l_ordersToReadd.add(order);
+                }
+            }
+            for (Order l_o : l_ordersToReadd) {
+                player.get_playerOrder().add(l_o);
+            }
+        }
+        //Other orders
+        for (Player player : d_ge.get_PlayersList()) {
+            ArrayList<Order> l_ordersToReadd = new ArrayList<>();
             while (true) {
                 Order order = player.next_order();
                 if (order == null)
@@ -28,6 +66,9 @@ public class OrderExecution extends Play {
                 order.execute(d_ge.get_currentMap());
             }
         }
+
+
+
         System.out.println("\n_________________________________________");
         System.out.println("All commands executed successfully..... ");
         System.out.println("_________________________________________");
