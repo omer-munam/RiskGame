@@ -60,6 +60,7 @@ public class Player {
         this.d_playerOrders = new ArrayList<Order>();
         this.d_playerCountries = new ArrayList<Country>();
         this.d_playerContinents = new ArrayList<Continent>();
+        this.d_diplomacy_list = new ArrayList<>();
     }
 
     /**
