@@ -211,6 +211,32 @@ public class PlayerTest {
 
 
     @Test
+    public void testBombCommandExecution() {
+        // Create a test scenario where the player has the Bomb card, and the input is valid.
+        player.set_playerCards(List.of(Cards.Bomb));
+        WarMap map = new WarMap();
+        Country countryA = new Country(1, "CountryA", 1);
+        Country countryB = new Country(2, "CountryB", 1);
+        map.addCountry(countryA);
+        map.addCountry(countryB);
+
+        player.set_playerCountries(Arrays.asList(countryA, countryB));
+
+        // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("bomb 2");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that a BombOrder was created and added to the list of orders.
+        assertEquals(1, player.get_playerOrder().size());
+        assertTrue(player.get_playerOrder().get(0) instanceof BombOrder);
+
+        // Ensure that the Bomb card is removed from the player's cards.
+        assertFalse(player.get_playerCards().contains(Cards.Bomb));
+    }
+
+    @Test
     public void testBombCommandExecutionWithoutBombCard() {
         // Create a test scenario where the player does not have the Bomb card.
         WarMap map = new WarMap();
