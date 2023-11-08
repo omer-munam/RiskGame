@@ -57,7 +57,6 @@ public class LogWriter implements Observer {
      * notified of a new log in Buffer.
      *
      * @param p_logString: String containing the log to be logged in file.
-     * @return none
      */
     public void update(String p_logString) {
         try {

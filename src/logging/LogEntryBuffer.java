@@ -29,7 +29,6 @@ public class LogEntryBuffer extends Observable {
     /**
      * takes logging message from the running project and calls notifyObservers for notifying every attached Observer.
      *
-     * @return none
      */
     public void writeLog(String p_logMessage) {
         notifyObservers(p_logMessage);
