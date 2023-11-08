@@ -78,6 +78,11 @@ public class DeployOrder implements Order {
         }
         System.out.println("\n_________________________________________");
         System.out.println("Execution Done Successfully");
-        LogEntryBuffer.getInstance().writeLog(" Deploy order " + this.toString() + " executes successfully.");
+        LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
     }
+    
+	@Override
+	public String toString() {
+		return "Deploy Order on CountryID "+d_destCountryID+" with "+d_numOfArmies+" numOfArmies";
+	}
 }

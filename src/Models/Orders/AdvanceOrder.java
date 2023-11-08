@@ -84,7 +84,7 @@ public class AdvanceOrder implements Order {
                     d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() - d_numArmies);
                 }
             }
-            LogEntryBuffer.getInstance().writeLog(this.d_player + " Advance order " + this.toString() + " executed successfully.");
+            LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
         }
     }
 

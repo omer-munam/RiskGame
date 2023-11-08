@@ -31,7 +31,7 @@ public class OrderExecution extends Play {
     public void displayOptions() {
         //Deploy Orders
         for (Player player : d_ge.get_PlayersList()) {
-            d_logentrybuffer.writeLog(player + " deploy orders executing");
+            d_logentrybuffer.writeLog(player.get_playerName() + " deploy orders executing");
             ArrayList<Order> l_ordersToReadd = new ArrayList<>();
             while (true) {
                 Order order = player.next_order();
@@ -49,7 +49,7 @@ public class OrderExecution extends Play {
         }
         //Advance orders
         for (Player player : d_ge.get_PlayersList()) {
-            d_logentrybuffer.writeLog(player + " advance order executing");
+            d_logentrybuffer.writeLog(player.get_playerName() + " advance order executing");
             ArrayList<Order> l_ordersToReadd = new ArrayList<>();
             while (true) {
                 Order order = player.next_order();
@@ -67,7 +67,7 @@ public class OrderExecution extends Play {
         }
         //Other orders
         for (Player player : d_ge.get_PlayersList()) {
-            d_logentrybuffer.writeLog(player + " misc order executing");
+            d_logentrybuffer.writeLog(player.get_playerName() + " misc order executing");
             ArrayList<Order> l_ordersToReadd = new ArrayList<>();
             while (true) {
                 Order order = player.next_order();

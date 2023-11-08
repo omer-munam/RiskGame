@@ -56,7 +56,7 @@ public class AirliftOrder implements Order {
             // Move armies from the source country to the target country.
             d_sourceCountry.set_numOfArmies(d_sourceCountry.get_numOfArmies() - d_numArmies);
             d_targetCountry.set_numOfArmies(d_targetCountry.get_numOfArmies() + d_numArmies);
-            LogEntryBuffer.getInstance().writeLog(this.d_player + " AirLiftOrder order " + this.toString() + " executed successfully.");
+            LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
         }
         else {
             System.out.println("Execution failed as you have lost control of one of the territories..");

@@ -50,6 +50,11 @@ public class BlockadeOrder implements Order{
                 break;
             }
         }
-        LogEntryBuffer.getInstance().writeLog(this.d_player + " Bloackade order " + this.toString() + " executed successfully.");
+        LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
     }
+    
+    @Override
+	public String toString() {
+		return "Blockade Order countryId=" + d_destCountryID;
+	}
 }

@@ -69,6 +69,11 @@ public class BombOrder implements Order{
         }
         System.out.println("\n_________________________________________");
         System.out.println("Country Bombed Successfully");
-        LogEntryBuffer.getInstance().writeLog(this.d_player + " Bomb order " + this.toString() + " executed successfully.");
+        LogEntryBuffer.getInstance().writeLog(this.toString() + " executed successfully.");
     }
+    
+	@Override
+	public String toString() {
+		return "Bomb Order countryID=" + d_destCountryID ;
+	}
 }
