@@ -346,16 +346,18 @@ public class Player {
                 sourceCountry = country;
             }
         }
+        if (sourceCountry == null) {
+            System.out.println("Source country not found");
+        }
         for (Country country : sourceCountry.getNeighbouringCountries().values()) {
             if (country.get_countryID() == targetCountryID) {
                 targetCountry = country;
             }
         }
-        // Check if the source and target countries are valid.
-        if (sourceCountry == null || targetCountry == null) {
-            System.out.println("Source or target country not found.");
-            return;
+        if (targetCountry == null) {
+            System.out.println("Listed target was not a neighbouring country to the source");
         }
+
 
         // Create an AdvanceOrder and add it to the player's list of orders.
         AdvanceOrder advanceOrder = new AdvanceOrder(this, sourceCountry, targetCountry, numArmies);
