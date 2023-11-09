@@ -95,7 +95,7 @@ public class OrderExecution extends Play {
             d_ge.setPhase(new MainMenu(d_ge));
             return;
         }
-        d_logentrybuffer.writeLog("All orders executed successfully");
+
         this.next();
     }
 

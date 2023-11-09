@@ -371,11 +371,22 @@ public class WarMap {
      */
     public void showMap(List<Player> p_players) { //Show map for with player ownership
         showMap();
+        Set<Country> ownedCountries = new HashSet<>();
         for (Player l_player : p_players) { //Shows what countries are owned by the players with the corresponding number of armies
             System.out.println(l_player.get_playerName() + " owns the following countries:");
             for (Country l_c : l_player.get_playerCountries()) {
+                ownedCountries.add(l_c);
                 System.out.println(l_c.get_countryName() + " with countryID " + l_c.get_countryID() + " with " + l_c.get_numOfArmies() + " armies.");
 
+            }
+            System.out.println("---------------------------------");
+        }
+        if (ownedCountries.size() != this.get_countries().values().size()) {
+            System.out.println("Neutral countries:");
+            for (Country l_c : this.get_countries().values()) {
+                if (!ownedCountries.contains(l_c)) {
+                    System.out.println(l_c.get_countryName() + " with countryID" + l_c.get_countryID() + " with " + l_c.get_numOfArmies() + " armies.");
+                }
             }
             System.out.println("---------------------------------");
         }
