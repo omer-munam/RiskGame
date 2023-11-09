@@ -34,7 +34,8 @@ public class MapEditor {
      *
      * @param p_filename The file name of the map
      * @param p_map      The map class in which you wish to store the map.
-     * @throws IOException
+     * @throws IOException Exception if error with IO
+     * @return True if a map could be read
      */
     public static boolean readMap(String p_filename, WarMap p_map) throws IOException {
 
@@ -88,7 +89,7 @@ public class MapEditor {
      * @param p_filename The filename of the WarMap
      * @param p_map      The WarMap object that is to be edited.
      * @return Returns true if the WarMap file already exists, and false if it is a new WarMap
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     public static boolean editMap(String p_filename, WarMap p_map) throws IOException {
         File l_f = new File(d_base_path, p_filename);

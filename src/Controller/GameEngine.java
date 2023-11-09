@@ -280,6 +280,7 @@ public class GameEngine {
      * to assign the countries equally to all the players. After assigning the countries this function sends the control over to the MainGameLoop class.
      *
      * @param p_test This boolean is for test only. Keep false otherwise.
+     * @return True if countries could be assigned
      */
     public boolean assignCountries(boolean p_test) {
         if (d_playersList.size() < 2) {

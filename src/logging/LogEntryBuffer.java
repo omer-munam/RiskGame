@@ -19,6 +19,7 @@ public class LogEntryBuffer extends Observable {
 
     /**
      * If the instance was not previously created, create it. Then return the instance
+     * @return The instance of the LogEntryBuffer
      */
     public static LogEntryBuffer getInstance() {
         if (instance == null)
@@ -28,7 +29,7 @@ public class LogEntryBuffer extends Observable {
 
     /**
      * takes logging message from the running project and calls notifyObservers for notifying every attached Observer.
-     *
+     * @param p_logMessage The log message to be written
      */
     public void writeLog(String p_logMessage) {
         notifyObservers(p_logMessage);

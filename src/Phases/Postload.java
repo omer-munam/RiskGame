@@ -39,7 +39,7 @@ public class Postload extends Edit {
     /**
      * The Loadmap function of the postload phase
      *
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     @Override
     public void loadMap() throws IOException {
@@ -159,7 +159,7 @@ public class Postload extends Edit {
     /**
      * The save map function of the postload phase
      *
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     @Override
     public void saveMap() throws IOException {

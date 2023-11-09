@@ -43,7 +43,7 @@ public class MainMenu extends Phase {
     /**
      * Load Map for the Main Menu Phase
      *
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     @Override
     public void loadMap() throws IOException {
@@ -167,7 +167,7 @@ public class MainMenu extends Phase {
     /**
      * The next function for the main menu phase
      *
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     @Override
     public void next() throws IOException {

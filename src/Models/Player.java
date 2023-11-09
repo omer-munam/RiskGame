@@ -501,7 +501,7 @@ public class Player {
 
     /**
      * This method is called by the GameEngine during executing order phase and
-     * returns the first order in the player’s list of orders, then removes it from the list.
+     * @return the first order in the player’s list of orders, then removes it from the list.
      */
     public Order next_order() {
         if (d_playerOrders.isEmpty()) {

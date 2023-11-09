@@ -27,7 +27,7 @@ public class BombOrder implements Order {
      * This is a fully parametrized constructor for the Models.Orders class.
      *
      * @param p_destcountryID ID of the country on which to deploy the specified number of armies.
-     * @param p_player
+     * @param p_player The player giving the bomb order
      */
     public BombOrder(int p_destcountryID, Player p_player) {
         this.d_destCountryID = p_destcountryID;

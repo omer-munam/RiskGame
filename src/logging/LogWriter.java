@@ -45,6 +45,7 @@ public class LogWriter implements Observer {
 
     /**
      * If the instance was not previously created, create it. Then return the instance
+     * @return The instance of the log writer
      */
     public static LogWriter getInstance() {
         if (instance == null)

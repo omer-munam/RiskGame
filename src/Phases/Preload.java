@@ -28,7 +28,7 @@ public class Preload extends Edit {
     /**
      * The load map function of the preload phase
      *
-     * @throws IOException
+     * @throws IOException Exception if IO error occurs
      */
     @Override
     public void loadMap() throws IOException {

@@ -24,7 +24,7 @@ public class WarMapTest {
     /**
      * Makes the WarMap object a new WarMap before every test
      *
-     * @throws Exception
+     * @throws Exception Exception if IO error occurs
      */
     @Before
     public void setUp() throws Exception {
