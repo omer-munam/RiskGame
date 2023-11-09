@@ -16,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Test for functions concerning Airlift orders
+ */
 public class AirliftOrderTest {
     /**
      * The player instance required to run the test case.

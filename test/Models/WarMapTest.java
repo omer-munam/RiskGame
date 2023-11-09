@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Tests for validation of the WarMap
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-
 public class WarMapTest {
     /**
      * WarMap used in the test

@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Test for functions concerning Diplomacy orders
+ */
 public class DiplomacyOrderTest {
 
     /**
@@ -68,7 +71,7 @@ public class DiplomacyOrderTest {
     public void testDiplomacyCommandExecutionWithoutDiplomacyCard() {
         // Create a test scenario where the player does not have the Diplomacy card.
         WarMap map = new WarMap();
-        map.addCountry(new Country(1, "CountryA"));
+        map.addCountry(new Country());
         player.set_playerCountries(List.of(new Country(1, "CountryA", 1)));
 
         // Create another player in the game.
@@ -96,7 +99,7 @@ public class DiplomacyOrderTest {
         Player player = new Player("Player1");
         player.set_playerCards(List.of(Cards.Diplomacy));
         WarMap map = new WarMap();
-        map.addCountry(new Country(1, "CountryA"));
+        map.addCountry(new Country());
         player.set_playerCountries(List.of(new Country(1, "CountryA", 1)));
 
         // Simulate an invalid target player by setting the current input in GameEngine.

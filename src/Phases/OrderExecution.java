@@ -7,6 +7,9 @@ import Resources.Cards;
 
 import java.util.ArrayList;
 
+/**
+ * Phase for executing orders
+ */
 public class OrderExecution extends Play {
     /**
      * The constructor for the Order Execution phase

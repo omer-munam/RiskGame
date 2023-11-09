@@ -6,6 +6,9 @@ import Models.WarMap;
 
 import java.io.IOException;
 
+/**
+ * Map editing phase for after a map has been loaded
+ */
 public class Preload extends Edit {
     /**
      * The Constructor of the preload phase

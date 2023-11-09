@@ -9,6 +9,9 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
+/**
+ * Phase for starting up gameplay
+ */
 public class Startup extends Play {
     /**
      * The constructor of the Startup phase

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
+/**
+ * Phase for the main menu
+ */
 public class MainMenu extends Phase {
     /**
      * Constructor for the MainMenu phase

@@ -5,6 +5,9 @@ import logging.LogEntryBuffer;
 
 import java.io.IOException;
 
+/**
+ * Base phase class to be inherited by all other phases
+ */
 public abstract class Phase {
     /**
      * The Game Engine of the Phases

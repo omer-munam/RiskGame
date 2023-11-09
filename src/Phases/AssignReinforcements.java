@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
+/**
+ * Phase for making deplay orders
+ */
 public class AssignReinforcements extends OrderPhase {
     /**
      * Constructor for AssignReinforcements phase

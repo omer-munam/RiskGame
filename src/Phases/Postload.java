@@ -9,6 +9,9 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
+/**
+ * Map editing phase for after a map has been loading
+ */
 public class Postload extends Edit {
     /**
      * The constructor of the postload phase

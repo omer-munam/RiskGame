@@ -8,6 +8,9 @@ import java.io.IOException;
 
 import static java.lang.System.exit;
 
+/**
+ * Phase for issuing orders
+ */
 public class IssueOrders extends OrderPhase {
     /**
      * Constructor for the IssueOrders phase

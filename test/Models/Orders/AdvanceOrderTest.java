@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test for functions concerning advance orders
+ */
 public class AdvanceOrderTest {
     /**
      * The player instance required to run the test case.

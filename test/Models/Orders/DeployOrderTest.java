@@ -15,6 +15,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Test for functions concerning Deploy orders
+ */
 public class DeployOrderTest {
     /**
      * The player instance required to run the test case.

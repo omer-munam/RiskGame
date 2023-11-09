@@ -8,32 +8,42 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test for functions concerning Edit Phase
+ */
 public class EditPhaseTest {
-
-    private GameEngine gameEngine;
+    /**
+     * Instance of the game engine to use for tests
+     */
+    private GameEngine d_gameEngine;
 
     @Before
     public void setUp() {
-        gameEngine = GameEngine.getInstance();
-        gameEngine.setPhase(new MainMenu(gameEngine));
-        gameEngine.get_PlayersList().clear();
+        d_gameEngine = GameEngine.getInstance();
+        d_gameEngine.setPhase(new MainMenu(d_gameEngine));
+        d_gameEngine.get_PlayersList().clear();
 
     }
 
+    /**
+     * Test for ensuring proper phase transitions during the edit phase
+     *
+     * @throws IOException when an IO exception occurs
+     */
     @Test
     public void testEditPhaseTransition() throws IOException {
-        gameEngine.setCurrentInput("editmap");
-        gameEngine.getPhase().next();
-        assertEquals("Preload", gameEngine.getPhase().getClass().getSimpleName());
-        gameEngine.setCurrentInput("quit");
-        gameEngine.getPhase().next();
-        assertEquals("MainMenu", gameEngine.getPhase().getClass().getSimpleName());
-        gameEngine.setCurrentInput("editmap");
-        gameEngine.getPhase().next();
-        gameEngine.getPhase().next();
-        assertEquals("Postload", gameEngine.getPhase().getClass().getSimpleName());
-        gameEngine.getPhase().next();
-        assertEquals("MainMenu", gameEngine.getPhase().getClass().getSimpleName());
+        d_gameEngine.setCurrentInput("editmap");
+        d_gameEngine.getPhase().next();
+        assertEquals("Preload", d_gameEngine.getPhase().getClass().getSimpleName());
+        d_gameEngine.setCurrentInput("quit");
+        d_gameEngine.getPhase().next();
+        assertEquals("MainMenu", d_gameEngine.getPhase().getClass().getSimpleName());
+        d_gameEngine.setCurrentInput("editmap");
+        d_gameEngine.getPhase().next();
+        d_gameEngine.getPhase().next();
+        assertEquals("Postload", d_gameEngine.getPhase().getClass().getSimpleName());
+        d_gameEngine.getPhase().next();
+        assertEquals("MainMenu", d_gameEngine.getPhase().getClass().getSimpleName());
 
 
     }

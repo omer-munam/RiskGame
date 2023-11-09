@@ -2,6 +2,9 @@ package Phases;
 
 import Controller.GameEngine;
 
+/**
+ * Phase to be inherited by different phases that occur during the order phase
+ */
 public abstract class OrderPhase extends Play {
     /**
      * The constructor for the OrderPhase
