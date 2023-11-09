@@ -6,6 +6,7 @@ import Models.WarMap;
 import Phases.MainMenu;
 import Phases.Phase;
 import Resources.Commands;
+import logging.LogEntryBuffer;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,7 +69,10 @@ public class GameEngine {
      * Current map that is loaded after the loadmap command.
      */
     private WarMap d_currentMap = new WarMap();
-
+    /**
+     * Instance of the log entry buffer
+     */
+    LogEntryBuffer d_logentrybuffer = LogEntryBuffer.getInstance();
     /**
      * GameEngine Constructor
      */
@@ -305,6 +309,8 @@ public class GameEngine {
                     l_CountryIndex = l_RandomIndexCountry.nextInt(l_NumOfCountries) + 1;
                     if (!l_CountryAssigned.get(l_CountryIndex)) {
                         player.get_playerCountries().add(d_currentMap.get_countries().get(l_CountryIndex));
+                        System.out.println(d_currentMap.get_countries().get(l_CountryIndex) + " has been assigned to " + player.get_playerName());
+                        d_logentrybuffer.writeLog(d_currentMap.get_countries().get(l_CountryIndex) + " has been assigned to " + player.get_playerName());
                         d_currentMap.get_countries().get(l_CountryIndex).setD_ownerPlayer(player);
                         l_CountryAssigned.put(l_CountryIndex, true);
                         break;
