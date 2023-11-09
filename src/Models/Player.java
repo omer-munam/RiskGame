@@ -287,7 +287,7 @@ public class Player {
      * @param p_map           current map.
      */
     private void bomb_issue_order(String[] p_commandTokens, WarMap p_map) {
-        boolean l_hasBombCard = d_playerCards.remove(Cards.Bomb);
+        boolean l_hasBombCard = d_playerCards.contains(Cards.Bomb);
         if (!l_hasBombCard) {
             System.out.println("Player does not have Bomb card");
             return;
