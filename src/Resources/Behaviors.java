@@ -7,7 +7,7 @@ package Resources;
  *
  * @author Shezin Saleem
  */
-public enum behaviors {
+public enum Behaviors {
     Human,
     Aggressive,
     Benevolent,
