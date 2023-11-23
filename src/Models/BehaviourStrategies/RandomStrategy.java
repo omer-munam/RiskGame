@@ -2,10 +2,9 @@ package Models.BehaviourStrategies;
 
 import Models.Player;
 
-public class RandomStrategy implements BehaviourStrategy {
-    Player d_player;
+public class RandomStrategy extends BehaviourStrategyBase {
     RandomStrategy(Player p_player){
-        d_player = p_player;
+        super(p_player);
     }
     @Override
     public void issue_order() {
