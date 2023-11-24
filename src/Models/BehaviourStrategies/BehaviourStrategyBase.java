@@ -10,7 +10,7 @@ import Resources.Cards;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class BehaviourStrategyBase {
+public abstract class BehaviourStrategyBase implements BehaviourStrategy {
     Player d_player;
     BehaviourStrategyBase(Player p_player){
         d_player = p_player;

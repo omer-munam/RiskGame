@@ -3,7 +3,7 @@ package Models.BehaviourStrategies;
 import Models.Player;
 
 public class RandomStrategy extends BehaviourStrategyBase {
-    RandomStrategy(Player p_player){
+    public RandomStrategy(Player p_player){
         super(p_player);
     }
     @Override

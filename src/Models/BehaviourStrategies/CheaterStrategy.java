@@ -3,7 +3,7 @@ package Models.BehaviourStrategies;
 import Models.Player;
 
 public class CheaterStrategy extends BehaviourStrategyBase {
-    CheaterStrategy(Player p_player){
+    public CheaterStrategy(Player p_player){
         super(p_player);
     }
     @Override
