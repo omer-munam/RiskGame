@@ -6,7 +6,7 @@ import Models.WarMap;
 import Resources.Commands;
 
 public class HumanStrategy extends BehaviourStrategyBase {
-    HumanStrategy(Player p_player){
+    public HumanStrategy(Player p_player){
         super(p_player);
     }
     @Override

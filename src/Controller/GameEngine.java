@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.BehaviourStrategies.*;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -337,11 +338,42 @@ public class GameEngine {
                 return;
             }
         }
-
         Player l_newPlayer = new Player(p_InputPlayerName);
         l_newPlayer.set_playerName(p_InputPlayerName);
+        setPlayerStrategy(l_newPlayer);
         d_playersList.add(l_newPlayer);
         System.out.println("Player " + p_InputPlayerName + " added successfully.");
+    }
+
+    /**
+     * Function called while adding a player to set its behaviour.
+     *
+     * @param l_newPlayer the player for which to set the strategy.
+     */
+    private void setPlayerStrategy(Player l_newPlayer) {
+        BehaviourStrategy strategy = null;
+        while (strategy == null){
+            System.out.println("Enter the desired behavior strategy for " + l_newPlayer.get_playerName() + ":");
+            switch (SCANNER.nextLine()){
+                case "human":
+                    strategy = new HumanStrategy(l_newPlayer);
+                    break;
+                case "aggressive":
+                    strategy = new AggressiveStrategy(l_newPlayer);
+                    break;
+                case "benevolent":
+                    strategy = new BenevolentStrategy(l_newPlayer);
+                    break;
+                case "cheater":
+                    strategy = new CheaterStrategy(l_newPlayer);
+                    break;
+                case "random":
+                    strategy = new RandomStrategy(l_newPlayer);
+                    break;
+                default:
+                    System.out.println("Invalid Strategy Entered. Please try again...\n");
+            }
+        }
     }
 
 

@@ -3,7 +3,7 @@ package Models.BehaviourStrategies;
 import Models.Player;
 
 public class AggressiveStrategy extends BehaviourStrategyBase {
-    AggressiveStrategy(Player p_player){
+    public AggressiveStrategy(Player p_player){
         super(p_player);
     }
     @Override
