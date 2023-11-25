@@ -15,12 +15,9 @@ public class BenevolentStrategy extends BehaviourStrategyBase {
     }
     @Override
     public void issue_order() {
-        if (d_player.get_numOfReinforcements() > 0){
-            createDeployOrderCommand(d_player.get_numOfReinforcements());
-        }
-        else {
-            createAdvanceOrderCommand();
-        }
+        createDeployOrderCommand(d_player.get_numOfReinforcements());
+
+        createAdvanceOrderCommand();
         //deploy order command - find weakest country and create deploy command
         //advance order command - move armies to weakest country
     }
