@@ -140,9 +140,8 @@ public abstract class BehaviourStrategyBase implements BehaviourStrategy {
      * If possible it adds the advance order to the player's order list.
      *
      * @param p_commandTokens The order command input
-     * @param p_map           The WarMap
      */
-    protected void advance_issue_order(String[] p_commandTokens, WarMap p_map) {
+    protected void advance_issue_order(String[] p_commandTokens) {
 
         // Check if the command contains the correct number of tokens.
         if (p_commandTokens.length != 4) {

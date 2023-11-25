@@ -20,7 +20,7 @@ public class HumanStrategy extends BehaviourStrategyBase {
                 deploy_issue_order(commandTokens);
                 break;
             case Commands.ADVANCE_ORDER:
-                advance_issue_order(commandTokens, l_map);
+                advance_issue_order(commandTokens);
                 break;
             case Commands.BOMB_ORDER:
                 bomb_issue_order(commandTokens, l_map);

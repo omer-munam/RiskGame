@@ -44,8 +44,6 @@ public class BenevolentStrategy extends BehaviourStrategyBase {
     }
 
     public void  createAdvanceOrderCommand(){
-        GameEngine l_ge = GameEngine.getInstance();
-        WarMap l_map = l_ge.get_currentMap();
         int l_armiesToMove;
         int l_randomSourceCountryID;
         Country l_weakestTargetCountry = null;
@@ -82,7 +80,7 @@ public class BenevolentStrategy extends BehaviourStrategyBase {
 
         String l_command = String.format("advance %d %d %d", l_randomSourceCountryID, l_weakestTargetCountryID, l_armiesToMove);
         String[] commandTokens = l_command.split(" ");
-        advance_issue_order(commandTokens, l_map);
+        advance_issue_order(commandTokens);
 
 
     }
