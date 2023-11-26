@@ -374,6 +374,7 @@ public class GameEngine {
                     System.out.println("Invalid Strategy Entered. Please try again...\n");
             }
         }
+        l_newPlayer.setD_behaviourStrategy(strategy);
     }
 
 
