@@ -1,7 +1,9 @@
 package Models.BehaviourStrategies;
 
+import Controller.GameEngine;
 import Models.Country;
 import Models.Player;
+import Phases.AssignReinforcements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
         super(p_player);
     }
 
+    private Country d_strongestCountry;
     /**
      * Deploy on strongest.
      * Attack from strongest.
@@ -18,11 +21,17 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
      */
     @Override
     public void issue_order() {
-        Country strongestCountry = createDeployOrderCommand();
-        if (strongestCountry == null)
-            return;
-        createAttackCommand(strongestCountry);
-        createAdvanceCommand(strongestCountry);
+        if (GameEngine.getInstance().getPhase() instanceof AssignReinforcements)
+            d_strongestCountry = createDeployOrderCommand();
+        else{
+            if (d_strongestCountry == null)
+            {
+                System.out.println("No countries owned..");
+                return;
+            }
+            createAttackCommand(d_strongestCountry);
+            createAdvanceCommand(d_strongestCountry);
+        }
     }
 
     /**

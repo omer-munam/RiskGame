@@ -4,6 +4,7 @@ import Controller.GameEngine;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import Phases.AssignReinforcements;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +16,12 @@ public class BenevolentStrategy extends BehaviourStrategyBase {
     }
     @Override
     public void issue_order() {
-        createDeployOrderCommand(d_player.get_numOfReinforcements());
+        if (GameEngine.getInstance().getPhase() instanceof AssignReinforcements)
+            createDeployOrderCommand(d_player.get_numOfReinforcements());
+        else{
+            createAdvanceOrderCommand();
+        }
 
-        createAdvanceOrderCommand();
         //deploy order command - find weakest country and create deploy command
         //advance order command - move armies to weakest country
     }
