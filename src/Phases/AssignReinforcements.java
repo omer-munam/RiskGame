@@ -61,6 +61,19 @@ public class AssignReinforcements extends OrderPhase {
     }
 
     /**
+     * Saves the current game
+     */
+    @Override
+    public void saveGame() {
+        String[] commandTokens = d_ge.getCurrentInput().split(" ");
+        if (commandTokens.length > 1) {
+            d_ge.saveGame(commandTokens[1]);
+        } else {
+            System.out.println("Cannot save game as you did not specify a savefile");
+        }
+    }
+
+    /**
      * Next function for Assign Reinforcements phase
      */
     @Override

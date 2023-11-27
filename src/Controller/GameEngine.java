@@ -1,15 +1,21 @@
 package Controller;
 
 import Models.BehaviourStrategies.*;
+import Models.Continent;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
+import Phases.AssignReinforcements;
 import Phases.MainMenu;
 import Phases.Phase;
+import Resources.Cards;
 import Resources.Commands;
 import logging.LogEntryBuffer;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -213,6 +219,12 @@ public class GameEngine {
                 d_currentInput = SCANNER.nextLine();
                 String[] l_words = d_currentInput.split("\\s+");
                 switch (l_words[0].toLowerCase()) {
+                    case "loadgame":
+                        d_gamePhase.loadGame();
+                        break;
+                    case "savegame":
+                        d_gamePhase.saveGame();
+                        break;
                     case Commands.LOAD_MAP_COMMAND:
                         d_gamePhase.loadMap();
                         break;
@@ -467,4 +479,86 @@ public class GameEngine {
         return l_baseReinforcements;
     }
 
+    public void saveGame(String p_filename) {
+        try {
+            FileWriter l_saveFile = new FileWriter(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename);
+            l_saveFile.write(d_currentMap.get_mapName() + "\n");
+            l_saveFile.write(d_playersList.size() + "\n");
+            for (Player p : d_playersList) {
+                l_saveFile.write(p.get_playerName() + " " + p.getD_behaviourStrategy().getClass().getSimpleName() + " " + p.get_playerCountries().size() + " " + (p.get_playerCards().size()) + "\n");
+                for (Country l_c : p.get_playerCountries()) {
+                    l_saveFile.write(l_c.get_countryID() + " " + l_c.get_numOfArmies() + "\n");
+                }
+                for (Cards l_c : p.get_playerCards()) {
+                    l_saveFile.write(l_c.toString() + "\n");
+                }
+            }
+            l_saveFile.close();
+        } catch (IOException l_e) {
+            l_e.printStackTrace();
+        }
+
+    }
+
+    public void loadGame(String p_filename) {
+        try {
+            BufferedReader l_bufferReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename));
+            String l_line = l_bufferReader.readLine();
+            WarMap l_gameMap = new WarMap();
+            MapEditor.readMap(l_line, l_gameMap);
+            set_currentMap(l_gameMap);
+            l_line = l_bufferReader.readLine();
+            int l_playerCount = Integer.valueOf(l_line);
+            ArrayList<Player> l_inputPlayerList = new ArrayList<>();
+            for (int l_i = 0; l_i < l_playerCount; l_i++) {
+                l_line = l_bufferReader.readLine();
+                String[] l_inputArray = l_line.split(" ");
+                Player l_inputPlayer = new Player(l_inputArray[0]);
+                switch (l_inputArray[1]) {
+                    case "HumanStrategy":
+                        l_inputPlayer.setD_behaviourStrategy(new HumanStrategy(l_inputPlayer));
+                        break;
+                    case "AggressiveStrategy":
+                        l_inputPlayer.setD_behaviourStrategy(new AggressiveStrategy(l_inputPlayer));
+                        break;
+                    case "BenevolentStrategy":
+                        l_inputPlayer.setD_behaviourStrategy(new BenevolentStrategy(l_inputPlayer));
+                        break;
+                    case "CheaterStrategy":
+                        l_inputPlayer.setD_behaviourStrategy(new CheaterStrategy(l_inputPlayer));
+                        break;
+                    case "RandomStrategy":
+                        l_inputPlayer.setD_behaviourStrategy(new RandomStrategy(l_inputPlayer));
+                        break;
+                }
+                int l_numberOfCountries = Integer.valueOf(l_inputArray[2]);
+                ArrayList<Country> l_inputPlayerCountries = new ArrayList<>();
+                int l_numberOfCards = Integer.valueOf(l_inputArray[3]);
+                for (int l_j = 0; l_j < l_numberOfCountries; l_j++) {
+                    l_line = l_bufferReader.readLine();
+                    l_inputArray = l_line.split(" ");
+                    l_inputPlayerCountries.add(d_currentMap.get_countries().get(Integer.valueOf(l_inputArray[0])));
+
+                    l_inputPlayerCountries.get(l_j).set_numOfArmies(Integer.parseInt(l_inputArray[1]));
+                }
+                l_inputPlayer.set_playerCountries(l_inputPlayerCountries);
+                for (int l_z = 0; l_z < l_numberOfCards; l_z++) {
+                    l_inputPlayer.get_playerCards().add(Cards.valueOf(l_bufferReader.readLine()));
+                }
+                d_playersList.add(l_inputPlayer);
+
+            }
+            for (Player l_player : d_playersList) {
+                l_player.set_numOfReinforcements(this.getNumOfReinforcements(l_player));
+                d_logentrybuffer.writeLog("assigned " + l_player.get_playerName() + " " + l_player.get_numOfReinforcements() + " no of reinforcement armies.");
+                System.out.println("Assigned `" + l_player.get_numOfReinforcements() + "` reinforcements to player: " + l_player.get_playerName());
+            }
+            setCurrentPlayer(d_playersList.get(0));
+            setPhase(new AssignReinforcements(this));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

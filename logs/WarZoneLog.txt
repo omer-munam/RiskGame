@@ -1,69 +1,17 @@
 Main Menu Phase
-simple.map loaded successfully.
-STARTUP PHASE
-gameplayer player1 added successfully
-gameplayer player2 added successfully
-Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to player1
-Models.Country{countryID=2, countryName='Scotland'} has been assigned to player2
-Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to player1
-Models.Country{countryID=1, countryName='England'} has been assigned to player2
-assigncountries command runned successfully.
-ASSIGNREINFORCEMENTS PHASE
-assigned player1 9 no of reinforcement armies.
-assigned player2 7 no of reinforcement armies.
-ISSUEORDERS PHASE
-player1 issued Deploy order country with ID 3 with 9 armies
-player2 issued Deploy order country with ID 1 with 7 armies
-player1 issued advance country order from Models.Country{countryID=3, countryName='N_Ireland'} to Models.Country{countryID=2, countryName='Scotland'} with 9 armies
-player2 issued advance country order from Models.Country{countryID=1, countryName='England'} to Models.Country{countryID=4, countryName='Rep_Ireland'} with 7 armies
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
 Order Execution Phase
-player1 deploy orders executing
-Deploy Order on CountryID 3 with 9 numOfArmies executed successfully.
-player2 deploy orders executing
-Deploy Order on CountryID 1 with 7 numOfArmies executed successfully.
-player1 advance order executing
-Advance order: player1 is advancing 9 armies from N_Ireland to Scotland executed successfully.
-player2 advance order executing
-Advance order: player2 is advancing 7 armies from England to Rep_Ireland executed successfully.
-player1 misc order executing
-player2 misc order executing
-All orders executed successfully
-ASSIGNREINFORCEMENTS PHASE
-assigned player1 5 no of reinforcement armies.
-assigned player2 5 no of reinforcement armies.
-ISSUE ORDERS PHASE
-player1 issued Deploy order country with ID 2 with 5 armies
-player2 issued Deploy order country with ID 4 with 5 armies
-player1 issued advance country order from Models.Country{countryID=2, countryName='Scotland'} to Models.Country{countryID=4, countryName='Rep_Ireland'} with 14 armies
-Order Execution Phase
-player1 deploy orders executing
-Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
-player2 deploy orders executing
-Deploy Order on CountryID 4 with 5 numOfArmies executed successfully.
-player1 advance order executing
-Advance order: player1 is advancing 14 armies from Scotland to Rep_Ireland executed successfully.
-player2 advance order executing
-player1 misc order executing
-player2 misc order executing
-All orders executed successfully
-ASSIGNREINFORCEMENTS PHASE
-assigned player1 9 no of reinforcement armies.
-assigned player2 5 no of reinforcement armies.
-ISSUE ORDERS PHASE
-player1 issued Deploy order country with ID 4 with 9 armies
-player2 issued Deploy order country with ID 1 with 5 armies
-player1 issued advance country order from Models.Country{countryID=4, countryName='Rep_Ireland'} to Models.Country{countryID=1, countryName='England'} with 6 armies
-Order Execution Phase
-player1 deploy orders executing
-Deploy Order on CountryID 4 with 9 numOfArmies executed successfully.
-player2 deploy orders executing
+test1 deploy orders executing
+Deploy Order on CountryID 2 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
 Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
-player1 advance order executing
-Advance order: player1 is advancing 6 armies from Rep_Ireland to England executed successfully.
-player2 advance order executing
-player1 misc order executing
-player2 misc order executing
+test1 advance order executing
+test2 advance order executing
+test1 misc order executing
+test2 misc order executing
 All orders executed successfully
-player2 has been removed from the game
-player1 is the only player left and has won the game
-Main Menu Phase
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE

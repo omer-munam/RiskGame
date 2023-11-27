@@ -66,6 +66,20 @@ public class IssueOrders extends OrderPhase {
         printInvalidCommandMessage();
     }
 
+    /**
+     * Saves the current game
+     */
+    @Override
+    public void saveGame() {
+        String[] commandTokens = d_ge.getCurrentInput().split(" ");
+        if (commandTokens.length > 1) {
+            d_ge.saveGame(commandTokens[1]);
+        } else {
+            System.out.println("Cannot save game as you did not specify a savefile");
+        }
+
+    }
+
     @Override
     public void next() {
         if (d_ge.getCurrentInput().toLowerCase().contains("quit")) {

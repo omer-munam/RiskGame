@@ -111,6 +111,11 @@ public class Startup extends Play {
         printInvalidCommandMessage();
     }
 
+    @Override
+    public void saveGame() {
+        printInvalidCommandMessage();
+    }
+
     /**
      * The next function of the stateup phase
      */

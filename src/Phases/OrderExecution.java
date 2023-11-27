@@ -151,6 +151,14 @@ public class OrderExecution extends Play {
     }
 
     /**
+     * Prints invalid state message
+     */
+    @Override
+    public void saveGame() {
+        printInvalidCommandMessage();
+    }
+
+    /**
      * The next function for the order execution phase
      */
     @Override

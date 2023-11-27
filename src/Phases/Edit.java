@@ -75,6 +75,27 @@ public abstract class Edit extends Phase {
     /**
      * Prints invalid state message
      */
+    public void loadGame() {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Prints invalid state message
+     */
+    public void saveGame() {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Prints invalid state message
+     */
+    public void runTournament() {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Prints invalid state message
+     */
     public void endGame() {
         printInvalidCommandMessage();
     }

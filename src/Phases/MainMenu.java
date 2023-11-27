@@ -38,6 +38,7 @@ public class MainMenu extends Phase {
         System.out.print("- editmap\n");
         System.out.print("- loadmap [filename]\n");
         System.out.print("- showmapall\n");
+        System.out.print("- loadgame [filename]\n");
         System.out.print("- quit\n");
         d_ge.get_PlayersList().clear();
         d_ge.set_currentMap(new WarMap());
@@ -198,5 +199,31 @@ public class MainMenu extends Phase {
      */
     public void validateMap() {
         printInvalidCommandMessage();
+    }
+
+    /**
+     * Loads a game
+     */
+    public void loadGame() {
+        String[] l_input = d_ge.getCurrentInput().split(" ");
+        if (l_input.length > 1) {
+            d_ge.loadGame(l_input[1]);
+        } else {
+            System.out.println("No save file specified");
+        }
+    }
+
+    /**
+     * Prints invalid state message
+     */
+    public void saveGame() {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Runs a tournament
+     */
+    public void runTournament() {
+        //HAVE TO DO THIS
     }
 }

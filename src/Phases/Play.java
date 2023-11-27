@@ -70,5 +70,19 @@ public abstract class Play extends Phase {
     public void issueOrder() {
         printInvalidCommandMessage();
     }
+
+    /**
+     * Prints invalid state message
+     */
+    public void loadGame() {
+        printInvalidCommandMessage();
+    }
+
+    /**
+     * Prints invalid state message
+     */
+    public void runTournament() {
+        printInvalidCommandMessage();
+    }
 }
 
