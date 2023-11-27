@@ -1,13 +1,17 @@
 Main Menu Phase
-assigned test1 9 no of reinforcement armies.
+assigned test1 5 no of reinforcement armies.
 assigned test2 5 no of reinforcement armies.
 Order Execution Phase
 test1 deploy orders executing
-Deploy Order on CountryID 2 with 9 numOfArmies executed successfully.
-test2 deploy orders executing
 Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
 test1 advance order executing
+Advance order: test1 is advancing 1 armies from England to Rep_Ireland executed successfully.
+Advance order: test1 is advancing 1 armies from England to N_Ireland executed successfully.
 test2 advance order executing
+Advance order: test2 is advancing 1 armies from Rep_Ireland to N_Ireland could not be completed.
+Advance order: test2 is advancing 1 armies from Rep_Ireland to Scotland could not be completed.
 test1 misc order executing
 test2 misc order executing
 All orders executed successfully
@@ -15,3 +19,138 @@ ASSIGNREINFORCEMENTS PHASE
 assigned test1 9 no of reinforcement armies.
 assigned test2 5 no of reinforcement armies.
 ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 1 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 2 armies from England to Scotland executed successfully.
+Advance order: test1 is advancing 2 armies from England to Rep_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 2 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 4 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 5 armies from England to Scotland executed successfully.
+Advance order: test1 is advancing 1 armies from N_Ireland to Rep_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 5 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 1 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 1 armies from England to Scotland executed successfully.
+Advance order: test1 is advancing 1 armies from N_Ireland to Rep_Ireland could not be completed.
+test2 advance order executing
+Advance order: test2 is advancing 1 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 4 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 1 armies from N_Ireland to Scotland could not be completed.
+Advance order: test1 is advancing 1 armies from N_Ireland to Rep_Ireland could not be completed.
+test2 advance order executing
+Advance order: test2 is advancing 3 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 1 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 9 armies from England to Scotland executed successfully.
+Advance order: test1 is advancing 8 armies from England to Rep_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 1 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 1 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 5 armies from Rep_Ireland to Scotland executed successfully.
+Advance order: test1 is advancing 6 armies from Rep_Ireland to N_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 1 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 4 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 1 armies from Rep_Ireland to Scotland executed successfully.
+Advance order: test1 is advancing 3 armies from N_Ireland to Rep_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 1 armies from Scotland to Rep_Ireland executed successfully.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+ASSIGNREINFORCEMENTS PHASE
+assigned test1 9 no of reinforcement armies.
+assigned test2 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+test1 deploy orders executing
+Deploy Order on CountryID 4 with 9 numOfArmies executed successfully.
+test2 deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+test1 advance order executing
+Advance order: test1 is advancing 9 armies from England to Scotland executed successfully.
+Advance order: test1 is advancing 12 armies from Rep_Ireland to N_Ireland executed successfully.
+test2 advance order executing
+Advance order: test2 is advancing 1 armies from Scotland to Rep_Ireland could not be completed.
+test1 misc order executing
+test2 misc order executing
+All orders executed successfully
+test2 has been removed from the game
+test1 is the only player left and has won the game
+Main Menu Phase

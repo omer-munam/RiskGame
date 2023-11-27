@@ -210,83 +210,98 @@ public class GameEngine {
      * Contains the main logic for the WarZone game and passes control to other aspects of the program when certain commands are entered.
      */
     public void start_game() {
-        SCANNER = new Scanner(System.in);
-        try {
 
+        SCANNER = new Scanner(System.in);
+
+        try {
             while (true) {
                 d_gamePhase.displayOptions();
 
-                d_currentInput = SCANNER.nextLine();
-                String[] l_words = d_currentInput.split("\\s+");
-                switch (l_words[0].toLowerCase()) {
-                    case "loadgame":
-                        d_gamePhase.loadGame();
-                        break;
-                    case "savegame":
-                        d_gamePhase.saveGame();
-                        break;
-                    case Commands.LOAD_MAP_COMMAND:
-                        d_gamePhase.loadMap();
-                        break;
-                    case "gameplayer":
-                        d_gamePhase.setPlayers();
-                        break;
-                    case Commands.ASSIGN_COUNTRIES_COMMAND:
-                        d_gamePhase.assignCountries();
-                        if (!d_playersList.isEmpty()) {
-                            d_currentPlayer = d_playersList.get(0);
-                        }
-                        break;
-                    case Commands.SHOW_MAP_COMMAND:
-                        d_gamePhase.showMap();
-                        break;
-                    case "goback":
-                        d_gamePhase.next();
-                        break;
-                    case Commands.EXECUTE:
-                    case "quit":
-                        d_gamePhase.next();
-                        break;
-                    case Commands.EDIT_MAP_COMMAND:
-                        if (l_words.length > 1)
-                            d_gamePhase.loadMap();
-                        else
-                            d_gamePhase.next();
-                        break;
-                    case Commands.SHOW_ALL_MAPS_COMMAND:
-                        d_gamePhase.showAllMaps();
-                        break;
-                    case Commands.DEPLOY_COMMAND:
+
+                if ((d_gamePhase.getClass().getSimpleName().equals("AssignReinforcements") || d_gamePhase.getClass().getSimpleName().equals("IssueOrders")) && !d_currentPlayer.getD_behaviourStrategy().getClass().getSimpleName().equals("HumanStrategy")) {
+                    if (d_gamePhase.getClass().getSimpleName().equals("AssignReinforcements")) {
+                        setCurrentInput("deploy");
                         d_gamePhase.deploy();
-                        break;
-                    case Commands.ADVANCE_ORDER:
-                    case Commands.BOMB_ORDER:
-                    case Commands.BLOCKADE_ORDER:
-                    case Commands.AIRLIFT_ORDER:
-                    case Commands.DIPLOMACY_ORDER:
+                    }
+                    if (d_gamePhase.getClass().getSimpleName().equals("IssueOrders")) {
                         d_gamePhase.issueOrder();
-                        break;
-                    case "editcontinent":
-                        d_gamePhase.editContinent();
-                        break;
-                    case "editcountry":
-                        d_gamePhase.editCountry();
-                        break;
-                    case "editneighbor":
-                        d_gamePhase.editNeighbours();
-                        break;
-                    case "validatemap":
-                        d_gamePhase.validateMap();
-                        break;
-                    case "savemap":
-                        d_gamePhase.saveMap();
-                        break;
-                    default:
-                        System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
+                        setCurrentInput("execute");
+                        d_gamePhase.next();
+                    }
+
+                } else {
+
+                    d_currentInput = SCANNER.nextLine();
+                    String[] l_words = d_currentInput.split("\\s+");
+                    switch (l_words[0].toLowerCase()) {
+                        case "loadgame":
+                            d_gamePhase.loadGame();
+                            break;
+                        case "savegame":
+                            d_gamePhase.saveGame();
+                            break;
+                        case Commands.LOAD_MAP_COMMAND:
+                            d_gamePhase.loadMap();
+                            break;
+                        case "gameplayer":
+                            d_gamePhase.setPlayers();
+                            break;
+                        case Commands.ASSIGN_COUNTRIES_COMMAND:
+                            d_gamePhase.assignCountries();
+                            if (!d_playersList.isEmpty()) {
+                                d_currentPlayer = d_playersList.get(0);
+                            }
+                            break;
+                        case Commands.SHOW_MAP_COMMAND:
+                            d_gamePhase.showMap();
+                            break;
+                        case "goback":
+                            d_gamePhase.next();
+                            break;
+                        case Commands.EXECUTE:
+                        case "quit":
+                            d_gamePhase.next();
+                            break;
+                        case Commands.EDIT_MAP_COMMAND:
+                            if (l_words.length > 1)
+                                d_gamePhase.loadMap();
+                            else
+                                d_gamePhase.next();
+                            break;
+                        case Commands.SHOW_ALL_MAPS_COMMAND:
+                            d_gamePhase.showAllMaps();
+                            break;
+                        case Commands.DEPLOY_COMMAND:
+                            d_gamePhase.deploy();
+                            break;
+                        case Commands.ADVANCE_ORDER:
+                        case Commands.BOMB_ORDER:
+                        case Commands.BLOCKADE_ORDER:
+                        case Commands.AIRLIFT_ORDER:
+                        case Commands.DIPLOMACY_ORDER:
+                            d_gamePhase.issueOrder();
+                            break;
+                        case "editcontinent":
+                            d_gamePhase.editContinent();
+                            break;
+                        case "editcountry":
+                            d_gamePhase.editCountry();
+                            break;
+                        case "editneighbor":
+                            d_gamePhase.editNeighbours();
+                            break;
+                        case "validatemap":
+                            d_gamePhase.validateMap();
+                            break;
+                        case "savemap":
+                            d_gamePhase.saveMap();
+                            break;
+                        default:
+                            System.out.print("Sorry, I couldn't understand the command you entered.\nTry again with the correct syntax!\n");
+                    }
+
                 }
-
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -479,6 +494,11 @@ public class GameEngine {
         return l_baseReinforcements;
     }
 
+    /**
+     * Saves a game to a specified game file
+     *
+     * @param p_filename The save file
+     */
     public void saveGame(String p_filename) {
         try {
             FileWriter l_saveFile = new FileWriter(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename);
@@ -500,6 +520,10 @@ public class GameEngine {
 
     }
 
+    /**
+     * Loads a game from a save file
+     * @param p_filename The save file
+     */
     public void loadGame(String p_filename) {
         try {
             BufferedReader l_bufferReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename));
@@ -540,11 +564,13 @@ public class GameEngine {
                     l_inputPlayerCountries.add(d_currentMap.get_countries().get(Integer.valueOf(l_inputArray[0])));
 
                     l_inputPlayerCountries.get(l_j).set_numOfArmies(Integer.parseInt(l_inputArray[1]));
+                    l_inputPlayerCountries.get(l_j).setD_ownerPlayer(l_inputPlayer);
                 }
                 l_inputPlayer.set_playerCountries(l_inputPlayerCountries);
                 for (int l_z = 0; l_z < l_numberOfCards; l_z++) {
                     l_inputPlayer.get_playerCards().add(Cards.valueOf(l_bufferReader.readLine()));
                 }
+                l_inputPlayer.set_diplomacy_list(new ArrayList<String>());
                 d_playersList.add(l_inputPlayer);
 
             }
