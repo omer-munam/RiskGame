@@ -9,10 +9,30 @@ import Phases.AssignReinforcements;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * This class describes information about random strategy and the order that were issued based on logic.
+ * Random strategy represents logic that deploys on a random country,
+ * attacks random neighboring countries,
+ * and moves armies randomly between its countries.
+ *
+ * @author Omer Munam
+ */
 public class RandomStrategy extends BehaviourStrategyBase {
+
+    /**
+     * Constructor for the RandomStrategy class.
+     *
+     * @param p_player  The player associated with this strategy.
+     */
     public RandomStrategy(Player p_player){
         super(p_player);
     }
+
+    /**
+     * Issues a random order based on the current game phase.
+     * If the current phase is AssignReinforcements, a deploy order is created.
+     * Otherwise, both attack and advance orders are created randomly.
+     */
     @Override
     public void issue_order() {
         if (d_player.get_playerCountries().isEmpty())
@@ -25,6 +45,10 @@ public class RandomStrategy extends BehaviourStrategyBase {
         }
     }
 
+    /**
+     * Creates an attack order by randomly selecting a source country and a neighboring target country.
+     * The number of armies to move is also determined randomly.
+     */
     private void createAttackCommand() {
         Random l_random = new Random();
         Country l_sourceCountry = d_player.get_playerCountries().get(l_random.nextInt(d_player.get_playerCountries().size()));
@@ -51,6 +75,10 @@ public class RandomStrategy extends BehaviourStrategyBase {
         advance_issue_order(commandTokens);
     }
 
+    /**
+     * Creates an advance order by randomly selecting a source country and a neighboring target country.
+     * The number of armies to move is also determined randomly.
+     */
     private void createAdvanceOrderCommand() {
         if (d_player.get_playerCountries().size() < 2){
             System.out.println("Cannot issue Advance order. Less than 2 territories owned.");
@@ -82,6 +110,9 @@ public class RandomStrategy extends BehaviourStrategyBase {
         advance_issue_order(commandTokens);
     }
 
+    /**
+     * Creates a deploy order by randomly selecting a target country and deploying reinforcements.
+     */
     private void createDeployOrderCommand() {
         Random l_random = new Random();
         Country l_targetCountry = d_player.get_playerCountries().get(l_random.nextInt(d_player.get_playerCountries().size()));

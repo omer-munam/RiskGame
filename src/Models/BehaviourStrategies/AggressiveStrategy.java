@@ -8,12 +8,25 @@ import Phases.AssignReinforcements;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class describes information about aggressive strategy and the order that were issued based on logic.
+ * Aggressive strategy represents logic that that focuses on centralization of forces and then attack
+ *
+ * @author Omer Munam
+ */
 public class AggressiveStrategy extends BehaviourStrategyBase {
+
+    /**
+     * Constructor for the AggressiveStrategy class.
+     *
+     * @param p_player  The player associated with this strategy.
+     */
     public AggressiveStrategy(Player p_player){
         super(p_player);
     }
 
     private Country d_strongestCountry;
+
     /**
      * Deploy on strongest.
      * Attack from strongest.

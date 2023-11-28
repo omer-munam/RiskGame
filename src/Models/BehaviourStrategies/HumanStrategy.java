@@ -5,10 +5,28 @@ import Models.Player;
 import Models.WarMap;
 import Resources.Commands;
 
+/**
+ * This class describes information about human strategy and the order that were issued based on logic.
+ * Human strategy represents the behaviour of human player in the game.
+ *
+ * @author Omer Munam
+ */
 public class HumanStrategy extends BehaviourStrategyBase {
+
+    /**
+     * Constructor for the HumanStrategy class.
+     *
+     * @param p_player  The player associated with this strategy.
+     */
     public HumanStrategy(Player p_player){
         super(p_player);
     }
+
+    /**
+     * Processes the user input and issues the corresponding order based on the command.
+     * Supported commands include DEPLOY_COMMAND, ADVANCE_ORDER, BOMB_ORDER, BLOCKADE_ORDER, AIRLIFT_ORDER, and DIPLOMACY_ORDER.
+     * If an invalid command is provided, an error message is displayed.
+     */
     @Override
     public void issue_order() {
         GameEngine l_ge = GameEngine.getInstance();
