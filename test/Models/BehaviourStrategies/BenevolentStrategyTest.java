@@ -52,6 +52,7 @@ public class BenevolentStrategyTest {
         player.setD_behaviourStrategy(benevolentStrategy);
 
         GameEngine.getInstance().getCurrentPlayer().set_numOfReinforcements(5);
+        player.set_numOfReinforcements(5);
         AssignReinforcements assignReinforcementsPhase = new AssignReinforcements(gameEngine);
         GameEngine.getInstance().setPhase(assignReinforcementsPhase);
         player.issue_order();

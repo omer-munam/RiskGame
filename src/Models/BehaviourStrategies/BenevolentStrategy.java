@@ -6,6 +6,7 @@
     import Models.WarMap;
     import Phases.AssignReinforcements;
 
+    import java.util.Arrays;
     import java.util.HashMap;
     import java.util.Random;
 
@@ -49,7 +50,7 @@
          */
         public void createDeployOrderCommand(int p_numOfReinforcements){
             GameEngine l_ge = GameEngine.getInstance();
-            WarMap   l_map = l_ge.get_currentMap();
+            WarMap l_map = l_ge.get_currentMap();
             int l_weakestCountryID = 0;
             int l_minValue = Integer.MAX_VALUE;
 
@@ -66,6 +67,7 @@
             String l_command = String.format("deploy %d %d", l_weakestCountryID, p_numOfReinforcements);
             String[] commandTokens = l_command.split(" ");
             deploy_issue_order(commandTokens);
+            System.out.println(Arrays.toString(commandTokens));
         }
 
         /**
@@ -109,6 +111,7 @@
             String l_command = String.format("advance %d %d %d", l_randomSourceCountryID, l_weakestTargetCountryID, l_armiesToMove);
             String[] commandTokens = l_command.split(" ");
             advance_issue_order(commandTokens);
+            System.out.println(Arrays.toString(commandTokens));
 
         }
 
