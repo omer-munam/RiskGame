@@ -88,7 +88,7 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
      */
     public Country createDeployOrderCommand(){
         Country l_strongestCountry = null;
-        int l_maxValue = 0;
+        int l_maxValue = -1;
 
         for (Country l_country : d_player.get_playerCountries()) {
             if (l_country.get_numOfArmies() > l_maxValue) {

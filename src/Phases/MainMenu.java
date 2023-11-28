@@ -2,6 +2,9 @@ package Phases;
 
 import Controller.GameEngine;
 import Controller.MapEditor;
+import Models.BehaviourStrategies.BehaviourStrategy;
+import Models.BehaviourStrategies.BenevolentStrategy;
+import Models.Player;
 import Models.WarMap;
 import Resources.Commands;
 import logging.LogWriter;
@@ -39,6 +42,7 @@ public class MainMenu extends Phase {
         System.out.print("- loadmap [filename]\n");
         System.out.print("- showmapall\n");
         System.out.print("- loadgame [filename]\n");
+        System.out.print("- tournament -M listofmapfiles -P listofplayerstrategies -G numberofgames -D maxnumberofturns\n");
         System.out.print("- quit\n");
         d_ge.get_PlayersList().clear();
         d_ge.set_currentMap(new WarMap());
@@ -223,7 +227,71 @@ public class MainMenu extends Phase {
     /**
      * Runs a tournament
      */
-    public void runTournament() {
-        //HAVE TO DO THIS
+    public void runTournament() throws IOException {
+        String[] l_input = d_ge.getCurrentInput().split(" ");
+        ArrayList<String> l_maps = new ArrayList<>();
+        ArrayList<String> l_strategies = new ArrayList<>();
+        int l_games = 0;
+        int l_turns = 0;
+        String l_currentState = "Start";
+        for (String l_s : l_input) {
+            if (l_currentState.equals("Start")) {
+                if (l_s.equalsIgnoreCase("tournament")) {
+
+                }
+                if (l_s.equalsIgnoreCase("-M")) {
+                    l_currentState = "Maps";
+                    continue;
+                }
+            }
+            if (l_currentState.equalsIgnoreCase("Maps")) {
+                if (l_s.equalsIgnoreCase("-P")) {
+                    l_currentState = "Players";
+                    continue;
+                } else {
+                    l_maps.add(l_s);
+                }
+            }
+            if (l_currentState.equalsIgnoreCase("Players")) {
+                if (l_s.equalsIgnoreCase("-G")) {
+                    l_currentState = "Games";
+                    continue;
+                } else if (l_s.equalsIgnoreCase("benevolent")) {
+                    l_strategies.add("Benevolent");
+                } else if (l_s.equalsIgnoreCase("cheater")) {
+                    l_strategies.add("Cheater");
+                } else if (l_s.equalsIgnoreCase("random")) {
+                    l_strategies.add("Random");
+                } else if (l_s.equalsIgnoreCase("aggressive")) {
+                    l_strategies.add("Aggressive");
+                } else {
+
+                    System.out.println("You have entered an invalid player type");
+                    return;
+                }
+            }
+            if (l_currentState.equalsIgnoreCase("Games")) {
+                if (l_s.equalsIgnoreCase("-D")) {
+                    l_currentState = "Turns";
+                    continue;
+                } else {
+                    try {
+                        l_games = Integer.valueOf(l_s);
+                    } catch (NumberFormatException e) {
+                        System.out.println("String entered for number of games");
+                        return;
+                    }
+                }
+            }
+            if (l_currentState.equalsIgnoreCase("Turns")) {
+                try {
+                    l_turns = Integer.valueOf(l_s);
+                } catch (NumberFormatException e) {
+                    System.out.println("String entered for number of turns");
+                    return;
+                }
+            }
+        }
+        d_ge.runTournament(l_maps, l_strategies, l_games, l_turns);
     }
 }

@@ -8,6 +8,7 @@ import Models.WarMap;
 import Phases.AssignReinforcements;
 import Phases.MainMenu;
 import Phases.Phase;
+import Phases.Startup;
 import Resources.Cards;
 import Resources.Commands;
 import logging.LogEntryBuffer;
@@ -240,6 +241,11 @@ public class GameEngine {
                         case "savegame":
                             d_gamePhase.saveGame();
                             break;
+                        case "tournament":
+
+                            d_gamePhase.runTournament();
+
+                            break;
                         case Commands.LOAD_MAP_COMMAND:
                             d_gamePhase.loadMap();
                             break;
@@ -304,6 +310,44 @@ public class GameEngine {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public String start_tournament_game(int p_turns) throws IOException {
+        this.setPhase(new Startup(this));
+        this.setCurrentInput("assigncountries");
+        int l_turnCounter = 1;
+        d_gamePhase.assignCountries();
+
+        if (!d_playersList.isEmpty()) {
+            d_currentPlayer = d_playersList.get(0);
+        }
+        this.setPhase(new AssignReinforcements(this));
+        while (true) {
+
+
+            if (d_gamePhase.getClass().getSimpleName().equals("AssignReinforcements")) {
+                setCurrentInput("deploy");
+                d_gamePhase.deploy();
+            }
+            if (d_gamePhase.getClass().getSimpleName().equals("IssueOrders")) {
+                d_gamePhase.issueOrder();
+                setCurrentInput("execute");
+                d_gamePhase.next();
+            }
+            if (d_gamePhase.getClass().getSimpleName().equalsIgnoreCase("OrderExecution")) {
+                d_gamePhase.displayOptions();
+                l_turnCounter++;
+                System.out.println("Current Turn is " + l_turnCounter);
+            }
+
+            if (this.get_PlayersList().size() == 1) return this.get_PlayersList().get(0).get_playerName();
+
+
+            if (l_turnCounter >= p_turns) {
+                this.setPhase(new MainMenu(this));
+                return "Draw";
+            }
         }
     }
 
@@ -587,4 +631,69 @@ public class GameEngine {
             e.printStackTrace();
         }
     }
+
+    public void runTournament(ArrayList<String> p_maps, ArrayList<String> p_strategies, int p_games, int p_maxturns) throws IOException {
+        if (p_maps.size() < 1 || p_maps.size() > 5) {
+            System.out.println("Invalid amount of maps");
+            return;
+        }
+        if (p_strategies.size() < 2 || p_strategies.size() > 4) {
+            System.out.println("Invalid amount of players");
+            return;
+        }
+        if (p_games < 1 || p_games > 5) {
+            System.out.println("Invalid number of games per map");
+            return;
+        }
+        if (p_maxturns < 10 || p_maxturns > 50) {
+            System.out.println("Invalid number of turns per game");
+            return;
+        }
+        Player l_inputPlayer;
+        ArrayList<String> l_results = new ArrayList<>();
+        for (int l_z = 0; l_z < p_maps.size(); l_z++) {
+            WarMap l_inputMap = new WarMap();
+            MapEditor.readMap(p_maps.get(l_z), l_inputMap);
+            this.set_currentMap(l_inputMap);
+            System.out.println("Starting games for map " + l_inputMap.get_mapName());
+            for (int l_i = 0; l_i < p_games; l_i++) {
+                this.get_PlayersList().clear();
+                ArrayList<Player> l_players = new ArrayList<Player>();
+                for (int l_j = 0; l_j < p_strategies.size(); l_j++) {
+                    l_inputPlayer = new Player(p_strategies.get(l_j));
+                    if (p_strategies.get(l_j).equalsIgnoreCase("Benevolent")) {
+                        l_inputPlayer.setD_behaviourStrategy(new BenevolentStrategy(l_inputPlayer));
+                    }
+                    if (p_strategies.get(l_j).equalsIgnoreCase("Cheater")) {
+                        l_inputPlayer.setD_behaviourStrategy(new CheaterStrategy(l_inputPlayer));
+                    }
+                    if (p_strategies.get(l_j).equalsIgnoreCase("Aggressive")) {
+                        l_inputPlayer.setD_behaviourStrategy(new AggressiveStrategy(l_inputPlayer));
+                    }
+                    if (p_strategies.get(l_j).equalsIgnoreCase("Random")) {
+                        l_inputPlayer.setD_behaviourStrategy(new RandomStrategy(l_inputPlayer));
+
+                    }
+                    l_players.add(l_inputPlayer);
+                }
+                this.set_PlayersList(l_players);
+
+                l_results.add(start_tournament_game(p_maxturns));
+
+            }
+        }
+        System.out.println("Printing results");
+        System.out.println();
+
+        for (int l_i = 0; l_i < p_maps.size(); l_i++) {
+            System.out.print(p_maps.get(l_i) + ": ");
+            for (int l_j = 0; l_j < p_games; l_j++) {
+                System.out.print(l_results.get(l_i * p_games + l_j) + "    ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.println("Done printing results");
+    }
 }
+

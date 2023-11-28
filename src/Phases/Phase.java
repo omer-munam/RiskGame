@@ -58,7 +58,7 @@ public abstract class Phase {
 
     abstract public void loadGame();
 
-    abstract public void runTournament();
+    abstract public void runTournament() throws IOException;
 
 
 
