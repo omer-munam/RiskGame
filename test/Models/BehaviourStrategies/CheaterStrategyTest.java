@@ -6,11 +6,20 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test class for the CheaterStrategy class.
+ * It tests the behavior of the CheaterStrategy's issue_order() method.
+ *
+ * @author [Leila Mousavi]
+ */
 public class CheaterStrategyTest {
 
     private Player player;
     private CheaterStrategy cheaterStrategy;
 
+    /**
+     * Set up the test environment before each test case.
+     */
     @Before
     public void setup() {
         player = new Player("TestPlayer");
