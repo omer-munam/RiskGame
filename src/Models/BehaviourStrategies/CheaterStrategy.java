@@ -12,9 +12,20 @@ import Models.Country;
  * @author Leila Mousavi
  */
 public class CheaterStrategy extends BehaviourStrategyBase {
+
+    /**
+     * Constructor for the CheaterStrategy class.
+     *
+     * @param p_player The player associated with this strategy.
+     */
     public CheaterStrategy(Player p_player){
         super(p_player);
     }
+
+    /**
+     * Implements the cheater behavior for issuing orders. Conquers neighboring enemy countries
+     * and doubles the number of armies on countries with enemy neighbors.
+     */
     @Override
     public void issue_order() {
         for (Country country : d_player.get_playerCountries()) {
@@ -38,10 +49,10 @@ public class CheaterStrategy extends BehaviourStrategyBase {
     }
 
     /**
-     * Check if a country has enemy neighbors
+     * Check if a country has enemy neighbors.
      *
-     * @param country The country to check
-     * @return True if the country has enemy neighbors, false otherwise
+     * @param country The country to check.
+     * @return True if the country has enemy neighbors, false otherwise.
      */
     private boolean hasEnemyNeighbors(Country country) {
         for (Country neighbor : country.getNeighbouringCountries().values()) {
