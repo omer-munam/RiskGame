@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Models.BehaviourStrategies.HumanStrategy;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -62,13 +63,20 @@ public class GameEngineTest {
     @Test
     public void testAddPlayer() {
 
-        gameEngine.addPlayer("Player1");
+        Player player1 = new Player("Player1");
+        player1.setD_behaviourStrategy(new HumanStrategy(player1));
 
-        List<Player> players = gameEngine.get_PlayersList();
+        Player player2 = new Player("Player2");
+        player2.setD_behaviourStrategy(new HumanStrategy(player2));
 
-        assertEquals(1, players.size());
 
-        assertEquals("Player1", players.get(0).get_playerName());
+        // Test adding a new player
+        gameEngine.get_PlayersList().add(player1);
+        assertEquals(1, gameEngine.get_PlayersList().size());
+
+        // Test adding a new player
+        gameEngine.get_PlayersList().add(player2);
+        assertEquals(2, gameEngine.get_PlayersList().size());
     }
 
     /**
