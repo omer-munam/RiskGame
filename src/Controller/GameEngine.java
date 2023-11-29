@@ -314,6 +314,13 @@ public class GameEngine {
         }
     }
 
+    /**
+     * A helper funciton that runs a single game in a tournament and returns a string of the result
+     *
+     * @param p_turns the number of turns allowed in the game
+     * @return The winner of the game or Draw if it is a draw
+     * @throws IOException if a map cannot be read
+     */
     public String start_tournament_game(int p_turns) throws IOException {
         this.setPhase(new Startup(this));
         this.setCurrentInput("assigncountries");

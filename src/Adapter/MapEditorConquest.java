@@ -134,6 +134,13 @@ public class MapEditorConquest {
         } else System.out.println("Invalid_Map");
     }
 
+    /**
+     * A function used to start editing an existing or new conquest map
+     *
+     * @param p_filename the location of the map to be edited
+     * @return The warmap to be edited
+     * @throws IOException if the file cannot be read.
+     */
     public WarMap editMap(String p_filename) throws IOException {
         File l_f = new File(d_base_path, p_filename);
         if (l_f.exists()) {
