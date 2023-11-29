@@ -41,7 +41,10 @@ public class DiplomacyOrderTest {
         player.setD_behaviourStrategy(new HumanStrategy(player));
         warMap = new WarMap();
     }
-
+    /**
+     * Tests the execution of the diplomacy command with a valid Diplomacy card and target player.
+     * Verifies that a DiplomacyOrder is created, and the target player is added to the diplomacy list.
+     */
     @Test
     public void testDiplomacyCommandExecution() {
         // Create a test scenario where the player has the Diplomacy card, and the input is valid.
@@ -68,7 +71,10 @@ public class DiplomacyOrderTest {
         assertTrue(player.get_diplomacy_list().contains("Player2"));
 
     }
-
+    /**
+     * Tests the execution of the diplomacy command without having the Diplomacy card.
+     * Verifies that no DiplomacyOrder is created when the player does not have the Diplomacy card.
+     */
     @Test
     public void testDiplomacyCommandExecutionWithoutDiplomacyCard() {
         // Create a test scenario where the player does not have the Diplomacy card.
@@ -94,7 +100,10 @@ public class DiplomacyOrderTest {
         // Assert that the target player name is not added to the diplomacy list.
         assertFalse(player.get_diplomacy_list().contains("Player2"));
     }
-
+    /**
+     * Tests the execution of the diplomacy command with an invalid target player.
+     * Verifies that no DiplomacyOrder is created when the target player does not exist.
+     */
     @Test
     public void testDiplomacyCommandExecutionWithInvalidTargetPlayer() {
         // Create a test scenario where the player has the Diplomacy card, but the target player does not exist.
