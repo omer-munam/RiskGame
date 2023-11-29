@@ -13,16 +13,39 @@ import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
-
+/**
+ * Unit tests for the {@link HumanStrategy} class, which represents
+ * the human behavior strategy for a player in the game. The tests
+ * cover the execution of deploy, advance, bomb, blockade, airlift,
+ * and diplomacy orders based on the specific strategy rules.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class HumanStrategyTest {
-
+    /**
+     * The human strategy instance under test.
+     */
     private HumanStrategy humanStrategy;
+    /**
+     * The player instance used in the tests.
+     */
     private Player player;
+    /**
+     * The GameEngine instance used in the tests.
+     */
     private GameEngine gameEngine;
+    /**
+     * The WarMap instance used in the tests.
+     */
     private WarMap warMap;
-
+    /**
+     * A map representing countries used in the tests.
+     */
     private Map<Integer, Country> countries;
+
+    /**
+     * Sets up the initial state for each test, including creating a player,
+     * a human strategy instance, and initializing countries and the game engine.
+     */
     @Before
     public void setUp() {
         player = new Player("John Doe");
@@ -32,7 +55,10 @@ public class HumanStrategyTest {
         warMap = new WarMap();
     }
 
-
+    /**
+     * Tests the execution of the deploy order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testDeployOrderCommandExecution() {
         Country destCountry1 = new Country(1, "DestCountry1", 1);
@@ -55,7 +81,10 @@ public class HumanStrategyTest {
         player.issue_order();
         assertEquals(1, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the execution of the advance order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testAdvanceOrderCommandExecution() {
         Country destCountry1 = new Country(1, "DestCountry1", 1);
@@ -87,7 +116,10 @@ public class HumanStrategyTest {
         player.issue_order();
         assertEquals(1, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the execution of the bomb order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testBombOrderCommandExecution() {
         List<Cards> cards = new ArrayList<>();
@@ -112,7 +144,10 @@ public class HumanStrategyTest {
         assertEquals(1, player.get_playerOrder().size());
 
     }
-
+    /**
+     * Tests the execution of the blockade order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testBlockadeOrderCommandExecution() {
         List<Cards> cards = new ArrayList<>();
@@ -135,7 +170,10 @@ public class HumanStrategyTest {
 
         assertEquals(1, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the execution of the airlift order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testAirliftOrderCommandExecution() {
         List<Cards> cards = new ArrayList<>();
@@ -167,7 +205,10 @@ public class HumanStrategyTest {
         // Assert that the Airlift card is removed from the player's cards.
         assertFalse(player.get_playerCards().contains(Cards.Airlift));
     }
-
+    /**
+     * Tests the execution of the diplomacy order command for the human strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testDiplomacyOrderCommandExecution() {
         player.set_playerCards(List.of(Cards.Diplomacy));
@@ -194,7 +235,10 @@ public class HumanStrategyTest {
 
 
     }
-
+    /**
+     * Tests the handling of an invalid command by the human strategy.
+     * Verifies that no order is created in this case.
+     */
     @Test
     public void testInvalidCommand() {
         GameEngine.getInstance().setCurrentInput("invalidCommand");
