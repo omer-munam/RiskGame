@@ -41,4 +41,20 @@ public class CheaterStrategyTest {
         assertEquals(6, country.get_numOfArmies());
     }
 
+    @Test
+    public void testIssueOrder_NoEnemyNeighbors() {
+        // Create a country with no enemy neighbors
+        Country country = new Country(1, "CountryA", 1);
+        player.get_playerCountries().add(country);
+
+        // Set up initial armies
+        country.set_numOfArmies(3);
+
+        // Issue order for the cheater strategy
+        cheaterStrategy.issue_order();
+
+        // Check that nothing changes (no enemy neighbors to conquer)
+        assertEquals(3, country.get_numOfArmies());
+    }
+
 }
