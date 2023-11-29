@@ -3,7 +3,6 @@ package Models.BehaviourStrategies;
 import Models.Player;
 import Models.Country;
 
-import java.util.List;
 
 public class CheaterStrategy extends BehaviourStrategyBase {
     public CheaterStrategy(Player p_player){
@@ -38,7 +37,11 @@ public class CheaterStrategy extends BehaviourStrategyBase {
      * @return True if the country has enemy neighbors, false otherwise
      */
     private boolean hasEnemyNeighbors(Country country) {
-
+        for (Country neighbor : country.getNeighbouringCountries().values()) {
+            if (neighbor.getD_ownerPlayer() != d_player) {
+                return true;
+            }
+        }
         return false;
     }
 }
