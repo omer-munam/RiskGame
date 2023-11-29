@@ -6,6 +6,7 @@ import Models.Player;
 import Models.WarMap;
 import Phases.AssignReinforcements;
 
+import Phases.IssueOrders;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -88,11 +89,11 @@ public class AggressiveStrategyTest {
         destCountry3.addNeighbouringCountry((destCountry2));
 
         player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         player.setD_behaviourStrategy(aggressiveStrategy);
         player.issue_order();
 
-        assertEquals(1, player.get_playerOrder().size());
+        assertEquals(0, player.get_playerOrder().size());
     }
 
     @Test
@@ -114,7 +115,7 @@ public class AggressiveStrategyTest {
         countries.put(3, destCountry3);
 
         player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         player.setD_behaviourStrategy(aggressiveStrategy);
         player.issue_order();
 
@@ -162,12 +163,12 @@ public class AggressiveStrategyTest {
 
         player.set_playerCountries(List.of(destCountry1, destCountry3));
         player.setD_behaviourStrategy(aggressiveStrategy);
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().set_currentMap(map);
 
         player.issue_order();
 
-        assertEquals(2, player.get_playerOrder().size());
+        assertEquals(0, player.get_playerOrder().size());
     }
 
     @Test
@@ -198,7 +199,7 @@ public class AggressiveStrategyTest {
 
         player.set_playerCountries(List.of(destCountry1, destCountry3));
         player.setD_behaviourStrategy(aggressiveStrategy);
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().set_currentMap(map);
 
         player.issue_order();

@@ -6,6 +6,7 @@ import Models.Player;
 import Models.WarMap;
 import Phases.AssignReinforcements;
 
+import Phases.IssueOrders;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -89,7 +90,8 @@ public class BenevolentStrategyTest {
         destCountry3.addNeighbouringCountry((destCountry2));
 
         player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
+        GameEngine.getInstance().getCurrentPlayer().set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
         player.setD_behaviourStrategy(benevolentStrategy);
 
         player.issue_order();
@@ -116,7 +118,8 @@ public class BenevolentStrategyTest {
         countries.put(3, destCountry3);
 
         player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
+        GameEngine.getInstance().getCurrentPlayer().set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
         player.setD_behaviourStrategy(benevolentStrategy);
         player.issue_order();
 

@@ -6,6 +6,7 @@ import Models.Player;
 import Models.WarMap;
 import Phases.AssignReinforcements;
 
+import Phases.IssueOrders;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -88,6 +89,7 @@ public class RandomStrategyTest {
 
         warMap.set_countries((HashMap<Integer, Country>) countries);
         player.set_playerCountries(new ArrayList<>(countries.values()));
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().getCurrentPlayer().set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
 
         //player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
@@ -120,6 +122,7 @@ public class RandomStrategyTest {
 
         warMap.set_countries((HashMap<Integer, Country>) countries);
         player.set_playerCountries(new ArrayList<>(countries.values()));
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().getCurrentPlayer().set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
 
         //player.set_playerCountries(Arrays.asList(destCountry1, destCountry2, destCountry3));
@@ -171,7 +174,7 @@ public class RandomStrategyTest {
 
         player.set_playerCountries(List.of(destCountry1, destCountry3));
         player.setD_behaviourStrategy(randomStrategy);
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().set_currentMap(map);
 
         player.issue_order();
@@ -208,7 +211,7 @@ public class RandomStrategyTest {
 
         player.set_playerCountries(List.of(destCountry1, destCountry3));
         player.setD_behaviourStrategy(randomStrategy);
-
+        GameEngine.getInstance().setPhase(new IssueOrders(GameEngine.getInstance()));
         GameEngine.getInstance().set_currentMap(map);
 
         player.issue_order();
