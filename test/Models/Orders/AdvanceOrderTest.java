@@ -28,7 +28,9 @@ public class AdvanceOrderTest {
      * The Instance of warmap.
      */
     private WarMap warMap;
-
+    /**
+     * Initializing the player instance before each test.
+     */
     @Before
     public void setUp() {
         gameEngine = GameEngine.getInstance();
@@ -36,7 +38,10 @@ public class AdvanceOrderTest {
         player.setD_behaviourStrategy(new HumanStrategy(player));
         warMap = new WarMap();
     }
-
+    /**
+     * Tests the execution of the advance command with valid input and neighboring countries.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testAdvanceCommandExecution() {
 
@@ -63,7 +68,10 @@ public class AdvanceOrderTest {
         // Assert the expected outcome.
         assertEquals(1, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the execution of the advance command with an invalid source country.
+     * Verifies that no AdvanceOrder is created when the source country is not a neighbor of the target country.
+     */
     @Test
     public void testAdvanceCommandExecutionWithInvalidSourceCountry() {
 
