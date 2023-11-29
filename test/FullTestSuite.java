@@ -8,6 +8,7 @@ import Models.Orders.DeployOrderTest;
 import Models.Orders.DiplomacyOrderTest;
 import Models.BehaviourStrategies.BenevolentStrategyTest;
 import Models.BehaviourStrategies.HumanStrategyTest;
+import Models.BehaviourStrategies.RandomStrategyTest;
 import Models.OrdersTest;
 import Models.PlayerTest;
 import Models.WarMapTest;
@@ -32,7 +33,8 @@ import org.junit.runners.Suite;
         EditPhaseTest.class,
         PlayPhaseTest.class,
         BenevolentStrategyTest.class,
-        HumanStrategyTest.class
+        HumanStrategyTest.class,
+        RandomStrategyTest.class
 
 })
 public class FullTestSuite {

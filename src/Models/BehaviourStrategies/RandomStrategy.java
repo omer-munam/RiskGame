@@ -6,6 +6,7 @@ import Models.Player;
 import Models.WarMap;
 import Phases.AssignReinforcements;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -73,6 +74,7 @@ public class RandomStrategy extends BehaviourStrategyBase {
         String l_command = String.format("advance %d %d %d", l_sourceCountry.get_countryID(), l_targetCountry.get_countryID(), l_armiesToMove);
         String[] commandTokens = l_command.split(" ");
         advance_issue_order(commandTokens);
+        System.out.println(Arrays.toString(commandTokens));
     }
 
     /**
@@ -108,6 +110,7 @@ public class RandomStrategy extends BehaviourStrategyBase {
         String l_command = String.format("advance %d %d %d", l_sourceCountry.get_countryID(), l_targetCountry.get_countryID(), l_armiesToMove);
         String[] commandTokens = l_command.split(" ");
         advance_issue_order(commandTokens);
+        System.out.println(Arrays.toString(commandTokens));
     }
 
     /**
@@ -119,5 +122,6 @@ public class RandomStrategy extends BehaviourStrategyBase {
         String l_command = String.format("deploy %d %d", l_targetCountry.get_countryID(), d_player.get_numOfReinforcements());
         String[] commandTokens = l_command.split(" ");
         deploy_issue_order(commandTokens);
+        System.out.println(Arrays.toString(commandTokens));
     }
 }
