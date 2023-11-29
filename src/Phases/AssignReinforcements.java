@@ -36,9 +36,13 @@ public class AssignReinforcements extends OrderPhase {
      * Deploy for AssignReinforcements phase
      */
     public void deploy() {
+        if (d_ge.getCurrentPlayer().get_playerCountries().size() == 0) {
+            next();
+            return;
+        }
         d_ge.getCurrentPlayer().issue_order();
 
-        if (d_ge.getCurrentPlayer().get_numOfReinforcements() == 0) {
+        if (d_ge.getCurrentPlayer().getD_behaviourStrategy().getClass().getSimpleName().equalsIgnoreCase("CheaterStrategy") || d_ge.getCurrentPlayer().get_numOfReinforcements() == 0) {
             System.out.println("_____________________________________________");
             next();
         }

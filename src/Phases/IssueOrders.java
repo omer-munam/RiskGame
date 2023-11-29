@@ -55,6 +55,7 @@ public class IssueOrders extends OrderPhase {
      */
     @Override
     public void issueOrder() {
+        if (d_ge.getCurrentPlayer().get_playerCountries().size() == 0) return;
         d_ge.getCurrentPlayer().issue_order();
     }
 
