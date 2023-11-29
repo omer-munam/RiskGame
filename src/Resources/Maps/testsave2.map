@@ -1,0 +1,10 @@
+[continents]
+cont1 1
+
+[countries]
+1 country1 1
+2 country2 1
+
+[borders]
+1 2
+2 1

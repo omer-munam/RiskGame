@@ -307,6 +307,10 @@ public class MainMenu extends Phase {
                 }
             }
         }
-        d_ge.runTournament(l_maps, l_strategies, l_games, l_turns);
+        try {
+            d_ge.runTournament(l_maps, l_strategies, l_games, l_turns);
+        } catch (Exception e) {
+            System.out.println("Error running tournament");
+        }
     }
 }

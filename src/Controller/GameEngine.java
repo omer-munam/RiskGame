@@ -498,7 +498,6 @@ public class GameEngine {
      *
      * @param p_InputPlayerName The name of the player to remove
      */
-
     public void removePlayer(String p_InputPlayerName) {
         if (d_playersList.removeIf(player ->
                 player.get_playerName().equals(p_InputPlayerName))) {
@@ -627,6 +626,7 @@ public class GameEngine {
             set_currentMap(l_gameMap);
             l_line = l_bufferReader.readLine();
             int l_playerCount = Integer.valueOf(l_line);
+            d_playersList.clear();
             ArrayList<Player> l_inputPlayerList = new ArrayList<>();
             for (int l_i = 0; l_i < l_playerCount; l_i++) {
                 l_line = l_bufferReader.readLine();

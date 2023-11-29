@@ -1,0 +1,9 @@
+[Continents]
+North_Europe=2
+East_Europe=4
+
+[Territories]
+1,0,0,North_Europe,2,3,4
+2,0,0,North_Europe,1,3,4
+3,0,0,East_Europe,1,2,4
+4,0,0,East_Europe,1,2,3

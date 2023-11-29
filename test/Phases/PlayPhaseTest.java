@@ -95,4 +95,26 @@ public class PlayPhaseTest {
         d_gameEngine.getPhase().displayOptions(); //runs execute phase functions - Since there is only one player he will be the winner and game will go to main menu
         assertEquals("MainMenu", d_gameEngine.getPhase().getClass().getSimpleName());
     }
+
+    /**
+     * Test to ensure that you can save a game in progress, and than load the same game
+     */
+    @Test
+    public void testSaveGameAndLoadGame() throws IOException {
+        d_gameEngine.setCurrentInput("loadmap");
+        d_gameEngine.getPhase().loadMap();
+        d_gameEngine.setCurrentInput("loadmap simple.map");
+        d_gameEngine.getPhase().loadMap();
+        d_gameEngine.setCurrentInput("assigncountries");
+        d_gameEngine.getPhase().assignCountries();
+        d_gameEngine.addPlayer("player1", "human");
+        d_gameEngine.addPlayer("player2", "human");
+        d_gameEngine.setCurrentInput("assigncountries");
+        d_gameEngine.getPhase().assignCountries();
+        d_gameEngine.saveGame("testsave");
+        d_gameEngine.setPhase(new MainMenu(d_gameEngine));
+        d_gameEngine.loadGame("testsave");
+        assertEquals(2, d_gameEngine.get_PlayersList().size());
+        assertEquals(4, d_gameEngine.get_currentMap().get_countries().size());
+    }
 }

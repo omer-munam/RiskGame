@@ -8,8 +8,11 @@ import Models.WarMap;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -100,5 +103,22 @@ public class GameEngineTest {
 
         assertEquals(1, players.size());
         assertEquals("Player1", players.get(0).get_playerName());
+    }
+
+    /**
+     * Test to ensure you can run a tournament
+     */
+    @Test
+    public void testTournament() throws IOException {
+        ArrayList<String> l_maps = new ArrayList<>();
+        ArrayList<String> l_strategies = new ArrayList<>();
+        l_maps.add("simple.map");
+        l_maps.add("simple.conquest");
+        l_strategies.add("benevolent");
+        l_strategies.add("random");
+        gameEngine.runTournament(l_maps, l_strategies, 4, 20);
+
+        String l_result = gameEngine.start_tournament_game(10);
+        assertNotEquals(null, l_result);
     }
 }
