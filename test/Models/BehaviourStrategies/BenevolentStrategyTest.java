@@ -5,13 +5,15 @@ import Models.Country;
 import Models.Player;
 import Models.WarMap;
 import Phases.AssignReinforcements;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.jupiter.api.TestInstance;
 import java.util.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BenevolentStrategyTest {
 
     private BenevolentStrategy benevolentStrategy;
@@ -24,7 +26,7 @@ public class BenevolentStrategyTest {
      */
     private GameEngine gameEngine;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         player = new Player("John Doe");
         benevolentStrategy = new BenevolentStrategy(player);

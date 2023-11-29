@@ -2,20 +2,19 @@ package Models.BehaviourStrategies;
 
 import Controller.GameEngine;
 import Models.Country;
+import Models.Orders.AirliftOrder;
 import Models.Player;
 import Models.WarMap;
 import Resources.Cards;
-import Resources.Commands;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.jupiter.api.TestInstance;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class HumanStrategyTest {
 
     private HumanStrategy humanStrategy;
@@ -24,7 +23,7 @@ public class HumanStrategyTest {
     private WarMap warMap;
 
     private Map<Integer, Country> countries;
-    @BeforeEach
+    @Before
     public void setUp() {
         player = new Player("John Doe");
         humanStrategy = new HumanStrategy(player);
@@ -32,6 +31,7 @@ public class HumanStrategyTest {
         countries = new HashMap<>();
         warMap = new WarMap();
     }
+
 
     @Test
     public void testDeployOrderCommandExecution() {
@@ -102,6 +102,7 @@ public class HumanStrategyTest {
         player.set_playerCountries(List.of(countryA));
         player.setD_behaviourStrategy(humanStrategy);
         // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().set_currentMap(map);
         GameEngine.getInstance().setCurrentInput("bomb 2");
 
         // Call the method you want to test.
@@ -112,39 +113,87 @@ public class HumanStrategyTest {
 
     }
 
-    /*
     @Test
     public void testBlockadeOrderCommandExecution() {
-        WarMap warMap = new WarMap();
-        GameEngine.getInstance().set_currentMap(warMap);
-        GameEngine.getInstance().setCurrentInput("blockade 1");
-        humanStrategy.issue_order();
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Blockade);
+        player.set_playerCards(cards);
+        WarMap map = new WarMap();
+        Country countryA = new Country(1, "CountryA", 1);
+        Country countryB = new Country(2, "CountryB", 1);
+        map.addCountry(countryA);
+        map.addCountry(countryB);
+
+        player.set_playerCountries(List.of(countryA, countryB));
+        player.setD_behaviourStrategy(humanStrategy);
+        // Simulate a valid command by setting the current input in GameEngine.
+        GameEngine.getInstance().set_currentMap(map);
+        GameEngine.getInstance().setCurrentInput("blockade 2");
+
+        // Call the method you want to test.
+        player.issue_order();
+
         assertEquals(1, player.get_playerOrder().size());
-        assertEquals(BlockadeOrder.class, player.get_playerOrder().get(0).getClass());
-        assertEquals(1, player.get_playerOrder().get(0).getTargetCountryID());
     }
 
     @Test
     public void testAirliftOrderCommandExecution() {
+        List<Cards> cards = new ArrayList<>();
+        cards.add(Cards.Airlift);
+        player.set_playerCards(cards);
+        WarMap map = new WarMap();
+
+        // Create source and target countries.
+        Country sourceCountry = new Country(1, "SourceCountry", 1);
+        Country targetCountry = new Country(2, "TargetCountry", 1);
+        player.set_playerCountries(Arrays.asList(sourceCountry, targetCountry));
+
+        player.setD_behaviourStrategy(humanStrategy);
+        GameEngine.getInstance().set_currentMap(map);
+
+        // Attach the players to the GameEngine.
+        GameEngine.getInstance().set_PlayersList(List.of(player));
+
+        // Simulate a valid airlift command by setting the current input in GameEngine.
         GameEngine.getInstance().setCurrentInput("airlift 1 2 3");
-        humanStrategy.issue_order();
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that an AirliftOrder was created and added to the list of orders.
         assertEquals(1, player.get_playerOrder().size());
-        assertEquals(AirliftOrder.class, player.get_playerOrder().get(0).getClass());
-        assertEquals(1, player.get_playerOrder().get(0).getSourceCountryID());
-        assertEquals(2, player.get_playerOrder().get(0).getTargetCountryID());
-        assertEquals(3, player.get_playerOrder().get(0).getNumOfArmies());
+        assertTrue(player.get_playerOrder().get(0) instanceof AirliftOrder);
+
+        // Assert that the Airlift card is removed from the player's cards.
+        assertFalse(player.get_playerCards().contains(Cards.Airlift));
     }
 
     @Test
     public void testDiplomacyOrderCommandExecution() {
-        WarMap warMap = new WarMap();
-        GameEngine.getInstance().set_currentMap(warMap);
-        GameEngine.getInstance().setCurrentInput("negotiate John");
-        humanStrategy.issue_order();
-        assertEquals(1, player.get_playerOrder().size());
-        assertEquals(BehaviourStrategyBase.class, player.get_playerOrder().get(0).getClass());
-        assertEquals("John", player.get_playerOrder().get(0).getTargetPlayer());
-    }*/
+        player.set_playerCards(List.of(Cards.Diplomacy));
+        WarMap map = new WarMap();
+        map.addCountry(new Country(1, "CountryA", 1));
+        map.addCountry(new Country(2, "CountryB", 1));
+        player.set_playerCountries(Arrays.asList(new Country(1, "CountryA", 1)
+                , new Country(2, "CountryB", 1)));
+
+        // Create another player in the game.
+        Player otherPlayer = new Player("Player2");
+        player.setD_behaviourStrategy(humanStrategy);
+        // Attach the players to the GameEngine.
+        GameEngine.getInstance().set_PlayersList(List.of(otherPlayer));
+        GameEngine.getInstance().set_currentMap(map);
+        // Simulate a valid diplomacy command by setting the current input in GameEngine.
+        GameEngine.getInstance().setCurrentInput("diplomacy Player2");
+
+        // Call the method you want to test.
+        player.issue_order();
+
+        // Assert that the target player name is added to the diplomacy list.
+        assertTrue(player.get_diplomacy_list().contains("Player2"));
+
+
+    }
 
     @Test
     public void testInvalidCommand() {
