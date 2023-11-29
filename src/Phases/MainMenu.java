@@ -1,11 +1,9 @@
 package Phases;
 
 import Adapter.MapEditorAdapter;
+import Adapter.MapEditorConquest;
 import Controller.GameEngine;
 import Controller.MapEditor;
-import Models.BehaviourStrategies.BehaviourStrategy;
-import Models.BehaviourStrategies.BenevolentStrategy;
-import Models.Player;
 import Models.WarMap;
 import Resources.Commands;
 import logging.LogWriter;
@@ -60,13 +58,9 @@ public class MainMenu extends Phase {
         if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.map")) {
             ArrayList<String> l_listOfMaps = d_ge.getAllMapsList();
             d_ge.set_currentMap(null);
-            d_ge.set_currentMap(new WarMap());
+
             if (l_listOfMaps.contains(l_words[1])) {
-                boolean l_isAbleToReadMap = MapEditor.readMap(l_words[1], d_ge.get_currentMap());
-                if (!l_isAbleToReadMap) {
-                    System.out.print("\n Unable to read " + l_words[1] + "!\n");
-                    return;
-                }
+                d_ge.set_currentMap(new MapEditor().readMap(l_words[1]));
                 boolean l_isValidMap = d_ge.get_currentMap().validateMap();
                 if (!l_isValidMap) {
                     System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
@@ -82,13 +76,10 @@ public class MainMenu extends Phase {
         } else if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.conquest")) {
             ArrayList<String> l_listOfMaps = d_ge.getAllMapsList();
             d_ge.set_currentMap(null);
-            d_ge.set_currentMap(new WarMap());
+
             if (l_listOfMaps.contains(l_words[1])) {
-                boolean l_isAbleToReadMap = MapEditorAdapter.readMap(l_words[1], d_ge.get_currentMap());
-                if (!l_isAbleToReadMap) {
-                    System.out.print("\n Unable to read " + l_words[1] + "!\n");
-                    return;
-                }
+                MapEditor l_mapEditor = new MapEditorAdapter(new MapEditorConquest());
+                d_ge.set_currentMap(l_mapEditor.readMap(l_words[1]));
 
                 boolean l_isValidMap = d_ge.get_currentMap().validateMap();
                 if (!l_isValidMap) {

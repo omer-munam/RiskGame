@@ -1,8 +1,8 @@
 package Controller;
 
 import Adapter.MapEditorAdapter;
+import Adapter.MapEditorConquest;
 import Models.BehaviourStrategies.*;
-import Models.Continent;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -609,8 +609,14 @@ public class GameEngine {
             BufferedReader l_bufferReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename));
             String l_line = l_bufferReader.readLine();
             WarMap l_gameMap = new WarMap();
-            if (l_line.matches("(?i).+\\.map")) MapEditor.readMap(l_line, l_gameMap);
-            if (l_line.matches("(?i).+\\.conquest")) MapEditorAdapter.readMap(l_line, l_gameMap);
+            if (l_line.matches("(?i).+\\.map")) {
+                MapEditor l_mapReader = new MapEditor();
+                l_gameMap = l_mapReader.readMap(l_line);
+            }
+            if (l_line.matches("(?i).+\\.conquest")) {
+                MapEditor l_mapReader = new MapEditorAdapter(new MapEditorConquest());
+                l_gameMap = l_mapReader.readMap(l_line);
+            }
             set_currentMap(l_gameMap);
             l_line = l_bufferReader.readLine();
             int l_playerCount = Integer.valueOf(l_line);
@@ -669,7 +675,15 @@ public class GameEngine {
         }
     }
 
-    public void runTournament(ArrayList<String> p_maps, ArrayList<String> p_strategies, int p_games, int p_maxturns) throws IOException {
+    /**
+     * Runs a tournament
+     *
+     * @param p_maps       The maps to be ran
+     * @param p_strategies The strategies of the player
+     * @param p_games      The number of games
+     * @param p_maxturns   The max amount of turns
+     */
+    public void runTournament(ArrayList<String> p_maps, ArrayList<String> p_strategies, int p_games, int p_maxturns) {
         if (p_maps.size() < 1 || p_maps.size() > 5) {
             System.out.println("Invalid amount of maps");
             return;
@@ -686,12 +700,27 @@ public class GameEngine {
             System.out.println("Invalid number of turns per game");
             return;
         }
+        try{
         Player l_inputPlayer;
         ArrayList<String> l_results = new ArrayList<>();
         for (int l_z = 0; l_z < p_maps.size(); l_z++) {
             WarMap l_inputMap = new WarMap();
-            if (p_maps.get(l_z).matches("(?i).+\\.map")) MapEditor.readMap(p_maps.get(l_z), l_inputMap);
-            if (p_maps.get(l_z).matches("(?i).+\\.conquest")) MapEditorAdapter.readMap(p_maps.get(l_z), l_inputMap);
+
+            if (p_maps.get(l_z).matches("(?i).+\\.map")) {
+                MapEditor l_mapReader = new MapEditor();
+                l_inputMap = l_mapReader.readMap(p_maps.get(l_z));
+            } else if (p_maps.get(l_z).matches("(?i).+\\.conquest")) {
+                MapEditor l_mapReader = new MapEditorAdapter(new MapEditorConquest());
+                l_inputMap = l_mapReader.readMap(p_maps.get(l_z));
+            } else {
+                System.out.println("Improper map format entered, exiting tournament");
+                return;
+            }
+            ;
+            if (!l_inputMap.validateMap()) {
+                System.out.println("You have loaded an invalid map, exiting tournament");
+                return;
+            }
             this.set_currentMap(l_inputMap);
             System.out.println("Starting games for map " + l_inputMap.get_mapName());
             for (int l_i = 0; l_i < p_games; l_i++) {
@@ -731,7 +760,10 @@ public class GameEngine {
             System.out.println();
         }
         System.out.println();
-        System.out.println("Done printing results");
+            System.out.println("Done printing results");
+        } catch (Exception e) {
+            System.out.println("Error while running tournament");
+        }
     }
 }
 

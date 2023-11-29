@@ -1,6 +1,7 @@
 package Phases;
 
 import Adapter.MapEditorAdapter;
+import Adapter.MapEditorConquest;
 import Controller.GameEngine;
 import Controller.MapEditor;
 import Models.WarMap;
@@ -51,7 +52,19 @@ public class Postload extends Edit {
 
         if (l_input_string_array.length > 1 && l_input_string_array[1] != null) {
             d_ge.set_currentMap(new WarMap());
-            MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
+            if (l_input_string_array[1].matches("(?i).+\\.map")) {
+                WarMap l_inputMap = new MapEditor().editMap(l_input_string_array[1]);
+                d_ge.set_currentMap(l_inputMap);
+            } else if (l_input_string_array[1].matches("(?i).+\\.conquest")) {
+                MapEditor l_mapEditor = new MapEditorAdapter(new MapEditorConquest());
+                WarMap l_inputMap = l_mapEditor.editMap(l_input_string_array[1]);
+                d_ge.set_currentMap(l_inputMap);
+            } else {
+                System.out.println("Invalid map type entered");
+                return;
+            }
+
+
             d_logentrybuffer.writeLog("editmap " + l_input_string_array[1] + " runned successfully");
         } else {
             System.out.println("Could not load map");
@@ -171,14 +184,22 @@ public class Postload extends Edit {
         if (l_input_string_array.length > 1) {
             if (d_ge.get_currentMap().validateMap()) {
                 if (l_input_string_array[1].matches("(?i).+\\.map"))
-                    MapEditor.saveMap(l_input_string_array[1], d_ge.get_currentMap());
-                if (l_input_string_array[1].matches("(?i).+\\.conquest"))
-                    MapEditorAdapter.saveMap(l_input_string_array[1], d_ge.get_currentMap());
-
+                    new MapEditor().saveMap(l_input_string_array[1], d_ge.get_currentMap());
+                if (l_input_string_array[1].matches("(?i).+\\.conquest")) {
+                    MapEditor l_mapEditor = new MapEditorAdapter(new MapEditorConquest());
+                    l_mapEditor.saveMap(l_input_string_array[1], d_ge.get_currentMap());
+                }
                 System.out.println("Map saved");
                 d_logentrybuffer.writeLog(l_input_string_array[1] + " Map saved successfully.");
                 d_ge.set_currentMap(new WarMap());
-                MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
+                if (l_input_string_array[1].matches("(?i).+\\.map")) {
+                    d_ge.set_currentMap(new MapEditor().editMap(l_input_string_array[1]));
+                }
+                if (l_input_string_array[1].matches("(?i).+\\.conquest")) {
+                    MapEditor l_mapEditor = new MapEditorAdapter(new MapEditorConquest());
+                    d_ge.set_currentMap(l_mapEditor.editMap(l_input_string_array[1]));
+                }
+
             } else {
                 System.out.println("Map not saved due to being invalid");
             }
