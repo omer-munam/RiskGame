@@ -12,7 +12,12 @@ import org.junit.Test;
 import org.junit.jupiter.api.TestInstance;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Unit tests for the {@link AggressiveStrategy} class, which represents
+ * the aggressive behavior strategy for a player in the game. The tests
+ * cover the creation of deploy, advance, and attack orders based on the
+ * specific strategy rules.
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AggressiveStrategyTest {
 
@@ -25,7 +30,10 @@ public class AggressiveStrategyTest {
      * Initializing the player instance before each test.
      */
     private GameEngine gameEngine;
-
+    /**
+     * Sets up the initial state for each test, including creating a player,
+     * an aggressive strategy instance, and initializing countries and the game engine.
+     */
     @Before
     public void setUp() {
         player = new Player("John Doe");
@@ -34,7 +42,10 @@ public class AggressiveStrategyTest {
         gameEngine = GameEngine.getInstance();
         warMap = new WarMap();
     }
-
+    /**
+     * Tests the creation of a deploy order command for the aggressive strategy.
+     * Verifies that the order is created correctly based on certain conditions.
+     */
     @Test
     public void testCreateDeployOrderCommand() {
 
@@ -62,7 +73,11 @@ public class AggressiveStrategyTest {
 
         assertEquals(1, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the creation of an advance order command for the aggressive strategy
+     * when there are neighboring countries. Ensures that the order is not created
+     * under certain conditions.
+     */
     @Test
     public void testCreateAdvanceOrderCommandWithNeighbouringCountries() {
 
@@ -95,7 +110,11 @@ public class AggressiveStrategyTest {
 
         assertEquals(0, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the creation of an advance order command for the aggressive strategy
+     * when there are no neighboring countries. Ensures that the order is not created
+     * under certain conditions.
+     */
     @Test
     public void testCreateAdvanceOrderCommandWithoutNeighbouringCountries() {
 
@@ -121,7 +140,11 @@ public class AggressiveStrategyTest {
 
         assertEquals(0, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the creation of an attack order command for the aggressive strategy
+     * when there are neighboring countries. Ensures that the order is not created
+     * under certain conditions.
+     */
     @Test
     public void testCreateAttackOrderCommandWithNeighbouringCountries() {
 
@@ -170,7 +193,11 @@ public class AggressiveStrategyTest {
 
         assertEquals(0, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the creation of an attack order command for the aggressive strategy
+     * when there are no neighboring countries. Ensures that the order is not created
+     * under certain conditions.
+     */
     @Test
     public void testCreateAttackOrderCommandWithoutNeighbouringCountries() {
 
