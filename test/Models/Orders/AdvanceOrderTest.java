@@ -1,6 +1,7 @@
 package Models.Orders;
 
 import Controller.GameEngine;
+import Models.BehaviourStrategies.HumanStrategy;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -37,6 +38,9 @@ public class AdvanceOrderTest {
 
     @Test
     public void testAdvanceCommandExecution() {
+
+        player.setD_behaviourStrategy(new HumanStrategy(player));
+
         // Create a test scenario where the player has valid input and neighboring countries.
         WarMap map = new WarMap();
         Country countryA = new Country(1, "CountryA", 1);
@@ -61,6 +65,9 @@ public class AdvanceOrderTest {
 
     @Test
     public void testAdvanceCommandExecutionWithInvalidSourceCountry() {
+
+        player.setD_behaviourStrategy(new HumanStrategy(player));
+
         // Create a test scenario where the player has two countries, but the source country is invalid.
         WarMap map = new WarMap();
         Country sourceCountry = new Country(1, "SourceCountry", 1);
