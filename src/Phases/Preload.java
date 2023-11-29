@@ -1,5 +1,7 @@
 package Phases;
 
+import Adapter.MapEditorAdapter;
+import Adapter.MapEditorConquest;
 import Controller.GameEngine;
 import Controller.MapEditor;
 import Models.WarMap;
@@ -38,7 +40,14 @@ public class Preload extends Edit {
         String[] l_input_string_array = d_ge.getCurrentInput().split(" ");
         if (l_input_string_array.length > 1 && l_input_string_array[1] != null) {
             d_ge.set_currentMap(new WarMap());
-            MapEditor.editMap(l_input_string_array[1], d_ge.get_currentMap());
+            if (l_input_string_array[1].matches("(?i).+\\.map")) {
+                d_ge.set_currentMap(new MapEditor().editMap(l_input_string_array[1]));
+            }
+            if (l_input_string_array[1].matches("(?i).+\\.conquest")) {
+                MapEditor l_mapEditor = new MapEditorAdapter(new MapEditorConquest());
+                d_ge.set_currentMap(l_mapEditor.editMap(l_input_string_array[1]));
+            }
+
             if (!d_ge.get_currentMap().get_mapName().equals("Default Name")) {
                 d_logentrybuffer.writeLog("editmap " + l_input_string_array[1] + " runned successfully");
                 next();
