@@ -27,7 +27,7 @@ public class WarMapTest {
      */
     @Before
     public void setUp() throws Exception {
-        l_warmap = new WarMap();
+        l_warmap = new MapEditor().readMap("europe.map");
     }
 
     /**
@@ -35,16 +35,12 @@ public class WarMapTest {
      */
     @Test
     public void testIsContinentConnected() {
-        try {
-            MapEditor.readMap("europe.map", l_warmap);
+
             assertTrue(l_warmap.validateMap());
             l_warmap.removeCountry(9);
             l_warmap.removeCountry(10);
             assertFalse(l_warmap.validateMap());
-        } catch (IOException e) {
-            System.err.println("Some Error occured while validating map");
-            e.printStackTrace();
-        }
+
     }
 
     /**
@@ -52,16 +48,13 @@ public class WarMapTest {
      */
     @Test
     public void testIsConnectedGraph() {
-        try {
-            MapEditor.readMap("europe.map", l_warmap);
-            assertTrue(l_warmap.validateMap());
+
+        assertTrue(l_warmap.validateMap());
             l_warmap.removeNeighbourCountry(3, 1);
             l_warmap.removeNeighbourCountry(3, 2);
             assertFalse(l_warmap.validateMap());
-        } catch (IOException e) {
-            System.err.println("Some Error occured while validating map");
-            e.printStackTrace();
-        }
+
+
     }
 
     /**
@@ -69,30 +62,23 @@ public class WarMapTest {
      */
     @Test
     public void testisEmptyContinent() {
-        try {
-            MapEditor.readMap("europe.map", l_warmap);
-            assertTrue(l_warmap.validateMap());
+
+        assertTrue(l_warmap.validateMap());
             l_warmap.addContinent(5, "demo_Continent", 7);
             assertFalse(l_warmap.validateMap());
-        } catch (IOException e) {
-            System.err.println("Some Error occured while validating map");
-            e.printStackTrace();
-        }
+
     }
+
 
     /**
      * Checking if all countries have at least one neighbor
      */
     @Test
     public void testingisCountryNoNeighbor() {
-        try {
-            MapEditor.readMap("europe.map", l_warmap);
-            assertTrue(l_warmap.validateMap());
+
+        assertTrue(l_warmap.validateMap());
             l_warmap.addCountry(25, "demo_country", 4);
             assertFalse(l_warmap.validateMap());
-        } catch (IOException e) {
-            System.err.println("Some Error occured while validating map");
-            e.printStackTrace();
-        }
+
     }
 }

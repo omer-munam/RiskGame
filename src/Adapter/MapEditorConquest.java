@@ -1,6 +1,5 @@
 package Adapter;
 
-import Controller.MapEditor;
 import Models.Continent;
 import Models.Country;
 import Models.WarMap;
@@ -17,12 +16,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * An adapter class used to read Conquest Map files instead of Domination map files
  *
  * @author Ryan Feher
  */
-public class MapEditorConquest extends MapEditor {
+public class MapEditorConquest {
+    /**
+     * Base path for where maps are saved
+     */
+    private static String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
+
+
     /**
      * ReadMap
      *

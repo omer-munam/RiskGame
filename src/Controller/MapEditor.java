@@ -36,7 +36,6 @@ public class MapEditor {
      * A function used for reading a WarMap from a file into a WarMap object.
      *
      * @param p_filename The file name of the map
-     * @param p_map      The map class in which you wish to store the map.
      * @throws IOException Exception if error with IO
      * @return True if a map could be read
      */
