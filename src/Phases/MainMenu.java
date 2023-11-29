@@ -1,5 +1,6 @@
 package Phases;
 
+import Adapter.MapEditorAdapter;
 import Controller.GameEngine;
 import Controller.MapEditor;
 import Models.BehaviourStrategies.BehaviourStrategy;
@@ -66,6 +67,29 @@ public class MainMenu extends Phase {
                     System.out.print("\n Unable to read " + l_words[1] + "!\n");
                     return;
                 }
+                boolean l_isValidMap = d_ge.get_currentMap().validateMap();
+                if (!l_isValidMap) {
+                    System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");
+                    return;
+                }
+                System.out.print(l_words[1] + " loaded successfully!\n");
+                d_logentrybuffer.writeLog(l_words[1] + " loaded successfully.");
+                this.next();
+            } else {
+                System.out.print("\nUnable to find " + l_words[1] + " in our maps directory. Enter the correct spelling or select some other map!\n");
+
+            }
+        } else if (l_words.length == 2 && l_words[0].equalsIgnoreCase(Commands.LOAD_MAP_COMMAND) && l_words[1].matches("(?i).+\\.conquest")) {
+            ArrayList<String> l_listOfMaps = d_ge.getAllMapsList();
+            d_ge.set_currentMap(null);
+            d_ge.set_currentMap(new WarMap());
+            if (l_listOfMaps.contains(l_words[1])) {
+                boolean l_isAbleToReadMap = MapEditorAdapter.readMap(l_words[1], d_ge.get_currentMap());
+                if (!l_isAbleToReadMap) {
+                    System.out.print("\n Unable to read " + l_words[1] + "!\n");
+                    return;
+                }
+
                 boolean l_isValidMap = d_ge.get_currentMap().validateMap();
                 if (!l_isValidMap) {
                     System.out.print("\n" + l_words[1] + " is not a valid map! Try fixing it manually or select some other map!\n");

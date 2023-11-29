@@ -1,5 +1,6 @@
 package Controller;
 
+import Adapter.MapEditorAdapter;
 import Models.BehaviourStrategies.*;
 import Models.Continent;
 import Models.Country;
@@ -573,7 +574,8 @@ public class GameEngine {
             BufferedReader l_bufferReader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\Src\\Resources\\Saves\\" + p_filename));
             String l_line = l_bufferReader.readLine();
             WarMap l_gameMap = new WarMap();
-            MapEditor.readMap(l_line, l_gameMap);
+            if (l_line.matches("(?i).+\\.map")) MapEditor.readMap(l_line, l_gameMap);
+            if (l_line.matches("(?i).+\\.conquest")) MapEditorAdapter.readMap(l_line, l_gameMap);
             set_currentMap(l_gameMap);
             l_line = l_bufferReader.readLine();
             int l_playerCount = Integer.valueOf(l_line);
@@ -653,7 +655,8 @@ public class GameEngine {
         ArrayList<String> l_results = new ArrayList<>();
         for (int l_z = 0; l_z < p_maps.size(); l_z++) {
             WarMap l_inputMap = new WarMap();
-            MapEditor.readMap(p_maps.get(l_z), l_inputMap);
+            if (p_maps.get(l_z).matches("(?i).+\\.map")) MapEditor.readMap(p_maps.get(l_z), l_inputMap);
+            if (p_maps.get(l_z).matches("(?i).+\\.conquest")) MapEditorAdapter.readMap(p_maps.get(l_z), l_inputMap);
             this.set_currentMap(l_inputMap);
             System.out.println("Starting games for map " + l_inputMap.get_mapName());
             for (int l_i = 0; l_i < p_games; l_i++) {

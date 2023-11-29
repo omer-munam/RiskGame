@@ -5,12 +5,15 @@ import Models.Country;
 import Models.WarMap;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class contains utility functions for creating and editing maps to be used in the game. It is also the entry point to be used from main to access the map editor.
@@ -22,12 +25,12 @@ public class MapEditor {
     /**
      * Stores the location of saved maps in the file directory.
      */
-    static String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
+    protected static String d_base_path = System.getProperty("user.dir") + "\\Src\\Resources\\Maps";
 
     /**
      * Stores the command for editing maps.
      */
-    static HashMap<String, Integer> command_Code_Hashmap = new HashMap<String, Integer>();
+    protected static HashMap<String, Integer> command_Code_Hashmap = new HashMap<String, Integer>();
 
     /**
      * A function used for reading a WarMap from a file into a WarMap object.
@@ -111,12 +114,57 @@ public class MapEditor {
         String[] l_filenameslist = l_maps_directory.list();
         boolean l_anymapfile = false;
         for (String l_filename : l_filenameslist) {
-            if (l_filename.contains(".map")) {
+            if (l_filename.contains(".map") || l_filename.contains(".conquest")) {
                 System.out.println(l_filename);
                 l_anymapfile = true;
             }
         }
         if (!l_anymapfile) System.out.println("There are no map files in \\Maps folder \n");
+    }
+
+    public static void saveMap(String p_map_name, WarMap p_warMap) {
+
+        // Checking if a map is valid before saving it.
+        if (p_warMap.validateMap()) {
+            try {
+                FileWriter l_fstream = new FileWriter(d_base_path + "\\" + p_map_name);
+                BufferedWriter l_info = new BufferedWriter(l_fstream);
+
+                // creating Continents Section in map File
+                l_info.write("[continents]");
+                l_info.newLine();
+                for (Map.Entry<Integer, Continent> l_continent : p_warMap.get_continents().entrySet()) {
+                    l_info.write(l_continent.getValue().get_continentName() + " " + l_continent.getValue().get_armyBonus());
+                    l_info.newLine();
+                }
+                l_info.newLine();
+
+                //creating Country Section in map File
+                l_info.write("[countries]");
+                l_info.newLine();
+                for (Map.Entry<Integer, Country> l_country : p_warMap.get_countries().entrySet()) {
+                    l_info.write(l_country.getKey() + " " + l_country.getValue().get_countryName() + " " + l_country.getValue().getContinentID());
+                    l_info.newLine();
+                }
+                l_info.newLine();
+
+                // creating border section in File
+                l_info.write("[borders]");
+                l_info.newLine();
+                for (Map.Entry<Integer, HashMap<Integer, Integer>> l_neighbourlist : p_warMap.get_adjencyList().entrySet()) {
+                    StringBuilder l_border = new StringBuilder();
+                    l_border.append(l_neighbourlist.getKey());
+                    for (Integer nghbr_cuntry : l_neighbourlist.getValue().keySet())
+                        l_border.append(" " + nghbr_cuntry);
+                    l_info.write(String.valueOf(l_border));
+                    l_info.newLine();
+                }
+                l_info.close();
+
+            } catch (Exception e) {
+                System.out.println("Exception occured file saving a map file");
+            }
+        } else System.out.println("Invalid_Map");
     }
 
 }
