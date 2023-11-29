@@ -44,6 +44,10 @@ public class AirliftOrderTest {
 
     @Test
     public void testAirliftCommandExecution() {
+
+        player.setD_behaviourStrategy(new HumanStrategy(player));
+
+
         // Create a test scenario where the player has the Airlift card and valid input.
         List<Cards> cards = new ArrayList<>();
         cards.add(Cards.Airlift);
@@ -74,6 +78,10 @@ public class AirliftOrderTest {
 
     @Test
     public void testAirliftCommandExecutionWithInvalidSourceCountry() {
+
+        player.setD_behaviourStrategy(new HumanStrategy(player));
+
+
         // Create a test scenario where the player has two countries, but the source country is invalid.
         WarMap map = new WarMap();
         Country sourceCountry = new Country(1, "SourceCountry", 1);
