@@ -4,6 +4,13 @@ import Models.Player;
 import Models.Country;
 
 
+/**
+ * Represents the cheater behavior strategy for a player.
+ * The cheater conquers all immediate neighboring enemy countries and doubles the number of armies on its countries
+ * that have enemy neighbors.
+ *
+ * @author Leila Mousavi
+ */
 public class CheaterStrategy extends BehaviourStrategyBase {
     public CheaterStrategy(Player p_player){
         super(p_player);
