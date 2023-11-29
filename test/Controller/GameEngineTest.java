@@ -85,16 +85,20 @@ public class GameEngineTest {
      */
     @Test
     public void testRemovePlayer() {
-        gameEngine.addPlayer("Player1");
-        gameEngine.addPlayer("Player2");
-        gameEngine.addPlayer("Player3");
+
+        Player player1 = new Player("Player1");
+        player1.setD_behaviourStrategy(new HumanStrategy(player1));
+        gameEngine.get_PlayersList().add(player1);
+
+        Player player2 = new Player("Player2");
+        player2.setD_behaviourStrategy(new HumanStrategy(player2));
+        gameEngine.get_PlayersList().add(player2);
 
         gameEngine.removePlayer("Player2");
 
         List<Player> players = gameEngine.get_PlayersList();
 
-        assertEquals(2, players.size());
+        assertEquals(1, players.size());
         assertEquals("Player1", players.get(0).get_playerName());
-        assertEquals("Player3", players.get(1).get_playerName());
     }
 }
