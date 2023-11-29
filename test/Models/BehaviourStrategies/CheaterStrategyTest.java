@@ -26,6 +26,10 @@ public class CheaterStrategyTest {
         cheaterStrategy = new CheaterStrategy(player);
     }
 
+
+    /**
+     * Test case for the issue_order() method when conquering an enemy neighbor and doubling armies.
+     */
     @Test
     public void testIssueOrder_ConquerEnemyAndDoubleArmies() {
         // Create a country with an enemy neighbor
@@ -50,6 +54,9 @@ public class CheaterStrategyTest {
         assertEquals(6, country.get_numOfArmies());
     }
 
+    /**
+     * Test case for the issue_order() method when there are no enemy neighbors to conquer.
+     */
     @Test
     public void testIssueOrder_NoEnemyNeighbors() {
         // Create a country with no enemy neighbors
@@ -66,6 +73,9 @@ public class CheaterStrategyTest {
         assertEquals(3, country.get_numOfArmies());
     }
 
+    /**
+     * Test case for the issue_order() method when there are multiple enemy neighbors.
+     */
     @Test
     public void testIssueOrder_MultipleEnemyNeighbors() {
         // Create a country with multiple enemy neighbors
