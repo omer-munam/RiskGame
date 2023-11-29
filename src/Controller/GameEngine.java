@@ -418,6 +418,41 @@ public class GameEngine {
     }
 
     /**
+     * Function to add a player with given input strategy
+     *
+     * @param p_InputPlayerName name of player
+     * @param p_InputStrategy   the input strategy
+     */
+    public void addPlayer(String p_InputPlayerName, String p_InputStrategy) {
+        for (Player player : d_playersList) {
+            String l_ExistingPlayerName = player.get_playerName();
+
+            if (l_ExistingPlayerName.equals((p_InputPlayerName))) {
+                System.out.println("Player " + p_InputPlayerName + " already exists.");
+                return;
+            }
+        }
+        Player l_newPlayer = new Player(p_InputPlayerName);
+        l_newPlayer.set_playerName(p_InputPlayerName);
+        if (p_InputStrategy.equalsIgnoreCase("human"))
+            l_newPlayer.setD_behaviourStrategy(new HumanStrategy(l_newPlayer));
+        if (p_InputStrategy.equalsIgnoreCase("cheater"))
+            l_newPlayer.setD_behaviourStrategy(new CheaterStrategy(l_newPlayer));
+        if (p_InputStrategy.equalsIgnoreCase("benevolent"))
+            l_newPlayer.setD_behaviourStrategy(new BenevolentStrategy(l_newPlayer));
+        if (p_InputStrategy.equalsIgnoreCase("random"))
+            l_newPlayer.setD_behaviourStrategy(new RandomStrategy(l_newPlayer));
+        if (p_InputStrategy.equalsIgnoreCase("aggressive"))
+            l_newPlayer.setD_behaviourStrategy(new AggressiveStrategy(l_newPlayer));
+        if (l_newPlayer.getD_behaviourStrategy() == null) {
+            System.out.println("Invalid behaviour specified player not added");
+            return;
+        }
+        d_playersList.add(l_newPlayer);
+        System.out.println("Player " + p_InputPlayerName + " added successfully.");
+    }
+
+    /**
      * Function called while adding a player to set its behaviour.
      *
      * @param l_newPlayer the player for which to set the strategy.

@@ -1,6 +1,7 @@
 package Models.Orders;
 
 import Controller.GameEngine;
+import Models.BehaviourStrategies.HumanStrategy;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -48,6 +49,7 @@ public class BlockadeOrderTest {
     public void setUp() {
         warMap = new WarMap();
         player = new Player("Player1");
+        player.setD_behaviourStrategy(new HumanStrategy(player));
         countries = new HashMap<>();// Assuming you have a no-argument constructor in your Player class
         gameEngine = GameEngine.getInstance();
 

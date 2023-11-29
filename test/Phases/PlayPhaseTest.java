@@ -44,8 +44,8 @@ public class PlayPhaseTest {
         d_gameEngine.setCurrentInput("loadmap europe.map");
         d_gameEngine.getPhase().next();
         assertEquals("Startup", d_gameEngine.getPhase().getClass().getSimpleName());
-        d_gameEngine.setCurrentInput("gameplayer -add player1 -add player2");
-        d_gameEngine.getPhase().setPlayers();
+        d_gameEngine.addPlayer("player1", "human");
+        d_gameEngine.addPlayer("player2", "human");
         d_gameEngine.setCurrentInput("assigncountries");
         d_gameEngine.getPhase().assignCountries();
         assertEquals("AssignReinforcements", d_gameEngine.getPhase().getClass().getSimpleName());
@@ -77,8 +77,8 @@ public class PlayPhaseTest {
         d_gameEngine.setCurrentInput("assigncountries");
         d_gameEngine.getPhase().assignCountries();
         assertEquals("Startup", d_gameEngine.getPhase().getClass().getSimpleName()); //Stays start up as not enough players added
-        d_gameEngine.setCurrentInput("gameplayer -add player1 -add player2");
-        d_gameEngine.getPhase().setPlayers();
+        d_gameEngine.addPlayer("player1", "human");
+        d_gameEngine.addPlayer("player2", "human");
         d_gameEngine.setCurrentInput("assigncountries");
         d_gameEngine.getPhase().assignCountries();
         assertEquals("AssignReinforcements", d_gameEngine.getPhase().getClass().getSimpleName()); //Goes to assignreinforcements after adding two players
@@ -90,7 +90,7 @@ public class PlayPhaseTest {
     @Test
     public void testGameEnds() {
         d_gameEngine.setPhase(new OrderExecution(d_gameEngine));
-        d_gameEngine.addPlayer("Ryan");
+        d_gameEngine.addPlayer("Ryan", "Human");
         d_gameEngine.get_PlayersList().get(0).get_playerCountries().add(new Country()); //Give the player a country so he does not get removed from the game
         d_gameEngine.getPhase().displayOptions(); //runs execute phase functions - Since there is only one player he will be the winner and game will go to main menu
         assertEquals("MainMenu", d_gameEngine.getPhase().getClass().getSimpleName());

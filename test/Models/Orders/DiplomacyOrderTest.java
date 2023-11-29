@@ -1,6 +1,7 @@
 package Models.Orders;
 
 import Controller.GameEngine;
+import Models.BehaviourStrategies.HumanStrategy;
 import Models.Country;
 import Models.Player;
 import Models.WarMap;
@@ -37,6 +38,7 @@ public class DiplomacyOrderTest {
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         player = new Player("John Doe");
+        player.setD_behaviourStrategy(new HumanStrategy(player));
         warMap = new WarMap();
     }
 
@@ -97,6 +99,7 @@ public class DiplomacyOrderTest {
     public void testDiplomacyCommandExecutionWithInvalidTargetPlayer() {
         // Create a test scenario where the player has the Diplomacy card, but the target player does not exist.
         Player player = new Player("Player1");
+        player.setD_behaviourStrategy(new HumanStrategy(player));
         player.set_playerCards(List.of(Cards.Diplomacy));
         WarMap map = new WarMap();
         map.addCountry(new Country());

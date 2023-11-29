@@ -62,7 +62,7 @@ public class GameEngineTest {
     @Test
     public void testAddPlayer() {
 
-        gameEngine.addPlayer("Player1");
+        gameEngine.addPlayer("Player1", "human");
 
         List<Player> players = gameEngine.get_PlayersList();
 
@@ -77,9 +77,9 @@ public class GameEngineTest {
      */
     @Test
     public void testRemovePlayer() {
-        gameEngine.addPlayer("Player1");
-        gameEngine.addPlayer("Player2");
-        gameEngine.addPlayer("Player3");
+        gameEngine.addPlayer("Player1", "human");
+        gameEngine.addPlayer("Player2", "human");
+        gameEngine.addPlayer("Player3", "human");
 
         gameEngine.removePlayer("Player2");
 

@@ -1,6 +1,7 @@
 package Models.Orders;
 
 import Controller.GameEngine;
+import Models.BehaviourStrategies.HumanStrategy;
 import Models.Continent;
 import Models.Country;
 import Models.Player;
@@ -36,6 +37,7 @@ public class DeployOrderTest {
     public void setUp() {
         gameEngine = GameEngine.getInstance();
         player = new Player("John Doe");
+        player.setD_behaviourStrategy(new HumanStrategy(player));
         warMap = new WarMap();
     }
 
