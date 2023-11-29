@@ -6,6 +6,7 @@ import Models.Player;
 import Phases.AssignReinforcements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -70,6 +71,7 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
             String l_command = String.format("advance %d %d %d", l_ownCountry.get_countryID(), l_strongestCountry.get_countryID(), l_ownCountry.get_numOfArmies());
             String[] commandTokens = l_command.split(" ");
             advance_issue_order(commandTokens);
+            System.out.println(Arrays.toString(commandTokens));
         }
     }
 
@@ -93,6 +95,7 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
         String l_command = String.format("advance %d %d %d", l_strongestCountry.get_countryID(), l_enemyCountry.get_countryID(), l_strongestCountry.get_numOfArmies() - 1);
         String[] commandTokens = l_command.split(" ");
         advance_issue_order(commandTokens);
+        System.out.println(Arrays.toString(commandTokens));
     }
 
     /**
@@ -118,6 +121,7 @@ public class AggressiveStrategy extends BehaviourStrategyBase {
         String l_command = String.format("deploy %d %d", l_strongestCountry.get_countryID(), d_player.get_numOfReinforcements());
         String[] commandTokens = l_command.split(" ");
         deploy_issue_order(commandTokens);
+        System.out.println(Arrays.toString(commandTokens));
         return l_strongestCountry;
     }
 }
