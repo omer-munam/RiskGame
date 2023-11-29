@@ -40,7 +40,10 @@ public class BombOrderTest {
         player.setD_behaviourStrategy(new HumanStrategy(player));
         warMap = new WarMap();
     }
-
+    /**
+     * Tests the execution of the bomb command with a valid target country and the Bomb card.
+     * Verifies that a BombOrder is created and added to the list of orders, and the Bomb card is removed.
+     */
     @Test
     public void testBombCommandExecution() {
         // Create a test scenario where the player has the Bomb card, and the input is valid.
@@ -68,7 +71,10 @@ public class BombOrderTest {
         // Ensure that the Bomb card is removed from the player's cards.
         assertFalse(player.get_playerCards().contains(Cards.Bomb));
     }
-
+    /**
+     * Tests the execution of the bomb command with an invalid target country.
+     * Verifies that no BombOrder is created when the target country is invalid.
+     */
     @Test
     public void testBombCommandExecutionWithInvalidCountry() {
         // Create a test scenario where the player has the Bomb card, but the target country is invalid.
@@ -86,7 +92,10 @@ public class BombOrderTest {
         // Assert that no BombOrder was created and added to the list of orders.
         assertEquals(0, player.get_playerOrder().size());
     }
-
+    /**
+     * Tests the execution of the bomb command without having the Bomb card.
+     * Verifies that no BombOrder is created when the player does not have the Bomb card.
+     */
     @Test
     public void testBombCommandExecutionWithoutBombCard() {
         // Create a test scenario where the player does not have the Bomb card.
