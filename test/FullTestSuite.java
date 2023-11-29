@@ -10,6 +10,7 @@ import Models.BehaviourStrategies.BenevolentStrategyTest;
 import Models.BehaviourStrategies.HumanStrategyTest;
 import Models.BehaviourStrategies.RandomStrategyTest;
 import Models.BehaviourStrategies.AggressiveStrategyTest;
+import Models.BehaviourStrategies.CheaterStrategyTest;
 import Models.OrdersTest;
 import Models.PlayerTest;
 import Models.WarMapTest;
@@ -36,7 +37,8 @@ import org.junit.runners.Suite;
         BenevolentStrategyTest.class,
         HumanStrategyTest.class,
         RandomStrategyTest.class,
-        AggressiveStrategyTest.class
+        AggressiveStrategyTest.class,
+        CheaterStrategyTest.class
 
 })
 public class FullTestSuite {
