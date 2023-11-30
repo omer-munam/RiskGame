@@ -107,6 +107,7 @@ public class GameEngineTest {
 
     /**
      * Test to ensure you can run a tournament
+     * @throws IOException when a map cannot be read
      */
     @Test
     public void testTournament() throws IOException {

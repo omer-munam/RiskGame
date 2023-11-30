@@ -98,6 +98,7 @@ public class PlayPhaseTest {
 
     /**
      * Test to ensure that you can save a game in progress, and than load the same game
+     * @throws IOException when a map cannot be read
      */
     @Test
     public void testSaveGameAndLoadGame() throws IOException {
