@@ -224,11 +224,13 @@ public class GameEngine {
                     if (d_gamePhase.getClass().getSimpleName().equals("AssignReinforcements")) {
                         setCurrentInput("deploy");
                         d_gamePhase.deploy();
+                        continue;
                     }
                     if (d_gamePhase.getClass().getSimpleName().equals("IssueOrders")) {
                         d_gamePhase.issueOrder();
                         setCurrentInput("execute");
                         d_gamePhase.next();
+
                     }
 
                 } else {

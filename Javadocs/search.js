@@ -32,11 +32,9 @@ var catSearchTags = "SearchTags";
 var highlight = "<span class=\"resultHighlight\">$&</span>";
 var camelCaseRegexp = "";
 var secondaryMatcher = "";
-
 function escapeHtml(str) {
     return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
-
 function getHighlightedText(item) {
     var ccMatcher = new RegExp(escapeHtml(camelCaseRegexp));
     var escapedItem = escapeHtml(item);
@@ -47,7 +45,6 @@ function getHighlightedText(item) {
     }
     return label;
 }
-
 function getURLPrefix(ui) {
     var urlPrefix = "";
     if (useModuleDirectories) {
@@ -69,7 +66,6 @@ function getURLPrefix(ui) {
     }
     return urlPrefix;
 }
-
 var watermark = 'Search';
 $(function () {
     $("#search").val('');

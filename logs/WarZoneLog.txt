@@ -1,0 +1,322 @@
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=1, countryName='England'} has been assigned to Benevolent
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Random
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Cheater
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Benevolent advance order executing
+Random advance order executing
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+Aggressive has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Benevolent
+Models.Country{countryID=1, countryName='England'} has been assigned to Random
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Cheater
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 2 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Benevolent advance order executing
+Random advance order executing
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+Aggressive has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=1, countryName='England'} has been assigned to Benevolent
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Random
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Cheater
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 4 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Benevolent advance order executing
+Random advance order executing
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+Aggressive has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=22, countryName='Spain'} has been assigned to Benevolent
+Models.Country{countryID=24, countryName='Luxembourg'} has been assigned to Random
+Models.Country{countryID=11, countryName='Czech_Rep'} has been assigned to Cheater
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Aggressive
+Models.Country{countryID=12, countryName='Slovakia'} has been assigned to Benevolent
+Models.Country{countryID=14, countryName='Austria'} has been assigned to Random
+Models.Country{countryID=18, countryName='Sardinia'} has been assigned to Cheater
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Aggressive
+Models.Country{countryID=13, countryName='Hungary'} has been assigned to Benevolent
+Models.Country{countryID=10, countryName='Poland'} has been assigned to Random
+Models.Country{countryID=15, countryName='Switzerland'} has been assigned to Cheater
+Models.Country{countryID=9, countryName='Germany'} has been assigned to Aggressive
+Models.Country{countryID=20, countryName='Majorca'} has been assigned to Benevolent
+Models.Country{countryID=1, countryName='England'} has been assigned to Random
+Models.Country{countryID=23, countryName='Portugal'} has been assigned to Cheater
+Models.Country{countryID=16, countryName='Italy'} has been assigned to Aggressive
+Models.Country{countryID=21, countryName='France'} has been assigned to Benevolent
+Models.Country{countryID=8, countryName='Denmark'} has been assigned to Random
+Models.Country{countryID=19, countryName='Corsica'} has been assigned to Cheater
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Aggressive
+Models.Country{countryID=17, countryName='Sicily'} has been assigned to Benevolent
+Models.Country{countryID=5, countryName='Wales'} has been assigned to Random
+Models.Country{countryID=7, countryName='Netherlands'} has been assigned to Cheater
+Models.Country{countryID=6, countryName='Belgum'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 17 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 10 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Deploy Order on CountryID 4 with 5 numOfArmies executed successfully.
+Benevolent advance order executing
+Random advance order executing
+Advance order: Random is advancing 1 armies from Denmark to Poland could not be completed.
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+Aggressive has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=1, countryName='England'} has been assigned to Benevolent
+Models.Country{countryID=17, countryName='Sicily'} has been assigned to Random
+Models.Country{countryID=14, countryName='Austria'} has been assigned to Cheater
+Models.Country{countryID=18, countryName='Sardinia'} has been assigned to Aggressive
+Models.Country{countryID=9, countryName='Germany'} has been assigned to Benevolent
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Random
+Models.Country{countryID=10, countryName='Poland'} has been assigned to Cheater
+Models.Country{countryID=20, countryName='Majorca'} has been assigned to Aggressive
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Benevolent
+Models.Country{countryID=12, countryName='Slovakia'} has been assigned to Random
+Models.Country{countryID=7, countryName='Netherlands'} has been assigned to Cheater
+Models.Country{countryID=13, countryName='Hungary'} has been assigned to Aggressive
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Benevolent
+Models.Country{countryID=16, countryName='Italy'} has been assigned to Random
+Models.Country{countryID=8, countryName='Denmark'} has been assigned to Cheater
+Models.Country{countryID=6, countryName='Belgum'} has been assigned to Aggressive
+Models.Country{countryID=24, countryName='Luxembourg'} has been assigned to Benevolent
+Models.Country{countryID=5, countryName='Wales'} has been assigned to Random
+Models.Country{countryID=11, countryName='Czech_Rep'} has been assigned to Cheater
+Models.Country{countryID=22, countryName='Spain'} has been assigned to Aggressive
+Models.Country{countryID=23, countryName='Portugal'} has been assigned to Benevolent
+Models.Country{countryID=21, countryName='France'} has been assigned to Random
+Models.Country{countryID=19, countryName='Corsica'} has been assigned to Cheater
+Models.Country{countryID=15, countryName='Switzerland'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 23 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 17 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Deploy Order on CountryID 22 with 5 numOfArmies executed successfully.
+Benevolent advance order executing
+Random advance order executing
+Advance order: Random is advancing 1 armies from Wales to Rep_Ireland could not be completed.
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Random has been removed from the game
+Aggressive has been removed from the game
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Cheater 19 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 23 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Benevolent advance order executing
+Cheater advance order executing
+Benevolent misc order executing
+Cheater misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=10, countryName='Poland'} has been assigned to Benevolent
+Models.Country{countryID=3, countryName='N_Ireland'} has been assigned to Random
+Models.Country{countryID=4, countryName='Rep_Ireland'} has been assigned to Cheater
+Models.Country{countryID=13, countryName='Hungary'} has been assigned to Aggressive
+Models.Country{countryID=9, countryName='Germany'} has been assigned to Benevolent
+Models.Country{countryID=15, countryName='Switzerland'} has been assigned to Random
+Models.Country{countryID=21, countryName='France'} has been assigned to Cheater
+Models.Country{countryID=24, countryName='Luxembourg'} has been assigned to Aggressive
+Models.Country{countryID=6, countryName='Belgum'} has been assigned to Benevolent
+Models.Country{countryID=11, countryName='Czech_Rep'} has been assigned to Random
+Models.Country{countryID=20, countryName='Majorca'} has been assigned to Cheater
+Models.Country{countryID=7, countryName='Netherlands'} has been assigned to Aggressive
+Models.Country{countryID=1, countryName='England'} has been assigned to Benevolent
+Models.Country{countryID=12, countryName='Slovakia'} has been assigned to Random
+Models.Country{countryID=19, countryName='Corsica'} has been assigned to Cheater
+Models.Country{countryID=23, countryName='Portugal'} has been assigned to Aggressive
+Models.Country{countryID=14, countryName='Austria'} has been assigned to Benevolent
+Models.Country{countryID=18, countryName='Sardinia'} has been assigned to Random
+Models.Country{countryID=8, countryName='Denmark'} has been assigned to Cheater
+Models.Country{countryID=16, countryName='Italy'} has been assigned to Aggressive
+Models.Country{countryID=22, countryName='Spain'} has been assigned to Benevolent
+Models.Country{countryID=5, countryName='Wales'} has been assigned to Random
+Models.Country{countryID=17, countryName='Sicily'} has been assigned to Cheater
+Models.Country{countryID=2, countryName='Scotland'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 14 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 12 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Deploy Order on CountryID 23 with 5 numOfArmies executed successfully.
+Benevolent advance order executing
+Random advance order executing
+Advance order: Random is advancing 1 armies from Slovakia to Austria could not be completed.
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+ASSIGNREINFORCEMENTS PHASE
+assigned Cheater 17 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUE ORDERS PHASE
+Order Execution Phase
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Cheater advance order executing
+Aggressive advance order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Aggressive has been removed from the game
+Cheater is the only player left and has won the game
+Main Menu Phase
+STARTUP PHASE
+Models.Country{countryID=1, countryName='Country_1'} has been assigned to Benevolent
+Models.Country{countryID=3, countryName='Country_3'} has been assigned to Random
+Models.Country{countryID=2, countryName='Country_2'} has been assigned to Cheater
+Models.Country{countryID=4, countryName='Country_4'} has been assigned to Aggressive
+assigncountries command runned successfully.
+ASSIGNREINFORCEMENTS PHASE
+assigned Benevolent 5 no of reinforcement armies.
+assigned Random 5 no of reinforcement armies.
+assigned Cheater 5 no of reinforcement armies.
+assigned Aggressive 5 no of reinforcement armies.
+ISSUEORDERS PHASE
+Order Execution Phase
+Benevolent deploy orders executing
+Deploy Order on CountryID 1 with 5 numOfArmies executed successfully.
+Random deploy orders executing
+Deploy Order on CountryID 3 with 5 numOfArmies executed successfully.
+Cheater deploy orders executing
+Aggressive deploy orders executing
+Benevolent advance order executing
+Random advance order executing
+Cheater advance order executing
+Aggressive advance order executing
+Benevolent misc order executing
+Random misc order executing
+Cheater misc order executing
+Aggressive misc order executing
+All orders executed successfully
+Benevolent has been removed from the game
+Random has been removed from the game
+Aggressive has been removed from the game
+Cheater 
